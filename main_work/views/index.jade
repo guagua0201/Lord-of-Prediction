@@ -1,5 +1,6 @@
 extends layout
 
-block content
-  h1= title
-  p Welcome to #{title}
+block home
+  h1 Hello
+  a(href='/register').btn Register
+  a(href='/login').btn Login
