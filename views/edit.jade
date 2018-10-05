@@ -1,0 +1,27 @@
+extends layout
+
+block edit
+  label UserName: #{data.UserName}
+  hr
+  form(method='POST' action='/update')
+    input(type='hidden' name='id' value=data.UserID)
+    table.list-edit
+      tr
+        th UserID
+        td= data.UserID
+      tr
+        th UserName
+        td
+          input(type='text' name='username' value=data.UserName).text
+      tr
+        th Password
+        td
+          input(type='password' name='pwd' value=data.Password).text
+      tr
+        th Email
+        td
+          input(type='text' name='email' value=data.Email).text
+      tr
+        td(colspan='2')
+          button(type='submit').btn Save
+          button(type='button' onclick="javasrcipt: location.href='/'; ").btn Back
