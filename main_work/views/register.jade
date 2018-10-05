@@ -1,0 +1,31 @@
+extends layout
+
+block register
+  div.container
+    h2 Register
+    p Welcome to Lord-of-Prediction
+    form(method='POST', action='/register')
+      div.form-group
+        label(for='username') Username:
+        input(type='text' id='username' name='username').form-control
+      div.form-group
+        label(for='password') Password:
+        input(type='password' id='password' name='password').form-control
+      div.form-group
+        label(for='confirmed_pwd) Confirmed Password:
+        input(type='password' id='confirmed_pwd' name='confirmed_pwd').form-control
+      div.form-group
+        label(for='nickname') Nickname:
+        input(type='text' id='nickname' name='nickname').form-control
+      div.form-group
+        label(for='gender') Gender:
+        select(id='gender' name='gender').form-control
+          option Male
+          option Female
+      div.form-group
+        label(for='email') Email:
+        input(type='text' id='email' name='email').form-control
+      div.form-group
+        button(type='summit).btn.btn-primary.col-sm-6 Submit
+        button(type='button' onclick="javascript: location.href='/'; ").btn.btn-primary Back
+
