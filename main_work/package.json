@@ -1,0 +1,25 @@
+{
+  "name": "main_config",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/guagua0201/Lord-of-Prediction.git"
+  },
+  "author": "guagua0201",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.3",
+    "jade": "^1.11.0",
+    "mssql": "^4.2.1"
+  },
+  "bugs": {
+    "url": "https://github.com/guagua0201/Lord-of-Prediction/issues"
+  },
+  "homepage": "https://github.com/guagua0201/Lord-of-Prediction#readme",
+  "devDependencies": {},
+  "description": ""
+}
