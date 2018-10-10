@@ -2,5 +2,9 @@ extends layout
 
 block index
   h1 Welcome to Lord-of-Prediction
-  a(href='/register').btn.btn-primary Register
-  a(href='/login').btn.btn-primary Login
+  p hello #{member}
+  if log_status == false
+    a(href='/register').btn.btn-primary Register
+    a(href='/login').btn.btn-primary Login
+  else
+    a(href='/logout').btn Logout

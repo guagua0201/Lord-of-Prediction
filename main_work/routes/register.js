@@ -6,7 +6,7 @@ var sql = require('mssql');
 
 /* GET register page. */
 router.get('/register', function(req, res, next) {  
-  res.render('/', {
+  res.render('register', {
     route: 'register'
   });
 });
@@ -33,13 +33,13 @@ router.post('/register', function(req, res, next) {
       .input('gender', sql.Bit, req.body.gender)
       .input('username', sql.NVarChar(20), req.body.username)
       .input('password', sql.NVarChar(20), req.body.password)
-      .query('insert into UserList (Nickname, Email, Gender, Username, Password) values(@nickname, @email, @gender, @username, @password', function(err, result) {
+      .query('insert into UserList (Nickname, Email, Gender, Username, Password) values(@nickname, @email, @gender, @username, @password)', function(err, result) {
         if (err) {
           console.log(err);
           res.send(err);
         }
         sql.close();
-        req.redirect('/');
+        res.redirect('/');
       });
   });
 });
