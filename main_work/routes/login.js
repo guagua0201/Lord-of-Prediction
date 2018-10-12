@@ -3,7 +3,6 @@ var router = express.Router();
 
 var db = require('../config/db');
 var sql = require('mssql');
-var session = require('express-session');
 
 /* GET login page. */
 router.get('/login', function(req, res, next) {
@@ -25,18 +24,16 @@ router.post('/login', function(req, res, next) {
           res.send(err);
         }
         sql.close();
+
         if (result.recordset[0].Password != req.body.password) {
           res.redirect('/login');
         } else {
-          req.session.regenerate(function(err) {
-            if (err)
-              console.log(err);
-            req.session.username = req.body.username;
-            req.session.password = req.body.password;
-            res.redirect('/');
-          });
+          res.cookie('Username', req.body.username, {path: '/', signed: false, maxAge: 600 * 1000});
+          res.cookie('Password', req.body.password, {path: '/', signed: false, maxAge: 600 * 1000});
+          res.redirect('/');
         }
       });
   });
 });
+
 module.exports = router;

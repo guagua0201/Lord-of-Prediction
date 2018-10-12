@@ -3,25 +3,16 @@ var router = express.Router();
 
 var db = require('../config/db');
 var sql = require('mssql');
-var session = require('express-session');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
   var name = 'guest';
   var is_login = false;
 
-  sql.connect(db, function(err) {
-    if (err)
-      console.log(err);
-    
-    if (req.session!=undefined) {
-      console.log(req.session.username + req.session.password);
-      name = req.session.username;
-      is_login = true;
-    }
-    else console.log("boom");
-    sql.close();
-  });
+  if (req.cookies.Username && req.cookies.Password) {
+    name = req.cookies.Username;
+    is_login = true;
+  }
 
   res.render('index', {
     route: 'index',

@@ -25,20 +25,6 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-sql.connect(db, function(err) {
-  if (err)
-    console.log(err);
-  app.use(session({
-    secret: '991E6B44882C4593A46C0DDFCA23E06A',
-    resave: true,
-    saveUninitialized: true,
-    store: new MssqlStore({reapInterval: 3600, ttl: 3600}),
-    cookie: {maxAge: 600 * 1000}
-  }));
-  console.log('generate');
-  sql.close();
-});
-
 app.use('/', indexRouter);
 app.use('/', usersRouter);
 app.use('/', registerRouter);
