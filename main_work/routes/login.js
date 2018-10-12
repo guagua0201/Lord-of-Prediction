@@ -36,4 +36,10 @@ router.post('/login', function(req, res, next) {
   });
 });
 
+router.get('/logout', function(req, res, next) {
+  res.clearCookie('Username', {path: '/'});
+  res.clearCookie('Password', {path: '/'});
+  res.redirect('/');
+});
+
 module.exports = router;
