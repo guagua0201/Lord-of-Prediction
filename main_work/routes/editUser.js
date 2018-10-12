@@ -4,17 +4,13 @@ var router = express.Router();
 var db = require('../config/db.js');
 var sql = require('mssql');
 
-
-var result;
-
 router.get('/editUser',function(req, res, next){
     res.render('editUser',{
         route: 'editUser'
     });
 });
 
-
-router.get('/editUser/delete/:id',function(req, res next){
+router.get('/editUser/delete/:id',function(req, res, next){
     sql.connect(db, function(err){
         if(err) console.log(err);
 
@@ -31,5 +27,4 @@ router.get('/editUser/delete/:id',function(req, res next){
     });
 });
 
-
-
+module.exports = router;
