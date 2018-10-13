@@ -2,9 +2,11 @@ extends layout
 
 block editUser
   div.container
-    div(id='custom-search-input')
-      div.input-group
-        input(type='text', placeholder='search').form-control.input-lg
-        span.input-group-btn
-          button.btn.btn-info.btn-lg
-            i.glyphicon.glyphicon-search
+    div.row
+      div.col-12
+        div.input-group
+          form(method='POST', action='/editUser')
+            input(type='search', placeholder='Search').form-control.border-secondary.py-2
+            div.input-group-append
+              button(type='button').btn.btn-outline-secondary
+                i.fa.fa-search
