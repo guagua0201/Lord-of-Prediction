@@ -46,6 +46,7 @@ router.post('/editUser', function(req, res, next) {
   });
 });
 
+/* GET delete page */
 router.get('/editUser/delete/:id', function(req, res, next) {
   sql.connect(db, function(err) {
     if(err)

@@ -35,6 +35,9 @@ block editUser
                   td= item.Username
                   td= item.Password
                   td
+                    a(href='editUser/edit/#{item.ID}', title='Edit').icon
+                      button.btn.btn-outline-secondary
+                        i.fa.fa-pencil
                     a(href='editUser/delete/#{item.ID}', title='Delete', onclick="return confirm('Delete User#{item.ID}: #{item.Username} ?');").icon
                       button.btn.btn-outline-secondary
                         i.fa.fa-trash
