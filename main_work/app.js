@@ -15,6 +15,7 @@ var loginRouter = require('./routes/login');
 var backstageRouter = require('./routes/backstage');
 var editUserRouter = require('./routes/editUser');
 var addArticleRouter = require('./routes/addArticle');
+var listArticleRouter = require('./routes/listArticle');
 
 var app = express();
 
@@ -35,6 +36,7 @@ app.use('/', loginRouter);
 app.use('/backstage', backstageRouter);
 app.use('/backstage', editUserRouter);
 app.use('/', addArticleRouter);
+app.use('/', listArticleRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
