@@ -25,7 +25,9 @@ router.post('/login', function(req, res, next) {
         }
         sql.close();
 
-        if (result.recordset[0].Password != req.body.password) {
+        if (req.body.username == "" || req.body.password == "") {
+          res.redirect('/login');
+        } else if (result.recordset[0].Password != req.body.password) {
           res.redirect('/login');
         } else {
           res.cookie('Username', req.body.username, {path: '/', signed: false, maxAge: 600 * 1000});
