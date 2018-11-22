@@ -36,7 +36,7 @@ router.post('/addArticle', function(req, res, next) {
           userid.emit('update');
         });
 
-      userid.on('update', function() {
+      userid.once('update', function() {
         request.input('title', sql.NVarChar(30), req.body.title)
           .input('content', sql.NVarChar(4000), req.body.content)
           .input('author', sql.Int, userid.data)
@@ -51,6 +51,7 @@ router.post('/addArticle', function(req, res, next) {
       });
     } else {
       res.redirect('/login');
+      sql.close();
     }
   });
 });

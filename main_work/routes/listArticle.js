@@ -27,19 +27,21 @@ router.get('/listArticle', function(req, res, next) {
             console.log(err);
             res.send(err);
           }
+          //console.log('emit!!!!!');
           userid.data = result.recordset[0]["ID"];
           userid.emit('update');
         });
 
-      userid.on('update', function() {
+      userid.once('update', function() {
+        //console.log('update!!!!');
         request.input('author', sql.Int, userid.data)
           .query('select * from Article where AuthorID=@author', function(err, result) {
             if (err) {
               console.log(err);
               res.send(err);
             }
+            //console.log('close!!!!!!');
             sql.close();
-        //  console.log(result.recordset);
 
             res.render('listArticle', {
               route: 'listArticle',

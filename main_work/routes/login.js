@@ -27,6 +27,8 @@ router.post('/login', function(req, res, next) {
 
         if (req.body.username == "" || req.body.password == "") {
           res.redirect('/login');
+        } else if (result.recordset.length == 0) {
+          res.redirect('/login');
         } else if (result.recordset[0].Password != req.body.password) {
           res.redirect('/login');
         } else {
