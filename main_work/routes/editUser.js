@@ -5,6 +5,14 @@ var db = require('../config/db.js');
 var sql = require('mssql');
 
 router.get('/editUser', function(req, res, next) {
+  var name = 'guest';
+  var is_login = false;
+
+  if (req.cookies.Username && req.cookies.Password) {
+    name = req.cookies.Username;
+    is_login = true;
+  }
+
   sql.connect(db, function(err) {
     if (err)
       console.log(err);
@@ -17,8 +25,10 @@ router.get('/editUser', function(req, res, next) {
       }
       sql.close();
       res.render('editUser',{
-          route: 'editUser',
-          data: result.recordset
+        route: 'editUser',
+        data: result.recordset,
+        member: name,
+        log_status: is_login
       });
     });
   });

@@ -9,9 +9,16 @@ var userid = new EventEmitter();
 
 /* GET regist   page. */
 router.get('/addArticle', function(req, res, next) {
+  var name = 'guest';
+  var is_login = false;
+
   if (req.cookies.Username && req.cookies.Password) {
+    name = req.cookies.Username;
+    is_login = true;
     res.render('addArticle', {
-      route: 'addArticle'
+      route: 'addArticle',
+      member: name, 
+      log_status: is_login
     });
   } else {
     res.redirect('/login');

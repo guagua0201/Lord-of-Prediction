@@ -24,12 +24,9 @@ router.get('/listArticle', function(req, res, next) {
       console.log(err);
     var request = new sql.Request();
     var type = req.query.type;
-    var member = 'Guest';
 
     if (type == '1' && req.cookies.Username && req.cookies.Password) {
-      member = req.cookies.Username;
-
-      request.input('username', sql.NVarChar(20), member)
+      request.input('username', sql.NVarChar(20), name)
         .query('select ID from Userlist where Username=@username', function(err, result) {
           if (err) {
             console.log(err);
@@ -54,7 +51,8 @@ router.get('/listArticle', function(req, res, next) {
             res.render('listArticle', {
               route: 'listArticle',
               data: result.recordset,
-              member: member,
+              member: name,
+              log_status: is_login,
               type: type
             });
           });
@@ -71,7 +69,8 @@ router.get('/listArticle', function(req, res, next) {
         res.render('listArticle', {
           route: 'listArticle',
           data: result.recordset,
-          member: member,
+          member: name,
+          log_status: is_login,
           type: type
         });
       });
