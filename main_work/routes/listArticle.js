@@ -11,6 +11,14 @@ var EventEmitter = require('events').EventEmitter;
 var userid = new EventEmitter();
 
 router.get('/listArticle', function(req, res, next) {
+  var name = 'guest';
+  var is_login = false;
+
+  if (req.cookies.Username && req.cookies.Password) {
+    name = req.cookies.Username;
+    is_login = true;
+  }
+
   sql.connect(db, function(err) {
     if (err)
       console.log(err);
