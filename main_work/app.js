@@ -16,6 +16,7 @@ var backstageRouter = require('./routes/backstage');
 var editUserRouter = require('./routes/editUser');
 var addArticleRouter = require('./routes/addArticle');
 var listArticleRouter = require('./routes/listArticle');
+var searchUserRouter = require('./routes/searchUser');
 
 var app = express();
 
@@ -37,6 +38,7 @@ app.use('/backstage', backstageRouter);
 app.use('/backstage', editUserRouter);
 app.use('/', addArticleRouter);
 app.use('/', listArticleRouter);
+app.use('/', searchUserRouter);
 
 // catch 404 and forward to error handler
 /*

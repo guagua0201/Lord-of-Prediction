@@ -4,7 +4,7 @@ var router = express.Router();
 var db = require('../config/db.js');
 var sql = require('mssql');
 
-router.get('/editUser', function(req, res, next) {
+router.get('/searchUser', function(req, res, next) {
   var name = 'guest';
   var is_login = false;
 
@@ -24,8 +24,8 @@ router.get('/editUser', function(req, res, next) {
         res.send(err);
       }
       sql.close();
-      res.render('editUser',{
-        route: 'editUser',
+      res.render('searchUser',{
+        route: 'searchUser',
         data: result.recordset,
         member: name,
         log_status: is_login
@@ -34,7 +34,7 @@ router.get('/editUser', function(req, res, next) {
   });
 });
 
-router.post('/editUser', function(req, res, next) {
+router.post('/searchUser', function(req, res, next) {
   var name = 'guest';
   var is_login = false;
 
@@ -56,31 +56,12 @@ router.post('/editUser', function(req, res, next) {
         res.send(err);
       }
       sql.close();
-      res.render('editUser', {
-        route: 'editUser',
+      res.render('searchUser', {
+        route: 'searchUser',
         member: name,
         log_status: is_login,
         data: result.recordset
       });
-    });
-  });
-});
-
-/* GET delete page */
-router.get('/editUser/delete/:id', function(req, res, next) {
-  sql.connect(db, function(err) {
-    if(err)
-      console.log(err);
-
-    var request = new sql.Request();
-    request.input('id', sql.Int, req.params.id);
-    request.query('delete from Userlist where ID=@id', function(err, result) {
-      if(err) {
-          console.log(err);
-          res.send(err);
-      }
-      sql.close();
-      res.redirect('/backstage/editUser');
     });
   });
 });

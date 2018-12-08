@@ -19,7 +19,8 @@ div(style='background-color: #080808; height: 150px; padding: 15px 0').jumborton
               a(href='/', title='Register')
                 | 註冊
             else
-              | &nbsp
+              a(href='/logout', title='Logout')
+                | 登出
         tr
           td
             a(href='/', title='Contact')
@@ -67,7 +68,7 @@ nav(style='margin-bottom: 20px; padding: 10px 30px').navbar.bg-dark.navbar-dark.
       a(href='/').nav-link
         | 即時比分
     li.nav-item.active
-      a(href='/').nav-link
+      a(href='/searchUser').nav-link
         | 用戶搜尋
     li.nav-item.active
       a(href='./').nav-link
