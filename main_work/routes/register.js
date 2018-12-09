@@ -6,8 +6,18 @@ var sql = require('mssql');
 
 /* GET register page. */
 router.get('/register', function(req, res, next) {  
+  var name = 'guest';
+  var is_login = false;
+
+  if (req.cookies.Username && req.cookies.Password) {
+    name = req.cookies.Username;
+    is_login = true;
+  }
+
   res.render('register', {
-    route: 'register'
+    route: 'register',
+    member: name,
+    log_status: is_login
   });
 });
 

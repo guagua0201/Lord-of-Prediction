@@ -8,7 +8,7 @@ div(style='background-color: #080808; height: 150px; padding: 15px 0').jumborton
         tr
           td
             if log_status == true
-              a(href='/', title='Login')
+              a(href='/', title='Profile')
                 | #{member}
             else
               a(href='/login', title='Login')
@@ -16,7 +16,7 @@ div(style='background-color: #080808; height: 150px; padding: 15px 0').jumborton
         tr
           td
             if log_status == false
-              a(href='/', title='Register')
+              a(href='/register', title='Register')
                 | 註冊
             else
               a(href='/logout', title='Logout')

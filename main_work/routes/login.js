@@ -51,6 +51,14 @@ router.post('/login', function(req, res, next) {
 });
 
 router.get('/logout', function(req, res, next) {
+  var name = 'guest';
+  var is_login = false;
+
+  if (req.cookies.Username && req.cookies.Password) {
+    name = req.cookies.Username;
+    is_login = true;
+  }
+
   res.clearCookie('Username', {path: '/'});
   res.clearCookie('Password', {path: '/'});
   res.redirect('/');

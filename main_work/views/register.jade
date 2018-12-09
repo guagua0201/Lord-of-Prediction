@@ -2,29 +2,47 @@ extends layout
 
 block register
   div.container
-    h2 Register
-    p Welcome to Lord-of-Prediction
-    form(method='POST' action='/register')
-      div.form-group
-        label(for='username') Username:
-        input(type='text', id='username', name='username').form-control
-      div.form-group
-        label(for='password') Password:
-        input(type='password', id='password', name='password').form-control
-      div.form-group
-        label(for='confirmed-pwd') Confirmed Password:
-        input(type='password', id='confirmed-pwd', name='confirmed-pwd').form-control
-      div.form-group
-        label(for='nickname') Nickname:
-        input(type='text', id='nickname', name='nickname').form-control
-      div.form-group
-        label(for='gender') Gender:
-        select(id='gender', name='gender').form-control
-          option Male
-          option Female
-      div.form-group
-        label(for='email') Email:
-        input(type='text', id='email', name='email').form-control
-      div.form-group
-        button(type='submit').btn.btn-primary.col-sm-6 Submit
-        button(type='button', onclick="javascript: history.go(-1); ").btn.btn-primary.col-sm-6 Back
+  div(style='text-align: center').container
+    div(style='height: 100%; width: 70%; margin: 0 auto')
+      form(method='POST', action='/register')
+        div.register_box
+          h1 成為預言王
+        div.register_box
+          table(style='width: 100%')
+            tbody
+              tr
+                td
+                  div.form-group
+                    input(type='text', id='username', name='username', placeholder='帳號').form-control.form-control-lg
+                td
+                  div.form-group
+                    input(type='text', id='nickname', name='nickname', placeholder='暱稱').form-control.form-control-lg
+              tr
+                td
+                  div.form-group
+                    input(type='password', id='password', name='password', placeholder='密碼').form-control.form-control-lg
+                td
+                  div.form-group
+                    select(id='gender', name='gender').form-control.form-control-lg
+                      option 男
+                      option 女
+              tr
+                td
+                  div.form-group
+                    input(type='password', id='confirmed-pwd', name='confirmed-pwd', placeholder='確認密碼').form-control.form-control-lg
+                td
+                  div.form-group
+                    input(type='text', id='email', name='email', placeholder='信箱').form-control.form-control-lg
+        div.register_box
+          input(type='checkbox', value='').form-check-input
+          我同意&nbsp;
+          a(href='/') 服務條款
+          &nbsp;、&nbsp;
+          a(href='/') 停權管理規章
+          &nbsp;和&nbsp;
+          a(href='/') 隱私政策
+          &nbsp;，
+          br
+          同時也了解若我未滿20歲，我的法定代理人或監護人必須代表我完整檢閱和同意使用條款。
+        div.register_box
+          button(type='submit', style='width: 50%; float: right').btn.btn-lg.btn-dark 下一步
