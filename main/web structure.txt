@@ -1,0 +1,49 @@
+
+Web {
+	www {
+		images
+		style
+		class
+		views
+		routes
+		config.php
+		main.php
+	}
+	templates
+	templates_c
+	cache
+	sql
+}
+
+Db:
+
+1. Article
+(1). id
+(2). category_id (Category->id)
+(3). title
+(4). author (User->id)
+(5). content
+(6). publish_time
+(7). update_time
+(8). latest_comment (Comment->id)
+
+2. Category
+(1). id
+(2). name
+(3). description
+
+3. User
+(1). id
+(2). username
+(3). password
+(4). gender
+(5). nickname
+(6). email
+(7). user_image
+
+4. Comment
+(1). id
+(2). article_id (Article->id)
+(3). user_id (User->id)
+(4). comment
+(5). create_time

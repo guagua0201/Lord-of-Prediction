@@ -1,0 +1,9 @@
+1. Email Confirmed
+2. Register check duplicate
+3. User Picture
+4. User create time(?
+5. list with pages
+6. Admin check
+7. bootstrap alert
+8. bootstrap modal
+9. category add column BOOL(admin)
