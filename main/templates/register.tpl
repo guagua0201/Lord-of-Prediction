@@ -3,7 +3,7 @@
 	<div class="container" style="text-align: center; min-height: 68vh; padding: 30px 0">
 		<script src="/javascripts/register_form_check.js" type="text/javascript"></script>
 		<div style="height: 100%; width: 80%; margin: 0 auto;">
-			<form id="register_form" method="POST" action='/regisger.php' onsubmit="return checkForm(this);">
+			<form id="register_form" method="POST" action='/register.php' onsubmit="return checkForm(this);">
 				<div class="register_box" style='margin-top: 0; margin-bottom: 30px'>
 					<h1>成為預言王</h1>
 				</div>
