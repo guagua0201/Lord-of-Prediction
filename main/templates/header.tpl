@@ -70,7 +70,7 @@
 	<nav style="margin-bottom: 20px; padding: 10px 30px;" class="navbar bg-dark navbar-dark navbar-expand-sm">
 	  <ul class="navbar-nav">
 		<li class="nav-item active">
-			<a class="nav-link" href="/">預測賽事</a>
+			<a class="nav-link" href="/predictGame.php?category_id=4">預測賽事</a>
 		</li>
 		<li class="nav-item active">
 			<a class="nav-link" href="/searchArticle.php">討論區</a>
