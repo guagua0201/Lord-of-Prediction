@@ -6,7 +6,7 @@
 				<div class="input-group">
 					<form method="GET" action="listUser.php" style="width: 100%;">
 						<div class="input-group-append">
-							<input class="form-control border-secondary py-2" type="search" placeholder="輸入用戶暱稱" name="username" />
+							<input class="form-control border-secondary py-2" type="search" placeholder="輸入用戶暱稱" name="search" />
 							<button class="btn btn-outline-secondary" type="submit"><i class="fa fa-search"></i></button>
 						</div>
 					</form>

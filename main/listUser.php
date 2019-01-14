@@ -12,9 +12,9 @@ if ($is_admin) {
 	}
 
 	$sql = "SELECT * FROM User";
-	if (isset($_GET['username']) && !empty($_GET['username'])) {
-		$username = mysqli_real_escape_string($link, trim($_GET['username']));
-		$sql = "SELECT * FROM User WHERE username LIKE '%" . $username . "%'";
+	if (isset($_GET['search']) && !empty($_GET['search'])) {
+		$search = mysqli_real_escape_string($link, trim($_GET['search']));
+		$sql = "SELECT * FROM User WHERE username LIKE '%" . $search . "%' OR nickname LIKE '%" . $search . "%'";
 		// echo $sql;
 	}
 	$data = array();

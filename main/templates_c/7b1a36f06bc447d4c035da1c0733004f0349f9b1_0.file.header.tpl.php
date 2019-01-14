@@ -1,4 +1,27 @@
-<div style='min-height: 25vh'>
+<?php
+/* Smarty version 3.1.33, created on 2019-01-12 13:59:25
+  from '/home/justin/Desktop/Code/Work/Lord-of-Prediction/main/templates/header.tpl' */
+
+/* @var Smarty_Internal_Template $_smarty_tpl */
+if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
+  'version' => '3.1.33',
+  'unifunc' => 'content_5c39e4ad7e3bf5_30424493',
+  'has_nocache_code' => false,
+  'file_dependency' => 
+  array (
+    '7b1a36f06bc447d4c035da1c0733004f0349f9b1' => 
+    array (
+      0 => '/home/justin/Desktop/Code/Work/Lord-of-Prediction/main/templates/header.tpl',
+      1 => 1547297963,
+      2 => 'file',
+    ),
+  ),
+  'includes' => 
+  array (
+  ),
+),false)) {
+function content_5c39e4ad7e3bf5_30424493 (Smarty_Internal_Template $_smarty_tpl) {
+?><div style='min-height: 25vh'>
 	<div style='background-color: #080808; height: 150px; padding: 15px 0' class='jumborton'>
 		<div style='width: 100%' class='row'>
 			<div class='col-sm-10'>
@@ -10,20 +33,21 @@
 				<table style='line-height: 25px'>
 					<tr>
 						<td>
-							{if $log_status == true}
-								<a href='/' title='Profile'>{$member}</a>
-							{else}
+							<?php if ($_smarty_tpl->tpl_vars['log_status']->value == true) {?>
+								<a href='/' title='Profile'><?php echo $_smarty_tpl->tpl_vars['member']->value;?>
+</a>
+							<?php } else { ?>
 								<a href='/login.php' title='Login'>登入</a>
-							{/if}
+							<?php }?>
 						</td>
 					</tr>
 					<tr>
 						<td>
-							{if $log_status == false}
+							<?php if ($_smarty_tpl->tpl_vars['log_status']->value == false) {?>
 								<a href='/register.php' title='Register'>註冊</a>
-							{else}
+							<?php } else { ?>
 								<a href='/logout.php' title='Logout'>登出</a>
-							{/if}
+							<?php }?>
 						</td>
 					</tr>
 					<tr>
@@ -40,7 +64,7 @@
 			</div>
 			<div class='col-sm-1'>
 				<table style='line-height: 25px'>
-					{if $log_status == true}
+					<?php if ($_smarty_tpl->tpl_vars['log_status']->value == true) {?>
 						<tr>
 							<td>
 								<a href='/' title='Profile'>個人小屋</a>
@@ -61,7 +85,7 @@
 								<a href='/' title='Message'>訊息中心</a>
 							</td>
 						</tr>
-					{/if}
+					<?php }?>
 				</table>
 			</div>
 		</div>
@@ -97,4 +121,5 @@
 		</li>
 	  </ul>
 	</nav>
-</div>
+</div><?php }
+}
