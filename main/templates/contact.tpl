@@ -1,5 +1,6 @@
 {extends file='route.tpl'}
 {block name='body'}
+	<script src="../Ckeditor/ckeditor.js"></script>
 	<div class='container' style='min-height: 68vh'>
 		<h2>聯絡我們</h2>
 		<p>請將問題或建議告訴我們，並留下正確聯絡方式，我們將儘速回覆您，謝謝！</p>
@@ -24,11 +25,15 @@
 					<input type='text' id='username' name='username' class='form-control form-control-lg' />
 				{/if}
 			</div>
-			<div class='input-group mb-3 input-group-lg'>
-				<div class="input-group-prepend">
+			<div class='form-group form-group-lg'>
+				<div class="form-group-prepend">
 					<span class="input-group-text">想說的事:</span>
 				</div>
 				<textarea rows='9' id='content' name='content' class='form-control form-control-lg'></textarea>
+				<script>
+					CKEDITOR.replace('content');
+				</script>
+				<p id='content_notice' class='alert alert-danger' hidden>請輸入內文!!</p>
 			</div>
 			<div>
 				<input type='hidden' name='submit' value='submit' />
