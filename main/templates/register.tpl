@@ -1,7 +1,7 @@
 {extends file='route.tpl'}
 {block name='body'}
+	<script src="/javascripts/register_form_check.js" type="text/javascript"></script>
 	<div class="container" style="text-align: center; min-height: 68vh; padding: 30px 0">
-		<script src="/javascripts/register_form_check.js" type="text/javascript"></script>
 		<div style="height: 100%; width: 80%; margin: 0 auto;">
 			<form id="register_form" method="POST" action='/register.php' onsubmit="return checkForm(this);">
 				<div class="register_box" style='margin-top: 0; margin-bottom: 30px'>
@@ -17,8 +17,8 @@
     										<span class="input-group-text">帳號:</span>
     									</div>
 										<input class="form-control form-control-lg" type="text" id="username" name="username" placeholder="請輸入帳號" />
-										<p class="text-danger" id="username_notice" hidden="hidden">請填入帳號！</p>
 									</div>
+									<p class="text-danger" id="username_notice" hidden="hidden">請填入帳號！</p>
 								</td>
 								<td class='col-sm-6'>
 									<div class="input-group mb-3 input-group-lg">
@@ -26,8 +26,8 @@
     										<span class="input-group-text">暱稱:</span>
     									</div>
 										<input class="form-control form-control-lg" type="text" id="nickname" name="nickname" placeholder="請輸入暱稱" />
-										<p class="text-danger" id="nickname_notice" hidden="hidden">請輸入暱稱！</p>
 									</div>
+									<p class="text-danger" id="nickname_notice" hidden="hidden">請輸入暱稱！</p>
 								</td>
 							</tr>
 							<tr class="spaceUnder d-flex">
@@ -37,8 +37,8 @@
     										<span class="input-group-text">密碼:</span>
     									</div>
 										<input class="form-control form-control-lg" type="password" id="password" name="password" placeholder="請輸入密碼" />
-										<p class="text-danger" id="password_notice" hidden="hidden">請輸入密碼！</p>
 									</div>
+									<p class="text-danger" id="password_notice" hidden="hidden">請輸入密碼！</p>
 								</td>
 								<td class='col-sm-6'>
 									<div class="input-group mb-3 input-group-lg">
@@ -59,8 +59,8 @@
     										<span class="input-group-text">確認密碼:</span>
     									</div>
 										<input class="form-control form-control-lg" type="password" id="confirmed_pwd" name="confirmed-pwd" placeholder="請確認密碼" />
-										<p class="text-danger" id="confirmed_notice" hidden="hidden">與密碼不符！</p>
 									</div>
+									<p class="text-danger" id="confirmed_notice" hidden="hidden">與密碼不符！</p>
 								</td>
 								<td class='col-sm-6'>
 									<div class="input-group mb-3 input-group-lg">
@@ -68,8 +68,8 @@
     										<span class="input-group-text">信箱:</span>
     									</div>
 										<input class="form-control form-control-lg" type="text" id="email" name="email" placeholder="請輸入信箱" />
-										<p class="text-danger" id="email_notice" hidden="hidden">請輸入合法的信箱！</p>
 									</div>
+									<p class="text-danger" id="email_notice" hidden="hidden">請輸入合法的信箱！</p>
 								</td>
 							</tr>
 						</tbody>
