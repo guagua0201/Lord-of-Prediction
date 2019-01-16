@@ -4,7 +4,11 @@
 		<div class="row">
 			<div class="col-12">
 				<div class="input-group">
-					<h2>討論版</h2>
+					<div class='mb-3'>
+						<h2 style='display: inline'>討論版</h2>
+						<a class='btn btn-lg' href='addArticle.php'>新增文章</a>
+						<a class='btn btn-lg' href='/'>版規</a>
+					</div>
 					<form method="GET" action="searchArticle.php" style="width: 100%;">
 						<div class="input-group-append">
 							<input class="form-control border-secondary py-2" type="search" placeholder="請輸入關鍵字" name="search" />
@@ -14,7 +18,7 @@
 				</div>
 			</div>
 		</div>
-		<div style='margin-top: 50px'>
+		<div style='margin-top: 30px'>
 			{if count($data) == 0}
 				<h3>沒有結果</h3>
 			{else}

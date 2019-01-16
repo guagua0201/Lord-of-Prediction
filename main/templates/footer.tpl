@@ -4,7 +4,7 @@
 		<a class="nav-link" href="/">常見問題</a>
 	</li>
 	<li class="nav-item active foot_nav">
-		<a class="nav-link" href="/">連繫客服</a>
+		<a class="nav-link" href="/contact.php">連繫客服</a>
 	</li>
 	<li class="nav-item active foot_nav">
 		<a class="nav-link" href="/">關於我們</a>
