@@ -10,7 +10,7 @@
 				<table style='line-height: 25px'>
 					<tr>
 						<td>
-							{if $log_status == true}
+							{if $log_status != 0}
 								<a href='/' title='Profile'>{$member}</a>
 							{else}
 								<a href='/login.php' title='Login'>登入</a>
@@ -19,7 +19,7 @@
 					</tr>
 					<tr>
 						<td>
-							{if $log_status == false}
+							{if $log_status == 0}
 								<a href='/register.php' title='Register'>註冊</a>
 							{else}
 								<a href='/logout.php' title='Logout'>登出</a>
@@ -40,7 +40,7 @@
 			</div>
 			<div class='col-sm-1'>
 				<table style='line-height: 25px'>
-					{if $log_status == true}
+					{if $log_status != 0}
 						<tr>
 							<td>
 								<a href='/' title='Profile'>個人小屋</a>

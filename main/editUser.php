@@ -27,7 +27,7 @@ if ($log_status === 2) {
 
 			if (!empty($username) && !empty($password) && !empty($nickname) && !empty($email)) {
 				$sql2 = "UPDATE User SET username = '$username', password = '$password', nickname = '$nickname', email = '$email', gender = b'$gender' WHERE id = '$user_id'";
-				echo $sql2;
+			//	echo $sql2;
 				mysqli_query($link, $sql2);
 				mysqli_close($link);
 				header('Location: /listUser.php');

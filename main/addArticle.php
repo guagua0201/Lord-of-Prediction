@@ -5,13 +5,12 @@ include_once('isLogin.php');
 $smarty->assign('member', $member);
 $smarty->assign('log_status', $log_status);
 
-if ($log_status) {
+if ($log_status != 0) {
 	$link = mysqli_connect(db_host, db_user, db_password, db_name);
 	if (!$link) {
 		die('Connection failed ' . mysqli_connect_error());
 	}
 	mysqli_set_charset($link, "utf8");
-	// mysqli_query($link, "SET CHARACTER SET UTF8");
 	$sql = "SELECT id, name FROM Category";
 	$data = array();
 	if ($result = mysqli_query($link, $sql)) {
@@ -25,9 +24,11 @@ if ($log_status) {
 		$title = mysqli_real_escape_string($link, trim($_POST['title']));
 		$content = mysqli_real_escape_string($link, $_POST['content']);
 		$user_id = $_SESSION['user_id'];
-		$sql2 = "INSERT INTO Article (title, content, category_id, author) VALUES ('$title', '$content', '$category', '$user_id')";
+		if (!empty($title) && !empty($content)) {
+			$sql2 = "INSERT INTO Article (title, content, category_id, author) VALUES ('$title', '$content', '$category', '$user_id')";
+			mysqli_query($link, $sql2);
+		}
 	//	echo $sql2;
-		mysqli_query($link, $sql2);
 		mysqli_close($link);
 		header('Location: /searchArticle.php');
 	} else {
