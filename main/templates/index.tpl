@@ -1,7 +1,7 @@
 {extends file='route.tpl'}
 {block name='body'}
 	<div style='height: 600px'>
-		<h1>Welcome to Lord-of-Prediction</h1>
+		<h1>Welcome to Prophecy King!</h1>
 		<p>hello {$member}</p>
 
 		{if $log_status == false}
