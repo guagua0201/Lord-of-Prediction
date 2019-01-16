@@ -71,6 +71,7 @@
 			</div>
 		{/foreach}
 		<div class='row mt-4 mb-2 p-2 article_box'>
+			<script src="../Ckeditor/ckeditor.js"></script>
 			<script src='/javascripts/addComment_form_check.js'></script>
 			<form class='w-100' method='POST' action="addComment.php?article_id={$row['id']}" onsubmit='return checkForm(this);'>
 				<div>

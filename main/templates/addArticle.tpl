@@ -1,5 +1,6 @@
 {extends file='route.tpl'}
 {block name='body'}
+	<script src="../Ckeditor/ckeditor.js"></script>
 	<script src='/javascripts/addArticle_form_check.js' type='text/javascript'></script>
 	<div style='min-height: 68vh' class='container'>
 		<h2>新增討論</h2>
@@ -20,6 +21,9 @@
 			<div class='form-group'>
 				<label for='content'>內文</label>
 				<textarea rows='20' id='content' name='content' class='form-control form-control-lg'></textarea>
+				<script>
+					CKEDITOR.replace('content');
+				</script>
 				<p id='content_notice' class='alert alert-danger' hidden>請輸入內文!!</p>
 			</div>
 			<div class='form-group'>

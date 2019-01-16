@@ -1,6 +1,7 @@
 {extends file='route.tpl'}
 {block name='body'}
 	<script src='/javascripts/addArticle_form_check.js' type='text/javascript'></script>
+	<script src="../Ckeditor/ckeditor.js"></script>
 	<div style='min-height: 68vh' class='container'>
 		<h2>討論修改</h2>
 		<form method='POST' action="/editArticle.php?id={$article_row['id']}" onsubmit="return checkForm(this);">
@@ -24,6 +25,9 @@
 			<div class='form-group'>
 				<label for='content'>內文</label>
 				<textarea rows='20' id='content' name='content' class='form-control form-control-lg'>{$article_row['content']}</textarea>
+				<script>
+					CKEDITOR.replace('content');
+				</script>
 				<p id='content_notice' class='alert alert-danger' hidden>請輸入內文!!</p>
 			</div>
 			<div class='form-group'>

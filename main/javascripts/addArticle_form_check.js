@@ -4,7 +4,7 @@ function checkForm(form) {
 		document.getElementById('title_notice').removeAttribute('hidden');
 		valid = false;
 	}
-	if (form.content.value.trim().length == 0) {
+	if (CKEDITOR.instances.content.getData().trim().length == 0) {
 		document.getElementById('content_notice').removeAttribute('hidden');
 		valid = false;
 	}
