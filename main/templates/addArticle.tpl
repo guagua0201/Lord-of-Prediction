@@ -15,12 +15,12 @@
 			<div class='form-group'>
 				<label for='title'>標題</label>
 				<input type='text' id='title' name='title' class='form-control form-control-lg' />
-				<p id='title_notice' class='text-danger' hidden>請輸入標題!!</p>
+				<p id='title_notice' class='alert alert-danger' hidden>請輸入標題!!</p>
 			</div>
 			<div class='form-group'>
 				<label for='content'>內文</label>
 				<textarea rows='20' id='content' name='content' class='form-control form-control-lg'></textarea>
-				<p id='content_notice' class='text-danger' hidden>請輸入內文!!</p>
+				<p id='content_notice' class='alert alert-danger' hidden>請輸入內文!!</p>
 			</div>
 			<div class='form-group'>
 				<input type='hidden' name='submit' value='submit' />

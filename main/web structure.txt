@@ -25,12 +25,12 @@ Db:
 (5). content
 (6). publish_time
 (7). update_time
-(8). latest_comment (Comment->id)
 
 2. Category
 (1). id
 (2). name
 (3). description
+(4). class_id
 
 3. User
 (1). id
@@ -39,7 +39,7 @@ Db:
 (4). gender
 (5). nickname
 (6). email
-(7). user_image
+(7). image
 
 4. Comment
 (1). id
@@ -47,3 +47,7 @@ Db:
 (3). user_id (User->id)
 (4). comment
 (5). create_time
+
+5. Class
+(1). id
+(2). name

@@ -16,13 +16,13 @@
 								<td>
 									<div class="form-group">
 										<input class="form-control form-control-lg" type="text" id="username" name="username" value="{$row['username']}" readonly />
-										<p class="text-danger" id="username_notice" hidden="hidden">請填入帳號！</p>
+										<p class="alert alert-danger" id="username_notice" hidden="hidden">請填入帳號！</p>
 									</div>
 								</td>
 								<td>
 									<div class="form-group">
 										<input class="form-control form-control-lg" type="text" id="nickname" name="nickname" value="{$row['nickname']}" />
-										<p class="text-danger" id="nickname_notice" hidden="hidden">請輸入暱稱！</p>
+										<p class="alert alert-danger" id="nickname_notice" hidden="hidden">請輸入暱稱！</p>
 									</div>
 								</td>
 							</tr>
@@ -30,7 +30,7 @@
 								<td>
 									<div class="form-group">
 										<input class="form-control form-control-lg" type="text" id="password" name="password" value="{$row['password']}" />
-										<p class="text-danger" id="password_notice" hidden="hidden">請輸入密碼！</p>
+										<p class="alert alert-danger" id="password_notice" hidden="hidden">請輸入密碼！</p>
 									</div>
 								</td>
 								<td>
@@ -51,13 +51,13 @@
 								<td>
 									<div class="form-group">
 										<input class="form-control form-control-lg" type="text" id="confirmed_pwd" name="confirmed-pwd" value="{$row['password']}" />
-										<p class="text-danger" id="confirmed_notice" hidden="hidden">與密碼不符！</p>
+										<p class="alert alert-danger" id="confirmed_notice" hidden="hidden">與密碼不符！</p>
 									</div>
 								</td>
 								<td>
 									<div class="form-group">
 										<input class="form-control form-control-lg" type="text" id="email" name="email" value="{$row['email']}" />
-										<p class="text-danger" id="email_notice" hidden="hidden">請輸入合法的信箱！</p>
+										<p class="alert alert-danger" id="email_notice" hidden="hidden">請輸入合法的信箱！</p>
 									</div>
 								</td>
 							</tr>
