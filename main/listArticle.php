@@ -1,11 +1,11 @@
 <?php
 include_once('main.php');
-include_once('isAdmin.php');
+include_once('isLogin.php');
 
 $smarty->assign('member', $member);
 $smarty->assign('log_status', $log_status);
 
-if ($is_admin) {
+if ($log_status === 2) {
 	$link = mysqli_connect(db_host, db_user, db_password, db_name);
 	if (!$link) {
 		die('Connection failed ' . mysqli_connect_error());
@@ -34,6 +34,7 @@ if ($is_admin) {
 			$data[] = $row;
 		}
 	}
+	mysqli_close($link);
 	$smarty->assign('data', $data);
 	$smarty->display('listArticle.tpl');
 } else {

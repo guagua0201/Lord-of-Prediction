@@ -8,7 +8,7 @@
 				<div class="input-group-prepend">
 					<span class="input-group-text">帳號:</span>
 				</div>
-				{if $log_status == true}
+				{if $log_status != 0}
 					<input type='text' id='username' name='username' value='{$member}' class='form-control form-control-lg' />
 				{else}
 					<input type='text' id='username' name='username' class='form-control form-control-lg' />
@@ -18,7 +18,7 @@
 				<div class="input-group-prepend">
 					<span class="input-group-text">信箱:</span>
 				</div>
-				{if $log_status == true}
+				{if $log_status != 0}
 					<input type='text' id='username' name='username' value='{$email}' class='form-control form-control-lg' />
 				{else}
 					<input type='text' id='username' name='username' class='form-control form-control-lg' />

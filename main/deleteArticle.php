@@ -9,10 +9,10 @@ if ($log_status === 2) {
 			die('Connection failed ' . mysqli_connect_error());
 		}
 
-		$sql = "DELETE FROM User WHERE id='" . $_GET['id'] . "'";
+		$sql = "DELETE FROM Article WHERE id='" . $_GET['id'] . "'";
 		mysqli_query($link, $sql);
 		mysqli_close($link);
-		header('Location: /listUser.php');
+		header('Location: /listArticle.php');
 	}
 } else {
 	$smarty->assign('member', $member);
