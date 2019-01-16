@@ -8,6 +8,7 @@ $smarty->assign('log_status', $log_status);
 if (!$log_status) {
 	$smarty->display('register.tpl');
 	if (isset($_POST['submit'])) {
+		
 		$link = mysqli_connect(db_host, db_user, db_password, db_name);
 		if (!$link) {
 			die('Connection failed ' . mysqli_connect_error());

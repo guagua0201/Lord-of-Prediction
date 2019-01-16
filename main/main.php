@@ -1,5 +1,5 @@
 <?php
-require_once('Smarty/Smarty.class.php');
+require_once('./smarty-3.1.33/libs/Smarty.class.php');
 require_once('./configs/config.php');
 
 $smarty = new Smarty();

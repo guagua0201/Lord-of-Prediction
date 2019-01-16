@@ -10,7 +10,7 @@ if (isset($_SESSION['user_id'])) {
 }
 
 // Check Admin !!!!
-if ($member === 'justin') {
+if ($member === 'justin' || $member === 'toby') {
 	$is_admin = true;
 }
 ?>

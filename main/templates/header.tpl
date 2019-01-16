@@ -78,7 +78,7 @@
 		<li class="nav-item active dropdown">
 			<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">小遊戲</a>
 			<div class='dropdown-menu'>
-				<a class='dropdown-item' href='/beikingGame.php'>北京賽車</a>
+				<a class='dropdown-item' href='/BeiJingCart.php'>北京賽車</a>
 				<a class='dropdown-item' href='/lotteryGame.php'>彩票</a>
 				<a class='dropdown-item' href='/baccaratGame.php'>百家樂</a>
 			</div>
