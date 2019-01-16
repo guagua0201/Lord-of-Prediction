@@ -10,7 +10,3 @@ function checkForm(form) {
 	}
 	return valid;
 }
-
-function printHello() {
-	console.log("Hello World");
-}

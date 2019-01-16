@@ -70,6 +70,24 @@
 				</div>
 			</div>
 		{/foreach}
-		
+		<div class='row mt-4 mb-2 p-2 article_box'>
+			<script src='/javascripts/addComment_form_check.js'></script>
+			<form class='w-100' method='POST' action="addComment.php" onsubmit='return checkForm(this)'>
+				<div>
+					<h5>回覆文章</h5>
+					<textarea id='editor' name='editor' class='form-control form-control-lg'></textarea>
+					<script>
+						CKEDITOR.replace('editor');
+					</script>
+					<p id='content_notice' class='alert alert-danger' hidden>請輸入內文!!</p>
+				</div>
+				<div class='mt-2'>
+					<input type='hidden' name='article_id' value="{$row['id']}" />
+					<!-- <input type='hidden' name='content' /> -->
+					<input type='hidden' name='submit' value='submit' />
+					<button type='submit' class='btn btn-outline-dark float-right w-25'>送出</button>
+				</div>
+			</form>
+		</div>
 	</div>
 {/block}
