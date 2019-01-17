@@ -238,6 +238,8 @@ function drawCanvas(){
             var nowImg = cars[i].imgs[Math.floor(Math.random() * 3)];
 
             context.drawImage(nowImg,0,0,nowImg.width,nowImg.height,cars[i].pos,200+i*45,150,80);
+
+            context.drawImage(numberBall[i].img,numberBall[i].x,numberBall[i].y);
         }
 
     }
@@ -292,6 +294,20 @@ function updateCars(){
             }
             cars[i].pos = cars[i].lastPos + (cars[i].target-cars[i].lastPos) * (et - cars[i].lastTime) / 1000;
             //if(i==1) console.log(cars[i].pos,cars[i].target,cars[i].lastPos,cars[i].lastTime);
+        }
+        var mk = [];
+        for(i=1;i<=10;i++) mk[i] = 0;
+        for(i=1;i<=10;i++){
+            bst = -10000;
+            for(j=1;j<=10;j++){
+                if(mk[j]) continue;
+                if(cars[j].pos > bst){
+                    bst = cars[j].pos;
+                    num = j;
+                }
+            }
+            numberBall[i].img.src = "images/BeiJingCart/number/" + num.toString(10) + ".png";
+            mk[num] = 1;
         }
 
     }
