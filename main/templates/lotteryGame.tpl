@@ -1,21 +1,13 @@
-<!DOCTYPE html>
-<html>
-    <head>
-      <title>Hello</title>
-      <link rel="stylesheet" href="/stylesheets/style.css">
-      <link rel="icon" href="/images/favicon.ico">
-      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
-      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
-      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
-      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    </head>
-    <body>
-        {include file='header.tpl'}
-        <div style='min-height: 68vh; text-align: center' id='game_block' class='jumborton'>
-        </div>
-        {include file='footer.tpl'}
-    </body>
-</html>
+{extends file='route.tpl'}
+{block name='body'}
+  <div style='min-height: 68vh; padding: 30px'>
+    <style>
+      canvas{
+        background: #ccc
+      }
+    </style>
+    <canvas id="myCanvas" width="1200" height = "780">
+        <script src="/javascripts/lotteryGame.js"></script>
+    </canvas>
+  </div>
+{/block}

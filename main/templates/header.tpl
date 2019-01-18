@@ -43,7 +43,7 @@
 					{if $log_status != 0}
 						<tr>
 							<td>
-								<a href='/' title='Profile'>個人小屋</a>
+								<a href='/profile.php' title='Profile'>個人小屋</a>
 							</td>
 						</tr>
 						<tr>
