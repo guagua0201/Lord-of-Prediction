@@ -26,6 +26,8 @@ var rank;
 
 var lastPos;
 
+var NO2Img;
+
 class myImg{
     constructor(src,x,y){
         this.x = x;
@@ -72,6 +74,8 @@ function randomRank(){
 }
 
 function init(){
+    NO2Img = new Image();
+    NO2Img.src = "./images/BeiJingCart/NO2/NO2_" + "2" + ".png";
 
     lastPos = [];
     for(i=1;i<=10;i++){
@@ -122,7 +126,7 @@ function init(){
 
     canvas.addEventListener('click',function(evt){
         var mousePos = getMousePos(canvas,evt);
-        console.log(mousePos.x,mousePos.y);
+        //console.log(mousePos.x,mousePos.y);
         if(insideSoundButton(mousePos.x,mousePos.y,soundBut)){
             if(openSound==1){
                 console.log('mute');
@@ -222,6 +226,11 @@ function stopGame(){
     playEnd();
 }
 
+
+function getSpeed(c){
+    return (c.target - c.lastPos);
+}
+
 function drawCanvas(){
     var et = elapsedTime();
     if(et <= 4500){
@@ -235,11 +244,27 @@ function drawCanvas(){
 
         for(i=1;i<=10;i++){
 
+            var speedThres = [50,50,50];
+
+            var fireSizeX = [45,60,75];
+            var fireSizeY = [40,55,70];
+
+            var fireMoveX = [];
+            var fireMoveY = [];
+
+            for(j=2;j>=0;j--){
+                if(getSpeed(cars[i]) >= speedThres[j]){
+                    context.drawImage(NO2Img,0,0,NO2Img.width,NO2Img.height,cars[i].pos-50,200+i*45,fireSizeX[j],fireSizeY[j]);
+                    break;
+                }
+            }
+
             var nowImg = cars[i].imgs[Math.floor(Math.random() * 3)];
 
             context.drawImage(nowImg,0,0,nowImg.width,nowImg.height,cars[i].pos,200+i*45,150,80);
 
             context.drawImage(numberBall[i].img,numberBall[i].x,numberBall[i].y);
+
         }
 
     }
@@ -279,7 +304,7 @@ function updateCars(){
                 cars[i].lastTime = et;
                 cars[i].lastPos = cars[i].pos;
                 cars[i].target = cars[i].pos+1500;
-                console.log(cars[i].target);
+                //console.log(cars[i].target);
             }
             cars[i].pos = cars[i].lastPos + (cars[i].target-cars[i].lastPos) * (et - cars[i].lastTime) / 1000;
         }
@@ -329,7 +354,7 @@ function startGame(){
     
     for (i=1;i<=10;i++){
         var randomTar = Math.random() * 400 + 50;
-        cars[i] = new car(50,randomTar,i,lastPos[rank[i]]);
+        cars[i] = new car(-100,randomTar,i,lastPos[rank[i]]);
         for ( j = 0 ; j < 3 ; j ++ ){
             cars[i].imgs[j] = new Image();
             cars[i].imgs[j].src = "./images/BeiJingCart/car/side/group" + (j+1).toString(10) + "/carS" + i.toString(10) + ".png";
@@ -346,8 +371,21 @@ function playEnd(){
     var endImg = new Image();
     endImg.src = "./images/BeiJingCart/background/winbg.png";
     endImg.onload = function(){
+        console.log('hihiend');
         context.drawImage(endImg,0,150);
+
+        lastPosX = [489,892,55];
+        lastPosY = [476,570,570];
+
+        for(i=1;i<=10;i++){
+            console.log('rank ' + i.toString(10) + ' ' + rank[i].toString(10));
+            if(rank[i] <= 3){
+                var nowImg = cars[i].imgs[0];
+                context.drawImage(nowImg,0,0,nowImg.width,nowImg.height,lastPosX[rank[i]-1],lastPosY[rank[i]-1],250,132);
+            }
+        }
     }
+
 }
 
 
