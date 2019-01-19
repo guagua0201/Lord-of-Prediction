@@ -37,7 +37,7 @@
 									<td>
 										<img src='images/user_default.jpg' height='60px', width='60px' />
 									</td>
-									<td>{$row['username']}</td>
+									<td><a href="/userProfile.php?id={$row['id']}">{$row['username']}</a></td>
 									<td>{$row['email']}</td>
 									<td>{$row['nickname']}</td>
 									<td>
