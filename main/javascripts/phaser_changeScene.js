@@ -74,6 +74,6 @@ var config = {
 		default: 'arcade'
 	},
 	scene: [ Scene1, Scene2 ]
-}
+};
 
 var game = new Phaser.Game(config);

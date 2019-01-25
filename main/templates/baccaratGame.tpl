@@ -16,7 +16,7 @@
 	<body>
 		{include file='header.tpl'}
 		<div style='min-height: 68vh; text-align: center' id='game_block' class='jumborton'>
-			<script src='/javascripts/phaser_template.js'></script>
+			<script src='/javascripts/baccaratGame.js'></script>
 		</div>
 		{include file='footer.tpl'}
 	</body>
