@@ -178,13 +178,18 @@ class sceneGame extends Phaser.Scene {
 					this.totalWin -= val;
 					this.win -= val;
 					if (gameResult[index]) {
-						this.wallet += val * (1 + this.blocks[key].bettingOdds);
-						this.win += val * this.blocks[key].bettingOdds;
-						this.totalWin += val * (1 + this.blocks[key].bettingOdds);
+						let result = val * (1 + this.blocks[key].bettingOdds);
+						this.wallet += result;
+						this.win += result;
+						this.totalWin += result;
 					}
 				}
 			}
+			index++;
 		}
+		Math.round(this.wallet);
+		Math.round(this.win);
+		Math.round(this.totalWin);
 		this.walletText.setText('Wallet: $' + this.wallet.toString());
 		this.totalBetText.setText('Total Bet: $' + this.totalBet.toString());
 		this.winText.setText('Win: $' + this.win.toString());
