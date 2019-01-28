@@ -6,15 +6,14 @@ CREATE TABLE IF NOT EXISTS `User` (
 	`id` INT NOT NULL AUTO_INCREMENT , 
 	`username` VARCHAR(30) NOT NULL , 
 	`password` VARCHAR(30) NOT NULL , 
-	`nickname` VARCHAR(30) NOT NULL , 
+	`nickname` VARCHAR(30) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL , 
 	`email` VARCHAR(60) NOT NULL , 
-	`gender` BIT NOT NULL , 
-	`image` INT NULL DEFAULT '0',
-	 PRIMARY KEY (`id`), 
-	 UNIQUE (`password`), 
-	 UNIQUE (`nickname`), 
-	 UNIQUE (`username`), 
-	 UNIQUE (`email`)
+	`gender` BIT NULL , 
+	`image` VARCHAR(90) NULL , 
+	PRIMARY KEY (`id`), 
+	UNIQUE (`username`), 
+	UNIQUE (`nickname`), 
+	UNIQUE (`email`)
 ) ENGINE = InnoDB;
 
 CREATE TABLE IF NOT EXISTS `Article` ( 
