@@ -2,10 +2,16 @@
 include_once('main.php');
 include_once('isLogin.php');
 
+
 $smarty->assign('member', $member);
 $smarty->assign('log_status', $log_status);
 
 if (!$log_status) {
+	if (isset($_GET['gRegister']) && $_GET['gRegister'] == 1) {
+		$smarty->assign('email', $_SESSION['email']);
+		$smarty->assign('nickname', $_SESSION['nickname']);
+		unset($_SESSION['name']);
+	}
 	$smarty->display('register.tpl');
 	if (isset($_POST['submit'])) {
 		
@@ -13,6 +19,7 @@ if (!$log_status) {
 		if (!$link) {
 			die('Connection failed ' . mysqli_connect_error());
 		}
+		mysqli_set_charset($link, "utf8");
 
 		$username = mysqli_real_escape_string($link, trim($_POST['username']));
 		$password = mysqli_real_escape_string($link, trim($_POST['password']));

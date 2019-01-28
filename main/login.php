@@ -1,6 +1,7 @@
 <?php
 include_once('main.php');
 include_once('isLogin.php');
+require_once('configs/gConfig.php');
 
 $error_message = '';
 
@@ -8,6 +9,7 @@ $smarty->assign('member', $member);
 $smarty->assign('log_status', $log_status);
 
 if (!$log_status) {
+	$smarty->assign('loginUrl', $gClient->createAuthUrl());
 	$smarty->display('login.tpl');
 	if (isset($_POST['submit'])) {
 		$link = mysqli_connect(db_host, db_user, db_password, db_name);

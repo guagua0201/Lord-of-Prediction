@@ -25,7 +25,11 @@
 										<div class="input-group-prepend">
     										<span class="input-group-text">暱稱:</span>
     									</div>
-										<input class="form-control form-control-lg" type="text" id="nickname" name="nickname" placeholder="請輸入暱稱" />
+    									{if !empty($nickname)}
+    										<input class='form-control form-control-lg' type='text' id='nickname' name='nickname' value='{$nickname}' />
+    									{else}
+											<input class="form-control form-control-lg" type="text" id="nickname" name="nickname" placeholder="請輸入暱稱" />
+										{/if}
 									</div>
 									<p class="alert alert-danger" id="nickname_notice" hidden="hidden">請輸入暱稱！</p>
 								</td>
@@ -46,6 +50,7 @@
     										<span class="input-group-text">性別:</span>
     									</div>
 										<select class="form-control form-control-lg" id="gender" name="gender">
+											<option value='' selected></option>
 											<option value='0'>男</option>
 											<option value='1'>女</option>
 										</select>
@@ -67,7 +72,11 @@
 										<div class="input-group-prepend">
     										<span class="input-group-text">信箱:</span>
     									</div>
-										<input class="form-control form-control-lg" type="text" id="email" name="email" placeholder="請輸入信箱" />
+    									{if !empty($email)}
+    										<input class='form-control fomr-control-lg' type='text' id='email' name='email' value='{$email}' readonly />
+    									{else}
+											<input class="form-control form-control-lg" type="text" id="email" name="email" placeholder="請輸入信箱" />
+										{/if}
 									</div>
 									<p class="alert alert-danger" id="email_notice" hidden="hidden">請輸入合法的信箱！</p>
 								</td>
@@ -76,8 +85,8 @@
 					</table>
 				</div>
 				<div class="register_box">
-					<input class="form-check-input" type="checkbox" name="terms" value="" />我同意&nbsp;<a href="/">服務條款</a>&nbsp;、&nbsp;<a href="/">停權管理規章</a>&nbsp;和&nbsp;<a href="/">
-					隱私政策&nbsp;，</a><br />同時也了解若我未滿20歲，我的法定代理人或監護人必須代表我完整檢閱和同意使用條款。
+					<input class="form-check-input" type="checkbox" name="terms" value="" />
+						我同意&nbsp;<a href="/">服務條款</a>&nbsp;、&nbsp;<a href="/">停權管理規章</a>&nbsp;和&nbsp;<a href="/privacy-policy.php">隱私政策&nbsp;，</a><br />同時也了解若我未滿20歲，我的法定代理人或監護人必須代表我完整檢閱和同意使用條款。
 					<br /><br /><br />
 				</div>
 				<div class="register_box">
