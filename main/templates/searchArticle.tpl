@@ -1,24 +1,44 @@
 {extends file='route.tpl'}
 {block name='body'}
 	<div style='min-height: 68vh' class='container'>
-		<div class="row">
-			<div class="col-12">
-				<div class="input-group">
-					<div class='mb-3'>
-						<h2 style='display: inline'>討論版</h2>
-						<a class='btn btn-lg' href='addArticle.php'>新增文章</a>
-						<a class='btn btn-lg' href='/'>版規</a>
+		<div class='row mb-3'>
+			<a class='text-dark' href='searchArticle.php'><h2>討論版</h2></a>
+			<a class='btn btn-lg' href='addArticle.php'>新增文章</a>
+			<a class='btn btn-lg' href='#'>版規</a>
+		</div>
+		<div class='row mb-3'>
+			<div class='col-sm-1'>
+				看板
+			</div>
+			<div class='col-sm-1'>
+				{foreach from=$classes item=class}
+					<div class='row'>
+						<span class='text-success'>{$class['name']}</span>
 					</div>
-					<form method="GET" action="searchArticle.php" style="width: 100%;">
-						<div class="input-group-append">
-							<input class="form-control border-secondary py-2" type="search" placeholder="請輸入關鍵字" name="search" />
-							<button class="btn btn-outline-secondary" type="submit"><i class="fa fa-search"></i></button>
-						</div>
-					</form>
-				</div>
+				{/foreach}
+			</div>
+			<div class='col-sm-10'>
+				{foreach from=$classes item=class}
+					<div class='row'>
+						{foreach from=$categories item=category}
+							{if $category['class_id'] == $class['id']}
+								<a class='pr-3' href="searchArticle.php?category_id={$category['id']}">{$category['name']}</a>
+							{/if}
+						{/foreach}
+					</div>
+				{/foreach}
 			</div>
 		</div>
-		<div style='margin-top: 30px'>
+		<div class="input-group">
+			<form method="GET" class='w-100'>
+				<div class="input-group-append">
+					<input name='category_id' value="{$category_id}" hidden />
+					<input class="form-control border-secondary py-2" type="search" placeholder="請輸入關鍵字" name="search" />
+					<button class="btn btn-outline-secondary" type="submit"><i class="fa fa-search"></i></button>
+				</div>
+			</form>
+		</div>
+		<div class='row mt-5'>
 			{if count($data) == 0}
 				<h3>沒有結果</h3>
 			{else}

@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 5.7.24, for Linux (x86_64)
+-- MySQL dump 10.13  Distrib 5.7.25, for Linux (x86_64)
 --
 -- Host: localhost    Database: main_db
 -- ------------------------------------------------------
--- Server version	5.7.24-0ubuntu0.18.04.1
+-- Server version	5.7.25-0ubuntu0.18.04.2
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -31,7 +31,7 @@ CREATE TABLE `Article` (
   `publish_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `update_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -40,7 +40,7 @@ CREATE TABLE `Article` (
 
 LOCK TABLES `Article` WRITE;
 /*!40000 ALTER TABLE `Article` DISABLE KEYS */;
-INSERT INTO `Article` VALUES (1,1,'測試',1,'這是測試！','2018-12-30 23:35:41','2018-12-30 23:35:41'),(2,1,'Test addArticle',1,'測試QQ\r\n好慘\r\n時間： 2018/12/31 04:43','2018-12-31 04:43:51','2018-12-31 04:43:51'),(6,1,'安安',1,'jsadfklasjl;dfkjaskasdfj\'a;sdkflasjdl;fkasjld;kfjsalkdjflaksjdf\r\nkasdfklasjdlfjasldk;fjasl;kdfjasTest\r\nBojlksdjlkfasjdbronwiniscutelkjdasl;fkjasldkjfalskdf','2019-01-16 17:04:31','2019-01-16 22:22:52'),(8,1,'你好',1,'嗎','2019-01-16 17:17:17','2019-01-16 17:17:17'),(12,1,'終於修好了',1,'QQQQQQ','2019-01-16 17:31:53','2019-01-16 22:23:03'),(13,1,'0u0',1,'ouo\r\nQAQ\r\n','2019-01-16 23:19:15','2019-01-16 23:19:15'),(14,1,'你好啊',5,'<p><em>yeah 我又來測試囉</em></p>\r\n','2019-01-17 04:46:29','2019-01-17 04:46:29'),(15,1,'安安安',1,'<p>我終於又弄好了QQ</p>\r\n\r\n<p>讚啦</p>\r\n','2019-01-17 05:08:37','2019-01-17 05:40:30'),(16,1,'奕君好可愛喔',1,'<p><span style=\"font-size:28px\"><span style=\"font-family:Comic Sans MS,cursive\">Love You ~</span></span></p>\r\n','2019-01-17 05:16:26','2019-01-17 05:16:26'),(17,1,'奕君好可愛~',1,'<p><img alt=\"\" src=\"https://scontent-tpe1-1.xx.fbcdn.net/v/t1.15752-9/s2048x2048/48414480_946534028876082_2250879062891298816_n.jpg?_nc_cat=102&amp;_nc_ht=scontent-tpe1-1.xx&amp;oh=21affc1dd270af58fd40a225e419697f&amp;oe=5CB67570\" style=\"height:1422px; width:800px\" /></p>\r\n\r\n<p><span style=\"color:#e74c3c\"><span style=\"font-size:28px\">奕君我愛妳~</span></span></p>\r\n\r\n<p><span style=\"font-family:Comic Sans MS,cursive\"><span style=\"color:#e74c3c\"><span style=\"font-size:28px\">Love You~</span></span></span></p>\r\n','2019-01-17 05:33:33','2019-01-17 05:33:33'),(18,1,'奕君~~~~',1,'<p><img alt=\"\" src=\"https://scontent-tpe1-1.xx.fbcdn.net/v/t1.15752-9/s2048x2048/48414480_946534028876082_2250879062891298816_n.jpg?_nc_cat=102&amp;_nc_ht=scontent-tpe1-1.xx&amp;oh=21affc1dd270af58fd40a225e419697f&amp;oe=5CB67570\" style=\"height:533px; width:300px\" /></p>\r\n\r\n<p><span style=\"color:#e74c3c\"><span style=\"font-size:24px\"><span style=\"font-family:Comic Sans MS,cursive\">最愛奕君了~</span></span></span></p>\r\n\r\n<p><span style=\"color:#e74c3c\"><span style=\"font-size:24px\"><span style=\"font-family:Comic Sans MS,cursive\">Love You~</span></span></span></p>\r\n','2019-01-17 05:35:40','2019-01-17 05:35:40'),(19,1,'安安測試',1,'<p><span style=\"font-size:26px\">你好</span></p>\r\n\r\n<p><strong><span style=\"font-size:26px\"><img alt=\"\" src=\"https://i.ytimg.com/vi/W43FJw3yKGM/hqdefault.jpg\" style=\"height:360px; width:480px\" /></span></strong></p>\r\n\r\n<table border=\"1\" cellpadding=\"1\" cellspacing=\"1\" style=\"width:500px\">\r\n	<tbody>\r\n		<tr>\r\n			<td>1</td>\r\n			<td>4</td>\r\n		</tr>\r\n		<tr>\r\n			<td>5</td>\r\n			<td>2</td>\r\n		</tr>\r\n		<tr>\r\n			<td>6</td>\r\n			<td>3</td>\r\n		</tr>\r\n	</tbody>\r\n</table>\r\n\r\n<p>&nbsp;</p>\r\n','2019-01-20 10:56:11','2019-01-20 10:56:11');
+INSERT INTO `Article` VALUES (1,1,'測試',1,'這是測試！','2018-12-30 23:35:41','2018-12-30 23:35:41'),(2,1,'Test addArticle',1,'測試QQ\r\n好慘\r\n時間： 2018/12/31 04:43','2018-12-31 04:43:51','2018-12-31 04:43:51'),(6,1,'安安',1,'jsadfklasjl;dfkjaskasdfj\'a;sdkflasjdl;fkasjld;kfjsalkdjflaksjdf\r\nkasdfklasjdlfjasldk;fjasl;kdfjasTest\r\nBojlksdjlkfasjdbronwiniscutelkjdasl;fkjasldkjfalskdf','2019-01-16 17:04:31','2019-01-16 22:22:52'),(8,1,'你好',1,'嗎','2019-01-16 17:17:17','2019-01-16 17:17:17'),(12,1,'終於修好了',1,'QQQQQQ','2019-01-16 17:31:53','2019-01-16 22:23:03'),(13,1,'0u0',1,'ouo\r\nQAQ\r\n','2019-01-16 23:19:15','2019-01-16 23:19:15'),(14,1,'你好啊',5,'<p><em>yeah 我又來測試囉</em></p>\r\n','2019-01-17 04:46:29','2019-01-17 04:46:29'),(15,1,'安安安',1,'<p>我終於又弄好了QQ</p>\r\n\r\n<p>讚啦</p>\r\n','2019-01-17 05:08:37','2019-01-17 05:40:30'),(16,1,'奕君好可愛喔',1,'<p><span style=\"font-size:28px\"><span style=\"font-family:Comic Sans MS,cursive\">Love You ~</span></span></p>\r\n','2019-01-17 05:16:26','2019-01-17 05:16:26'),(17,1,'奕君好可愛~',1,'<p><img alt=\"\" src=\"https://scontent-tpe1-1.xx.fbcdn.net/v/t1.15752-9/s2048x2048/48414480_946534028876082_2250879062891298816_n.jpg?_nc_cat=102&amp;_nc_ht=scontent-tpe1-1.xx&amp;oh=21affc1dd270af58fd40a225e419697f&amp;oe=5CB67570\" style=\"height:1422px; width:800px\" /></p>\r\n\r\n<p><span style=\"color:#e74c3c\"><span style=\"font-size:28px\">奕君我愛妳~</span></span></p>\r\n\r\n<p><span style=\"font-family:Comic Sans MS,cursive\"><span style=\"color:#e74c3c\"><span style=\"font-size:28px\">Love You~</span></span></span></p>\r\n','2019-01-17 05:33:33','2019-01-17 05:33:33'),(18,1,'奕君~~~~',1,'<p><img alt=\"\" src=\"https://scontent-tpe1-1.xx.fbcdn.net/v/t1.15752-9/s2048x2048/48414480_946534028876082_2250879062891298816_n.jpg?_nc_cat=102&amp;_nc_ht=scontent-tpe1-1.xx&amp;oh=21affc1dd270af58fd40a225e419697f&amp;oe=5CB67570\" style=\"height:533px; width:300px\" /></p>\r\n\r\n<p><span style=\"color:#e74c3c\"><span style=\"font-size:24px\"><span style=\"font-family:Comic Sans MS,cursive\">最愛奕君了~</span></span></span></p>\r\n\r\n<p><span style=\"color:#e74c3c\"><span style=\"font-size:24px\"><span style=\"font-family:Comic Sans MS,cursive\">Love You~</span></span></span></p>\r\n','2019-01-17 05:35:40','2019-01-17 05:35:40'),(19,1,'安安測試',1,'<p><span style=\"font-size:26px\">你好</span></p>\r\n\r\n<p><strong><span style=\"font-size:26px\"><img alt=\"\" src=\"https://i.ytimg.com/vi/W43FJw3yKGM/hqdefault.jpg\" style=\"height:360px; width:480px\" /></span></strong></p>\r\n\r\n<table border=\"1\" cellpadding=\"1\" cellspacing=\"1\" style=\"width:500px\">\r\n	<tbody>\r\n		<tr>\r\n			<td>1</td>\r\n			<td>4</td>\r\n		</tr>\r\n		<tr>\r\n			<td>5</td>\r\n			<td>2</td>\r\n		</tr>\r\n		<tr>\r\n			<td>6</td>\r\n			<td>3</td>\r\n		</tr>\r\n	</tbody>\r\n</table>\r\n\r\n<p>&nbsp;</p>\r\n','2019-01-20 10:56:11','2019-01-20 10:56:11'),(20,13,'籃球籃球',1,'<p>打籃球</p>\r\n\r\n<p>2019/01/31</p>\r\n\r\n<p>&nbsp;</p>\r\n','2019-01-31 14:59:04','2019-01-31 14:59:04');
 /*!40000 ALTER TABLE `Article` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -52,12 +52,13 @@ DROP TABLE IF EXISTS `Category`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `Category` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(50) CHARACTER SET utf8 NOT NULL,
-  `description` varchar(200) CHARACTER SET utf8 DEFAULT NULL,
+  `id` int(11) NOT NULL,
+  `name` varchar(10) CHARACTER SET utf8 NOT NULL,
+  `description` varchar(60) CHARACTER SET utf8 DEFAULT NULL,
+  `class_id` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `name` (`name`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -66,8 +67,34 @@ CREATE TABLE `Category` (
 
 LOCK TABLES `Category` WRITE;
 /*!40000 ALTER TABLE `Category` DISABLE KEYS */;
-INSERT INTO `Category` VALUES (1,'系統',NULL);
+INSERT INTO `Category` VALUES (1,'公告',NULL,1),(2,'生活閒聊',NULL,1),(3,'黑特',NULL,1),(4,'投票',NULL,1),(5,'炫燿',NULL,1),(6,'精華',NULL,1),(7,'MLB',NULL,2),(8,'日本職棒',NULL,2),(9,'中華職棒',NULL,2),(10,'韓國職棒',NULL,2),(11,'墨西哥棒球',NULL,2),(12,'澳洲職棒',NULL,2),(13,'NBA',NULL,3),(14,'WNBA',NULL,3),(15,'韓國職籃',NULL,3),(16,'日本職籃',NULL,3),(17,'歐洲職籃',NULL,3),(18,'中國職籃',NULL,3),(19,'西甲職籃',NULL,3),(20,'SBL',NULL,3),(21,'菲律賓籃球',NULL,3),(22,'百家樂',NULL,4),(23,'彩票',NULL,5),(24,'北京賽車',NULL,6),(25,'足球',NULL,7),(26,'NHL冰球',NULL,7),(27,'俄羅斯冰球',NULL,7),(28,'賽馬',NULL,7),(29,'美式足球',NULL,7),(30,'網球',NULL,7),(31,'電競',NULL,7);
 /*!40000 ALTER TABLE `Category` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `Class`
+--
+
+DROP TABLE IF EXISTS `Class`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `Class` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(10) CHARACTER SET utf8 NOT NULL,
+  `description` varchar(60) CHARACTER SET utf8 DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `name` (`name`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `Class`
+--
+
+LOCK TABLES `Class` WRITE;
+/*!40000 ALTER TABLE `Class` DISABLE KEYS */;
+INSERT INTO `Class` VALUES (1,'通用看板',NULL),(2,'棒球',NULL),(3,'籃球',NULL),(4,'百家樂',NULL),(5,'彩票',NULL),(6,'北京賽車',NULL),(7,'其他',NULL);
+/*!40000 ALTER TABLE `Class` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -138,4 +165,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-01-28  9:27:07
+-- Dump completed on 2019-01-31 15:00:11

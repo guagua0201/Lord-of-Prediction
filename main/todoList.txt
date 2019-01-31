@@ -1,9 +1,12 @@
 1. Email Confirmed
+	https://hk.saowen.com/a/90ccde1beecc7c454a8df89cc2b63f04295eb4dc9cae44e5d46071969d01d2b8
 2. Register check duplicate
 3. User Picture
+	https://www.inside.com.tw/article/102-%E4%B8%80%E5%88%86%E9%90%98%E5%AD%B8%E6%9C%83%E7%94%A8php%E8%88%87bit-ly-api%E5%81%9A%E7%B8%AE%E7%9F%AD%E7%B6%B2%E5%9D%80	
 4. User create time(?
 5. list with pages
 6. Admin check
 7. bootstrap alert
 8. bootstrap modal
 9. category add column BOOL(admin)
+10. http://www.w3school.com.cn/php/php_form_validation.asp (for safety)
