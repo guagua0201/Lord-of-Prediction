@@ -18,7 +18,8 @@
     									</div>
 										<input class="form-control form-control-lg" type="text" id="username" name="username" placeholder="請輸入帳號" />
 									</div>
-									<p class="alert alert-danger" id="username_notice" hidden="hidden">請填入帳號！</p>
+									<p class="alert alert-danger" id="username_notice" hidden>請填入帳號！</p>
+									<p class="alert alert-danger" id="invalid_username" hidden>不合法的帳號名稱</p>
 								</td>
 								<td class='col-sm-6'>
 									<div class="input-group mb-3 input-group-lg">
@@ -31,7 +32,7 @@
 											<input class="form-control form-control-lg" type="text" id="nickname" name="nickname" placeholder="請輸入暱稱" />
 										{/if}
 									</div>
-									<p class="alert alert-danger" id="nickname_notice" hidden="hidden">請輸入暱稱！</p>
+									<p class="alert alert-danger" id="nickname_notice" hidden>請輸入暱稱！</p>
 								</td>
 							</tr>
 							<tr class="spaceUnder d-flex">
@@ -42,7 +43,7 @@
     									</div>
 										<input class="form-control form-control-lg" type="password" id="password" name="password" placeholder="請輸入密碼" />
 									</div>
-									<p class="alert alert-danger" id="password_notice" hidden="hidden">請輸入密碼！</p>
+									<p class="alert alert-danger" id="password_notice" hidden>請輸入密碼！</p>
 								</td>
 								<td class='col-sm-6'>
 									<div class="input-group mb-3 input-group-lg">
@@ -65,7 +66,7 @@
     									</div>
 										<input class="form-control form-control-lg" type="password" id="confirmed_pwd" name="confirmed-pwd" placeholder="請確認密碼" />
 									</div>
-									<p class="alert alert-danger" id="confirmed_notice" hidden="hidden">與密碼不符！</p>
+									<p class="alert alert-danger" id="confirmed_notice" hidden>與密碼不符！</p>
 								</td>
 								<td class='col-sm-6'>
 									<div class="input-group mb-3 input-group-lg">
@@ -78,7 +79,7 @@
 											<input class="form-control form-control-lg" type="text" id="email" name="email" placeholder="請輸入信箱" />
 										{/if}
 									</div>
-									<p class="alert alert-danger" id="email_notice" hidden="hidden">請輸入合法的信箱！</p>
+									<p class="alert alert-danger" id="email_notice" hidden>請輸入合法的信箱！</p>
 								</td>
 							</tr>
 						</tbody>
