@@ -4,34 +4,32 @@
 	<div class='container' style='min-height: 68vh'>
 		<h2>聯絡我們</h2>
 		<p>請將問題或建議告訴我們，並留下正確聯絡方式，我們將儘速回覆您，謝謝！</p>
-		<form method='POST' action=''>
+		<form method='POST' action='contact.php'>
 			<div class='input-group mb-3 input-group-lg'>
 				<div class="input-group-prepend">
 					<span class="input-group-text">帳號:</span>
 				</div>
-				{if $log_status != 0}
-					<input type='text' id='username' name='username' value='{$member}' class='form-control form-control-lg' />
-				{else}
-					<input type='text' id='username' name='username' class='form-control form-control-lg' />
-				{/if}
+				<input type='text' id='username' name='username' value='{$member}' class='form-control form-control-lg' readonly />
 			</div>
 			<div class='input-group mb-3 input-group-lg'>
 				<div class="input-group-prepend">
 					<span class="input-group-text">信箱:</span>
 				</div>
-				{if $log_status != 0}
-					<input type='text' id='username' name='username' value='{$email}' class='form-control form-control-lg' />
-				{else}
-					<input type='text' id='username' name='username' class='form-control form-control-lg' />
-				{/if}
+				<input type='text' id='email' name='email' value='{$email}' class='form-control form-control-lg' readonly />
+			</div>
+			<div class='input-group mb-3 input-group-lg'>
+				<div class='input-group-prepend'>
+					<span class='input-group-text'>主題:</span>
+				</div>
+				<input type='text' id='subject' name='subject' class='form-control form-control-lg' />
 			</div>
 			<div class='form-group form-group-lg'>
 				<div class="form-group-prepend">
 					<span class="input-group-text">想說的事:</span>
 				</div>
-				<textarea rows='9' id='content' name='content' class='form-control form-control-lg'></textarea>
+				<textarea rows='9' id='message' name='message' class='form-control form-control-lg'></textarea>
 				<script>
-					CKEDITOR.replace('content');
+					CKEDITOR.replace('message');
 				</script>
 				<p id='content_notice' class='alert alert-danger' hidden>請輸入內文!!</p>
 			</div>

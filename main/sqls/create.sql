@@ -61,3 +61,16 @@ CREATE TABLE IF NOT EXISTS `Class` (
 ) ENGINE = InnoDB;
 
 -- INSERT INTO `Class` (`id`, `name`, `description`) VALUES ('1', '通用看板', NULL), ('2', '棒球', NULL), ('3', '籃球', NULL), ('4', '百家樂', NULL), ('5', '彩票', NULL), ('6', '北京賽車', NULL), ('7', '其他', NULL)
+
+CREATE TABLE IF NOT EXISTS `Message` ( 
+	`id` INT NOT NULL AUTO_INCREMENT , 
+	`senderId` INT NOT NULL , 
+	`receiverId` INT NOT NULL , 
+	`sendTime` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP , 
+	`subject` VARCHAR(60) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL , 
+	`message` TEXT CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL , 
+	`readFlag` TINYINT NOT NULL , 
+	PRIMARY KEY (`id`)
+) ENGINE = InnoDB;
+
+-- INSERT INTO `Message` (`id`, `senderId`, `receiverId`, `sendTime`, `message`, `readFlag`) VALUES (NULL, '1', '2', CURRENT_TIMESTAMP, '<p><span style=\"color:#1abc9c\">你好啊這是測試信</span></p>\r\n', '0')

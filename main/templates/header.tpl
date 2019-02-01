@@ -1,68 +1,76 @@
-<div style='min-height: 25vh'>
-	<div style='background-color: #080808; height: 150px; padding: 15px 0' class='jumborton'>
-		<div style='width: 100%' class='row'>
-			<div class='col-sm-10'>
-				<a href='/' title='Home'>
-					<img src='/images/logo.jpg' height='100%' width='200px' />
-				</a>
+<div class='jumborton'>
+	<div class='jumborton p-3' style='background-color: #080808'>
+		<div class='row'>
+			<div class='col-md-2'>
+				<div class='row justify-content-center'>
+					<div class='col-md-10'>
+						<a href='/' title='Home'>
+							<img src='/images/logo.jpg' height='100%' width='200px'/>
+						</a>
+					</div>
+				</div>
 			</div>
-			<div class='col-sm-1'>
-				<table style='line-height: 25px'>
-					<tr>
-						<td>
+			<div class='col-md-10'>
+				<div class='row justify-content-end'>
+					<div class='col-md-2' style='max-width: 180px'>
+						<table class='table table-borderless' style='line-height: 0.3em'>
+							<tr>
+								<td>
+									{if $log_status != 0}
+										<a href='#' title='Profile'>{$member}</a>
+									{else}
+										<a href='/login.php' title='Login'>登入</a>
+									{/if}
+								</td>
+							</tr>
+							<tr>
+								<td>
+									{if $log_status == 0}
+										<a href='/register.php' title='Register'>註冊</a>
+									{else}
+										<a href='/logout.php' title='Logout'>登出</a>
+									{/if}
+								</td>
+							</tr>
+						<tr>
+							<td>
+								<a href='/' title='Contact'>連繫客服</a>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<a href='/' title='Shop'>商城入口</a>
+							</td>
+						</tr>
+						</table>
+					</div>
+					<div class='col-md-2' style='max-width: 180px'>
+						<table class='table table-borderless' style='line-height: 0.3em'>
 							{if $log_status != 0}
-								<a href='/' title='Profile'>{$member}</a>
-							{else}
-								<a href='/login.php' title='Login'>登入</a>
+								<tr>
+									<td>
+										<a href='/profile.php' title='Profile'>個人小屋</a>
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<a href='/' title='StoreValue'>儲值入口</a>
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<a href='/' title='ShoppingCar'>購物車</a>
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<a href='/showMessage.php' title='Message'>訊息中心 ({$unreadMsg})</a>
+									</td>
+								</tr>
 							{/if}
-						</td>
-					</tr>
-					<tr>
-						<td>
-							{if $log_status == 0}
-								<a href='/register.php' title='Register'>註冊</a>
-							{else}
-								<a href='/logout.php' title='Logout'>登出</a>
-							{/if}
-						</td>
-					</tr>
-					<tr>
-						<td>
-							<a href='/' title='Contact'>連繫客服</a>
-						</td>
-					</tr>
-					<tr>
-						<td>
-							<a href='/' title='Shop'>商城入口</a>
-						</td>
-					</tr>
-				</table>
-			</div>
-			<div class='col-sm-1'>
-				<table style='line-height: 25px'>
-					{if $log_status != 0}
-						<tr>
-							<td>
-								<a href='/profile.php' title='Profile'>個人小屋</a>
-							</td>
-						</tr>
-						<tr>
-							<td>
-								<a href='/' title='StoreValue'>儲值入口</a>
-							</td>
-						</tr>
-						<tr>
-							<td>
-								<a href='/' title='ShoppingCar'>購物車</a>
-							</td>
-						</tr>
-						<tr>
-							<td>
-								<a href='/' title='Message'>訊息中心</a>
-							</td>
-						</tr>
-					{/if}
-				</table>
+						</table>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
