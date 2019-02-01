@@ -1,8 +1,6 @@
 <?php
 include_once('main.php');
 include_once('isLogin.php');
-$smarty->assign('member', $member);
-$smarty->assign('log_status', $log_status);
 
 if (isset($_GET['id']) && !empty($_GET['id'])) {
 	$link = mysqli_connect(db_host, db_user, db_password, db_name);

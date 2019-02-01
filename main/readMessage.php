@@ -2,7 +2,6 @@
 include_once('main.php');
 include_once('isLogin.php');
 
-
 if ($log_status != 0) {
 	if (isset($_POST['id'])) {
 		$link = mysqli_connect(db_host, db_user, db_password, db_name);

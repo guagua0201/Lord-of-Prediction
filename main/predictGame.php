@@ -3,8 +3,6 @@ include_once('main.php');
 include_once('isLogin.php');
 require_once('Excelreader/reader.php');
 
-$smarty->assign('member', $member);
-$smarty->assign('log_status', $log_status);
 $smarty->assign('yesterday', strtotime("-1 day"));
 $smarty->assign('tomorrow', strtotime("+1 day"));
 

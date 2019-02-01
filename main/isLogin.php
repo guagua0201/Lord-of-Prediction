@@ -15,6 +15,8 @@ if (isset($_SESSION['user_id'])) {
 	$result = mysqli_query($link, $sql);
 	$unreadMsg = mysqli_num_rows($result);
 	mysqli_close($link);
+	$smarty->assign('member', $member);
+	$smarty->assign('log_status', $log_status);
 	$smarty->assign('unreadMsg', $unreadMsg);
 }
 

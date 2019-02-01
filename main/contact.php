@@ -1,8 +1,7 @@
 <?php
 include_once('main.php');
 include_once('isLogin.php');
-$smarty->assign('member', $member);
-$smarty->assign('log_status', $log_status);
+
 if ($log_status != 0) {
 	$link = mysqli_connect(db_host, db_user, db_password, db_name);
 	if (!$link) {
