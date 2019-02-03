@@ -1,13 +1,9 @@
 {extends file='route.tpl'}
 {block name='body'}
   <div style='min-height: 68vh; padding: 30px'>
-    <style>
-      canvas{
-        background: #ccc
-      }
-    </style>
-    <canvas id="myCanvas" width="1200" height = "780">
-        <script src="/javascripts/lotteryGame.js"></script>
-    </canvas>
+      <script src="https://cdn.jsdelivr.net/npm/phaser@3.15.1/dist/phaser-arcade-physics.min.js"></script>
+      <div style='min-height: 68vh; text-align: center' id='game_block' class='jumborton'>
+        <script src='/javascripts/lotteryGame.js'></script>
+      </div>
   </div>
 {/block}
