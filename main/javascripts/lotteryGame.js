@@ -1,4 +1,14 @@
 
+var nowNumber=-100;
+var result;
+
+for (var key in resultArr){
+    console.log(key + " = " + resultArr[key]);
+    if(key > nowNumber){
+        nowNumber = key;
+        result = resultArr[key];
+    }
+}
 
 class sceneStart extends Phaser.Scene{
     constructor(){
@@ -48,6 +58,14 @@ class sceneStart extends Phaser.Scene{
         this.startButLight.setInteractive();
         this.startButLight.visible = 0;
 
+        var textSpacing = 50;
+        //this.add.text(300, 75, nowNumber, { fontSize: '32px', fill: 'white' });
+        for (var i=0;i<nowNumber.length;i++){
+            this.add.text(310+textSpacing*i, 75, nowNumber[i], { fontSize: '32px', fill: 'white' });
+        }
+        
+        this.add.text(1000, 16, result, { fontSize: '32px', fill: 'white' });
+
     }
 
     update(){
@@ -82,7 +100,7 @@ var startTime,nowTime;
 
 var numberEnd;
 
-var result;
+
 
 var stopKey;
 
@@ -181,6 +199,8 @@ class sceneGame extends Phaser.Scene{
         this.startButLight.setInteractive();
         this.startButLight.visible = 0;
 
+        writeText();
+
     }
 
     update(){
@@ -266,6 +286,7 @@ class sceneGame extends Phaser.Scene{
                         else this.numBar[i].setAccelerationY(-800);
                     }
                     else{
+                        this.numBar[i].setAccelerationY(0);
                         stopKey[i] = 1;
                         console.log("stop" + i.toString(10));
                         //this.physics.moveTo(this.numBar[i],this.x,numberEnd[result[i]]+30,100);
@@ -322,6 +343,8 @@ class sceneEnd extends Phaser.Scene{
         this.startButLight.setInteractive();
         this.startButLight.visible = 0;
         console.log("end");
+
+        writeText();
 
     }
 
