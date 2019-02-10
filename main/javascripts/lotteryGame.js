@@ -22,7 +22,7 @@ class sceneStart extends Phaser.Scene{
             this.load.image("num"+i.toString(10),"images/lottery/number"+i.toString(10)+".png");
         }
         
-        this.load.image("bg","images/lottery/bg2.png");
+        this.load.image("bg","images/lottery/bg4.png");
 
         this.load.image("startBut","images/lottery/start.png");
 
@@ -63,8 +63,14 @@ class sceneStart extends Phaser.Scene{
         for (var i=0;i<nowNumber.length;i++){
             this.add.text(310+textSpacing*i, 75, nowNumber[i], { fontSize: '32px', fill: 'white' });
         }
+
+        textSpacing = 13;
+        //this.add.text(300, 75, nowNumber, { fontSize: '32px', fill: 'white' });
         
-        this.add.text(1000, 16, result, { fontSize: '32px', fill: 'white' });
+        //this.add.text(1000, 80, result, { fontSize: '32px', fill: 'white' });
+        for (var i=0;i<result.length;i++){
+            this.add.text(985+textSpacing*i, 80, result[i], { fontSize: '32px', fill: 'white' });
+        }
 
     }
 
@@ -118,7 +124,7 @@ class sceneGame extends Phaser.Scene{
             this.load.image("num"+i.toString(10),"images/lottery/number"+i.toString(10)+".png");
         }
         
-        this.load.image("bg","images/lottery/bg2.png");
+        this.load.image("bg","images/lottery/bg4.png");
 
         this.load.image("startBut","images/lottery/start.png");
 
@@ -199,7 +205,19 @@ class sceneGame extends Phaser.Scene{
         this.startButLight.setInteractive();
         this.startButLight.visible = 0;
 
-        writeText();
+        var textSpacing = 50;
+        //this.add.text(300, 75, nowNumber, { fontSize: '32px', fill: 'white' });
+        for (var i=0;i<nowNumber.length;i++){
+            this.add.text(310+textSpacing*i, 75, nowNumber[i], { fontSize: '32px', fill: 'white' });
+        }
+        
+        textSpacing = 13;
+        //this.add.text(300, 75, nowNumber, { fontSize: '32px', fill: 'white' });
+        
+        //this.add.text(1000, 80, result, { fontSize: '32px', fill: 'white' });
+        for (var i=0;i<result.length;i++){
+            this.add.text(985+textSpacing*i, 80, result[i], { fontSize: '32px', fill: 'white' });
+        }
 
     }
 
@@ -263,7 +281,7 @@ class sceneGame extends Phaser.Scene{
                 else if(dis>4){
                     this.numBar[i].setVelocityY(4);
                 }
-                if(Math.abs(dis)<5){
+                if(Math.abs(dis)<2){
                     this.numBar[i].setAccelerationY(0);
                     this.numBar[i].setVelocityY(0);
                     if(stopKey[i] == 1){
@@ -308,7 +326,7 @@ class sceneEnd extends Phaser.Scene{
             this.load.image("num"+i.toString(10),"images/lottery/number"+i.toString(10)+".png");
         }
         
-        this.load.image("bg","images/lottery/bg3.png");
+        this.load.image("bg","images/lottery/bg4.png");
 
         this.load.image("startBut","images/lottery/start.png");
 
@@ -344,7 +362,19 @@ class sceneEnd extends Phaser.Scene{
         this.startButLight.visible = 0;
         console.log("end");
 
-        writeText();
+        var textSpacing = 50;
+        //this.add.text(300, 75, nowNumber, { fontSize: '32px', fill: 'white' });
+        for (var i=0;i<nowNumber.length;i++){
+            this.add.text(310+textSpacing*i, 75, nowNumber[i], { fontSize: '32px', fill: 'white' });
+        }
+        
+        textSpacing = 13;
+        //this.add.text(300, 75, nowNumber, { fontSize: '32px', fill: 'white' });
+        
+        //this.add.text(1000, 80, result, { fontSize: '32px', fill: 'white' });
+        for (var i=0;i<result.length;i++){
+            this.add.text(985+textSpacing*i, 80, result[i], { fontSize: '32px', fill: 'white' });
+        }
 
     }
 

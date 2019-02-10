@@ -1,9 +1,9 @@
 
-
+console.log('hi');
 
 class sceneStart extends Phaser.Scene{
     constructor() {
-        super({key: 'sceneMenu'});
+        super({key: 'sceneStart'});
     }
 
     preload(){
@@ -16,6 +16,7 @@ class sceneStart extends Phaser.Scene{
 
     create(){
         this.add.image(0,0,'topBar').setOrigin(0,0);
+        this.add.image(0,0,'startBg').setOrigin(0,0);
     }
 }
 

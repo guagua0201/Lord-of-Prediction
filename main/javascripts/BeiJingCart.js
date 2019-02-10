@@ -1,5 +1,3 @@
-
-
 var gameStartKey = 0;
 
 var nowRank;
@@ -102,15 +100,25 @@ function init(){
     }
 
     var topBar = new myImg("images/BeiJingCart/background/TOPBAR.png",0,0);
+
+    var soundButLoad = 0;
     topBar.img.onload = function(){
         context.drawImage(topBar.img,topBar.x,topBar.y);
         for(i=1;i<=10;i++){
             context.drawImage(numberBall[i].img,numberBall[i].x,numberBall[i].y);
         }
+        if(soundButLoad == 1){
+            context.drawImage(soundBut.img,soundBut.x,soundBut.y);
+            context.font="25px Georgia";
+            context.fillStyle="white";
+            context.fillText("期號: 722052",870,70,1000);
+            context.fillText("時間: 12-24 23:57",870,110,1000); 
+        }
     }
 
     var soundBut = new myImg("images/BeiJingCart/sound/OPEN.png",1100,20);
     soundBut.img.onload = function(){
+        soundButLoad = 1;
         context.drawImage(soundBut.img,soundBut.x,soundBut.y);
         context.font="25px Georgia";
         context.fillStyle="white";
@@ -171,23 +179,34 @@ function startScreen(){
 
     var startBG = new myImg("images/BeiJingCart/background/STARTBG.png",0,150);
 
+    var startButLoad = 0;
+    var trafficLightLoad = 0;
+
     startBG.img.onload = function(){
         context.drawImage(startBG.img,startBG.x,startBG.y);
         for ( i = 1 ; i <= 10 ; i ++){
             context.drawImage(carBack[i].img,0,0,carBack[i].img.width,carBack[i].img.height,carBack[i].x,carBack[i].y,120,100);
+        }
+        if(startButLoad == 1){
+            context.drawImage(startButton.img,startButton.x,startButton.y);  
+        }
+        if(trafficLightLoad == 1){
+            context.drawImage(trafficLight.img,trafficLight.x,trafficLight.y);
         }
     }
 
     trafficLight = new myImg("images/BeiJingCart/trafficLight/RED.png",900,300);
     trafficLight.img.onload = function(){
         context.drawImage(trafficLight.img,trafficLight.x,trafficLight.y);
+        trafficLightLoad = 1;
     }
 
 
     var startButton = new myImg("images/BeiJingCart/startButton/START.png",500,300);
 
     startButton.img.onload = function(){
-        context.drawImage(startButton.img,startButton.x,startButton.y);    
+        context.drawImage(startButton.img,startButton.x,startButton.y);  
+        startButLoad = 1;  
     }
 
 
@@ -369,7 +388,7 @@ function startGame(){
 
 function playEnd(){
     var endImg = new Image();
-    endImg.src = "./images/BeiJingCart/background/winbg.png";
+    endImg.src = "./images/BeiJingCart/background/winbg2.png";
     endImg.onload = function(){
         console.log('hihiend');
         context.drawImage(endImg,0,150);
