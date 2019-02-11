@@ -18,6 +18,9 @@ if (isset($_SESSION['user_id'])) {
 	$smarty->assign('member', $member);
 	$smarty->assign('log_status', $log_status);
 	$smarty->assign('unreadMsg', $unreadMsg);
+} else {
+	$smarty->assign('member', $member);
+	$smarty->assign('log_status', $log_status);
 }
 
 // set admin account
