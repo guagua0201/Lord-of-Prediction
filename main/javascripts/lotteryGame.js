@@ -1,12 +1,12 @@
 
 var nowNumber=-100;
-var result;
+var award;
 
 for (var key in resultArr){
     console.log(key + " = " + resultArr[key]);
     if(key > nowNumber){
         nowNumber = key;
-        result = resultArr[key];
+        award = resultArr[key];
     }
 }
 
@@ -68,8 +68,8 @@ class sceneStart extends Phaser.Scene{
         //this.add.text(300, 75, nowNumber, { fontSize: '32px', fill: 'white' });
         
         //this.add.text(1000, 80, result, { fontSize: '32px', fill: 'white' });
-        for (var i=0;i<result.length;i++){
-            this.add.text(985+textSpacing*i, 80, result[i], { fontSize: '32px', fill: 'white' });
+        for (var i=0;i<award.length;i++){
+            this.add.text(985+textSpacing*i, 80, award[i], { fontSize: '32px', fill: 'white' });
         }
 
     }
@@ -106,7 +106,7 @@ var startTime,nowTime;
 
 var numberEnd;
 
-
+var result;
 
 var stopKey;
 
@@ -215,8 +215,8 @@ class sceneGame extends Phaser.Scene{
         //this.add.text(300, 75, nowNumber, { fontSize: '32px', fill: 'white' });
         
         //this.add.text(1000, 80, result, { fontSize: '32px', fill: 'white' });
-        for (var i=0;i<result.length;i++){
-            this.add.text(985+textSpacing*i, 80, result[i], { fontSize: '32px', fill: 'white' });
+        for (var i=0;i<award.length;i++){
+            this.add.text(985+textSpacing*i, 80, award[i], { fontSize: '32px', fill: 'white' });
         }
 
     }
@@ -372,8 +372,8 @@ class sceneEnd extends Phaser.Scene{
         //this.add.text(300, 75, nowNumber, { fontSize: '32px', fill: 'white' });
         
         //this.add.text(1000, 80, result, { fontSize: '32px', fill: 'white' });
-        for (var i=0;i<result.length;i++){
-            this.add.text(985+textSpacing*i, 80, result[i], { fontSize: '32px', fill: 'white' });
+        for (var i=0;i<award.length;i++){
+            this.add.text(985+textSpacing*i, 80, award[i], { fontSize: '32px', fill: 'white' });
         }
 
     }

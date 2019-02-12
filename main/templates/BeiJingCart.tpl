@@ -9,7 +9,7 @@
 				background: #ccc
 			}
 		</style>
-		
+		<script src="/php/BeiJingReadFile.php"></script>
 		<canvas id="myCanvas" width="1200" height = "780">
 			<script src="/javascripts/BeiJingCart.js"></script>
 		</canvas>

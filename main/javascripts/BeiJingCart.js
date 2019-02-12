@@ -58,6 +58,7 @@ function randomRank(){
     for(i=1;i<=10;i++){
         mk[i] = 0;
     }
+    
     rank = [];
     for(i=1;i<=10;i++){
         while(1){
@@ -68,6 +69,7 @@ function randomRank(){
             }
         }
     }
+    
     return rank;
 }
 
@@ -85,7 +87,10 @@ function init(){
         rank[i] = i;
         
     }
-    rank = randomRank();
+    for(var j=0;j<10;j++){
+        rank[rankArr[0][j]] = j+1;
+    }
+    //rank = randomRank();
 
 
 
@@ -111,8 +116,8 @@ function init(){
             context.drawImage(soundBut.img,soundBut.x,soundBut.y);
             context.font="25px Georgia";
             context.fillStyle="white";
-            context.fillText("期號: 722052",870,70,1000);
-            context.fillText("時間: 12-24 23:57",870,110,1000); 
+            context.fillText("期號: " + periodArr[0].toString(10),870,70,1000);
+            context.fillText("時間: " + timeArr[0],870,110,1000); 
         }
     }
 
@@ -122,8 +127,8 @@ function init(){
         context.drawImage(soundBut.img,soundBut.x,soundBut.y);
         context.font="25px Georgia";
         context.fillStyle="white";
-        context.fillText("期號: 722052",870,70,1000);
-        context.fillText("時間: 12-24 23:57",870,110,1000);
+        context.fillText("期號: " + periodArr[0].toString(10),870,70,1000);
+        context.fillText("時間: " + timeArr[0],870,110,1000); 
 
            
     }

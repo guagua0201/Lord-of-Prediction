@@ -13,6 +13,7 @@
         <script src="https://preview.babylonjs.com/Oimo.js"></script>
         <script src="https://preview.babylonjs.com/earcut.min.js"></script>
         <script src="https://preview.babylonjs.com/babylon.js"></script>
+        <script src="javascripts/objFileLoader.js"></script>
         <script src="https://preview.babylonjs.com/inspector/babylon.inspector.bundle.js"></script>
         <script src="https://preview.babylonjs.com/materialsLibrary/babylonjs.materials.min.js"></script>
         <script src="https://preview.babylonjs.com/proceduralTexturesLibrary/babylonjs.proceduralTextures.min.js"></script>
@@ -55,20 +56,28 @@
             camera.attachControl(canvas, false);
         
             // The first parameter can be used to specify which mesh to import. Here we import all meshes 
-            var wall = BABYLON.SceneLoader.ImportMesh("", "model/wall/", "wall2.obj", scene, function (newMeshes){
+            /*var wall = BABYLON.SceneLoader.ImportMesh("", "model/wall/", "wall2.obj", scene, function (newMeshes){
                 // Set the target of the camera to the first imported mesh
                 newMeshes[0].rotation = new BABYLON.Vector3(0.2,4.5,-0.3);
                 newMeshes[0].position = new BABYLON.Vector3(0,200,100);
                 
-            });
-            var man = BABYLON.SceneLoader.ImportMesh("", "model/man/", "man.obj", scene, function (newMeshes){
+            });*/
+            /*var man = BABYLON.SceneLoader.ImportMesh("", "model/", "womanNoMtl.obj", scene, function (newMeshes){
                 // Set the target of the camera to the first imported mesh
                 //newMeshes[0].rotation = new BABYLON.Vector3(0.2,4.5,-0.3);
-                newMeshes[1].position = new BABYLON.Vector3(0,0,0); 
+                //newMeshes[1].position = new BABYLON.Vector3(0,0,0); 
                 
+            });*/
+            camera.setPosition(new BABYLON.Vector3(0,100,1000));
+            var dress = BABYLON.SceneLoader.ImportMesh("","model/","dress.babylon",scene,function (newMeshes) {
+                camera.target = newMeshes[0];
+                newMeshes[0].position.y-=100;
+                newMeshes[0].position.z-=100;
+                newMeshes[0].position.x-=100;
             });
-            camera.setTarget(new BABYLON.Vector3(0, 200,100));
-            camera.setPosition(new BABYLON.Vector3(0,0,1000));
+
+            //camera.setTarget(new BABYLON.Vector3(0, 200,100));
+            //camera.setPosition(new BABYLON.Vector3(0,100,1000));
 
         
             // Move the light with the camera
