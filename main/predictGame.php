@@ -12,6 +12,10 @@ if (!$link) {
 }
 mysqli_set_charset($link, "utf8");
 
+if (isset($_POST['submit'])) {
+	header('Location: userInfo.php');
+}
+
 $sql = "SELECT id, name FROM Class WHERE id = 2 OR id = 3 OR id = 7 ORDER BY id";
 $classes = array();
 if ($result = mysqli_query($link, $sql)) {
@@ -30,24 +34,26 @@ $smarty->assign('categories', $categories);
 
 mysqli_close($link);
 
-/*
 $reader = new Spreadsheet_Excel_Reader();
 $reader->setOutputEncoding('UTF-8');
 $reader->read('documents/predictGame.xls');
 
 if (!isset($_GET['category_id']) || empty($_GET['category_id']))
-	$_GET['category_id'] = 4;
+	$_GET['category_id'] = 0;
 
 $id = $_GET['category_id'];
 $data = array();
-for ($i = 1; $i <= $reader->sheets[$id]['numRows']; $i++) {
+$name = array();
+for ($i = 1; $i <= $reader->sheets[$id]['numCols']; $i++)
+	$name[] = $reader->sheets[$id]['cells'][1][$i];
+for ($i = 2; $i <= $reader->sheets[$id]['numRows']; $i++) {
 	$row = array();
-	for ($j = 2; $j <= 10; $j++) {
+	for ($j = 1; $j <= $reader->sheets[$id]['numCols']; $j++) {
 		$row[] = $reader->sheets[$id]['cells'][$i][$j];
 	}
 	$data[] = $row;
 }
+$smarty->assign('name', $name);
 $smarty->assign('data', $data);
-*/
 $smarty->display('predictGame.tpl');
 ?>

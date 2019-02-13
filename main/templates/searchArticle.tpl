@@ -44,7 +44,7 @@
 			{else}
 				<table class='table table-bordered table-striped table-sm'>
 					<thead>
-						<tr class='d-flex' style='text-align: center'>
+						<tr class='d-flex text-center'>
 							<th class='col-sm-7'>主題</th>
 							<th class='col-sm-1'>&nbsp;</th>
 							<th class='col-sm-2'>作者</th>
@@ -58,14 +58,14 @@
 									&#91;{$row['category_name']}&#93;&nbsp;
 									<a href="/showArticle.php?id={$row['id']}">{$row['title']}</a>
 								</td>
-								<td class='col-sm-1' style='text-align: center'>
+								<td class='col-sm-1 text-center'>
 									<img src='/images/user_default.jpg' height='50px' width='50px' />
 								</td>
-								<td class='col-sm-2' style='text-align: center'>
+								<td class='col-sm-2 text-center'>
 									<a href="/userProfile.php?id={$row['author']}">{$row['user_username']}</a>
 									<br />{$row['update_time']|date_format:'%Y-%m-%d %H:%M:%S'}
 								</td>
-								<td class='col-sm-2' style='text-align: center'>
+								<td class='col-sm-2 text-center'>
 									<a href="/userProfile.php?id={$row['author']}">{$row['user_username']}</a>
 									<br />{$row['update_time']|date_format:'%Y-%m-%d %H:%M:%S'}
 								</td>
