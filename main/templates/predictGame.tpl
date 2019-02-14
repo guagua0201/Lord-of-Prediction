@@ -77,11 +77,15 @@
 									if (box.is(':checked')) {
 										var group = "input:checkbox[name='" + box.attr('name') + "']";
 										$(group).prop('checked', false);
+										var p = $(group).closest('td');
+									//	console.log(p);
 										box.prop('checked', true);
-										td.className = 'bg-info';
+										for (let index = 0; index < p.length; index++)
+											p[index.toString()].className = 'form-check';
+										td.className = 'form-check bg-info';
 									} else {
 										box.prop('checked', false);
-										td.className = '';
+										td.className = 'form-check';
 									}
 								});
 							});
