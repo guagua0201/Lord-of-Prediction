@@ -1,0 +1,9 @@
+newmtl Dress
+    Ns 14.000000
+    d 1.000000
+    Ka 0.000000 0.000000 0.000000
+    Kd 0.921569 0.917647 0.847059
+    Ks 0.760784 0.898039 0.870588
+    map_Kd C:\Users\asos8\Desktop\asd.fbm\Dress_Diffuse.bmp
+    map_Bump C:\Users\asos8\Desktop\asd.fbm\Dress_Normal.bmp
+    map_Ks C:\Users\asos8\Desktop\asd.fbm\Dress_Specular.bmp

@@ -391,6 +391,18 @@ function startGame(){
     
 }
 
+function animateEnd(){
+    aniReqEnd = requestAnimationFrame(animateEnd);
+    var nowTime = Date.now() - timeStart;
+    if(nowTime > 18000){
+        gameStartKey=0;
+        cancelAnimationFrame(aniReqEnd);
+        init();
+
+        startScreen();
+    }
+}
+
 function playEnd(){
     var endImg = new Image();
     endImg.src = "./images/BeiJingCart/background/winbg2.png";
@@ -409,6 +421,10 @@ function playEnd(){
             }
         }
     }
+
+    timeStart = Date.now();
+
+    animateEnd();
 
 }
 

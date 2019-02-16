@@ -1,0 +1,9 @@
+newmtl Low-rise_Shorts
+    Ns 35.000000
+    d 1.000000
+    Ka 0.000000 0.000000 0.000000
+    Kd 1.000000 1.000000 1.000000
+    Ks 0.654902 0.654902 0.654902
+    map_Kd shortpants_Low-rise_Shorts_Diffuse.bmp
+    map_Bump shortpants_Low-rise_Shorts_Normal.bmp
+    map_Ks shortpants_Low-rise_Shorts_Specular.bmp

@@ -1,0 +1,9 @@
+newmtl High-Heels
+    Ns 20.000000
+    d 1.000000
+    Ka 0.000000 0.000000 0.000000
+    Kd 1.000000 1.000000 1.000000
+    Ks 0.729412 0.898039 0.878431
+    map_Kd highheels_High-Heels_Diffuse.bmp
+    map_Bump highheels_High-Heels_Normal.bmp
+    map_Ks highheels_High-Heels_Specular.bmp

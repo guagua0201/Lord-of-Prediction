@@ -1,0 +1,88 @@
+newmtl Skin_Head
+    Ns 20.000000
+    d 1.000000
+    Ka 0.000000 0.000000 0.000000
+    Kd 1.000000 1.000000 1.000000
+    Ks 0.898039 0.898039 0.898039
+    map_Kd C:\Users\asos8\Desktop\womanbody.fbm\Skin_Head_Diffuse.bmp
+    map_Bump C:\Users\asos8\Desktop\womanbody.fbm\Skin_Head_Normal.bmp
+    map_Ks C:\Users\asos8\Desktop\womanbody.fbm\Skin_Head_Specular.bmp
+newmtl Tongue
+    Ns 30.000002
+    d 1.000000
+    Ka 0.000000 0.000000 0.000000
+    Kd 1.000000 1.000000 1.000000
+    Ks 0.898039 0.898039 0.898039
+    map_Kd C:\Users\asos8\Desktop\womanbody.fbm\Tongue_Diffuse.bmp
+    map_Bump C:\Users\asos8\Desktop\womanbody.fbm\Tongue_Normal.bmp
+    map_Ks C:\Users\asos8\Desktop\womanbody.fbm\Tongue_Specular.bmp
+newmtl Eye
+    Ns 40.000000
+    d 1.000000
+    Ka 0.000000 0.000000 0.000000
+    Kd 1.000000 1.000000 1.000000
+    Ks 0.898039 0.898039 0.898039
+    map_Kd C:\Users\asos8\Desktop\womanbody.fbm\Eye_Diffuse.bmp
+    map_Bump C:\Users\asos8\Desktop\womanbody.fbm\Eye_Normal.bmp
+newmtl Cornea
+    Ns 63.000000
+    d 0.800000
+    Ka 0.000000 0.000000 0.000000
+    Kd 1.000000 1.000000 1.000000
+    Ks 0.898039 0.898039 0.898039
+    map_Kd C:\Users\asos8\Desktop\womanbody.fbm\Cornea_Diffuse.bmp
+    map_Bump C:\Users\asos8\Desktop\womanbody.fbm\Cornea_Normal.bmp
+newmtl Upper_Teeth
+    Ns 35.000000
+    d 1.000000
+    Ka 0.000000 0.000000 0.000000
+    Kd 1.000000 1.000000 1.000000
+    Ks 0.898039 0.898039 0.898039
+    map_Kd C:\Users\asos8\Desktop\womanbody.fbm\Upper_Teeth_Diffuse.bmp
+    map_Bump C:\Users\asos8\Desktop\womanbody.fbm\Upper_Teeth_Normal.bmp
+    map_Ks C:\Users\asos8\Desktop\womanbody.fbm\Upper_Teeth_Specular.bmp
+newmtl Lower_Teeth
+    Ns 35.000000
+    d 1.000000
+    Ka 0.000000 0.000000 0.000000
+    Kd 1.000000 1.000000 1.000000
+    Ks 0.898039 0.898039 0.898039
+    map_Kd C:\Users\asos8\Desktop\womanbody.fbm\Lower_Teeth_Diffuse.bmp
+    map_Bump C:\Users\asos8\Desktop\womanbody.fbm\Lower_Teeth_Normal.bmp
+    map_Ks C:\Users\asos8\Desktop\womanbody.fbm\Lower_Teeth_Specular.bmp
+newmtl Skin_Body
+    Ns 20.000000
+    d 1.000000
+    Ka 0.000000 0.000000 0.000000
+    Kd 1.000000 1.000000 1.000000
+    Ks 0.898039 0.898039 0.898039
+    map_Kd C:\Users\asos8\Desktop\womanbody.fbm\Skin_Body_Diffuse.bmp
+    map_Bump C:\Users\asos8\Desktop\womanbody.fbm\Skin_Body_Normal.bmp
+    map_Ks C:\Users\asos8\Desktop\womanbody.fbm\Skin_Body_Specular.bmp
+newmtl Eyelash
+    Ns 20.000000
+    d 1.000000
+    Ka 0.000000 0.000000 0.000000
+    Kd 1.000000 1.000000 1.000000
+    Ks 0.898039 0.898039 0.898039
+    map_Kd C:\Users\asos8\Desktop\womanbody.fbm\Eyelash_Diffuse.bmp
+    map_D C:\Users\asos8\Desktop\womanbody.fbm\Eyelash_Opacity.bmp
+    map_Ks C:\Users\asos8\Desktop\womanbody.fbm\Eyelash_Specular.bmp
+newmtl Fingernail
+    Ns 30.000002
+    d 1.000000
+    Ka 0.000000 0.000000 0.000000
+    Kd 1.000000 1.000000 1.000000
+    Ks 0.898039 0.898039 0.898039
+    map_Kd C:\Users\asos8\Desktop\womanbody.fbm\Fingernail_Diffuse.bmp
+    map_Bump C:\Users\asos8\Desktop\womanbody.fbm\Fingernail_Normal.bmp
+    map_Ks C:\Users\asos8\Desktop\womanbody.fbm\Fingernail_Specular.bmp
+newmtl Toenail
+    Ns 30.000002
+    d 1.000000
+    Ka 0.000000 0.000000 0.000000
+    Kd 1.000000 1.000000 1.000000
+    Ks 0.898039 0.898039 0.898039
+    map_Kd C:\Users\asos8\Desktop\womanbody.fbm\Toenail_Diffuse.bmp
+    map_Bump C:\Users\asos8\Desktop\womanbody.fbm\Toenail_Normal.bmp
+    map_Ks C:\Users\asos8\Desktop\womanbody.fbm\Toenail_Specular.bmp

@@ -279,7 +279,7 @@ class sceneGame extends Phaser.Scene{
                     this.numBar[i].setVelocityY(50);
                 }
                 else if(dis>4){
-                    this.numBar[i].setVelocityY(4);
+                    this.numBar[i].setVelocityY(20);
                 }
                 if(Math.abs(dis)<2){
                     this.numBar[i].setAccelerationY(0);
@@ -323,7 +323,10 @@ class sceneEnd extends Phaser.Scene{
         this.load.image("underBar","images/lottery/five.png");
         
         for(var i=1;i<=5;i++){
-            this.load.image("num"+i.toString(10),"images/lottery/number"+i.toString(10)+".png");
+            //this.load.image("num"+i.toString(10),"images/lottery/number"+i.toString(10)+".png");
+            this.load.image("num"+i.toString(10)+"_"+result[i],"images/lottery/number"+i.toString(10) + "_" + result[i] + ".png");
+            this.load.image("num"+i.toString(10)+"_"+(result[i]+9)%10,"images/lottery/number"+i.toString(10) + "_" + (result[i]+9)%10 + ".png");
+            this.load.image("num"+i.toString(10)+"_"+ (result[i]+1)%10,"images/lottery/number"+i.toString(10) + "_" + (result[i]+1)%10 + ".png");
         }
         
         this.load.image("bg","images/lottery/bg4.png");
@@ -331,6 +334,12 @@ class sceneEnd extends Phaser.Scene{
         this.load.image("startBut","images/lottery/start.png");
 
         this.load.image("startButLight","images/lottery/startlight.png");
+
+        this.load.image("big","images/lottery/big.png");
+        this.load.image("small","images/lottery/small.png");
+        this.load.image("even","images/lottery/even.png");
+        this.load.image("odd","images/lottery/odd.png");
+
     }
     create(){
 
@@ -341,9 +350,29 @@ class sceneEnd extends Phaser.Scene{
         this.add.image(0,0,"underBar").setOrigin(0,0);
 
         this.numBar = [];
+        this.upBar = [];
+        this.downBar = [];
+        this.numMid = [];
+        this.numUp = [];
+        this.numDown = [];
         var last = 0;
         for(var i=1;i<=5;i++){
-            this.numBar[i] = this.physics.add.sprite(intervalX*i+35,numberEnd[result[i]],"num" + i.toString(10));
+            //this.numBar[i] = this.physics.add.sprite(intervalX*i+35,numberEnd[result[i]],"num" + i.toString(10));
+            this.numMid[i] = this.physics.add.sprite(intervalX*i+35,415 ,"num"+i.toString(10)+"_"+result[i]);
+            if(result[i]>=5) this.upBar[i] = this.physics.add.sprite(intervalX*i+35,415-132,"big");
+            else this.upBar[i] = this.physics.add.sprite(intervalX*i+35,415-132,"small");
+            if(result[i]%2==1) this.downBar[i] = this.physics.add.sprite(intervalX*i+35,415+132,"odd");
+            else this.downBar[i] = this.physics.add.sprite(intervalX*i+35,415+132,"even");
+            
+            var f = result[i]-1;
+            if(f == -1) f = 9;
+            this.numUp[i] = this.physics.add.sprite(intervalX*i+35,415-132 ,"num"+i.toString(10)+"_"+f);
+            f = result[i]+1;
+            if(f==10) f = 0;
+            this.numDown[i] = this.physics.add.sprite(intervalX*i+35,415+132 ,"num"+i.toString(10)+"_"+f);
+
+            this.upBar[i].alpha = 0;
+            this.downBar[i].alpha = 0;
         }
         
         this.add.image(0,0,"bg").setOrigin(0,0);
@@ -376,6 +405,17 @@ class sceneEnd extends Phaser.Scene{
             this.add.text(985+textSpacing*i, 80, award[i], { fontSize: '32px', fill: 'white' });
         }
 
+        
+
+
+
+        this.bigWhite = this.add.rectangle(1190/2,720/2,1190,720);
+        this.bigWhite.setFillStyle(0xffffff).setInteractive();
+        console.log(this.bigWhite);
+        //underBarBlock.z = 1;
+
+        
+        startTime = Date.now()+200;
     }
 
     update(){
@@ -392,6 +432,25 @@ class sceneEnd extends Phaser.Scene{
         else{
             this.startButLight.visible = 0;
         }
+
+
+        nowTime = Date.now() - startTime;
+        if(nowTime<0) this.bigWhite.alpha = 1;
+        else{
+            if(nowTime > 20000){
+                this.scene.start("sceneStart");
+            }
+            this.bigWhite.alpha = 0;
+            var flipTime = 2000;
+            for(var i=1;i<=5;i++){
+                var nowRatio = Math.min(nowTime/flipTime,1);
+                this.upBar[i].alpha = this.downBar[i].alpha = nowRatio;
+                this.numUp[i].alpha = this.numDown[i].alpha = 1-nowRatio;
+
+            }
+        }
+        
+
     }
 }
 
