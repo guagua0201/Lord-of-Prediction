@@ -39,7 +39,7 @@
 						</tr>
 						<tr>
 							<td>
-								<a href='/' title='Shop'>商城入口</a>
+								<a href='/shop.php' title='Shop'>商城入口</a>
 							</td>
 						</tr>
 						</table>

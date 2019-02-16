@@ -11,6 +11,7 @@
 	  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
 	  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
 	  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	  {block name='plugin'}{/block}
 	</head>
 	<body>
 		{include file='header.tpl'}

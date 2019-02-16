@@ -51,3 +51,24 @@ Db:
 5. Class
 (1). id
 (2). name
+
+6. Message
+(1). id
+(2). senderId
+(3). receiverId
+(4). sendTime
+(5). subject
+(6). message
+(7). readFlag
+
+6. Product
+(1). id
+(2). name
+(3). category_id
+(4). price
+(5). image_url
+
+7. ProductCategory
+(1). id
+(2). name
+(3). e_name
