@@ -1,0 +1,106 @@
+newmtl Skin_Body
+    Ns 20.000000
+    d 1.000000
+    Ka 0.000000 0.000000 0.000000
+    Kd 1.000000 1.000000 1.000000
+    Ks 0.898039 0.898039 0.898039
+    map_Kd womanBra_Skin_Body_Diffuse.jpg
+    map_Bump womanBra_Skin_Body_Normal.jpg
+    map_Ks womanBra_Skin_Body_Specular.jpg
+newmtl Lower_Teeth
+    Ns 35.000000
+    d 1.000000
+    Ka 0.000000 0.000000 0.000000
+    Kd 1.000000 1.000000 1.000000
+    Ks 0.898039 0.898039 0.898039
+    map_Kd womanBra_Lower_Teeth_Diffuse.jpg
+    map_Bump womanBra_Lower_Teeth_Normal.jpg
+    map_Ks womanBra_Lower_Teeth_Specular.jpg
+newmtl Fingernail
+    Ns 30.000002
+    d 1.000000
+    Ka 0.000000 0.000000 0.000000
+    Kd 1.000000 1.000000 1.000000
+    Ks 0.898039 0.898039 0.898039
+    map_Kd womanBra_Fingernail_Diffuse.jpg
+    map_Bump womanBra_Fingernail_Normal.jpg
+    map_Ks womanBra_Fingernail_Specular.jpg
+newmtl Toenail
+    Ns 30.000002
+    d 1.000000
+    Ka 0.000000 0.000000 0.000000
+    Kd 1.000000 1.000000 1.000000
+    Ks 0.898039 0.898039 0.898039
+    map_Kd womanBra_Toenail_Diffuse.jpg
+    map_Bump womanBra_Toenail_Normal.jpg
+    map_Ks womanBra_Toenail_Specular.jpg
+newmtl Tongue
+    Ns 30.000002
+    d 1.000000
+    Ka 0.000000 0.000000 0.000000
+    Kd 1.000000 1.000000 1.000000
+    Ks 0.898039 0.898039 0.898039
+    map_Kd womanBra_Tongue_Diffuse.jpg
+    map_Bump womanBra_Tongue_Normal.jpg
+    map_Ks womanBra_Tongue_Specular.jpg
+newmtl Cornea
+    Ns 63.000000
+    d 0.800000
+    Ka 0.000000 0.000000 0.000000
+    Kd 1.000000 1.000000 1.000000
+    Ks 0.898039 0.898039 0.898039
+    map_Kd womanBra_Cornea_Diffuse.jpg
+    map_Bump womanBra_Cornea_Normal.jpg
+newmtl Bra
+    Ns 10.000000
+    d 1.000000
+    Ka 0.000000 0.000000 0.000000
+    Kd 0.000000 0.000000 0.000000
+    Ks 0.898039 0.898039 0.898039
+    map_Kd womanBra_Bra_Diffuse.jpg
+    map_Bump womanBra_Bra_Normal.jpg
+    map_Ks womanBra_Bra_Specular.jpg
+newmtl Underwear_Bottoms
+    Ns 10.000000
+    d 1.000000
+    Ka 0.000000 0.000000 0.000000
+    Kd 0.000000 0.000000 0.000000
+    Ks 0.898039 0.898039 0.898039
+    map_Kd womanBra_Underwear_Bottoms_Diffuse.jpg
+    map_Bump womanBra_Underwear_Bottoms_Normal.jpg
+    map_Ks womanBra_Underwear_Bottoms_Specular.jpg
+newmtl Skin_Head
+    Ns 20.000000
+    d 1.000000
+    Ka 0.000000 0.000000 0.000000
+    Kd 1.000000 1.000000 1.000000
+    Ks 0.898039 0.898039 0.898039
+    map_Kd womanBra_Skin_Head_Diffuse.jpg
+    map_Bump womanBra_Skin_Head_Normal.jpg
+    map_Ks womanBra_Skin_Head_Specular.jpg
+newmtl Eyelash
+    Ns 20.000000
+    d 1.000000
+    Ka 0.000000 0.000000 0.000000
+    Kd 1.000000 1.000000 1.000000
+    Ks 0.898039 0.898039 0.898039
+    map_Kd womanBra_Eyelash_Diffuse.jpg
+    map_D womanBra_Eyelash_Opacity.jpg
+    map_Ks womanBra_Eyelash_Specular.jpg
+newmtl Eye
+    Ns 40.000000
+    d 1.000000
+    Ka 0.000000 0.000000 0.000000
+    Kd 1.000000 1.000000 1.000000
+    Ks 0.898039 0.898039 0.898039
+    map_Kd womanBra_Eye_Diffuse.jpg
+    map_Bump womanBra_Eye_Normal.jpg
+newmtl Upper_Teeth
+    Ns 35.000000
+    d 1.000000
+    Ka 0.000000 0.000000 0.000000
+    Kd 1.000000 1.000000 1.000000
+    Ks 0.898039 0.898039 0.898039
+    map_Kd womanBra_Upper_Teeth_Diffuse.jpg
+    map_Bump womanBra_Upper_Teeth_Normal.jpg
+    map_Ks womanBra_Upper_Teeth_Specular.jpg
