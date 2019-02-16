@@ -10,10 +10,15 @@
 	width: 100%;
 }
 
-.page_nav > ul > li > a {
+.tab_link {
 	font-size: 18px;
 	font-weight: 700;
 	color: #4a4a4a;
+}
+
+.tab_link:hover, li.active {
+	color: #2fce98;
+	text-decoration: none;
 }
 
 .page_nav > ul > li:not(:last-of-type)::after {
@@ -59,8 +64,7 @@
 	font-weight: 400;
 }
 
-.product_name > a:hover, .product_category > a:hover
-{
+.product_name > a:hover, .product_category > a:hover {
 	color: #2fce98;
 	text-decoration: none;
 }

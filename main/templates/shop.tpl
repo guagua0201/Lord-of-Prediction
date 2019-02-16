@@ -15,81 +15,64 @@
 			<div class='col'>
 				<div class='page_nav'>
 					<ul class='nav d-flex flex-row align-items-start justify-content-center'>
-						<li>
-							<a class='tablink active' href='#' onclick="changeTab(event, 'hairstyles')">髮型</a>
-						</li>
-						<li>
-							<a class='tablink' href='#' onclick="changeTab(event, 'clothes')">衣服</a>
-						</li>
-						<li>
-							<a class='tablink' href='#' onclick="changeTab(event, 'shoes')">鞋子</a>
-						</li>					
+						{foreach from=$categories item=category name=loop}
+							<li class='tab_link{if $smarty.foreach.loop.index == 0} active{/if}'>
+								<a onclick="changeTab(event, '{$category['e_name']}')">{$category['name']}</a>
+							</li>
+						{/foreach}				
 					</ul>
 				</div>
 			</div>
 		</div>
 
-		<div class='row mt-3'>
-			<div class='tabcontent' id='hairstyles' style='display: block'>
-				<div class='row'>
-					{for $i=0 to 10}
-						<div class='col-xl-4 col-lg-6'>
-							<div class='card'>
-								<img class='card-img-top w-100' src='images/product/test.png' />
-								<div class='card-body product_content'>
-									<div class='product_info d-flex flex-row align-items-start justify-content-center'>
+		<div class='row m-3'>
+			{foreach from=$categories item=category name=loop}
+				<div class='tab_content' id="{$category['e_name']}" style='display: {if $smarty.foreach.loop.index == 1}block{else}none{/if}'>
+					<div class='row'>
+						{foreach from=$products item=product}
+						{if $product['category_id'] == $category['id']}
+							<div class='col-xl-4 col-lg-6'>
+								<div class='card mb-3'>
+									<img class='card-img-top w-100' src="{$product['image_url']}" />
+									<div class='card-body product_content'>
 										<div>
-											<div class='product_name'>
-												<!-- {$row['name']} -->
-												<a href='#'>黑色高跟鞋</a>
-											</div>
-											<div class='product_category'>
-												<!-- {$row['category_name']} -->
-												<a href='#'>鞋子</a>
+											<div class='product_info d-flex flex-row align-itmes-start justify-content-center'>
+												<div class='product_name'>
+													<a href='#'>{$product['name']}</a>
+												</div>
+												<div class='product_category'>
+													<a href='#'>{$category['name']}</a>
+												</div>
 											</div>
 										</div>
 										<div class='ml-auto text-right'>
-											<div class='product_price text-right'>
-												<!-- NTD: {$row['price']} -->
-												NTD: 300
+											<div class='product_price'>
+												NTD: {$product['price']}
 											</div>
 										</div>
-										<!-- <div class='product_buttons'>
-											
-										</div> -->
 									</div>
 								</div>
 							</div>
-						</div>
-					{/for}
+						{/if}
+						{/foreach}
+					</div>
 				</div>
-			</div>
-			<div class='tabcontent' id='clothes' style='display: none'>
-				<div class='col-xl-4 col-lg-6'>
-					clothes
-				</div>
-			</div>
-
-			<div class='tabcontent' id='shoes' style='display: none'>
-				<div class='col-xl-4 col-lg-6'>
-					shoes
-				</div>
-			</div>
+			{/foreach}
 		</div>
-
 
 		{literal}
 		<script>
 			function changeTab(event, tabId) {
-				var tabcontents, tablinks;
-				tabcontents = document.getElementsByClassName('tabcontent');
-				for (let i = 0; i < tabcontents.length; i++)
-					tabcontents[i].style.display = 'none';
-				tablinks = document.getElementsByClassName('tablink');
-				for (let i = 0; i < tablinks.length; i++)
-					tablinks[i].className = tablinks[i].className.replace(' active', '');
+				var tab_contents, tab_links;
+				tab_contents = document.getElementsByClassName('tab_content');
+				for (let i = 0; i < tab_contents.length; i++)
+					tab_contents[i].style.display = 'none';
+				tab_links = document.getElementsByClassName('tab_link');
+				for (let i = 0; i < tab_links.length; i++)
+					tab_links[i].className = tab_links[i].className.replace(' active', '');
 				document.getElementById(tabId).style.display = 'block';
-				event.currentTarget.className += ' active';
+				event.target.parentNode.className += ' active';
+				// console.log(event.target.parentNode);
 			}
 		</script>
 		{/literal}
