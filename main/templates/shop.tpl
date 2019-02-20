@@ -34,6 +34,7 @@
 							<div class='col-xl-4 col-lg-6'>
 								<div class='card mb-3'>
 									<img class='card-img-top w-100' src="{$product['image_url']}" />
+									<!-- <img class='card-img-top w-100' src='images/product/test.png' /> -->
 									<div class='card-body product_content'>
 										<div>
 											<div class='product_info d-flex flex-row align-itmes-start justify-content-center'>

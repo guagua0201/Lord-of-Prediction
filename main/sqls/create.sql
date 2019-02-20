@@ -85,8 +85,7 @@ CREATE TABLE `Product` (
   PRIMARY KEY (`id`),
   UNIQUE (`name`)
 ) ENGINE = InnoDB;
--- INSERT INTO `Product` (`id`, `name`, `category_id`, `price`, `image_url`) VALUES (NULL, '黑色高跟鞋', '3', '100', 'images/product/shoes/black.png'), (NULL, '深藍色高跟鞋', '3', '200', 'images/product/shoes/dark-blue.png'), (NULL, '綠色高跟鞋', '3', '100', 'images/product/shoes/green.png'), (NULL, '紅色高跟鞋', '3', '150', 'images/product/shoes/red.png'), (NULL, '黃色高跟鞋', '3', '180', 'images/product/shoes/yellow.png')
-
+-- INSERT INTO `Product` (`id`, `name`, `category_id`, `price`, `image_url`) VALUES (NULL, '眼鏡', '4', '100', 'images/product/glass.png'), (NULL,'男鞋1','3','100','images/product/manShoe1.png'), (NULL,'男鞋2','3','200','images/product/manShoe2.png'), (NULL,'男裝1','2','100','images/product/manSuit1.png'), (NULL,'男裝2','2','300','images/product/manSuit2.png');
 CREATE TABLE `ProductCategory` ( 
 	`id` INT NOT NULL AUTO_INCREMENT , 
 	`name` VARCHAR(20) CHARACTER SET utf8  COLLATE utf8_general_ci NOT NULL , 
@@ -95,4 +94,4 @@ CREATE TABLE `ProductCategory` (
 	UNIQUE (`name`)
 ) ENGINE = InnoDB;
 
--- INSERT INTO `ProductCategory` (`id`, `name`, `e_name`) VALUES (NULL, '髮型', 'hairstyles'), (NULL, '衣服', 'clothes'), (NULL, '鞋子', 'shoes')
+-- INSERT INTO `ProductCategory` (`id`, `name`, `e_name`) VALUES (1, '髮型', 'hairstyles'), (2, '衣服', 'clothes'), (3, '鞋子', 'shoes'), (4, '飾品', 'accessories');

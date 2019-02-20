@@ -31,7 +31,7 @@ class myImg{
         this.x = x;
         this.y = y;
         this.img = new Image();
-        this.img.src = src;
+        this.src = src;
     }
 }
 
@@ -63,7 +63,7 @@ function randomRank(){
     for(i=1;i<=10;i++){
         while(1){
             rank[i] = Math.floor(Math.random()*10)+1;
-            if(mk[rank[i]] == 0){
+            if(mk[rank[i]] === 0){
                 mk[rank[i]] = 1;
                 break;
             }
@@ -132,6 +132,13 @@ function init(){
 
            
     }
+
+    for(var i=1;i<=10;i++){
+        numberBall[i].img.src = numberBall[i].src;
+    }
+    topBar.img.src = topBar.src;
+
+    soundBut.img.src = soundBut.src;
 
     
     
@@ -237,6 +244,13 @@ function startScreen(){
             startButton.img.src = "images/BeiJingCart/startButton/START.png";
         }
     },false);
+
+    for(var i=1;i<=10;i++){
+        carBack[i].img.src = carBack[i].src;
+    }
+    startBG.img.src = startBG.src;
+    trafficLight.img.src = trafficLight.src;
+    startButton.img.src = startButton.src;
 
 }
 

@@ -41,7 +41,8 @@
     </head>
 <body>
     <canvas id="renderCanvas"></canvas>
-
+    <!-- <script src="php/getGender.php"></script> -->
+    
     <script src="javascripts/profile.js"></script>
 
   <!--  <script>
