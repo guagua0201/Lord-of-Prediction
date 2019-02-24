@@ -73,3 +73,16 @@ Db:
 (2). name
 (3). e_name
 
+8. Game
+(1). id
+(2). date
+(3). time
+(4). home_team
+(5). away_team
+(6). game_flag
+
+9. Predict
+(1). id
+(2). game_id
+(3). user_id
+(4). predict

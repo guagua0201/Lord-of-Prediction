@@ -35,7 +35,7 @@ $smarty->assign('categories', $categories);
 mysqli_close($link);
 
 if (!isset($_GET['category_id']) || empty($_GET['category_id']))
-	$_GET['category_id'] = 27;
+	$_GET['category_id'] = '27';
 $id = $_GET['category_id'];
 $data = array();
 $names = array();
@@ -47,13 +47,13 @@ if (file_exists($filename) && ($file = fopen($filename, 'r')) !== false) {
 	while (!feof($file)) {
 		$data[] = fgetcsv($file);
 	}
+	array_pop($data);
+	foreach (array_unique($names) as $name) {
+		$indexes[$name] = array_search($name, $names);
+	}
+	fclose($file);
 }
 
-foreach (array_unique($names) as $name) {
-	$indexes[$name] = array_search($name, $names);
-}
-// print_r($indexes);
-fclose($file);
 
 $smarty->assign('names', array_unique($names));
 $smarty->assign('csv_head', $names);

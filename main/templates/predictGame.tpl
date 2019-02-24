@@ -61,18 +61,58 @@
 						</tr>
 						<tr>
 							<div class='row'>
+								{if count($data) == 0}
+									<td class='text-center align-middle'>讓分</td>
+									<td class='text-center align-middle'>不讓分</td>
+									<td class='text-center align-middle'>大小</td>
+								{else}
 								{foreach from=$names item=name}
 									{if $name != '主客隊' && $name != '比賽時間'}
 										<td class='text-center align-middle'>{$name}</td>
 									{/if}
 								{/foreach}
+								{/if}
 							</div>
 						</tr>
 					</thead>
 
 					<tbody>
+						{literal}
+						<script>
+							$(document).ready(function() {
+								$('input:checkbox').click(function(element) {
+									var box = $(this);
+									var td = element.target.parentElement.parentElement.parentElement;
+									if (box.is(':checked')) {
+										var group = "input:checkbox[name='" + box.attr('name') + "']";
+										$(group).prop('checked', false);
+										var p = $(group).closest('td');
+									//	console.log(p);
+										box.prop('checked', true);
+										for (let index = 0; index < p.length; index++)
+											p[index.toString()].className = 'form-check';
+										td.className = 'form-check bg-info';
+									} else {
+										box.prop('checked', false);
+										td.className = 'form-check';
+									}
+								});
+							});
+						</script>
+						<style>
+							span.float-right {
+								font-color: #bdbdbd;
+								font-size: 0.9em;
+							}
+						</style>
+						{/literal}
 						<form id='predictForm' method='POST' action='predictGame.php'>
-							{foreach from=$data item=row}
+							{if count($data) == 0}
+								<tr class='text-center'>
+									<td colspan='5'>暫無資料</td> <!-- colspan wait for fixed -->
+								</tr>
+							{else}
+							{foreach from=$data item=row name=loop}
 								<tr>
 									<td rowspan='2'>
 										<span class='lead'>1234</span><br />{$row[$indexes['比賽時間']]} {$row[$indexes['比賽時間'] + 1]}
@@ -85,12 +125,52 @@
 											<td>
 												<div class='form-check'>
 													<label class='form-check-label'>
-														<input class='form-check-input' type='checkbox' name='' />
-														客 {$row[$index]} {$row[$index + 2]}
+														<input class='form-check-input' type='checkbox' name='a{$smarty.foreach.loop.index}' />
+														客 {$row[$index]}
 													</label>
+													<span class='float-right'>{$row[$index + 2]}</span>
 												</div>
 											</td>
-										{else}
+										{else if $name == '大小'}
+											<td>
+												<div class='form-check'>
+													<label class='form-check-label'>
+														<input class='form-check-input' type='checkbox' name='b{$smarty.foreach.loop.index}' />
+														大 {$row[$index]}
+													</label>
+													<span class='float-right'>{$row[$index + 1]}</span>
+												</div>
+											</td>
+										{else if $name == '獨贏'}
+											<td>
+												<div class='form-check'>
+													<label class='form-check-label'>
+														<input class='form-check-input' type='checkbox' name='c{$smarty.foreach.loop.index}' />
+														客
+													</label>
+													<span class='float-right'>{$row[$index]}</span>
+												</div>
+											</td>
+										{else if $name == '一輸二贏'}
+											<td>
+												<div class='form-check'>
+													<label class='form-check-label'>
+														<input class='form-check-input' type='checkbox' name='d{$smarty.foreach.loop.index}' />
+														客 {$row[$index]}
+													</label>
+													<span class='float-right'>{$row[$index + 2]}</span>
+												</div>
+											</td>
+										{else if $name == '單雙'}
+											<td>
+												<div class='form-check'>
+													<label class='form-check-label'>
+														<input class='form-check-input' type='checkbox' name='e{$smarty.foreach.loop.index}' />
+														單
+													</label>
+													<span class='float-right'>{$row[$index]}</span>
+												</div>
+											</td>
 										{/if}
 									{/foreach}
 								</tr>
@@ -102,21 +182,63 @@
 											<td>
 												<div class='form-check'>
 													<label class='form-check-label'>
-														<input class='form-check-input' type='checkbox' name='' />
-														 主 {$row[$index + 1]} {$row[$index + 3]}
+														<input class='form-check-input' type='checkbox' name='a{$smarty.foreach.loop.index}' />
+														 主 {$row[$index + 1]}
 													</label>
+													<span class='float-right'>{$row[$index + 3]}</span>
+												</div>
+											</td>
+										{else if $name == '大小'}
+											<td>
+												<div class='form-check'>
+													<label class='form-check-label'>
+														<input class='form-check-input' type='checkbox' name='b{$smarty.foreach.loop.index}' />
+														小
+													</label>
+													<span class='float-right'>{$row[$index + 2]}</span>
+												</div>
+											</td>
+										{else if $name == '獨贏'}
+											<td>
+												<div class='form-check'>
+													<label class='form-check-label'>
+														<input class='form-check-input' type='checkbox' name='c{$smarty.foreach.loop.index}' />
+														主
+													</label>
+													<span class='float-right'>{$row[$index + 1]}</span>
+												</div>
+											</td>
+										{else if $name == '一輸二贏'}
+											<td>
+												<div class='form-check'>
+													<label class='form-check-label'>
+														<input class='form-check-input' type='checkbox' name='d{$smarty.foreach.loop.index}' />
+														主 {$row[$index + 1]}
+													</label>
+													<span class='float-right'>{$row[$index + 3]}</span>
+												</div>
+											</td>
+										{else if $name == '單雙'}
+											<td>
+												<div class='form-check'>
+													<label class='form-check-label'>
+														<input class='form-check-input' type='checkbox' name='e{$smarty.foreach.loop.index}' />
+														雙
+													</label>
+													<span class='float-right'>{$row[$index + 1]}</span>
 												</div>
 											</td>
 										{/if}
 									{/foreach}
 								</tr>
 							{/foreach}
+							{/if}
 						</form>
 					</tbody>
 					
 					<tfoot>
 						<tr>
-							<td class='text-center' colspan='{count($names)}'> <!-- colspan wait for fixed -->
+							<td class='text-center' colspan='{if count($data) == 0}5{else}{count($names)}{/if}'>
 								<button class='btn w-25' type='submit' form='predictForm'><strong>送出預測</strong></button>
 							</td>
 						</tr>

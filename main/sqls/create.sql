@@ -96,3 +96,21 @@ CREATE TABLE `ProductCategory` (
 ) ENGINE = InnoDB;
 
 -- INSERT INTO `ProductCategory` (`id`, `name`, `e_name`) VALUES (NULL, '髮型', 'hairstyles'), (NULL, '衣服', 'clothes'), (NULL, '鞋子', 'shoes')
+
+CREATE TABLE `Game` ( 
+	`id` VARCHAR(20) NOT NULL , 
+	`date` VARCHAR(10) NOT NULL , 
+	`time` VARCHAR(10) NOT NULL , 
+	`home_team` VARCHAR(20) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL , 
+	`away_team` VARCHAR(20) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL , 
+	`game_flag` INT NULL , 
+	PRIMARY KEY (`id`)
+) ENGINE = InnoDB;
+
+CREATE TABLE `Predict` ( 
+	`id` INT NOT NULL AUTO_INCREMENT , 
+	`game_id` VARCHAR(20) NOT NULL , 
+	`user_id` INT NOT NULL , 
+	`predict` VARCHAR(30) NOT NULL , 
+	PRIMARY KEY (`id`)
+) ENGINE = InnoDB;
