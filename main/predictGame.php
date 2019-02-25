@@ -6,34 +6,30 @@ include_once('isLogin.php');
 $smarty->assign('yesterday', strtotime("-1 day"));
 $smarty->assign('tomorrow', strtotime("+1 day"));
 
+/* Link MySQL */
 $link = mysqli_connect(db_host, db_user, db_password, db_name);
 if (!$link) {
 	die("Connection failed " . mysqli_connect_error());
 }
 mysqli_set_charset($link, "utf8");
 
-if (isset($_POST['submit'])) {
-	header('Location: userInfo.php');
-}
-
+/* Collect all classes and categories */
 $sql = "SELECT id, name FROM Class WHERE id = 2 OR id = 3 OR id = 7 ORDER BY id";
 $classes = array();
 if ($result = mysqli_query($link, $sql)) {
 	while ($row = mysqli_fetch_assoc($result))
 		$classes[] = $row;
 }
-$smarty->assign('classes', $classes);
-
 $sql2 = "SELECT id, name, class_id FROM Category WHERE 1";
 $categories = array();
 if ($result = mysqli_query($link, $sql2)) {
 	while ($row = mysqli_fetch_assoc($result))
 		$categories[] = $row;
 }
+$smarty->assign('classes', $classes);
 $smarty->assign('categories', $categories);
 
-mysqli_close($link);
-
+/* Read predict data */
 if (!isset($_GET['category_id']) || empty($_GET['category_id']))
 	$_GET['category_id'] = '27';
 $id = $_GET['category_id'];
@@ -54,35 +50,69 @@ if (file_exists($filename) && ($file = fopen($filename, 'r')) !== false) {
 	fclose($file);
 }
 
-
 $smarty->assign('names', array_unique($names));
 $smarty->assign('csv_head', $names);
 $smarty->assign('indexes', $indexes);
+
+/* Insert unknown game into DB */
+$game_id = array();
+foreach ($data as $game) {
+	$date = $game[$indexes['比賽時間']];
+	$time = $game[$indexes['比賽時間'] + 1];
+	$home_team = $game[$indexes['主客隊'] + 1];
+	$away_team = $game[$indexes['主客隊']];
+	$sql3 = "SELECT id FROM Game WHERE `date` = '$date' AND `time` = '$time' AND `home_team` = '$home_team' AND `away_team` = '$away_team'";
+	$result = mysqli_query($link, $sql3);
+	if (mysqli_num_rows($result) == 0) {
+		$sql4 = "INSERT INTO Game (`date`, `time`, `home_team`, `away_team`) VALUES ('$date', '$time', '$home_team', '$away_team')";
+		// echo $sql4;
+		mysqli_query($link, $sql4);
+		$result = mysqli_query($link, $sql3);
+	}
+	$gameid = mysqli_fetch_assoc($result);
+	$game_id[] = $gameid['id'];
+}
+
+for ($i = 0; $i < count($data); $i++)
+	$data[$i]['id'] = $game_id[$i];
 $smarty->assign('data', $data);
 
+/* Get POST */
+if (isset($_POST['submit'])) {
+	if ($log_status == 0) {
+		header('Location: /login.php');
+	} else {
+		foreach ($data as $game) {
+			for ($i = 'a'; $i <= 'e'; $i++) {
+				$post_name = $i . '-' . $game['id'];
+				if (isset($_POST[$post_name])) {
+					 $sql5 = "SELECT id, predict FROM Predict WHERE user_id = '" . $_SESSION['user_id'] . "' AND game_id = '" . $game['id'] . "'";
+					 $result = mysqli_query($link, $sql5);
+					 if (mysqli_num_rows($result) == 0) {
+					 	$sql6 = "INSERT INTO Predict (user_id, game_id, predict) VALUES ('" . $_SESSION['user_id'] . "', '" . $game['id'] . "', '" . $_POST[$post_name] . "')";
+					 	mysqli_query($link, $sql6);
+					 } else {
+						 $predict = mysqli_fetch_assoc($result);
+						 if (strpos(strtolower($predict['predict']), $i) === false) {
+						 	$predict['predict'] = $predict['predict'] . $_POST[$post_name];
+						 	$sql7 = "UPDATE Predict SET predict = '" . $predict['predict'] . "' WHERE id = '" . $predict['id'] . "'";
+						 	mysqli_query($link, $sql7);
+						 } else {
+						 	$pos = strpos(strtolower($predict['predict']), $i);
+						 	if ($predict['predict'][$pos] !== $_POST[$post_name]) {
+						 		$predict['predict'][$pos] = $_POST[$post_name];
+						 		$sql8 = "UPDATE Predict SET predict = '" . $predict['predict'] . "' WHERE id = '" . $predict['id'] . "'";
+						 		mysqli_query($link, $sql8);
+						 	}
+						 }
+					 }
+				}
+			}
+		}
+	}
+}
 
-// $reader = new Spreadsheet_Excel_Reader();
-// $reader->setOutputEncoding('UTF-8');
-// $reader->read('documents/predictGame.xls');
-
-// if (!isset($_GET['category_id']) || empty($_GET['category_id']))
-// 	$_GET['category_id'] = 0;
-
-// $id = $_GET['category_id'];
-// $data = array();
-// $name = array();
-// for ($i = 1; $i <= $reader->sheets[$id]['numCols']; $i++)
-// 	$name[] = $reader->sheets[$id]['cells'][1][$i];
-// for ($i = 2; $i <= $reader->sheets[$id]['numRows']; $i++) {
-// 	$row = array();
-// 	for ($j = 1; $j <= $reader->sheets[$id]['numCols']; $j++) {
-// 		$row[] = $reader->sheets[$id]['cells'][$i][$j];
-// 	}
-// 	$data[] = $row;
-// }
-// $smarty->assign('name', $name);
-// $smarty->assign('data', $data);
-
+mysqli_close($link);
 
 $smarty->display('predictGame.tpl');
 ?>

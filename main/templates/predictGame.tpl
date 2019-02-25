@@ -90,11 +90,11 @@
 									//	console.log(p);
 										box.prop('checked', true);
 										for (let index = 0; index < p.length; index++)
-											p[index.toString()].className = 'form-check';
-										td.className = 'form-check bg-info';
+											p[index.toString()].className = '';
+										td.className = 'bg-info';
 									} else {
 										box.prop('checked', false);
-										td.className = 'form-check';
+										td.className = '';
 									}
 								});
 							});
@@ -112,10 +112,12 @@
 									<td colspan='5'>暫無資料</td> <!-- colspan wait for fixed -->
 								</tr>
 							{else}
+							<input name='submit' value='submit' hidden />
+							<input name='data_size' value='{count($data)}' hidden />
 							{foreach from=$data item=row name=loop}
 								<tr>
 									<td rowspan='2'>
-										<span class='lead'>1234</span><br />{$row[$indexes['比賽時間']]} {$row[$indexes['比賽時間'] + 1]}
+										<span class='lead'>{$row['id']}</span><br />{$row[$indexes['比賽時間']]} {$row[$indexes['比賽時間'] + 1]}
 										<a href='#'>對戰資訊</a>
 									</td>
 									<td>{$row[$indexes['主客隊']]}</td>
@@ -125,7 +127,7 @@
 											<td>
 												<div class='form-check'>
 													<label class='form-check-label'>
-														<input class='form-check-input' type='checkbox' name='a{$smarty.foreach.loop.index}' />
+														<input class='form-check-input' type='checkbox' name="a-{$row['id']}" value='a'/>
 														客 {$row[$index]}
 													</label>
 													<span class='float-right'>{$row[$index + 2]}</span>
@@ -135,7 +137,7 @@
 											<td>
 												<div class='form-check'>
 													<label class='form-check-label'>
-														<input class='form-check-input' type='checkbox' name='b{$smarty.foreach.loop.index}' />
+														<input class='form-check-input' type='checkbox' name="b-{$row['id']}" value='b'/>
 														大 {$row[$index]}
 													</label>
 													<span class='float-right'>{$row[$index + 1]}</span>
@@ -145,7 +147,7 @@
 											<td>
 												<div class='form-check'>
 													<label class='form-check-label'>
-														<input class='form-check-input' type='checkbox' name='c{$smarty.foreach.loop.index}' />
+														<input class='form-check-input' type='checkbox' name="c-{$row['id']}" value='c'/>
 														客
 													</label>
 													<span class='float-right'>{$row[$index]}</span>
@@ -155,7 +157,7 @@
 											<td>
 												<div class='form-check'>
 													<label class='form-check-label'>
-														<input class='form-check-input' type='checkbox' name='d{$smarty.foreach.loop.index}' />
+														<input class='form-check-input' type='checkbox' name="d-{$row['id']}" value='d'/>
 														客 {$row[$index]}
 													</label>
 													<span class='float-right'>{$row[$index + 2]}</span>
@@ -165,7 +167,7 @@
 											<td>
 												<div class='form-check'>
 													<label class='form-check-label'>
-														<input class='form-check-input' type='checkbox' name='e{$smarty.foreach.loop.index}' />
+														<input class='form-check-input' type='checkbox' name="e-{$row['id']}" value='e'/>
 														單
 													</label>
 													<span class='float-right'>{$row[$index]}</span>
@@ -182,8 +184,8 @@
 											<td>
 												<div class='form-check'>
 													<label class='form-check-label'>
-														<input class='form-check-input' type='checkbox' name='a{$smarty.foreach.loop.index}' />
-														 主 {$row[$index + 1]}
+														<input class='form-check-input' type='checkbox' name="a-{$row['id']}" value='A'/>
+														主 {$row[$index + 1]}
 													</label>
 													<span class='float-right'>{$row[$index + 3]}</span>
 												</div>
@@ -192,7 +194,7 @@
 											<td>
 												<div class='form-check'>
 													<label class='form-check-label'>
-														<input class='form-check-input' type='checkbox' name='b{$smarty.foreach.loop.index}' />
+														<input class='form-check-input' type='checkbox' name="b-{$row['id']}" value='B'/>
 														小
 													</label>
 													<span class='float-right'>{$row[$index + 2]}</span>
@@ -202,7 +204,7 @@
 											<td>
 												<div class='form-check'>
 													<label class='form-check-label'>
-														<input class='form-check-input' type='checkbox' name='c{$smarty.foreach.loop.index}' />
+														<input class='form-check-input' type='checkbox' name="c-{$row['id']}" value='C'/>
 														主
 													</label>
 													<span class='float-right'>{$row[$index + 1]}</span>
@@ -212,7 +214,7 @@
 											<td>
 												<div class='form-check'>
 													<label class='form-check-label'>
-														<input class='form-check-input' type='checkbox' name='d{$smarty.foreach.loop.index}' />
+														<input class='form-check-input' type='checkbox' name="d-{$row['id']}" value='D'/>
 														主 {$row[$index + 1]}
 													</label>
 													<span class='float-right'>{$row[$index + 3]}</span>
@@ -222,7 +224,7 @@
 											<td>
 												<div class='form-check'>
 													<label class='form-check-label'>
-														<input class='form-check-input' type='checkbox' name='e{$smarty.foreach.loop.index}' />
+														<input class='form-check-input' type='checkbox' name="e-{$row['id']}" value='E'/>
 														雙
 													</label>
 													<span class='float-right'>{$row[$index + 1]}</span>

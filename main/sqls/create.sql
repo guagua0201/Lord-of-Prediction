@@ -76,7 +76,7 @@ CREATE TABLE IF NOT EXISTS `Message` (
 -- INSERT INTO `Message` (`id`, `senderId`, `receiverId`, `sendTime`, `message`, `readFlag`) VALUES (NULL, '1', '2', CURRENT_TIMESTAMP, '<p><span style=\"color:#1abc9c\">你好啊這是測試信</span></p>\r\n', '0')
 
 
-CREATE TABLE `Product` (
+CREATE TABLE IF NOT EXISTS `Product` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(20) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `category_id` INT NOT NULL,
@@ -85,9 +85,10 @@ CREATE TABLE `Product` (
   PRIMARY KEY (`id`),
   UNIQUE (`name`)
 ) ENGINE = InnoDB;
--- INSERT INTO `Product` (`id`, `name`, `category_id`, `price`, `image_url`) VALUES (NULL, '黑色高跟鞋', '3', '100', 'images/product/shoes/black.png'), (NULL, '深藍色高跟鞋', '3', '200', 'images/product/shoes/dark-blue.png'), (NULL, '綠色高跟鞋', '3', '100', 'images/product/shoes/green.png'), (NULL, '紅色高跟鞋', '3', '150', 'images/product/shoes/red.png'), (NULL, '黃色高跟鞋', '3', '180', 'images/product/shoes/yellow.png')
 
-CREATE TABLE `ProductCategory` ( 
+-- INSERT INTO `Product` (`id`, `name`, `category_id`, `price`, `image_url`) VALUES (NULL, '眼鏡', '4', '100', 'images/product/glass.png'), (NULL,'男鞋1','3','100','images/product/manShoe1.png'), (NULL,'男鞋2','3','200','images/product/manShoe2.png'), (NULL,'男裝1','2','100','images/product/manSuit1.png'), (NULL,'男裝2','2','300','images/product/manSuit2.png');
+
+CREATE TABLE IF NOT EXISTS `ProductCategory` ( 
 	`id` INT NOT NULL AUTO_INCREMENT , 
 	`name` VARCHAR(20) CHARACTER SET utf8  COLLATE utf8_general_ci NOT NULL , 
 	`e_name` VARCHAR(20) NOT NULL , 
@@ -95,10 +96,10 @@ CREATE TABLE `ProductCategory` (
 	UNIQUE (`name`)
 ) ENGINE = InnoDB;
 
--- INSERT INTO `ProductCategory` (`id`, `name`, `e_name`) VALUES (NULL, '髮型', 'hairstyles'), (NULL, '衣服', 'clothes'), (NULL, '鞋子', 'shoes')
+-- INSERT INTO `ProductCategory` (`id`, `name`, `e_name`) VALUES (1, '髮型', 'hairstyles'), (2, '衣服', 'clothes'), (3, '鞋子', 'shoes'), (4, '飾品', 'accessories');
 
-CREATE TABLE `Game` ( 
-	`id` VARCHAR(20) NOT NULL , 
+CREATE TABLE IF NOT EXISTS `Game` ( 
+	`id` INT(11) NOT NULL AUTO_INCREMENT , 
 	`date` VARCHAR(10) NOT NULL , 
 	`time` VARCHAR(10) NOT NULL , 
 	`home_team` VARCHAR(20) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL , 
@@ -107,9 +108,9 @@ CREATE TABLE `Game` (
 	PRIMARY KEY (`id`)
 ) ENGINE = InnoDB;
 
-CREATE TABLE `Predict` ( 
+CREATE TABLE IF NOT EXISTS `Predict` ( 
 	`id` INT NOT NULL AUTO_INCREMENT , 
-	`game_id` VARCHAR(20) NOT NULL , 
+	`game_id` INT(11) NOT NULL , 
 	`user_id` INT NOT NULL , 
 	`predict` VARCHAR(30) NOT NULL , 
 	PRIMARY KEY (`id`)
