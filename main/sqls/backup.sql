@@ -125,6 +125,143 @@ INSERT INTO `Comment` VALUES (1,1,3,'<p>安安安安</p>\r\n<p><span style=\"col
 UNLOCK TABLES;
 
 --
+-- Table structure for table `Game`
+--
+
+DROP TABLE IF EXISTS `Game`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `Game` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `date` varchar(10) NOT NULL,
+  `time` varchar(10) NOT NULL,
+  `home_team` varchar(20) CHARACTER SET utf8 NOT NULL,
+  `away_team` varchar(20) CHARACTER SET utf8 NOT NULL,
+  `game_flag` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=50 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `Game`
+--
+
+LOCK TABLES `Game` WRITE;
+/*!40000 ALTER TABLE `Game` DISABLE KEYS */;
+INSERT INTO `Game` VALUES (1,'02-23','08:30','芝加哥黑鷹','科羅拉多雪崩',NULL),(2,'02-23','10:00','卡爾加里火焰','安那翰鴨',NULL),(3,'02-23','11:00','維加斯黃金騎士','溫尼伯噴氣機',NULL),(4,'02-22','19:30','昆侖紅星','哈薩克斯坦.雪豹',NULL),(5,'02-22','22:00','馬格尼托哥爾斯克.麥特魯格','喀山雪豹',NULL),(6,'02-22','22:00','拖拉機','聖彼得堡陸軍',NULL),(7,'02-23','00:00','北方鋼鐵','斯巴達克',NULL),(8,'02-23','00:30','鄂木斯克先鋒','西伯利亞',NULL),(9,'02-23','00:30','莫斯科.迪納莫','下諾夫格勒德.魚雷',NULL),(10,'02-23','00:30','索契','斯洛萬',NULL),(11,'02-23','00:30','維塔茲','阿夫托莫比利斯特',NULL),(12,'02-23','00:30','中央陸軍','里加.迪納莫',NULL),(13,'02-23','00:30','祖卡列特','明斯克.迪納莫',NULL),(14,'02-23','02:15','ERC因戈爾施塔特','艾斯巴倫柏林',NULL),(15,'02-23','02:15','奧格斯伯格黑豹','科隆鯊魚',NULL),(16,'02-23','02:15','不來梅港企鵝','克雷菲爾德企鵝',NULL),(17,'02-23','02:15','曼海姆海鷹','EHC慕尼黑紅牛',NULL),(18,'02-23','02:15','施特勞賓猛虎','伊瑟隆公雞',NULL),(19,'02-23','02:15','斯溫寧格爾野翼','斯沃爾夫斯堡灰熊',NULL),(20,'02-23','02:15','托馬斯薩博冰虎','杜賽爾多夫EG',NULL),(21,'02-23','02:45','ZSC獅隊','盧加諾',NULL),(22,'02-23','02:45','比爾','SCL老虎',NULL),(23,'02-23','02:45','伯爾尼','達沃斯',NULL),(24,'02-23','02:45','弗里堡戈塔隆','阿姆比利派奧塔',NULL),(25,'02-23','02:45','拉珀斯維爾喬納湖人','日內瓦塞維特',NULL),(26,'02-23','02:45','洛桑','楚格',NULL),(27,'02-23','02:00','埃斯比約能源','歐登塞牛頭犬',NULL),(28,'02-23','02:00','路道夫大力牛','奧爾堡海盜',NULL),(29,'02-23','02:30','海寧藍狐','海萊烏老鷹',NULL),(30,'02-23','02:30','龍斯泰茲','桑德捷斯基',NULL),(31,'02-23','00:30','PSG辛寧','布拉格斯巴達',NULL),(32,'02-23','00:30','博萊斯拉夫','斯柯達皮爾森',NULL),(33,'02-23','00:30','卡羅維能源','科梅塔布爾諾',NULL),(34,'02-23','00:30','皮拉提霍穆托夫','帕爾杜比採迪納摩',NULL),(35,'02-23','00:30','維克韋騎士','特日內茨',NULL),(36,'02-23','01:00','奧洛穆茨','比利提古里利貝雷茨',NULL),(37,'02-23','01:00','蒙特菲爾德','利特威諾夫',NULL),(38,'02-23','00:30','HIFK','尤庫里特',NULL),(39,'02-23','00:30','JYP於韋斯屈萊','庫庫',NULL),(40,'02-23','00:30','拉赫蒂派利肯','亞薩特',NULL),(41,'02-23','00:30','鹿科','卡帕',NULL),(42,'02-23','00:30','塞帕','歐倫卡帕特',NULL),(43,'02-23','00:30','瓦薩運動','HPK',NULL),(44,'02-23','00:30','伊爾韋斯','塔帕拉',NULL),(45,'02-23','01:00','塞克什白堡','維也納首都',NULL),(46,'02-23','02:15','多恩比恩','林茨黑翼',NULL),(47,'02-23','02:15','克拉根福AC','摩瑟醫療格拉茨',NULL),(48,'02-23','02:15','薩爾斯堡紅牛','博爾扎諾狐狸',NULL),(49,'02-23','02:15','因斯布魯克','菲拉赫SV',NULL);
+/*!40000 ALTER TABLE `Game` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `Message`
+--
+
+DROP TABLE IF EXISTS `Message`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `Message` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `senderId` int(11) NOT NULL,
+  `receiverId` int(11) NOT NULL,
+  `sendTime` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `subject` varchar(60) CHARACTER SET utf8 NOT NULL,
+  `message` text CHARACTER SET utf8 NOT NULL,
+  `readFlag` tinyint(4) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `Message`
+--
+
+LOCK TABLES `Message` WRITE;
+/*!40000 ALTER TABLE `Message` DISABLE KEYS */;
+INSERT INTO `Message` VALUES (1,1,2,'2019-02-01 16:40:30','測試喔喔喔','<p><span style=\"color:#1abc9c\">你好啊這是測試信</span></p>\r\n',0),(2,1,1,'2019-02-01 16:57:12','測試~','<p>132456789</p>\r\n',1),(6,1,1,'2019-02-02 00:04:39','我再試試','<p><span style=\"font-size:72px\"><span style=\"font-family:Comic Sans MS,cursive\"><tt>2019/02/02</tt></span></span></p>\r\n\r\n<p><span style=\"font-size:72px\"><span style=\"font-family:Comic Sans MS,cursive\"><tt>00:04</tt></span></span></p>\r\n',0),(7,2,1,'2019-02-02 03:30:48','寄信給系統','<p><strong><span style=\"color:#d35400\"><span style=\"font-size:16px\">安安你好啊</span></span></strong></p>\r\n',1);
+/*!40000 ALTER TABLE `Message` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `Predict`
+--
+
+DROP TABLE IF EXISTS `Predict`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `Predict` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `game_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `predict` varchar(30) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `Predict`
+--
+
+LOCK TABLES `Predict` WRITE;
+/*!40000 ALTER TABLE `Predict` DISABLE KEYS */;
+INSERT INTO `Predict` VALUES (1,1,1,'ABC'),(2,3,1,'a'),(3,2,1,'Ac');
+/*!40000 ALTER TABLE `Predict` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `Product`
+--
+
+DROP TABLE IF EXISTS `Product`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `Product` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(20) CHARACTER SET utf8 NOT NULL,
+  `category_id` int(11) NOT NULL,
+  `price` int(11) NOT NULL,
+  `image_url` varchar(120) NOT NULL DEFAULT 'images/product/test.png',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `name` (`name`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `Product`
+--
+
+LOCK TABLES `Product` WRITE;
+/*!40000 ALTER TABLE `Product` DISABLE KEYS */;
+INSERT INTO `Product` VALUES (1,'黑色高跟鞋',3,100,'images/product/shoes/black.png'),(2,'深藍色高跟鞋',3,200,'images/product/shoes/dark-blue.png'),(3,'綠色高跟鞋',3,100,'images/product/shoes/green.png'),(4,'紅色高跟鞋',3,150,'images/product/shoes/red.png'),(5,'黃色高跟鞋',3,180,'images/product/shoes/yellow.png');
+/*!40000 ALTER TABLE `Product` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `ProductCategory`
+--
+
+DROP TABLE IF EXISTS `ProductCategory`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `ProductCategory` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(20) CHARACTER SET utf8 NOT NULL,
+  `e_name` varchar(20) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `name` (`name`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `ProductCategory`
+--
+
+LOCK TABLES `ProductCategory` WRITE;
+/*!40000 ALTER TABLE `ProductCategory` DISABLE KEYS */;
+INSERT INTO `ProductCategory` VALUES (1,'髮型','hairstyles'),(2,'衣服','clothes'),(3,'鞋子','shoes');
+/*!40000 ALTER TABLE `ProductCategory` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `User`
 --
 
@@ -165,4 +302,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-01-31 15:00:11
+-- Dump completed on 2019-03-01 17:23:28
