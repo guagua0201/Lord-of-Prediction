@@ -92,7 +92,7 @@
 			</div>
 		</li>
 		<li class="nav-item active">
-			<a class="nav-link" href="/">找高手</a>
+			<a class="nav-link" href="/rank.php">找高手</a>
 		</li>
 		<li class="nav-item active">
 			<a class="nav-link" href="/">即時比分</a>

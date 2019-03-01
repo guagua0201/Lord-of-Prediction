@@ -75,14 +75,24 @@ Db:
 
 8. Game
 (1). id
-(2). date
-(3). time
-(4). home_team
-(5). away_team
-(6). game_flag
+(2). category_id
+(3). date
+(4). time
+(5). home_team
+(6). away_team
+(7). game_flag
 
 9. Predict
 (1). id
 (2). game_id
 (3). user_id
 (4). predict
+(5). predict_flag
+
+10. Rating
+(1). id
+(2). user_id
+(3). category_id
+(4). failure
+(5). success
+(6). rating

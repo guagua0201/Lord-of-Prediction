@@ -99,7 +99,8 @@ CREATE TABLE IF NOT EXISTS `ProductCategory` (
 -- INSERT INTO `ProductCategory` (`id`, `name`, `e_name`) VALUES (1, '髮型', 'hairstyles'), (2, '衣服', 'clothes'), (3, '鞋子', 'shoes'), (4, '飾品', 'accessories');
 
 CREATE TABLE IF NOT EXISTS `Game` ( 
-	`id` INT(11) NOT NULL AUTO_INCREMENT , 
+	`id` INT NOT NULL AUTO_INCREMENT , 
+	`category_id` INT NOT NULL , 
 	`date` VARCHAR(10) NOT NULL , 
 	`time` VARCHAR(10) NOT NULL , 
 	`home_team` VARCHAR(20) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL , 
@@ -110,8 +111,18 @@ CREATE TABLE IF NOT EXISTS `Game` (
 
 CREATE TABLE IF NOT EXISTS `Predict` ( 
 	`id` INT NOT NULL AUTO_INCREMENT , 
-	`game_id` INT(11) NOT NULL , 
+	`game_id` INT NOT NULL , 
 	`user_id` INT NOT NULL , 
 	`predict` VARCHAR(30) NOT NULL , 
+	PRIMARY KEY (`id`)
+) ENGINE = InnoDB;
+
+CREATE TABLE IF NOT EXISTS `Rating` ( 
+	`id` INT NOT NULL AUTO_INCREMENT , 
+	`user_id` INT NOT NULL , 
+	`category_id` INT NOT NULL , 
+	`failure` INT NOT NULL , 
+	`success` INT NOT NULL , 
+	`rating` FLOAT NOT NULL , 
 	PRIMARY KEY (`id`)
 ) ENGINE = InnoDB;
