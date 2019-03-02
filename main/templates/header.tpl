@@ -59,7 +59,7 @@
 								</tr>
 								<tr>
 									<td>
-										<a href='/' title='ShoppingCar'>購物車</a>
+										<a href='/showPredict.php' title='ShoppingCar'>購物車</a>
 									</td>
 								</tr>
 								<tr>
