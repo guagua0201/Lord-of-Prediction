@@ -17,7 +17,7 @@
 							<tr>
 								<td>
 									{if $log_status != 0}
-										<a href='#' title='Profile'>{$member}</a>
+										<a href='/userProfile.php?user_id={$smarty.session.user_id}' title='Profile'>{$member}</a>
 									{else}
 										<a href='/login.php' title='Login'>登入</a>
 									{/if}
@@ -34,7 +34,7 @@
 							</tr>
 						<tr>
 							<td>
-								<a href='/' title='Contact'>連繫客服</a>
+								<a href='/contact.php' title='Contact'>連繫客服</a>
 							</td>
 						</tr>
 						<tr>

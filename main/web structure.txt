@@ -86,8 +86,9 @@ Db:
 (1). id
 (2). game_id
 (3). user_id
-(4). predict
-(5). predict_flag
+(4). category_id
+(5). predict
+(6). predict_flag
 
 10. Rating
 (1). id

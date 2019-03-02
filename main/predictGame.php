@@ -86,26 +86,16 @@ if (isset($_POST['submit'])) {
 			for ($i = 'a'; $i <= 'e'; $i++) {
 				$post_name = $i . '-' . $game['id'];
 				if (isset($_POST[$post_name])) {
-					 $sql5 = "SELECT id, predict FROM Predict WHERE user_id = '" . $_SESSION['user_id'] . "' AND game_id = '" . $game['id'] . "'";
-					 $result = mysqli_query($link, $sql5);
-					 if (mysqli_num_rows($result) == 0) {
-					 	$sql6 = "INSERT INTO Predict (user_id, game_id, predict) VALUES ('" . $_SESSION['user_id'] . "', '" . $game['id'] . "', '" . $_POST[$post_name] . "')";
-					 	mysqli_query($link, $sql6);
-					 } else {
-						 $predict = mysqli_fetch_assoc($result);
-						 if (strpos(strtolower($predict['predict']), $i) === false) {
-						 	$predict['predict'] = $predict['predict'] . $_POST[$post_name];
-						 	$sql7 = "UPDATE Predict SET predict = '" . $predict['predict'] . "' WHERE id = '" . $predict['id'] . "'";
-						 	mysqli_query($link, $sql7);
-						 } else {
-						 	$pos = strpos(strtolower($predict['predict']), $i);
-						 	if ($predict['predict'][$pos] !== $_POST[$post_name]) {
-						 		$predict['predict'][$pos] = $_POST[$post_name];
-						 		$sql8 = "UPDATE Predict SET predict = '" . $predict['predict'] . "' WHERE id = '" . $predict['id'] . "'";
-						 		mysqli_query($link, $sql8);
-						 	}
-						 }
-					 }
+					$sql5 = "SELECT id, predict FROM Predict WHERE user_id = '" . $_SESSION['user_id'] . "' AND game_id = '" . $game['id'] . "' AND (predict = '$i' OR predict = '" . strtoupper($i) . "') AND predict_flag = '0'";
+					$result = mysqli_query($link, $sql5);
+					if (mysqli_num_rows($result) == 0) {
+						$sql6 = "INSERT INTO Predict (user_id, game_id, category_id, predict, predict_flag) VALUES ('" . $_SESSION['user_id'] . "', '" . $game['id'] . "', '" . $id . "', '" . $_POST[$post_name] . "', '0')";
+						mysqli_query($link, $sql6);
+					} else {
+						$predict = mysqli_fetch_assoc($result);
+						$sql6 = "UPDATE Predict SET predict = '" . $_POST[$post_name] . "' WHERE id = '" . $predict['id'] . "'";
+						mysqli_query($link, $sql6);
+					}
 				}
 			}
 		}
