@@ -40,7 +40,7 @@
 										<img src="/images/userImages/{$top_rank[$foo]['user_image']}.jpg" height="50" width="50">
 									</td>
 									<td class='col-md-1 text-center align-middle'>
-										<a href="userProfile.php?id={$top_rank[$foo]['user_id']}">{$top_rank[$foo]['user_nickname']}</a>
+										<a href="userProfile.php?user_id={$top_rank[$foo]['user_id']}">{$top_rank[$foo]['user_nickname']}</a>
 									</td>
 									<td class='col-md-2 text-center align-middle lead font-weight-bold'>
 										{$top_rank[$foo]['success']}勝{$top_rank[$foo]['failure']}敗

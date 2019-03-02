@@ -128,3 +128,10 @@ CREATE TABLE IF NOT EXISTS `Rating` (
 	`rating` FLOAT NOT NULL , 
 	PRIMARY KEY (`id`)
 ) ENGINE = InnoDB;
+
+CREATE TABLE IF NOT EXISTS `BuyPredict` ( 
+	`id` INT NOT NULL AUTO_INCREMENT , 
+	`user_id` INT NOT NULL , 
+	`predict_id` INT NOT NULL , 
+	PRIMARY KEY (`id`)
+) ENGINE = InnoDB;

@@ -40,6 +40,7 @@ Db:
 (5). nickname
 (6). email
 (7). image
+(8). money
 
 4. Comment
 (1). id
@@ -89,6 +90,7 @@ Db:
 (4). category_id
 (5). predict
 (6). predict_flag
+(7). price
 
 10. Rating
 (1). id
@@ -97,3 +99,8 @@ Db:
 (4). failure
 (5). success
 (6). rating
+
+11. BuyPredict
+(1). id
+(2). user_id
+(3). predict_id

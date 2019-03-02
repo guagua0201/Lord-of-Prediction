@@ -56,6 +56,29 @@ if (isset($_GET['user_id']) && !empty($_GET['user_id'])) {
 			}
 		}
 		$smarty->assign('history_predict', $history_predict);
+
+		$predicts = array();
+		$already_buy = array();
+		if ($_GET['user_id'] != $_SESSION['user_id']) {
+			$sql5 = "SELECT predict_id FROM BuyPredict WHERE user_id = '" . $_SESSION['user_id'] . "'";
+			if ($result = mysqli_query($link, $sql5)) {
+				while ($row = mysqli_fetch_assoc($result))
+					$already_buy[] = $row['predict_id'];
+			}
+		}
+		$sql5 = "SELECT id, game_id, predict, price FROM Predict WHERE user_id = '" . $_GET['user_id'] . "' AND predict_flag = '0' AND category_id = '$category_id'";
+		if ($result = mysqli_query($link, $sql5)) {
+			while ($row = mysqli_fetch_assoc($result)) {
+				$sql6 = "SELECT `date`, `home_team`, `away_team` FROM Game WHERE id = '" . $row['game_id'] . "'";
+				$game_info = mysqli_fetch_assoc(mysqli_query($link, $sql4));
+				$row['game_date'] = $game_info['date'];
+				$row['game_home_team'] = $game_info['home_team'];
+				$row['game_away_team'] = $game_info['away_team'];
+				if (array_search($row['id'], $already_buy) === false)
+					$predicts[] = $row;
+			}
+		}
+		$smarty->assign('predicts', $predicts);
 	}
 	$smarty->display('userProfile.tpl');
 } else {
