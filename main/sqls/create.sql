@@ -10,6 +10,7 @@ CREATE TABLE IF NOT EXISTS `User` (
 	`email` VARCHAR(60) NOT NULL , 
 	`gender` BIT NULL , 
 	`image` VARCHAR(90) NULL , 
+	`money` int(11) NOT NULL , 
 	PRIMARY KEY (`id`), 
 	UNIQUE (`username`), 
 	UNIQUE (`nickname`), 
@@ -116,6 +117,7 @@ CREATE TABLE IF NOT EXISTS `Predict` (
 	`category_id` INT NOT NULL , 
 	`predict` CHAR(1) NOT NULL ,
 	`predict_flag` INT NOT NULL , 
+	`price` INT NOT NULL , 
 	PRIMARY KEY (`id`)
 ) ENGINE = InnoDB;
 
