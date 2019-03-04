@@ -15,7 +15,7 @@ jQuery.ajax({
     type: "POST",
     url: 'php/profileGet.php',
     dataType: 'json',
-    data: {functionname: 'add', arguments: [userName]},
+    data: {arguments: [userName]},
 
     success: function (obj, textstatus) {
                   if( !('error' in obj) ) {

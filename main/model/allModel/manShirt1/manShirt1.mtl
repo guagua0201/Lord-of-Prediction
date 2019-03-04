@@ -1,9 +1,0 @@
-newmtl Tank_top
-    Ns 10.000000
-    d 1.000000
-    Ka 0.000000 0.000000 0.000000
-    Kd 1.000000 1.000000 1.000000
-    Ks 0.898039 0.898039 0.898039
-    map_Kd manShirt1_Tank_top_Diffuse_0001.jpg
-    map_Bump manShirt1_Tank_top_Normal_0001.jpg
-    map_Ks manShirt1_Tank_top_Specular_0001.jpg

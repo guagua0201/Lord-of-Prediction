@@ -1,9 +1,0 @@
-newmtl Dress
-    Ns 14.000000
-    d 1.000000
-    Ka 0.000000 0.000000 0.000000
-    Kd 0.921569 0.917647 0.847059
-    Ks 0.760784 0.898039 0.870588
-    map_Kd blackdress_Dress_Diffuse.bmp
-    map_Bump blackdress_Dress_Normal.bmp
-    map_Ks blackdress_Dress_Specular.bmp

@@ -1,9 +1,0 @@
-newmtl Boots
-    Ns 25.000000
-    d 1.000000
-    Ka 0.000000 0.000000 0.000000
-    Kd 0.000000 0.000000 0.000000
-    Ks 0.792157 0.933333 0.925490
-    map_Kd C:\Users\asos8\Desktop\allModel\womanSuit\womanSuit.fbm\Boots_Diffuse.jpg
-    map_Bump C:\Users\asos8\Desktop\allModel\womanSuit\womanSuit.fbm\Boots_Normal.jpg
-    map_Ks C:\Users\asos8\Desktop\allModel\womanSuit\womanSuit.fbm\Boots_Specular.jpg

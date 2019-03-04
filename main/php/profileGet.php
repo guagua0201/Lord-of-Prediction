@@ -5,8 +5,6 @@
     $aResult = array();
 
     
-    
-    if( !isset($_POST['functionname']) ) { $aResult['error'] = 'No function name!'; }
 
     if( !isset($_POST['arguments']) ) { $aResult['error'] = 'No function arguments!'; }
 
@@ -40,6 +38,7 @@
         $sql = "SELECT gender FROM user WHERE username = '" . $_POST['arguments'][0] . "'";
         $user_gender = mysqli_fetch_assoc(mysqli_query($link, $sql));
         $aResult['result'] = $user_gender['gender'];
+        mysqli_close($link);
     }
     
 

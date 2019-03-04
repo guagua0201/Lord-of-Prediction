@@ -23,11 +23,17 @@ if (!$log_status) {
 		$email = mysqli_real_escape_string($link, trim($_POST['email']));
 		$gender = $_POST['gender'];
 
+		$ownAccStr = "";
+		for ($i = 0; $i<95;$i++){
+			$ownAccStr = $ownAccStr . "0";
+		}
+
 		// maybe check something else!!
 		// Check Duplicate username
 		// Email Check
 		if (!empty($username) && !empty($password) && !empty($nickname) && !empty($email)) {
-			$sql = "INSERT INTO User (username, password, nickname, email, gender) VALUES ('$username', '$password', '$nickname', '$email', b'$gender')";
+			$sql = "INSERT INTO User (username, password, nickname, email, gender,money1,money2,money3,ownAcc,hairID,suitID,shoeID) 
+			VALUES ('$username', '$password', '$nickname', '$email', b'$gender', 500, 0, 50, '$ownAccStr', 0,0,0)";
 			//echo $sql;
 			mysqli_query($link, $sql);
 			$sql2 = "SELECT id, username FROM User WHERE username = '$username'";
