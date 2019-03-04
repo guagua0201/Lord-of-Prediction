@@ -10,6 +10,9 @@
         $i=0;
         while (($line = fgets($handle)) !== false) {
             $line=str_replace("\r\n","",$line);
+            $line = str_replace(array("\r","\n"),"",$line);
+            $line=str_replace("\n","",$line);
+            $line=str_replace("\r","",$line);
             
             //echo "line = $line";
             if ($i%2==0) {

@@ -19,7 +19,7 @@ if (!$link) {
 echo "console.log('hi1');";
 $member = $_SESSION['username'];
 echo "console.log('$member');";
-$sql = "SELECT gender FROM User WHERE username = " . $_SESSION['username'] . "'";
+$sql = "SELECT gender FROM user WHERE username = " . $_SESSION['username'] . "'";
 $user_gender = mysqli_fetch_assoc(mysqli_query($link, $sql));
 $smarty->assign('user_gender', $user_gender);
 

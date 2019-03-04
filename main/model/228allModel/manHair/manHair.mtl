@@ -1,0 +1,10 @@
+newmtl embed_hair_male
+    Ns 10.000000
+    d 1.000000
+    Ka 0.000000 0.000000 0.000000
+    Kd 1.000000 1.000000 1.000000
+    Ks 1.000000 1.000000 1.000000
+    map_Kd manHair_embed_hair_male_Diffuse.jpg
+    map_D manHair_embed_hair_male_Opacity.jpg
+    map_Bump manHair_embed_hair_male_Bump.jpg
+    map_Ks manHair_embed_hair_male_Specular.jpg

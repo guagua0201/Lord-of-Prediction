@@ -39,11 +39,16 @@
 										<div>
 											<div class='product_info d-flex flex-row align-itmes-start justify-content-center'>
 												<div class='product_name'>
-													<a href='#'>{$product['name']}</a>
+													{$product['name']}
 												</div>
-												<div class='product_category'>
-													<a href='#'>{$category['name']}</a>
-												</div>
+												<!--<div class='product_category'>
+													{$category['name']}
+												</div>-->
+											</div>
+										</div>
+										<div class='ml-auto text-left'>
+											<div class='purchase'>
+												<a href="#">購買</a>
 											</div>
 										</div>
 										<div class='ml-auto text-right'>

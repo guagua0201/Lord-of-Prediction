@@ -34,6 +34,10 @@
             #renderCanvas {
                 width: 80%;
                 height: 80%;
+                margin-left: auto;
+                margin-right: auto;
+                margin-top: auto;
+                margin-bottom: auto;
                 touch-action: none;
                 text-align: center;
             }
@@ -41,7 +45,7 @@
     </head>
 <body>
     <canvas id="renderCanvas"></canvas>
-    <!-- <script src="php/getGender.php"></script> -->
+    <script src="php/profileReadFile.php?userGender={$gender}&member={$member}"></script>
     
     <script src="javascripts/profile.js"></script>
 

@@ -1,90 +1,127 @@
 var canvas = document.getElementById("renderCanvas");
 
 
+
 console.log("gender",userGender);
+console.log("hi ",userName);
+
+var suitID,shoeID,hairID,genderS;
+
+
+suitID = shoeID = 2;
+hairID = 1;
+
+jQuery.ajax({
+    type: "POST",
+    url: 'php/profileGet.php',
+    dataType: 'json',
+    data: {functionname: 'add', arguments: [userName]},
+
+    success: function (obj, textstatus) {
+                  if( !('error' in obj) ) {
+                      var yourVariable = obj.result;
+                      console.log("result",yourVariable)
+                  }
+                  else {
+                      console.log("error",obj.error);
+                  }
+            }
+});
+
+var globalMesh = [];
+
 
 var createScene = function () {
+
+
+    var loadMesh = function (scene,path,name,posX,posY,posZ,part){
+        
+        var mesh = BABYLON.SceneLoader.ImportMesh("", path, name, scene, function (newMeshes){
+            globalMesh[part] = newMeshes;
+            for(var i=0;i<newMeshes.length;i++){
+                newMeshes[i].position = new BABYLON.Vector3(posX,posY,posZ);
+                //newMeshes[i].dispose();
+            }
+        });
+
+        return mesh;
+    }
+    
+    var setTime = function(scene){
+        var timeH=new Date(Date.now()).getHours();
+    
+        if(timeH == -100){
+            scene.clearColor = new BABYLON.Color3(0.3921,0.584,0.929);  
+        }
+        else{
+            scene.clearColor = new BABYLON.Color3(0.2,0.2,0.3);  
+
+            var spaceRad = 10000;
+
+            var starNum = 100;
+        
+            for(var i=0;i<starNum;i++){
+                var d = 0;
+                var pos = new BABYLON.Vector3(0,0,0);
+                do{
+                    pos.x = Math.random() * spaceRad - spaceRad/2;
+                    pos.y = Math.random() * 1000 - 500;
+                    pos.z = Math.random() * spaceRad - spaceRad/2;
+                d = pos.x*pos.x + pos.y*pos.y + pos.z*pos.z;
+                }while(d < 10000000);
+                var marker = BABYLON.Mesh.CreateSphere('cmarker', 30, 10, scene);
+                marker.position = pos;
+            }
+        }
+    }
+
     var scene = new BABYLON.Scene(engine);
 
-    //Adding a light
     var light = new BABYLON.PointLight("Omni", new BABYLON.Vector3(20, 20, 100), scene);
 
     var anchor = new BABYLON.TransformNode("");
 
-    var timeH=new Date(Date.now()).getHours();
+    setTime(scene);
     
-    if(timeH>=6 && timeH<=17){
-        scene.clearColor = new BABYLON.Color3(0.3921,0.584,0.929);  
-    }
-    else{
-        scene.clearColor = new BABYLON.Color3(0.2,0.2,0.3);  
-
-        var spaceRad = 10000;
-
-        var starNum = 100;
-    
-        for(var i=0;i<starNum;i++){
-            var d = 0;
-            var pos = new BABYLON.Vector3(0,0,0);
-            do{
-                pos.x = Math.random() * spaceRad - spaceRad/2;
-                pos.y = Math.random() * 1000 - 500;
-                pos.z = Math.random() * spaceRad - spaceRad/2;
-            d = pos.x*pos.x + pos.y*pos.y + pos.z*pos.z;
-            }while(d < 10000000);
-            var marker = BABYLON.Mesh.CreateSphere('cmarker', 30, 10, scene);
-            marker.position = pos;
-        }
-    }
-    //scene.clearColor = new BABYLON.Color3(0.3921,0.584,0.929);
-
-    //Adding an Arc Rotate Camera
     var camera = new BABYLON.ArcRotateCamera("Camera", 0,0,20, BABYLON.Vector3(0,0,0), scene);
     //camera.attachControl(canvas, true);
 
-
-
-     //var conn = new ActiveXObject("");
-
+    //var conn = new ActiveXObject("");
 
     // load mesh 
     // man -> hair -> shirt -> pants -> shoe 
 
-    
     camera.setTarget(new BABYLON.Vector3(0,100,0));
     camera.setPosition(new BABYLON.Vector3(0,230,330));
 
-    /*var man = BABYLON.SceneLoader.ImportMesh("", "model/allModel/womanbra/", "womanBra.obj", scene, function (newMeshes){
-        
-        for(var i=0;i<newMeshes.length;i++){
-            newMeshes[i].rotation = new BABYLON.Vector3(0,Math.PI,0);
-        }
-    });*/
+    var body,suit,hair,shoe ;
 
-    
-    var man = BABYLON.SceneLoader.ImportMesh("","model/allModel/manBody/","manBody.obj",scene,function(newMeshes){
-        for(var i=0;i<newMeshes.length;i++){
-            //newMeshes[i].rotation = new BABYLON.Vector3(0,Math.PI,0);
-            newMeshes[i].position = new BABYLON.Vector3(0,30,0);
-        }
-    });
+    if(userGender == 0) genderS = "man";
+    else genderS = "woman";
 
-    /*
-    var shirt = BABYLON.SceneLoader.ImportMesh("","model/allModel/manShirt1/","manShirt1.obj",scene,function(newMeshes){
-        for(var i=0;i<newMeshes.length;i++){
-            newMeshes[i].position = new BABYLON.Vector3(0,-2.3,0);
-        }
-    });
-    var pants = BABYLON.SceneLoader.ImportMesh("","model/allModel/manPants1/","manpants1.obj",scene,function(newMeshes){
+    var modelPath = "model/228allModel/";
 
-    });*/
+    body = loadMesh(scene,modelPath+genderS+"Body/",genderS+"Body.obj",0,30,0,'body');
+    suit = loadMesh(scene,modelPath+genderS+"Suit"+suitID.toString(10)+"/",genderS+"Suit"+suitID.toString(10)+".obj",0,-2.3+30,0,'suit');
+    hair = loadMesh(scene,modelPath+genderS+"Hair"+hairID.toString(10)+"/",genderS+"Hair"+hairID.toString(10)+".obj",0,-1.8+30,0,'hair');
+    shoe = loadMesh(scene,modelPath+genderS+"Shoe"+shoeID.toString(10)+"/",genderS+"Shoe"+shoeID.toString(10)+".obj",0,-1.8+30,0,'shoe');
 
-    var suit = BABYLON.SceneLoader.ImportMesh("","model/allModel/manSuit/","manSuit.obj",scene,function(newMeshes){
-        for(var i=0;i<newMeshes.length;i++){
-            newMeshes[i].position = new BABYLON.Vector3(0,-2.3+30,0);
-            //newMeshes[i].rotation = new BABYLON.Vector3(0,Math.PI,0);
-        }
-    });
+    //body.dispose();
+    /*if(userGender == 0){
+        body = loadMesh(scene,"model/228allModel/manBody/","manBody.obj",0,30,0);
+
+        //hair = loadMesh(scene,"model/228allModel/manHair1/","manHair1.obj",0,30,0);
+        suit = loadMesh(scene,"model/228allModel/manSuit2/","manSuit" + suitID.toString(10) + ".obj",0,-2.3+30,0);
+        shoe = loadMesh(scene,"model/228allModel/manShoe2/","manShoe" + shoeID.toString(10) + ".obj",0,-1.8+30,0);
+    }
+    else{
+        body = loadMesh(scene,"model/228allModel/womanBody/","womanBody.obj",0,30,0);
+        suit = loadMesh(scene,"model/228allModel/womanSuit1/","womanSuit1.obj",0,-2.3+30,2);
+        hair = loadMesh(scene,"model/228allModel/womanHair1/","womanHair1.obj",0,30,0);
+        shoe = loadMesh(scene,"model/228allModel/womanShoe3/","womanShoe3.obj",0,30,0);
+    }*/
+
+
 
     var rock = BABYLON.SceneLoader.ImportMesh("","model/allModel/ROCK2/","ROCK2.obj",scene,function(newMeshes){
         for(var i=0;i<newMeshes.length;i++){
@@ -93,77 +130,6 @@ var createScene = function () {
             //newMeshes[i].rotation = new BABYLON.Vector3(0,Math.PI,0);
         }
     });
-
-
-
-    /*var man = BABYLON.SceneLoader.ImportMesh("", "model/allModel/womanbra/", "womanBra.obj", scene, function (newMeshes){
-        
-        for(var i=0;i<newMeshes.length;i++){
-            newMeshes[i].rotation = new BABYLON.Vector3(0,Math.PI,0);
-        }
-        
-    });
-
-    var hair = BABYLON.SceneLoader.ImportMesh("","model/allModel/womanhair/","womanhair.obj",scene,function (newMeshes) {
-        var myMaterial = new BABYLON.StandardMaterial("myMaterial", scene);
-
-        myMaterial.diffuseColor = new BABYLON.Color3(0.5, 0.3, 0.2);
-        myMaterial.diffuseColor = new BABYLON.Color3(0.5, 0.3, 0.2);
-        //myMaterial.opacityColor = new BABYLON.Color3(0., 0.3, 0.2);
-        for(var i=0;i<newMeshes.length;i++){
-            newMeshes[i].rotation = new BABYLON.Vector3(0,Math.PI,0);
-            newMeshes[i].position = new BABYLON.Vector3(0,-10,0.5);
-            newMeshes[i].material = myMaterial;
-        }
-    });*/
-
-
-/*    var shirt = BABYLON.SceneLoader.ImportMesh("","model/allModel/womantshirt/","qwe.obj",scene,function (newMeshes) {
-        for(var i=0;i<newMeshes.length;i++){
-            newMeshes[i].rotation = new BABYLON.Vector3(0,Math.PI,0);
-            newMeshes[i].position = new BABYLON.Vector3(0,-2,-1);
-        }
-    });
-
-    var pants = BABYLON.SceneLoader.ImportMesh("","model/allModel/womanpants/","shortpants.obj",scene,function (newMeshes) {
-        for(var i=0;i<newMeshes.length;i++){
-            newMeshes[i].rotation = new BABYLON.Vector3(0,Math.PI,0);
-            newMeshes[i].position = new BABYLON.Vector3(0,0,-1);
-        }
-    });*/
-
-    /*var shoe = BABYLON.SceneLoader.ImportMesh("","model/allModel/womanshoe/","shoes.obj",scene,function(newMeshes){
-        for(var i=0;i<newMeshes.length;i++){
-            newMeshes[i].rotation = new BABYLON.Vector3(0,Math.PI,0);
-            newMeshes[i].position = new BABYLON.Vector3(0,-2,0);
-        }
-    });*/
-
-    /*var pants2 = BABYLON.SceneLoader.ImportMesh("","model/allModel/womanpants2/","womanpants2.obj",scene,function (newMeshes) {
-        
-        for(var i=0;i<newMeshes.length;i++){
-            newMeshes[i].rotation = new BABYLON.Vector3(0,Math.PI,0);
-            newMeshes[i].position = new BABYLON.Vector3(0,-5,0);
-        }
-    });
-    console.log(pants2);*/
-
-    /*var dress = BABYLON.SceneLoader.ImportMesh("","model/allModel/womandress/","blackdress.obj",scene,function (newMeshes) {
-
-        
-        
-
-        for(var i=0;i<newMeshes.length;i++){
-            newMeshes[i].rotation = new BABYLON.Vector3(0,Math.PI,0);
-            newMeshes[i].position = new BABYLON.Vector3(0,-10,0);
-            
-        }
-    });*/
-
-
-
-
-
 
     scene.actionManager = new BABYLON.ActionManager(scene);
 
@@ -211,14 +177,14 @@ var createScene = function () {
 
     manager.addControl(panel);
     anchor.rotation = new BABYLON.Vector3(0,1.95, 0);
-    console.log(anchor);
+    // console.log(anchor);
     panel.linkToTransformNode(anchor);
     panel.position.z = -1.5;
     panel.position.x = 0;
     panel.position.y+=100;
     panel.radius = 200;
 
-    console.log(panel);
+    // console.log(panel);
 
     // Let's add some buttons!
 
@@ -260,9 +226,16 @@ var createScene = function () {
         }
         button.pointerDownAnimation = function() {
             
+            if(index == 4){
+                // 換裝
+                window.location.pathname = '/../shop.php';
+            }
             if(index == 5){
                 // 換裝
                 window.location.pathname = '/../dressUp.php';
+            }
+            if(index == 3){
+                console.log(globalMesh['body']);
             }
             
         }
@@ -293,28 +266,61 @@ var createScene = function () {
 
     // Ground
 
-    //var roundGround = BABYLON.MeshBuilder.CreateDisc("disc", {radius: 1000, arc: 1, tessellation: 1000, sideOrientation: BABYLON.Mesh.DOUBLESIDE}, scene);
-    //roundGround.material = grassMaterial;
+    var roundGround = BABYLON.MeshBuilder.CreateDisc("disc", {radius: 500, arc: Math.PI, tessellation: 1000, sideOrientation: BABYLON.Mesh.DOUBLESIDE}, scene);
+    roundGround.material = grassMaterial;
+    //roundGround.rotation = BABYLON.Vector3(0,1.7,0);
+    roundGround.rotation.x = Math.PI/2;
+    console.log("ground",roundGround);
 
-    var ground = BABYLON.Mesh.CreateGround("ground", 2000, 2000, 1, scene, false);
+    //var ground = BABYLON.Mesh.CreateGround("ground", 2000, 2000, 1, scene, false);
 
     //groundMaterial.diffuseColor = new BABYLON.Color3(1.0, 1.0, 1.0);
     //groundMaterial.specularColor = new BABYLON.Color3(0, 0, 0);
 
-    ground.material = grassMaterial;
+    //ground.material = grassMaterial;
 
-    
+    var advancedTexture = BABYLON.GUI.AdvancedDynamicTexture.CreateFullscreenUI("ui1");
+
+
+    var panel = new BABYLON.GUI.StackPanel();  
+    panel.width = 0.25;
+    panel.horizontalAlignment = BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_LEFT;
+    advancedTexture.addControl(panel);
+
+    var button1 = BABYLON.GUI.Button.CreateSimpleButton("but1", "Click Me");
+    button1.width = 0.2;
+    button1.height = "40px";
+    button1.color = "white";
+    button1.cornerRadius = 20;
+    button1.background = "green";
+    button1.onPointerUpObservable.add(function() {
+        var tmp = globalMesh['shoe'];
+        if(shoeID == 1) shoeID = 2;
+        else shoeID = 1;
+        shoe = loadMesh(scene,modelPath+genderS+"Shoe"+shoeID.toString(10)+"/",genderS+"Shoe"+shoeID.toString(10)+".obj",0,-1.8+30,0,'shoe');
+        for(i=0;i<tmp.length;i++){
+            tmp[i].dispose();
+        }
+    });
+    panel.addControl(button1);
     return scene;
 }  
 var engine = new BABYLON.Engine(canvas, true, { preserveDrawingBuffer: true, stencil: true });
 var scene = createScene();
+engine.loadingUIText = "Loading!...";
+engine.displayLoadingUI();
 
-engine.runRenderLoop(function () {
+scene.executeWhenReady(function(){
+    engine.hideLoadingUI();
+    engine.runRenderLoop(function () {
     
-    if (scene) {
-        scene.render();
-    }
+        if (scene) {
+            scene.render();
+        }
+    });
 });
+
+
 
 // Resize
 window.addEventListener("resize", function () {

@@ -1,0 +1,18 @@
+newmtl Low-rise_Shorts
+    Ns 10.000000
+    d 1.000000
+    Ka 0.000000 0.000000 0.000000
+    Kd 0.000000 0.000000 0.000000
+    Ks 1.000000 1.000000 1.000000
+    map_Kd womanSuit1_Low-rise_Shorts_Diffuse.jpg
+    map_Bump womanSuit1_Low-rise_Shorts_Bump.jpg
+    map_Ks womanSuit1_Low-rise_Shorts_Specular.jpg
+newmtl Dress
+    Ns 10.000000
+    d 1.000000
+    Ka 0.000000 0.000000 0.000000
+    Kd 1.000000 1.000000 1.000000
+    Ks 0.898039 0.898039 0.898039
+    map_Kd womanSuit1_Dress_Diffuse.jpg
+    map_Bump womanSuit1_Dress_Normal.jpg
+    map_Ks womanSuit1_Dress_Specular_Dress_Specular.jpg
