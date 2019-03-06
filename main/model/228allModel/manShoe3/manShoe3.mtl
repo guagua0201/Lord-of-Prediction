@@ -1,0 +1,9 @@
+newmtl Boots
+    Ns 25.000000
+    d 1.000000
+    Ka 0.000000 0.000000 0.000000
+    Kd 0.921569 0.901961 0.800000
+    Ks 0.792157 0.933333 0.925490
+    map_Kd manShoe3_Boots_Diffuse_0001.jpg
+    map_Bump manShoe3_Boots_Normal_0001.jpg
+    map_Ks manShoe3_Boots_Specular_0001.jpg

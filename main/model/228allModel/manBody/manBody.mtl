@@ -1,0 +1,88 @@
+newmtl Eye
+    Ns 40.000000
+    d 1.000000
+    Ka 0.000000 0.000000 0.000000
+    Kd 1.000000 1.000000 1.000000
+    Ks 0.898039 0.898039 0.898039
+    map_Kd manBody_Eye_Diffuse.jpg
+    map_Bump manBody_Eye_Normal.jpg
+newmtl Cornea
+    Ns 63.000000
+    d 0.800000
+    Ka 0.000000 0.000000 0.000000
+    Kd 1.000000 1.000000 1.000000
+    Ks 0.898039 0.898039 0.898039
+    map_Kd manBody_Cornea_Diffuse.jpg
+    map_Bump manBody_Cornea_Normal.jpg
+newmtl Upper_Teeth
+    Ns 35.000000
+    d 1.000000
+    Ka 0.000000 0.000000 0.000000
+    Kd 1.000000 1.000000 1.000000
+    Ks 0.898039 0.898039 0.898039
+    map_Kd manBody_Upper_Teeth_Diffuse.jpg
+    map_Bump manBody_Upper_Teeth_Normal.jpg
+    map_Ks manBody_Upper_Teeth_Specular.jpg
+newmtl Skin_Head
+    Ns 20.000000
+    d 1.000000
+    Ka 0.000000 0.000000 0.000000
+    Kd 1.000000 1.000000 1.000000
+    Ks 0.898039 0.898039 0.898039
+    map_Kd manBody_Skin_Head_Diffuse.jpg
+    map_Bump manBody_Skin_Head_Normal.jpg
+    map_Ks manBody_Skin_Head_Specular.jpg
+newmtl Lower_Teeth
+    Ns 35.000000
+    d 1.000000
+    Ka 0.000000 0.000000 0.000000
+    Kd 1.000000 1.000000 1.000000
+    Ks 0.898039 0.898039 0.898039
+    map_Kd manBody_Lower_Teeth_Diffuse.jpg
+    map_Bump manBody_Lower_Teeth_Normal.jpg
+    map_Ks manBody_Lower_Teeth_Specular.jpg
+newmtl Skin_Body
+    Ns 20.000000
+    d 1.000000
+    Ka 0.000000 0.000000 0.000000
+    Kd 1.000000 1.000000 1.000000
+    Ks 0.898039 0.898039 0.898039
+    map_Kd manBody_Skin_Body_Diffuse.jpg
+    map_Bump manBody_Skin_Body_Normal.jpg
+    map_Ks manBody_Skin_Body_Specular.jpg
+newmtl Tongue
+    Ns 30.000002
+    d 1.000000
+    Ka 0.000000 0.000000 0.000000
+    Kd 1.000000 1.000000 1.000000
+    Ks 0.898039 0.898039 0.898039
+    map_Kd manBody_Tongue_Diffuse.jpg
+    map_Bump manBody_Tongue_Normal.jpg
+    map_Ks manBody_Tongue_Specular.jpg
+newmtl Toenail
+    Ns 30.000002
+    d 1.000000
+    Ka 0.000000 0.000000 0.000000
+    Kd 1.000000 1.000000 1.000000
+    Ks 0.898039 0.898039 0.898039
+    map_Kd manBody_Toenail_Diffuse.jpg
+    map_Bump manBody_Toenail_Normal.jpg
+    map_Ks manBody_Toenail_Specular.jpg
+newmtl Fingernail
+    Ns 30.000002
+    d 1.000000
+    Ka 0.000000 0.000000 0.000000
+    Kd 1.000000 1.000000 1.000000
+    Ks 0.898039 0.898039 0.898039
+    map_Kd manBody_Fingernail_Diffuse.jpg
+    map_Bump manBody_Fingernail_Normal.jpg
+    map_Ks manBody_Fingernail_Specular.jpg
+newmtl Eyelash
+    Ns 20.000000
+    d 1.000000
+    Ka 0.000000 0.000000 0.000000
+    Kd 1.000000 1.000000 1.000000
+    Ks 0.898039 0.898039 0.898039
+    map_Kd manBody_Eyelash_Diffuse.jpg
+    map_D manBody_Eyelash_Diffuse.jpg
+    map_Ks manBody_Eyelash_Specular.jpg

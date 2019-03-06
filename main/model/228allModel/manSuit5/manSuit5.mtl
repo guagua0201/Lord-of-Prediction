@@ -1,0 +1,18 @@
+newmtl Tank_top
+    Ns 24.000000
+    d 1.000000
+    Ka 0.000000 0.000000 0.000000
+    Kd 0.000000 0.000000 0.000000
+    Ks 0.898039 0.898039 0.898039
+    map_Kd manSuit5_Tank_top_Diffuse.jpg
+    map_Bump manSuit5_Tank_top_Normal.jpg
+    map_Ks manSuit5_Tank_top_Specular.jpg
+newmtl Jeans
+    Ns 10.000000
+    d 1.000000
+    Ka 0.000000 0.000000 0.000000
+    Kd 1.000000 1.000000 1.000000
+    Ks 0.898039 0.898039 0.898039
+    map_Kd manSuit5_Jeans_Diffuse.jpg
+    map_Bump manSuit5_Jeans_Normal.jpg
+    map_Ks manSuit5_Jeans_Specular.jpg

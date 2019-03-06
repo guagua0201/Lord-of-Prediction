@@ -1,0 +1,9 @@
+newmtl Dress
+    Ns 10.000000
+    d 1.000000
+    Ka 0.000000 0.000000 0.000000
+    Kd 0.000000 0.000000 0.000000
+    Ks 1.000000 1.000000 1.000000
+    map_Kd womanSuit11_Dress_Diffuse.jpg
+    map_Bump womanSuit11_Dress_Normal.jpg
+    map_Ks womanSuit11_Dress_Specular.jpg

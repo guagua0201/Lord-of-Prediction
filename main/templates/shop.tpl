@@ -32,7 +32,7 @@
 				<div class='tab_content' id="{$category['e_name']}" style='display: {if $smarty.foreach.loop.index == 1}block{else}none{/if}'>
 					<div class='row'>
 						{foreach from=$products item=product}
-						{if $product['category_id'] == $category['id']}
+						{if $product['category_id'] == $category['id'] && ($product['gender'] == $usergender or $product['gender']==2 or $usergender == 2)}
 							<div class='col-xl-4 col-lg-6'>
 								<div class='card mb-3'>
 									<img class='card-img-top w-100' src="{$product['image_url']}" />

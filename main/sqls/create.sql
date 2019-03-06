@@ -84,8 +84,9 @@ CREATE TABLE IF NOT EXISTS `Message` (
 
 
 CREATE TABLE IF NOT EXISTS `Product` (
-  `id` INT NOT NULL AUTO_INCREMENT,
+  `id` INT NOT NULL,
   `name` VARCHAR(20) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `gender` TINYINT NOT NULL,
   `category_id` INT NOT NULL,
   `price` INT NOT NULL,
   `image_url` VARCHAR(120) NOT NULL DEFAULT 'images/product/test.png',
@@ -93,7 +94,18 @@ CREATE TABLE IF NOT EXISTS `Product` (
   UNIQUE (`name`)
 ) ENGINE = InnoDB;
 
--- INSERT INTO `Product` (`id`, `name`, `category_id`, `price`, `image_url`) VALUES (NULL, '眼鏡', '4', '100', 'images/product/glass.png'), (NULL,'男鞋1','3','100','images/product/manShoe1.png'), (NULL,'男鞋2','3','200','images/product/manShoe2.png'), (NULL,'男裝1','2','100','images/product/manSuit1.png'), (NULL,'男裝2','2','300','images/product/manSuit2.png');
+-- INSERT INTO `Product` (`id`,`name`,`gender`,`category_id`,`price,`image_url`) VALUES (1,'男頭髮1',0,1,100,);
+-- INSERT INTO `Product` (`id`,`name`,`gender`,`category_id`,`price,`image_url`) VALUES (2,'男鞋1',0,3,100,"images/product/product2.png");
+-- INSERT INTO `Product` (`id`,`name`,`gender`,`category_id`,`price,`image_url`) VALUES (3,'男鞋2',0,3,100,"images/product/product3.png");
+-- INSERT INTO `Product` (`id`,`name`,`gender`,`category_id`,`price,`image_url`) VALUES (4,'男套裝1',0,2,100,"images/product/product4.png");
+-- INSERT INTO `Product` (`id`,`name`,`gender`,`category_id`,`price,`image_url`) VALUES (5,'男套裝2',0,2,100,"images/product/product5.png");
+-- INSERT INTO `Product` (`id`,`name`,`gender`,`category_id`,`price,`image_url`) VALUES (6,'女頭髮1',1,1,100,);
+-- INSERT INTO `Product` (`id`,`name`,`gender`,`category_id`,`price,`image_url`) VALUES (7,'女鞋子1',1,3,100,"images/product/product7.png");
+-- INSERT INTO `Product` (`id`,`name`,`gender`,`category_id`,`price,`image_url`) VALUES (8,'女鞋子2',1,3,100,"images/product/product8.png");
+-- INSERT INTO `Product` (`id`,`name`,`gender`,`category_id`,`price,`image_url`) VALUES (9,'女鞋子3',1,3,100,);
+-- INSERT INTO `Product` (`id`,`name`,`gender`,`category_id`,`price,`image_url`) VALUES (10,'女套裝1',1,2,100,"images/product/product10.png");
+-- INSERT INTO `Product` (`id`,`name`,`gender`,`category_id`,`price,`image_url`) VALUES (11,'女套裝2',1,2,100,"images/product/product11.png");
+-- INSERT INTO `Product` (`id`,`name`,`gender`,`category_id`,`price,`image_url`) VALUES (12,'眼鏡',2,4,100,"images/product/product12.png");
 
 CREATE TABLE IF NOT EXISTS `ProductCategory` ( 
 	`id` INT NOT NULL AUTO_INCREMENT , 
