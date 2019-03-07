@@ -54,7 +54,7 @@
 								</tr>
 								<tr>
 									<td>
-										<a href='/' title='StoreValue'>儲值入口</a>
+										<a href='/buyCash.php?step=1' title='StoreValue'>儲值入口</a>
 									</td>
 								</tr>
 								<tr>
