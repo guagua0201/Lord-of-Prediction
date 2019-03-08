@@ -48,6 +48,7 @@ if ($log_status) {
 			}
 		}
 	}
+	mysqli_close($link);
 	$smarty->assign('predicts', $predicts);
 	$smarty->display('showPredict.tpl');
 } else {

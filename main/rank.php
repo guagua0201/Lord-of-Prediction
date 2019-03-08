@@ -58,6 +58,7 @@ if ($result = mysqli_query($link, $sql4)) {
 	}
 }
 
+mysqli_close($link);
 $smarty->assign('top_rank', $top_rank);
 $smarty->assign('last_rank', $last_rank);
 $smarty->display('rank.tpl');

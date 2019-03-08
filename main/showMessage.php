@@ -23,6 +23,7 @@ if ($log_status != 0) {
 	}
 	$smarty->assign('data', $data);
 	$smarty->display('showMessage.tpl');
+	mysqli_close($link);
 } else {
 	$smarty->assign('error', 'Permission Denied!');
 	$smarty->display('error.tpl');

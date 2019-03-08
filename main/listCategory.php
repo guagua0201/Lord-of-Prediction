@@ -26,6 +26,7 @@ if ($log_status == 2) {
 	$smarty->assign('categories', $categories);
 	$smarty->assign('classes', $classes);
 	$smarty->display('listCategory.tpl');
+	mysqli_close($link);
 } else {
 	$smarty->assign('error', 'Permission Denied!');
 	$smarty->display('error.tpl');

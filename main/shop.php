@@ -38,6 +38,8 @@ else{
 	$gender = 2;
 }
 
+mysqli_close($link);
+
 $smarty->assign('categories', $categories);
 $smarty->assign('products', $products);
 $smarty->assign('member',$member);

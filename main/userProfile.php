@@ -80,6 +80,7 @@ if (isset($_GET['user_id']) && !empty($_GET['user_id'])) {
 		}
 		$smarty->assign('predicts', $predicts);
 	}
+	mysqli_close($link);
 	$smarty->display('userProfile.tpl');
 } else {
 	header('Location: /index.php');

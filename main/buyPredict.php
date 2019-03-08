@@ -30,6 +30,7 @@ if (isset($_POST['user_id']) && isset($_POST['predict_id'])) {
 		} else {
 			echo 'false';
 		}
+		mysqli_close($link);
 	}
 } else {
 	$smarty->assign('error', 'Permission Denied!');
