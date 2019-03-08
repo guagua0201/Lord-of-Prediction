@@ -11,7 +11,7 @@
 					<a href='listArticle.php' class='nav-link'>文章管理</a>
 				</li>
 				<li class='nav-item'>
-					<a href='listCatagory.php' class='nav-link'>分類管理</a>
+					<a href='listCategory.php' class='nav-link'>分類管理</a>
 				</li>
 			</ul>
 		</nav>
