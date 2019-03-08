@@ -32,7 +32,9 @@
 		<div class="input-group">
 			<form method="GET" class='w-100'>
 				<div class="input-group-append">
-					<input name='category_id' value="{$category_id}" hidden />
+					{if isset($smarty.get.category_id)}
+						<input name='category_id' value="{$smarty.get.category_id}" hidden />
+					{/if}
 					<input class="form-control border-secondary py-2" type="search" placeholder="請輸入關鍵字" name="search" />
 					<button class="btn btn-outline-secondary" type="submit"><i class="fa fa-search"></i></button>
 				</div>

@@ -1,4 +1,4 @@
-<div class='jumborton'>
+<div class='jomborton'>
 	<div class='jumborton p-3' style='background-color: #080808'>
 		<div class='row'>
 			<div class='col-md-2'>

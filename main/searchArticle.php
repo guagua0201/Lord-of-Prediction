@@ -14,7 +14,6 @@ $condition = 0;
 if (isset($_GET['category_id']) && !empty($_GET['category_id'])) {
 	$sql = $sql . "category_id = " . $_GET['category_id'];
 	$condition++;
-	$smarty->assign('category_id', $_GET['category_id']);
 }
 if (isset($_GET['search']) && !empty($_GET['search'])) {
 	$search = mysqli_real_escape_string($link, trim($_GET['search']));

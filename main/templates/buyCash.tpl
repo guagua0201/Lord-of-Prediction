@@ -1,4 +1,31 @@
 {extends file='route.tpl'}
+{block name='plugin'}
+	{literal}
+	<script>
+		function next_step() {
+			var payment_method = $("input[name='payment-method']:checked");
+			if (payment_method.length == 0) {
+				alert('請選擇付款方式！');
+				return false;
+			}
+
+			var user_name = $("input[name='user-name']").val();
+			if (user_name.length == 0) {
+				alert('請填寫姓名！');
+				return false;
+			}
+
+			var phone_number = $("input[name='phone-number']").val();
+			if (phone_number.length == 0) {
+				alert('請填寫手機號碼！');
+				return false;
+			}
+
+			$('#buy-cash').submit();
+		};
+	</script>
+	{/literal}
+{/block}
 {block name='body'}
 	<div class='container' style='min-height: 68vh'>
 		<div class='row'>
@@ -147,31 +174,6 @@
 				</div>
 			</div>
 			<div class='row'>
-				{literal}
-				<script>
-					function next_step() {
-						var payment_method = $("input[name='payment-method']:checked");
-						if (payment_method.length == 0) {
-							alert('請選擇付款方式！');
-							return false;
-						}
-
-						var user_name = $("input[name='user-name']").val();
-						if (user_name.length == 0) {
-							alert('請填寫姓名！');
-							return false;
-						}
-
-						var phone_number = $("input[name='phone-number']").val();
-						if (phone_number.length == 0) {
-							alert('請填寫手機號碼！');
-							return false;
-						}
-
-						$('#buy-cash').submit();
-					};
-				</script>
-				{/literal}
 				<div class='table-responsive'>
 					<table class='table'>
 						<thead class='bg-dark text-light font-weight-bold'>
@@ -199,68 +201,3 @@
 		{/if}
 	</div>
 {/block}
-
-
-function(e) {
-
-  // == 送出表單前檢查 START ==
-  $checkedRadio = $('form#buypcash-form').find("input[type=radio]:checked");
-  var $checkedRadioId = $checkedRadio.prop('id');
-
-  //沒有選擇任何繳款方式
-  if ($checkedRadio.length == 0) {
-    $('#buypcash-payment-block-error').css('display', 'block');
-    // $('#buypcash-payment-block-error').css('display', 'block');
-    return false;
-  }
-
-
-  var $mycardPaywayChecked = $("input[name='mycard_payway']:checked");
-
-
-  //檢查小額付款的選擇，如果選擇手機或者ADSL家庭帳單，要再選擇子項目
-  if ($checkedRadioId == 'payway604' || $checkedRadioId == 'payway601') {
-    if ($mycardPaywayChecked.length == 0) {
-      alert('請選擇小額付款方式');
-      return false;
-    }
-  }
-
-  //檢查一般付款中的信用卡，必須再選擇 藍新 或者 paypal(改紅陽)
-  if ($checkedRadioId == 'payway101') {
-    if (!$('#payway1').prop('checked') && !$('#payway10').prop('checked')) {
-      alert('信用卡請選擇付款方式');
-      return false;
-    }
-  }
-
-  //檢查姓名欄位與手機欄位
-  $inputUserName = $('#input-user-name');
-  $inputUserPhone = $('#input-user-phone');
-  if (
-    $inputUserName.val().length == 0 || $inputUserPhone.val().length == 0 || $inputUserName.val() == '請填寫姓名' || $inputUserPhone.val() == '請填寫手機號碼'
-  ) {
-    if ($inputUserName.val().length == 0 || $inputUserName.val() == '請填寫姓名') {
-      if (!$inputUserName.hasClass('inputvalue-error')) $inputUserName.addClass('inputvalue-error');
-      $inputUserName.val('請填寫姓名');
-    } else if ($inputUserName.hasClass('inputvalue-error')) {
-      $inputUserName.removeClass('inputvalue-error');
-    }
-
-    if ($inputUserPhone.val().length == 0 || $inputUserPhone.val() == '請填寫手機號碼') {
-      if (!$inputUserPhone.hasClass('inputvalue-error')) $inputUserPhone.addClass('inputvalue-error');
-      $inputUserPhone.val('請填寫手機號碼');
-    } else if ($inputUserPhone.hasClass('inputvalue-error')) {
-      $inputUserPhone.removeClass('inputvalue-error');
-    }
-
-    return false;
-  }
-  // == 送出表單前檢查 END ==
-
-  e.preventDefault();
-  if (submitable) {
-    submitable = false;
-    $('#buypcash-form').submit();
-  }
-}

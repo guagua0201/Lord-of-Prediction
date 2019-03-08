@@ -14,17 +14,18 @@ if ($log_status === 2) {
 		$row = mysqli_fetch_assoc($result);
 		$smarty->assign('row', $row);
 		$smarty->display('editUser.tpl');
-		if (isset($_POST['submit'])) {
-			$user_id = $_POST['id'];
+		if (isset($_POST['edit_user_submit'])) {
+			$user_id = $_GET['id'];
 			$username = mysqli_real_escape_string($link, trim($_POST['username']));
 			$password = mysqli_real_escape_string($link, trim($_POST['password']));
 			$nickname = mysqli_real_escape_string($link, trim($_POST['nickname']));
 			$email = mysqli_real_escape_string($link, trim($_POST['email']));
+			$money = mysqli_real_escape_string($link, trim($_POST['money']));
 			$gender = $_POST['gender'];
 
-			if (!empty($username) && !empty($password) && !empty($nickname) && !empty($email)) {
-				$sql2 = "UPDATE User SET username = '$username', password = '$password', nickname = '$nickname', email = '$email', gender = b'$gender' WHERE id = '$user_id'";
-			//	echo $sql2;
+			if (!empty($username) && !empty($password) && !empty($nickname) && !empty($email) && !empty($money)) {
+				$sql2 = "UPDATE User SET username = '$username', password = '$password', nickname = '$nickname', email = '$email', gender = b'$gender', `money` = '$money' WHERE id = '$user_id'";
+				// echo $sql2;
 				mysqli_query($link, $sql2);
 				mysqli_close($link);
 				header('Location: /listUser.php');
