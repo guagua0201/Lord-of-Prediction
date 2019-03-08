@@ -1,4 +1,27 @@
 {extends file='route.tpl'}
+{block name='plugin'}
+	{literal}
+	<script>
+		$(document).ready(function(){
+			$('.card-link').click(function(element) {
+				var postData = 'id=' + element.target.id;
+				$.ajax({
+					type: 'POST',
+					url: 'readMessage.php',
+					data: postData,
+					success: function() {
+						element.target.parentElement.className = 'card-header bg-secondary';
+					}
+				});
+				return true;
+			});
+			$(".card-header").bind('click', function() {
+				$("#btn" + $(this).attr('id')).click();
+			});
+		});
+	</script>
+	{/literal}
+{/block}
 {block name='body'}
 	<div class='container' style='min-height: 68vh'>
 		<h2>訊息中心</h2>
@@ -6,31 +29,17 @@
 			{if count($data) == 0}
 				<h3>暫無訊息</h3>
 			{else}
-				{literal}
-				<script>
-					$(document).ready(function(){
-						$('.card-link').click(function(element) {
-						//	console.log(element);
-							var postData = 'id=' + element.target.id;
-							$.ajax({
-								type: 'POST',
-								url: 'readMessage.php',
-								data: postData,
-								success: function() {
-									element.target.parentElement.className = 'card-header bg-secondary';
-								}
-							});
-							return true;
-						});
-					});
-				</script>
-				{/literal}
 				{foreach from=$data item=row name=loop}
+					<div style='display: none'>
+						<a class='collapsed card-link text-light' data-toggle='collapse' href='#collapse{$smarty.foreach.loop.index}'>
+							<button id='btn{$smarty.foreach.loop.index}'></button>
+						</a>
+					</div>
 					<div class='card' style='font-size: 1.2em'>
 						{if $row['readFlag'] == 0}
-						<div class='card-header bg-dark'>
+						<div id='{$smarty.foreach.loop.index}' class='card-header bg-dark'>
 						{else}
-						<div class='card-header bg-secondary'>
+						<div id='{$smarty.foreach.loop.index}' class='card-header bg-secondary'>
 						{/if}
 							<a id="{$row['id']}" class='collapsed card-link text-light' data-toggle='collapse' href='#collapse{$smarty.foreach.loop.index}'>
 								{$row['subject']}
