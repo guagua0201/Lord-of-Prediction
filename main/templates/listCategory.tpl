@@ -13,7 +13,7 @@
 {block name='body'}
 	<div class='container'>
 		{foreach from=$classes item=class name=loop}
-			<div class='card mb-3'>
+			<div class='card mb-5'>
 				<div style='display: none'>
 					<a class='card-link text-light font-weight-bold align-middle' data-toggle='collapse' href='#collapse{$smarty.foreach.loop.index}'>
 						<button id='btn{$smarty.foreach.loop.index}'></button>
@@ -38,7 +38,7 @@
 				</div>
 				<div id='collapse{$smarty.foreach.loop.index}' class='collapse' data-parent='#accordation'>
 					<div class='table-responsive'>
-						<table class='table table-bordered'>
+						<table class='table'>
 							<thead class='lead bg-info text-light'>
 								<tr>
 									<td class='col-md-3'>分類名稱</td>

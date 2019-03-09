@@ -16,9 +16,9 @@ if ($log_status == 2) {
 			$categories[] = $row;
 	}
 
-	$sql2 = "SELECT id, name FROM Class WHERE 1";
+	$sql2 = "SELECT id, name FROM Class WHERE 1 ORDER BY id";
 	$classes = array();
-	if ($result = mysqli_query($link, $sql)) {
+	if ($result = mysqli_query($link, $sql2)) {
 		while ($row = mysqli_fetch_assoc($result))
 			$classes[] = $row;
 	}

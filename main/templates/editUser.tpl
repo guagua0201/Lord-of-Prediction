@@ -109,7 +109,7 @@
 			</div>
 		</form>
 		<div class='row justify-content-end'>
-			<button class='m-3 btn btn-lg btn-secondary' onclick="window.location.href = 'listUser.php';">上一頁</button>
+			<button class='m-3 btn btn-lg btn-secondary' onclick="history.go(-1)">上一頁</button>
 			<button class='m-3 btn btn-lg btn-primary' onclick="next_step()">確認修改</button>
 		</div>
 	</div>
