@@ -3,20 +3,32 @@
 	{literal}
 	<script>
 		$(document).ready(function(){
-			$('.card-link').click(function(element) {
-				var postData = 'id=' + element.target.id;
+			// $('.card-link').click(function(element) {
+			// 	var postData = 'id=' + element.target.id;
+			// 	$.ajax({
+			// 		type: 'POST',
+			// 		url: 'readMessage.php',
+			// 		data: postData,
+			// 		success: function() {
+			// 			element.target.parentElement.className = 'card-header bg-secondary';
+			// 		}
+			// 	});
+			// 	return true;
+			// });
+			$(".card-header").bind('click', function() {
+				var id = $(this).attr('id');
+				$("#btn" + id).click();
+
+
+				var post_data = 'id=' + id;
+				var success = false;
 				$.ajax({
 					type: 'POST',
 					url: 'readMessage.php',
-					data: postData,
-					success: function() {
-						element.target.parentElement.className = 'card-header bg-secondary';
-					}
+					data: post_data
 				});
-				return true;
-			});
-			$(".card-header").bind('click', function() {
-				$("#btn" + $(this).attr('id')).click();
+				$(this).attr('class', 'card-header bg-secondary');
+				return success;
 			});
 		});
 	</script>
@@ -32,19 +44,19 @@
 				{foreach from=$data item=row name=loop}
 					<div style='display: none'>
 						<a class='collapsed card-link text-light' data-toggle='collapse' href='#collapse{$smarty.foreach.loop.index}'>
-							<button id='btn{$smarty.foreach.loop.index}'></button>
+							<button id="btn{$row['id']}"></button>
 						</a>
 					</div>
 					<div class='card' style='font-size: 1.2em'>
 						{if $row['readFlag'] == 0}
-						<div id='{$smarty.foreach.loop.index}' class='card-header bg-dark'>
+						<div id="{$row['id']}" class='card-header bg-dark'>
 						{else}
-						<div id='{$smarty.foreach.loop.index}' class='card-header bg-secondary'>
+						<div id="{$row['id']}" class='card-header bg-secondary'>
 						{/if}
 							<div class='float-right'>
-								<button class='btn btn-outline-light'>
+								<a class='btn btn-outline-light' href="deleteMessage.php?message_id={$row['id']}">
 									<i class='fa fa-trash' aria-hidden='true'></i>
-								</button>
+								</a>
 							</div>
 							<a id="{$row['id']}" class='collapsed card-link text-light align-middle' data-toggle='collapse' href='#collapse{$smarty.foreach.loop.index}'>
 								{$row['subject']}
