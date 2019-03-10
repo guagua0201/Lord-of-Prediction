@@ -3,22 +3,9 @@
 	{literal}
 	<script>
 		$(document).ready(function(){
-			// $('.card-link').click(function(element) {
-			// 	var postData = 'id=' + element.target.id;
-			// 	$.ajax({
-			// 		type: 'POST',
-			// 		url: 'readMessage.php',
-			// 		data: postData,
-			// 		success: function() {
-			// 			element.target.parentElement.className = 'card-header bg-secondary';
-			// 		}
-			// 	});
-			// 	return true;
-			// });
 			$(".card-header").bind('click', function() {
 				var id = $(this).attr('id');
 				$("#btn" + id).click();
-
 
 				var post_data = 'id=' + id;
 				var success = false;

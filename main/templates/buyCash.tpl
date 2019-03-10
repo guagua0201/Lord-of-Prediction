@@ -101,8 +101,8 @@
 							</tr>
 						</thead>
 						<tbody>
-							<form method='POST' action='ecpayCreateOrder.php' id='buy-cash'>
-								<input name='buy-submit' value='buy-submit' hidden>
+							<form method='POST' action='buyCash.php' id='buy-cash'>
+								<input name='buy_submit' value='buy_submit' hidden>
 								<input name='price' value='{$smarty.get.price}' hidden>
 								<tr>
 									<td>

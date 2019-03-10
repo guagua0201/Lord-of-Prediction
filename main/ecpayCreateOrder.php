@@ -2,7 +2,7 @@
 /**
 *    Credit信用卡付款產生訂單範例
 */
-  
+
 //載入SDK(路徑可依系統規劃自行調整)
 include('ECPay/sdk/ECPay.Payment.Integration.php');
 try {
