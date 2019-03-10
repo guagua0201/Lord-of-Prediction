@@ -41,7 +41,12 @@
 						{else}
 						<div id='{$smarty.foreach.loop.index}' class='card-header bg-secondary'>
 						{/if}
-							<a id="{$row['id']}" class='collapsed card-link text-light' data-toggle='collapse' href='#collapse{$smarty.foreach.loop.index}'>
+							<div class='float-right'>
+								<button class='btn btn-outline-light'>
+									<i class='fa fa-trash' aria-hidden='true'></i>
+								</button>
+							</div>
+							<a id="{$row['id']}" class='collapsed card-link text-light align-middle' data-toggle='collapse' href='#collapse{$smarty.foreach.loop.index}'>
 								{$row['subject']}
 							</a>
 						</div>

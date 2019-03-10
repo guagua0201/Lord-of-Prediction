@@ -21,6 +21,11 @@
 				</div>
 				<div class='card-header bg-info lead' id='{$smarty.foreach.loop.index}'>
 					<div class='float-right'>
+						<a href="addCategory.php?class_id={$class['id']}">
+							<button class='btn btn-outline-light'>
+								<i class='fa fa-plus' aria-hidden='true'></i>
+							</button>
+						</a>
 						<a href="editClass.php?class_id={$class['id']}">
 							<button class='btn btn-outline-light'>
 								<i class='fa fa-pencil' aria-hidden='true'></i>
