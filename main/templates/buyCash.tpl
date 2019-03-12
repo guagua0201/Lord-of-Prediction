@@ -61,6 +61,21 @@
 						<tbody class='lead'>
 							<tr class='text-center'>
 								<td class='col-md-3 align-middle'>
+									NTD <strong>15</strong>元
+								</td>
+								<td class='col-md-6 align-middle'>
+									15?幣
+								</td>
+								<td class='col-md-3'>
+									<a class='text-light' href='buyCash.php?step=2&price=15'>
+										<button class='btn btn-dark btn-lg'>
+											買?幣
+										</button>
+									</a>
+								</td>
+							</tr>
+							<tr class='text-center'>
+								<td class='col-md-3 align-middle'>
 									NTD <strong>100</strong>元
 								</td>
 								<td class='col-md-6 align-middle'>
