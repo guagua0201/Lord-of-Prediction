@@ -83,6 +83,6 @@ newmtl Eyelash
     Ka 0.000000 0.000000 0.000000
     Kd 1.000000 1.000000 1.000000
     Ks 0.898039 0.898039 0.898039
-    map_Kd manBody_Eyelash_Diffuse.jpg
-    map_D manBody_Eyelash_Diffuse.jpg
+    map_Kd manBody_Eyelash_Diffuse.png
+    map_D manBody_Eyelash_Diffuse.png
     map_Ks manBody_Eyelash_Specular.jpg
