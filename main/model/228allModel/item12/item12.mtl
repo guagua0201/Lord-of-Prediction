@@ -1,0 +1,18 @@
+newmtl Sun_Glasses
+    Ns 32.000000
+    d 1.000000
+    Ka 0.000000 0.000000 0.000000
+    Kd 0.588235 0.588235 0.588235
+    Ks 0.900000 0.900000 0.900000
+    map_Kd C:\Users\asos8\Desktop\228allModel\item12\item12.fbm\Sun_Glasses_Diffuse_Sun_Glasses_D.tif
+    map_Bump C:\Users\asos8\Desktop\228allModel\item12\item12.fbm\Sun_Glasses_Normal_Sun_Glasses_N.tif
+    map_Ks C:\Users\asos8\Desktop\228allModel\item12\item12.fbm\Sun_Glasses_Specular.jpg
+newmtl Sun_Glasses_len
+    Ns 43.000000
+    d 0.500000
+    Ka 0.000000 0.000000 0.000000
+    Kd 0.588235 0.588235 0.588235
+    Ks 0.898039 0.898039 0.898039
+    map_Kd C:\Users\asos8\Desktop\228allModel\item12\item12.fbm\Sun_Glasses_len_Diffuse_Sun_Glasses_len_D.tif
+    map_Bump C:\Users\asos8\Desktop\228allModel\item12\item12.fbm\Sun_Glasses_len_Normal_Sun_Glasses_len_N.tif
+    map_Ks C:\Users\asos8\Desktop\228allModel\item12\item12.fbm\Sun_Glasses_len_Specular.jpg
