@@ -19,7 +19,8 @@ try {
 
     //基本參數(請依系統規劃自行調整)
     $MerchantTradeNo = "Test".time() ;
-    $obj->Send['ReturnURL']         = "/receive_ecpay.php" ;    //付款完成通知回傳的網址
+    $obj->Send['ReturnURL']         = "localhost/receive_ecpay.php" ;    //付款完成通知回傳的網址
+    $obj->Send['OrderResultURL'] = 'localhost/receive_ecpay.php';
     $obj->Send['MerchantTradeNo']   = $MerchantTradeNo;                          //訂單編號
     $obj->Send['MerchantTradeDate'] = date('Y/m/d H:i:s');                       //交易時間
     $obj->Send['TotalAmount']       = (int)($_POST['price']);                                      //交易金額

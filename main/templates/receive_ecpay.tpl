@@ -1,10 +1,4 @@
 {extends file='route.tpl'}
-{block name='plugin'}
-	{literal}
-	<scirpt>
-	</scirpt>
-	{/literal}
-{/block}
 {block name='body'}
 	<div class='container'>
 		<p>{$smarty.post.RtnCode}</p>

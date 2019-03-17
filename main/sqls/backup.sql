@@ -92,7 +92,7 @@ CREATE TABLE `Category` (
 
 LOCK TABLES `Category` WRITE;
 /*!40000 ALTER TABLE `Category` DISABLE KEYS */;
-INSERT INTO `Category` VALUES (1,'公告',NULL,1),(2,'生活閒聊',NULL,1),(3,'黑特',NULL,1),(4,'投票',NULL,1),(5,'炫燿',NULL,1),(6,'精華',NULL,1),(7,'MLB',NULL,2),(8,'日本職棒',NULL,2),(9,'中華職棒',NULL,2),(10,'韓國職棒',NULL,2),(11,'墨西哥棒球',NULL,2),(12,'澳洲職棒',NULL,2),(13,'NBA',NULL,3),(14,'WNBA',NULL,3),(15,'韓國職籃',NULL,3),(16,'日本職籃',NULL,3),(17,'歐洲職籃',NULL,3),(18,'中國職籃',NULL,3),(19,'西甲職籃',NULL,3),(20,'SBL',NULL,3),(21,'菲律賓籃球',NULL,3),(22,'百家樂',NULL,4),(23,'彩票',NULL,5),(24,'北京賽車',NULL,6),(25,'足球',NULL,7),(26,'NHL冰球',NULL,7),(27,'俄羅斯冰球',NULL,7),(28,'賽馬',NULL,7),(29,'美式足球',NULL,7),(30,'網球',NULL,7),(31,'電競',NULL,7);
+INSERT INTO `Category` VALUES (1,'公告','Announcement',1),(2,'生活閒聊',NULL,1),(3,'黑特',NULL,1),(4,'投票',NULL,1),(5,'炫燿',NULL,1),(6,'精華',NULL,1),(7,'MLB',NULL,2),(8,'日本職棒',NULL,2),(9,'中華職棒',NULL,2),(10,'韓國職棒',NULL,2),(11,'墨西哥棒球',NULL,2),(12,'澳洲職棒',NULL,2),(13,'NBA',NULL,3),(14,'WNBA',NULL,3),(15,'韓國職籃',NULL,3),(16,'日本職籃',NULL,3),(17,'歐洲職籃',NULL,3),(18,'中國職籃',NULL,3),(19,'西甲職籃',NULL,3),(20,'SBL',NULL,3),(21,'菲律賓籃球',NULL,3),(22,'百家樂',NULL,4),(23,'彩票',NULL,5),(24,'北京賽車',NULL,6),(25,'足球',NULL,7),(26,'NHL冰球',NULL,7),(27,'俄羅斯冰球',NULL,7),(28,'賽馬',NULL,7),(29,'美式足球',NULL,7),(30,'網球',NULL,7),(31,'電競',NULL,7);
 /*!40000 ALTER TABLE `Category` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -194,7 +194,7 @@ CREATE TABLE `Message` (
   `message` text CHARACTER SET utf8 NOT NULL,
   `readFlag` tinyint(4) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -203,7 +203,7 @@ CREATE TABLE `Message` (
 
 LOCK TABLES `Message` WRITE;
 /*!40000 ALTER TABLE `Message` DISABLE KEYS */;
-INSERT INTO `Message` VALUES (1,1,2,'2019-02-01 16:40:30','測試喔喔喔','<p><span style=\"color:#1abc9c\">你好啊這是測試信</span></p>\r\n',0),(2,1,1,'2019-02-01 16:57:12','測試~','<p>132456789</p>\r\n',1),(6,1,1,'2019-02-02 00:04:39','我再試試','<p><span style=\"font-size:72px\"><span style=\"font-family:Comic Sans MS,cursive\"><tt>2019/02/02</tt></span></span></p>\r\n\r\n<p><span style=\"font-size:72px\"><span style=\"font-family:Comic Sans MS,cursive\"><tt>00:04</tt></span></span></p>\r\n',0),(7,2,1,'2019-02-02 03:30:48','寄信給系統','<p><strong><span style=\"color:#d35400\"><span style=\"font-size:16px\">安安你好啊</span></span></strong></p>\r\n',1);
+INSERT INTO `Message` VALUES (1,1,2,'2019-02-01 16:40:30','測試喔喔喔','<p><span style=\"color:#1abc9c\">你好啊這是測試信</span></p>\r\n',0),(2,1,1,'2019-02-01 16:57:12','測試~','<p>132456789</p>\r\n',1),(6,1,1,'2019-02-02 00:04:39','我再試試','<p><span style=\"font-size:72px\"><span style=\"font-family:Comic Sans MS,cursive\"><tt>2019/02/02</tt></span></span></p>\r\n\r\n<p><span style=\"font-size:72px\"><span style=\"font-family:Comic Sans MS,cursive\"><tt>00:04</tt></span></span></p>\r\n',0),(7,2,1,'2019-02-02 03:30:48','寄信給系統','<p><strong><span style=\"color:#d35400\"><span style=\"font-size:16px\">安安你好啊</span></span></strong></p>\r\n',1),(8,1,1,'2019-03-09 00:20:59','HI','<p><span style=\"color:#e74c3c\"><span style=\"font-size:20px\"><span style=\"font-family:Comic Sans MS,cursive\">2019/3/9 00:20</span></span></span></p>\r\n',1),(9,1,1,'2019-03-10 15:41:04','HIHIHI','<p>djsakfjlkdsaf</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>dsfksaldjfklasdkfasdfjas</p>\r\n\r\n<p>asdjfklaskdf</p>\r\n\r\n<p>jakdfjasdf</p>\r\n\r\n<p>askjdfkajsf</p>\r\n\r\n<p><img alt=\"\" src=\"https://kids.nationalgeographic.com/content/dam/kids/photos/articles/Science/H-P/heart.adapt.945.1.jpg\" style=\"height:531px; width:945px\" /></p>\r\n',1);
 /*!40000 ALTER TABLE `Message` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -347,7 +347,7 @@ CREATE TABLE `User` (
 
 LOCK TABLES `User` WRITE;
 /*!40000 ALTER TABLE `User` DISABLE KEYS */;
-INSERT INTO `User` VALUES (1,'justin','justin0820','justin0u0','dancinglinkxalgorithm@gmail.com',_binary '\0','0',802),(2,'a','a','a','a@gmail.com',_binary '','0',1000),(3,'peter10','peter1010','peter','peter000@gmail.com',_binary '\0','0',1000),(4,'llstylish','prrrrrrrr','stylish','stylish@gmail.com',_binary '\0','0',1000),(5,'b','b','b','b@gmail.com',_binary '','0',1000),(6,'x','xxxxx','xxxxx','x@gmail.com',_binary '','0',1000),(7,'c','c','c','c@gmail.com',_binary '\0','0',1000),(8,'d','d','d','d@gmail.com',_binary '','0',1000),(9,'zz','zz','zz','zz@gmail.com',_binary '\0','0',1000),(10,'z','z','z','z@gmail.com',_binary '\0','0',1000),(11,'lalalal','lalal','llllaaaallllaaaa','la@gmail.com',_binary '','0',1000),(12,'jasdkf','ajsdkfjas','jaskldfj','ajklaf@gmail.com',_binary '\0','0',1000);
+INSERT INTO `User` VALUES (1,'justin','justin0820','justin0u0','dancinglinkxalgorithm@gmail.com',_binary '\0','0',802),(2,'a','a','a','a@gmail.com',_binary '','0',1000),(3,'peter10','peter1010','peter','peter000@gmail.com',_binary '\0','0',1000),(4,'llstylish','prrrrrrrr','stylish','stylish@gmail.com',_binary '\0','0',1000),(5,'b','b','b','b@gmail.com',_binary '','0',1000),(6,'x','xxxxx','xxxxx','x@gmail.com',_binary '','0',1000),(7,'c','c','c','c@gmail.com',_binary '\0','0',1000),(8,'d','d','d','d@gmail.com',_binary '','0',1000),(9,'zz','zz','zz','zz@gmail.com',_binary '\0','0',1000),(10,'z','z','z','z@gmail.com',_binary '\0','0',1000),(11,'lalalal','lalal','ajkldafasdfsadf','la@gmail.com',_binary '','0',1000),(12,'jasdkf','ajsdkfjas','jaskldfj','ajklaf@gmail.com',_binary '\0','0',1000);
 /*!40000 ALTER TABLE `User` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -360,4 +360,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-03-04  1:01:22
+-- Dump completed on 2019-03-17 13:25:19
