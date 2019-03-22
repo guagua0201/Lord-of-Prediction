@@ -47,10 +47,10 @@ print(gid)
 
 #&pagx=15&page=2
 
-ballList = ['bq', 'lq', 'dj', 'bj'] 
-fileList = ['27', '13', '31', '7']
+ballList = ['bq', 'lq', 'dj', 'bj', 'bb'] 
+fileList = ['27', '13', '31', '7', '9']
 
-for cate in range(4):
+for cate in range(5):
     print("now = " + fileList[cate])
     outFile = open("../documents/predictGame/" + fileList[cate] + ".csv","w",encoding='utf-8', newline='')
     outFile.close()
@@ -60,21 +60,31 @@ for cate in range(4):
     nowPage = 1
 
     th_list = []
+    title_list = []
+    ok = True
+    first_title = ''
 
     while(True):
         lq = s.get(nowUrl)
         soup = BeautifulSoup(lq.text, 'html.parser')
-        
 
         tables = soup.find_all('table')
         for table in tables:
             if str(table.get('id')).find('datatable') != -1:
                 dataTable = table
+                break
+
+        td11 = dataTable.find('td', class_='td1-1').span
+        if td11 != None:
+            # print (td11.text.find('目前尚無資料'))
+            if td11.text.find('目前尚無資料') != -1:
+                break
 
         ths = dataTable.find_all('th')
         data = []
         if nowPage == 1:
             for th in ths:
+                # print (str(th.text))
                 th_list.append(str(th.text))
                 if (th_list[-1] == '比賽時間'):
                     for i in range(2):
@@ -98,11 +108,25 @@ for cate in range(4):
                     for i in range(2):
                         data.append('單雙')
             writer.writerow(data)
+            # print (data)
 
         trs = dataTable.find_all('tr')
         for tr in trs:
             data = []
-            if str(tr.get('class')).find('td1') != -1 or str(tr.get('class')).find('td2') != -1:
+            title = tr.find('td', class_='t_titlebar')
+            if title != None:
+                # print (title.span.text)
+                tt = title.span.text[:title.span.text.find('-')]
+                # print (tt, title, first_title, title_list)
+                # print (title, title_list)
+                if tt not in title_list or title == first_title or first_title == '':
+                    ok = True
+                    first_title = title
+                    title_list.append(tt)
+                else:
+                    ok = False
+                # if title.span.text[:title.span.text.find('-')]
+            if ok and (str(tr.get('class')).find('td1') != -1 or str(tr.get('class')).find('td2') != -1):
                 tds = tr.find_all('td')
                 index = 0
                 for td in tds:
@@ -187,11 +211,8 @@ for cate in range(4):
                     elif th_list[index] == '單雙':
                         t2 = td.find('div', class_='t2')
                         if t2 != None:
-                            t2s = str(t2.text)
-                            posx = t2s.find('單')
-                            posy = t2s.find('雙')
-                            data.append(t2s[posx + 2: posx + 7])
-                            data.append(t2s[posy + 2: posy + 7])
+                            data.append(t2.find_all('span')[0].text.strip(' \n\r\xa0'))
+                            data.append(t2.find_all('span')[1].text.strip(' \n\r\xa0'))
                         else:
                             for i in range(2):
                                 data.append('')

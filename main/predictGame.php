@@ -40,17 +40,24 @@ $filename=  './documents/predictGame/' . $id . '.csv';
 
 if (file_exists($filename) && ($file = fopen($filename, 'r')) !== false) {
 	$names = fgetcsv($file);
-	while (!feof($file)) {
-		$data[] = fgetcsv($file);
-	}
-	array_pop($data);
-	foreach (array_unique($names) as $name) {
-		$indexes[$name] = array_search($name, $names);
+	if (!empty($names)) {
+		while (!feof($file)) {
+			$data[] = fgetcsv($file);
+		}
+		array_pop($data);
+		foreach (array_unique($names) as $name) {
+			$indexes[$name] = array_search($name, $names);
+		}
 	}
 	fclose($file);
 }
 
-$smarty->assign('names', array_unique($names));
+if (empty($names)) {
+	$smarty->assign('names', array());
+}
+else {
+	$smarty->assign('names', array_unique($names));
+}
 $smarty->assign('csv_head', $names);
 $smarty->assign('indexes', $indexes);
 
