@@ -61,10 +61,10 @@ foreach ($data as $game) {
 	$time = $game[$indexes['比賽時間'] + 1];
 	$home_team = $game[$indexes['主客隊'] + 1];
 	$away_team = $game[$indexes['主客隊']];
-	$sql3 = "SELECT id FROM Game WHERE `date` = '$date' AND `time` = '$time' AND `home_team` = '$home_team' AND `away_team` = '$away_team'";
+	$sql3 = "SELECT id FROM Game WHERE `date` = '$date' AND `time` = '$time' AND `home_team` = '$home_team' AND `away_team` = '$away_team' AND `category_id` = '$id'";
 	$result = mysqli_query($link, $sql3);
 	if (mysqli_num_rows($result) == 0) {
-		$sql4 = "INSERT INTO Game (`date`, `time`, `home_team`, `away_team`) VALUES ('$date', '$time', '$home_team', '$away_team')";
+		$sql4 = "INSERT INTO Game (`category_id`, `date`, `time`, `home_team`, `away_team`) VALUES ('$id', '$date', '$time', '$home_team', '$away_team')";
 		// echo $sql4;
 		mysqli_query($link, $sql4);
 		$result = mysqli_query($link, $sql3);

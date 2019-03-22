@@ -47,10 +47,10 @@ print(gid)
 
 #&pagx=15&page=2
 
-ballList = ['bq', 'lq', 'dj'] 
-fileList = ['27', '13', '31']
+ballList = ['bq', 'lq', 'dj', 'bj'] 
+fileList = ['27', '13', '31', '7']
 
-for cate in range(3):
+for cate in range(4):
     print("now = " + fileList[cate])
     outFile = open("../documents/predictGame/" + fileList[cate] + ".csv","w",encoding='utf-8', newline='')
     outFile.close()
@@ -110,10 +110,17 @@ for cate in range(3):
                         for x in str(td.text).split(' '):
                             data.append(x)
                     elif th_list[index] == '主客隊':
-                        team = str(td.text).strip(' \t\n\r').split('\n', 1)
-                        team[0] = team[0][:len(team[0]) - 8]
-                        data.append(team[0])
-                        data.append(team[1])
+                        if (td.find('span', class_='t-c4') == None):
+                            team = str(td.text).strip(' \t\n\r').split('\n', 1)
+                            team[0] = team[0][:len(team[0]) - 8]
+                            data.append(team[0])
+                            data.append(team[1])
+                        else:
+                            # print (repr(td.text), td.text.find('('))
+                            team0 = td.text[:td.text.find('(')].strip(' \n\r\xa0')
+                            team1 = td.find('span', class_='t-c2').text
+                            data.append(team0)
+                            data.append(team1)
                         # 2 column team1, team2
                     elif th_list[index] == '讓分':
                         t1 = td.find('div', class_='t1')
