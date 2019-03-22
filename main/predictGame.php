@@ -89,7 +89,7 @@ if (isset($_POST['submit'])) {
 					$sql5 = "SELECT id, predict FROM Predict WHERE user_id = '" . $_SESSION['user_id'] . "' AND game_id = '" . $game['id'] . "' AND (predict = '$i' OR predict = '" . strtoupper($i) . "') AND predict_flag = '0'";
 					$result = mysqli_query($link, $sql5);
 					if (mysqli_num_rows($result) == 0) {
-						$sql6 = "INSERT INTO Predict (user_id, game_id, category_id, predict, predict_flag) VALUES ('" . $_SESSION['user_id'] . "', '" . $game['id'] . "', '" . $id . "', '" . $_POST[$post_name] . "', '0')";
+						$sql6 = "INSERT INTO Predict (user_id, game_id, category_id, predict, predict_flag, price) VALUES ('" . $_SESSION['user_id'] . "', '" . $game['id'] . "', '" . $id . "', '" . $_POST[$post_name] . "', '0', '99')";
 						mysqli_query($link, $sql6);
 					} else {
 						$predict = mysqli_fetch_assoc($result);

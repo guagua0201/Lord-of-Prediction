@@ -1,12 +1,33 @@
-1. Email Confirmed
-	https://hk.saowen.com/a/90ccde1beecc7c454a8df89cc2b63f04295eb4dc9cae44e5d46071969d01d2b8
-2. Register check duplicate
-3. User Picture
-	https://www.inside.com.tw/article/102-%E4%B8%80%E5%88%86%E9%90%98%E5%AD%B8%E6%9C%83%E7%94%A8php%E8%88%87bit-ly-api%E5%81%9A%E7%B8%AE%E7%9F%AD%E7%B6%B2%E5%9D%80	
-4. User create time(?
-5. list with pages
-6. Admin check
-7. bootstrap alert
-8. bootstrap modal
-9. category add column BOOL(admin)
-10. http://www.w3school.com.cn/php/php_form_validation.asp (for safety)
+1. All submit safety check (php & javascript both)
+2. Register (Next Step)
+3. User Picture Upload
+4. User Create Time
+5. Baccarat Update Picture
+6. Predict Success of Fail
+7. History Data
+8. Predict Game Python Scraping Fixed ( Duplicate Game Id & Some Game Cannot Be Scrapped)
+9. Comment (Cite Comment and Report System)
+10. Buy Cash Real Test
+11. Shop
+12. Add Comment
+13. Article Sorted By Publish Date
+14. Category Add Column (Admin)
+15. Login Expired Time
+16. Message Send (User to User ?)
+17. Lottery Game (?
+18. About Us
+19. Comment Question (Q&A)
+20. Article -> Pages 1, 2, ...
+21. Rank -> All Category Separated
+22. Article Newest Comment Time
+23. Add Friend or Send Like
+24. User Settings Page
+25. Login Forget Password
+26. Login Email Confirmed
+27. Online Users
+28. Captcha
+
+Backstage
+1. Banned User
+2. Report System
+3. Data Analyse (Visted Time, ...)

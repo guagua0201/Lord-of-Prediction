@@ -70,7 +70,7 @@ if (isset($_GET['user_id']) && !empty($_GET['user_id'])) {
 		if ($result = mysqli_query($link, $sql5)) {
 			while ($row = mysqli_fetch_assoc($result)) {
 				$sql6 = "SELECT `date`, `home_team`, `away_team` FROM Game WHERE id = '" . $row['game_id'] . "'";
-				$game_info = mysqli_fetch_assoc(mysqli_query($link, $sql4));
+				$game_info = mysqli_fetch_assoc(mysqli_query($link, $sql6));
 				$row['game_date'] = $game_info['date'];
 				$row['game_home_team'] = $game_info['home_team'];
 				$row['game_away_team'] = $game_info['away_team'];
