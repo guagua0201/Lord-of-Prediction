@@ -125,6 +125,8 @@ CREATE TABLE IF NOT EXISTS `Game` (
 	`home_team` VARCHAR(20) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL , 
 	`away_team` VARCHAR(20) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL , 
 	`game_flag` INT NULL , 
+	`home_team_score` INT NULL , 
+	`away_team_score` INT NULL , 
 	PRIMARY KEY (`id`)
 ) ENGINE = InnoDB;
 

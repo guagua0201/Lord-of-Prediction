@@ -101,7 +101,7 @@
 			<a class="nav-link" href="/searchUser.php">用戶搜尋</a>
 		</li>
 		<li class="nav-item active">
-			<a class="nav-link" href="./">歷史數據</a>
+			<a class="nav-link" href="historyGame.php">歷史數據</a>
 		</li>
 	  </ul>
 	</nav>

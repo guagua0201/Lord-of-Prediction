@@ -195,7 +195,7 @@
 											<strong>
 												{if $history['predict_flag'] == 1}
 													準
-												{else}
+												{else if $history['predict_flag'] == 2}
 													冏
 												{/if}
 											</strong>

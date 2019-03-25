@@ -82,6 +82,8 @@ Db:
 (5). home_team
 (6). away_team
 (7). game_flag
+(8). home_team_score
+(9). away_team_score
 
 9. Predict
 (1). id
@@ -103,4 +105,4 @@ Db:
 11. BuyPredict
 (1). id
 (2). user_id
-(3). predict_id
+(3). predict_idS

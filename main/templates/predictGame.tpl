@@ -56,7 +56,7 @@
 							<div class='row'>
 								<td class='col-md-1 align-middle' rowspan='2'>賽事資訊</td>
 								<td class='col-md-2 align-middle' rowspan='2'>球隊資訊</td>
-								<td class='col-md-7 align-middle' colspan='{count($names)-2}'>運彩盤</td>
+								<td class='col-md-7 align-middle' colspan='{if count($data)}{count($names)-2}{else}3{/if}'>運彩盤</td>
 							</div>
 						</tr>
 						<tr>
