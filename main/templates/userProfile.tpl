@@ -153,7 +153,7 @@
 						</div>
 					{/if}
 				</div>
-				{if $smarty.get.show == 'predict'}
+				{if $smarty.get.show == 'predict' && isset($rating)}
 					<div class='row p-2 mb-3 border-bottom'>
 						<h3>預測：</h3>
 						<h2 class='text-success'>{$rating['success']}勝</h2>

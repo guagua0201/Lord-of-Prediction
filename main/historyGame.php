@@ -79,7 +79,7 @@ foreach ($data as $game) {
 			mysqli_query($link, $sql4);
 			/* Update Predict Flag*/
 			$sql5 = "SELECT id, user_id, predict, category_id FROM Predict WHERE game_id = '" . $game_info['id'] . "' AND predict_flag = '0'";
-			echo $sql5;
+			// echo $sql5;
 			if ($result2 = mysqli_query($link, $sql5)) {
 				while ($row = mysqli_fetch_assoc($result2)) {
 					$flag = 0;
@@ -94,12 +94,22 @@ foreach ($data as $game) {
 							$flag = 3;
 					}
 					$sql6 = "UPDATE Predict SET predict_flag = '$flag' WHERE id = '" . $row['id'] . "'";
-					echo $sql6;
+					// echo $sql6;
 					mysqli_query($link, $sql6);
 
 					/* Update Rating */
 					if ($flag == 1 || $flag == 2) {
-						
+						$sql7 = "SELECT id, success, failure, rating FROM Rating WHERE user_id = '" . $row['user_id'] . "' AND category_id = '" . $row['category_id'] . "'";
+						$rating_info = mysqli_fetch_assoc(mysqli_query($link, $sql7));
+						if ($flag == 1)
+							$rating_info['success'] += 1;
+						else if ($flag == 2)
+							$rating_info['failure'] += 1;
+						$rating_info['rating'] = $rating_info['success'] / ($rating_info['success'] + $rating_info['failure']) * 100;
+						// print_r($rating_info);
+						$sql8 = "UPDATE Rating SET success = '" . $rating_info['success'] . "', failure = '" . $rating_info['failure'] . "', rating = '" . $rating_info['rating'] . "' WHERE id = '" . $rating_info['id'] . "'";
+						// echo $sql8;
+						mysqli_query($link, $sql8);
 					}
 				}
 			}
@@ -109,5 +119,7 @@ foreach ($data as $game) {
 	// $gameid = mysqli_fetch_assoc($result);
 	// $game_id[] = $gameid['id'];
 }
+mysqli_close($link);
+header('Location: index.php');
 echo "<a href='index.php'>HOME</a>";
 ?>
