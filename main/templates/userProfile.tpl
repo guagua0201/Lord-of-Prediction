@@ -153,8 +153,15 @@
 						</div>
 					{/if}
 				</div>
-				<div class='row p-2 mb-3'>
-					{if $smarty.get.show == 'predict'}
+				{if $smarty.get.show == 'predict'}
+					<div class='row p-2 mb-3 border-bottom'>
+						<h3>預測：</h3>
+						<h2 class='text-success'>{$rating['success']}勝</h2>
+						<h2 class='text-danger'>{$rating['failure']}敗</h2>
+					</div>
+				{/if}
+				{if $smarty.get.show == 'predict'}
+					<div class='row p-2 mb-3'>
 						<div class='table-responsive'>
 							<table class='table table-hover table-striped table-bordered'>
 								<tr>
@@ -204,8 +211,8 @@
 								{/foreach}
 							</table>
 						</div>
-					{/if}
-				</div>
+					</div>
+				{/if}
 			</div>
 		</div>
 	</div>

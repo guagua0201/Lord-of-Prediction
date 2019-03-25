@@ -22,6 +22,13 @@
 			</div>
 		</div>
 		<div class='row mt-3'>
+			{foreach from=$categories item=category}
+				{if $category['id'] == $smarty.get.category_id}
+					<h2>排行榜 - {$category['name']}</h2>
+				{/if}
+			{/foreach}
+		</div>
+		<div class='row mt-3'>
 			<div class='table-responsive'>
 				<table class='table table-hover'>
 					<thead class='thead-dark text-center font-weight-bold'>

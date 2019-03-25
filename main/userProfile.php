@@ -79,6 +79,11 @@ if (isset($_GET['user_id']) && !empty($_GET['user_id'])) {
 			}
 		}
 		$smarty->assign('predicts', $predicts);
+
+		$sql7 = "SELECT failure, success, rating FROM Rating WHERE user_id = '" . $_GET['user_id'] . "' AND category_id = '$category_id'";
+		$result = mysqli_query($link, $sql7);
+		if (mysqli_num_rows($result))
+			$smarty->assign('rating', mysqli_fetch_assoc($result));
 	}
 	mysqli_close($link);
 	$smarty->display('userProfile.tpl');
