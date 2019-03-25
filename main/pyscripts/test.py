@@ -47,8 +47,8 @@ print(gid)
 
 #&pagx=15&page=2
 
-ballList = ['bq', 'lq', 'dj', 'bj', 'bb'] 
-fileList = ['27', '13', '31', '7', '9']
+ballList = ['bq', 'lq', 'dj', 'bj', 'bb', 'by', 'hb'] 
+fileList = ['27', '13', '31', '7', '9', '8', '10']
 
 for cate in range(5):
     print("now = " + fileList[cate])
