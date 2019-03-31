@@ -32,8 +32,8 @@ if (!$log_status) {
 		// Check Duplicate username
 		// Email Check
 		if (!empty($username) && !empty($password) && !empty($nickname) && !empty($email)) {
-			$sql = "INSERT INTO User (username, password, nickname, email, gender,money1,money2,money3,ownAcc,hairID,suitID,shoeID) 
-			VALUES ('$username', '$password', '$nickname', '$email', b'$gender', 500, 0, 50, '$ownAccStr', 0,0,0)";
+			$sql = "INSERT INTO User (username, password, nickname, email, gender, `money`, bonus, ownAcc, hairID, suitID, shoeID) 
+			VALUES ('$username', '$password', '$nickname', '$email', b'$gender', '0', '0', '$ownAccStr', '0', '0', '0')";
 			//echo $sql;
 			mysqli_query($link, $sql);
 			$sql2 = "SELECT id, username FROM User WHERE username = '$username'";

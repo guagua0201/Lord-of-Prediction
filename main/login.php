@@ -25,18 +25,18 @@ if (!$log_status) {
 				$_SESSION['user_id'] = $row['id'];
 				$_SESSION['username'] = $row['username'];
 				mysqli_close($link);
-				header('Location: ./index.php');
+				header('Location: index.php');
 			} else {
 				mysqli_close($link);
-				header('Location: ./login.php');
+				header('Location: login.php');
 			}
 		} else {
 			mysqli_close($link);
-			header('Location: ./login.php');
+			header('Location: login.php');
 		}
 	}
 } else {
-	header('Location: /index.php');
+	header('Location: index.php');
 }
 
 ?>
