@@ -11,11 +11,14 @@ if (isset($_GET['user_id']) && !empty($_GET['user_id'])) {
 
 	$user_sql = "SELECT nickname, image FROM User WHERE id = '" . $_GET['user_id'] . "'";
 	if ($result = mysqli_query($link, $user_sql)) {
-		$user_info = mysqli_fetch_assoc($result);
-		while (strlen($user_info['image']) < 5)
-			$user_info['image'] = '0' . $user_info['image'];
-	} else {
-		header('Location: /index.php');
+		if (mysqli_num_rows($result) == 1) {
+			$user_info = mysqli_fetch_assoc($result);
+			while (strlen($user_info['image']) < 5)
+				$user_info['image'] = '0' . $user_info['image'];
+		} else {
+			mysqli_close($link);
+			header('Location: error.php?error_code=101');
+		}
 	}
 	$smarty->assign('user_info', $user_info);
 
@@ -84,10 +87,22 @@ if (isset($_GET['user_id']) && !empty($_GET['user_id'])) {
 		$result = mysqli_query($link, $sql7);
 		if (mysqli_num_rows($result))
 			$smarty->assign('rating', mysqli_fetch_assoc($result));
+	} else if ($show == 'edit') {
+		if ($_GET['user_id'] != $_SESSION['user_id']) {
+			mysqli_close($link);
+			header('Location: error.php?error_code=103');
+		}
+		$sql = "SELECT `id`, `username`, `password`, `nickname`, `email`, `gender`, `image` , `money` FROM User WHERE id = '" . $_SESSION['user_id'] . "'";
+		$result = mysqli_query($link, $sql);
+		if (mysqli_num_rows($result) != 1) {
+			mysqli_close($link);
+			header('Location: error.php?error_code=101');
+		}
+		$smarty->assign('userdata', mysqli_fetch_assoc($result));
 	}
 	mysqli_close($link);
 	$smarty->display('userProfile.tpl');
 } else {
-	header('Location: /index.php');
+	header('Location: error.php?error_code=104');
 }
 ?>

@@ -2,7 +2,10 @@
 include_once('main.php');
 include_once('isLogin.php');
 
-$error_code = $_GET['error_code'];
+if (isset($_GET['error_code']))
+	$error_code = $_GET['error_code'];
+else
+	$error_code = 999;
 switch ($error_code) {
 	case 100:
 		$error_msg = 'Permission Denied!';
@@ -18,6 +21,9 @@ switch ($error_code) {
 		break;
 	case 104:
 		$error_msg = 'Invalid GET Require';
+		break;
+	case 105:
+		$error_msg = 'Password Wrong!';
 		break;
 	default:
 		$error_msg = 'Unknown';

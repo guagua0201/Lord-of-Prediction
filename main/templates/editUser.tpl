@@ -1,42 +1,43 @@
 {extends file='route.tpl'}
 {block name='plugin'}
-	{literal}
-	<script>
-		function next_step() {
-			var username = $("input[name='username']").val();
-			if (username.length == 0) {
-				$("[id='username']").show();
-				return false;
-			}
-
-			var nickname = $("input[name='nickname']").val();
-			if (nickname.length == 0) {
-				$("[id='nickname']").show();
-				return false;
-			}
-
-			var password = $("input[name='password']").val();
-			if (password.length == 0) {
-				$("[id='password']").show();
-				return false;
-			}
-
-			var email = $("input[name='email']").val();
-			if (email.length == 0) {
-				$("[id='email']").show();
-				return false;
-			}
-
-			var money = $("input[name='money']").val();
-			if (money.length == 0) {
-				$("[id='money']").show();
-				return false;
-			}
-
-			$("#register_form").submit();
+{literal}
+<script src='/javascripts/validate_email.js'></script>
+<script>
+	function next_step() {
+		var username = $("input[name='username']").val();
+		if (username.length == 0) {
+			$("[id='username']").show();
+			return false;
 		}
-	</script>
-	{/literal}
+
+		var nickname = $("input[name='nickname']").val();
+		if (nickname.length == 0) {
+			$("[id='nickname']").show();
+			return false;
+		}
+
+		var password = $("input[name='password']").val();
+		if (password.length == 0) {
+			$("[id='password']").show();
+			return false;
+		}
+
+		var email = $("input[name='email']").val();
+		if (email.length == 0 || validateEmail(email) == false) {
+			$("[id='email']").show();
+			return false;
+		}
+
+		var money = $("input[name='money']").val();
+		if (money.length == 0) {
+			$("[id='money']").show();
+			return false;
+		}
+
+		$("#register_form").submit();
+	}
+</script>
+{/literal}
 {/block}
 {block name='body'}
 	<div class='container' style='min-height: 68vh'>
