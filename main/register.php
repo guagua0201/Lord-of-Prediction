@@ -57,6 +57,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET'){
 				}
 			}
 		}
+		mysqli_close($link);
 	}
 }
 
