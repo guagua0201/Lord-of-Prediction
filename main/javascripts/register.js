@@ -128,12 +128,14 @@ function register() {
 				'email': email,
 			}
 		}).done(function(res) {
-			if (res['status']) {
+			console.log(res['status']);
+			if (res['status'] == true) {
 				/* Register OK - Redirect */
-				window.location.href = 'register-mailed.php';
+				alert("Success");
+				// window.location.href = 'register-mailed.php';
 			} else {
 				/* Register Failed */
-				alert(res['message']);
+				alert('註冊失敗');
 			}
 		});
 	}

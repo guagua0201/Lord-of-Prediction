@@ -10,6 +10,8 @@ CREATE TABLE IF NOT EXISTS `User` (
 	`email` VARCHAR(60) NOT NULL , 
 	`gender` BIT NULL , 
 	`image` VARCHAR(90) NULL , 
+	`verify_key` VARCHAR(128) NOT NULL , 
+	`status` VARCHAR(1) NOT NULL DEFAULT 'N' , 
 	PRIMARY KEY (`id`), 
 	UNIQUE (`username`), 
 	UNIQUE (`nickname`), 

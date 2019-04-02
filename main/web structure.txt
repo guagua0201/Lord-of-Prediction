@@ -39,9 +39,9 @@ Db:
 (4). gender
 (5). nickname
 (6). email
-(7). image
-(8). money
-(9). 
+(7). verify_key
+(8). status
+(9). image
 
 3.5 UserAsset
 (1). user_id
