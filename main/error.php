@@ -25,6 +25,8 @@ switch ($error_code) {
 	case 105:
 		$error_msg = 'Password Wrong!';
 		break;
+	case 106:
+		$error_msg = 'Database Connection Failed!';
 	default:
 		$error_msg = 'Unknown';
 		break;

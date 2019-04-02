@@ -2,7 +2,64 @@
 include_once('main.php');
 include_once('isLogin.php');
 
-$smarty->display('register.tpl');
+if ($_SERVER['REQUEST_METHOD'] === 'GET'){
+	if ($log_status == 0) {
+		$smarty->display('register.tpl');
+	} else {
+		header('Location: index.php');
+	}
+} else {
+	if (isset($_POST['check_type'])) {
+		$link = mysqli_connect(db_host, db_user, db_password, db_name);
+		if (!$link) {
+			header('error.php?error_code=106');
+		}
+		if ($_POST['check_type'] == 'username') {
+			$username = mysqli_real_escape_string($link, trim($_POST['username-check']));
+			$sql = "SELECT id FROM User WHERE `username` = '$username'";
+			if ($result = mysqli_query($link, $sql)) {
+				if (mysqli_num_rows($result) != 0) {
+					echo json_encode([
+						"status" => "false"
+					]);
+				} else {
+					echo json_encode([
+						"status" => "true"
+					]);
+				}
+			}
+		} else if ($_POST['check_type'] == 'email') {
+			$email = mysqli_real_escape_string($link, trim($_POST['email-check']));
+			$sql = "SELECT id FROM User WHERE `email` = '$email'";
+			if ($result = mysqli_query($link, $sql)) {
+				if (mysqli_num_rows($result) != 0) {
+					echo json_encode([
+						"status" => "false"
+					]);
+				} else {
+					echo json_encode([
+						"status" => "true"
+					]);
+				}
+			}
+		} else if ($_POST['check_type'] == 'nickname') {
+			$nickname = mysqli_real_escape_string($link, trim($_POST['nickname-check']));
+			$sql = "SELECT id FROM User WHERE `nickname` = '$nickname'";
+			if ($result = mysqli_query($link, $sql)) {
+				if (mysqli_num_rows($result) != 0) {
+					echo json_encode([
+						"status" => "false"
+					]);
+				} else {
+					echo json_encode([
+						"status" => "true"
+					]);
+				}
+			}
+		}
+	}
+}
+
 
 /* Old 
 if (!$log_status) {

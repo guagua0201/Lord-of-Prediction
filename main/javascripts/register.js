@@ -1,4 +1,70 @@
 
+function check_username() {
+	var username = $("input[name='username']").val();
+	
+	if (username != "") {
+		$.ajax({
+			url: "register.php",
+			method: 'post',
+			dataType: 'JSON',
+			data: {
+				"check_type": "username",
+				"username-check": username
+			}
+		}).done(function(res) {
+			if (res['status'] == 'false') {
+				$("#exist-username").show();
+			} else if (res['status'] == 'true') {
+				$("#exist-username").hide();
+			}
+		});
+	}
+}
+
+function check_nickname() {
+	var nickname = $("input[name='nickname']").val();
+	
+	if (nickname != "") {
+		$.ajax({
+			url: "register.php",
+			method: 'post',
+			dataType: 'JSON',
+			data: {
+				"check_type": "nickname",
+				"nickname-check": nickname
+			}
+		}).done(function(res) {
+			if (res['status'] == 'false') {
+				$("#exist-nickname").show();
+			} else if (res['status'] == 'true') {
+				$("#exist-nickname").hide();
+			}
+		});
+	}
+}
+
+function check_email() {
+	var email = $("input[name='email']").val();
+	
+	if (email != "") {
+		$.ajax({
+			url: "register.php",
+			method: 'post',
+			dataType: 'JSON',
+			data: {
+				"check_type": "email",
+				"email-check": email
+			}
+		}).done(function(res) {
+			if (res['status'] == 'false') {
+				$("#exist-email").show();
+			} else if (res['status'] == 'true') {
+				$("#exist-email").hide();
+			}
+		});
+	}
+}
+
 function register() {
 	var valid = true;
 	var message = "";

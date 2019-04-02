@@ -17,7 +17,10 @@
 						<div class="input-group-prepend">
 							<span class="input-group-text">帳號:</span>
 						</div>
-						<input class="form-control form-control-lg" type="text"name="username" placeholder="請輸入帳號" autofocus />
+						<input class="form-control form-control-lg" type="text" name="username" placeholder="請輸入帳號" autofocus onkeyup="check_username();" />
+					</div>
+					<div id='exist-username' class='text-center text-danger' style='display: none'>
+						此帳號名稱已存在
 					</div>
 					<div id='alert-username' class='alert alert-danger alert-dismissable' style='display: none'>
 						<button type='button' class='close' data-dismiss='alert'>&times;</button>
@@ -32,10 +35,13 @@
 							<span class="input-group-text">暱稱:</span>
 						</div>
 						{if !empty($nickname)}
-							<input class='form-control form-control-lg' type='text' name='nickname' value='{$nickname}' />
+							<input class='form-control form-control-lg' type='text' name='nickname' value='{$nickname}' onkeyup='check_nickname();' />
 						{else}
-							<input class="form-control form-control-lg" type="text" name="nickname" placeholder="請輸入暱稱" />
+							<input class="form-control form-control-lg" type="text" name="nickname" placeholder="請輸入暱稱" onkeyup='check_nickname();' />
 						{/if}
+					</div>
+					<div id='exist-nickname' class='text-center text-danger' style='display: none'>
+						此暱稱名稱已存在
 					</div>
 					<div id='alert-nickname' class='alert alert-danger alert-dismissable' style='display: none'>
 						<button type='button' class='close' data-dismiss='alert'>&times;</button>
@@ -94,8 +100,11 @@
 						{if !empty($email)}
 							<input class='form-control fomr-control-lg' type='text' name='email' value='{$email}' readonly />
 						{else}
-							<input class="form-control form-control-lg" type="text" name="email" placeholder="請輸入信箱" />
+							<input class="form-control form-control-lg" type="text" name="email" placeholder="請輸入信箱" onkeyup='check_email()' />
 						{/if}
+					</div>
+					<div id='exist-email' class='text-center text-danger' style='display: none'>
+						此信箱名稱已存在
 					</div>
 					<div id='alert-email' class='alert alert-danger alert-dismissable' style='display: none'>
 						<button type='button' class='close' data-dismiss='alert'>&times;</button>
