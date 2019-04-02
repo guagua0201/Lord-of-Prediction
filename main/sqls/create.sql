@@ -10,16 +10,21 @@ CREATE TABLE IF NOT EXISTS `User` (
 	`email` VARCHAR(60) NOT NULL , 
 	`gender` BIT NULL , 
 	`image` VARCHAR(90) NULL , 
+	PRIMARY KEY (`id`), 
+	UNIQUE (`username`), 
+	UNIQUE (`nickname`), 
+	UNIQUE (`email`)
+) ENGINE = InnoDB;
+
+CREATE TABLE IF NOT EXISTS `UserAsset` (
+	`user_id` INT NOT NULL , 
 	`money` int(11) NOT NULL , 
 	`bonus` int(11) NOT NULL ,
 	`ownAcc` VARCHAR(120) NOT NULL,
 	`hairID` int(11) NULL ,
 	`suitID` int(11) NULL ,
 	`shoeID` int(11) NULL ,
-	PRIMARY KEY (`id`), 
-	UNIQUE (`username`), 
-	UNIQUE (`nickname`), 
-	UNIQUE (`email`)
+	PRIMARY KEY (`user_id`)
 ) ENGINE = InnoDB;
 
 CREATE TABLE IF NOT EXISTS `Article` ( 

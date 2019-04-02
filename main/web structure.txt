@@ -41,6 +41,16 @@ Db:
 (6). email
 (7). image
 (8). money
+(9). 
+
+3.5 UserAsset
+(1). user_id
+(2). money
+(3). bonus
+(4). ownAcc
+(5). hairId
+(6). suitId
+(7). shoeId
 
 4. Comment
 (1). id
