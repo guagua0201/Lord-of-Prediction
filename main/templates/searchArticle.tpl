@@ -1,6 +1,6 @@
 {extends file='route.tpl'}
 {block name='body'}
-	<div style='min-height: 68vh' class='container'>
+	<div class='container'>
 		<div class='row mb-3'>
 			<a class='text-dark' href='searchArticle.php'><h2>討論版</h2></a>
 			<a class='btn btn-lg' href='addArticle.php'>新增文章</a>
