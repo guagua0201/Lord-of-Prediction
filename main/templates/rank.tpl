@@ -14,7 +14,7 @@
 					<div class='row'>
 						{foreach from=$categories item=category}
 							{if $category['class_id'] == $class['id']}
-								<a class='mr-3' href="predictGame.php?category_id={$category['id']}">{$category['name']}</a>
+								<a class='mr-3' href="rank.php?category_id={$category['id']}">{$category['name']}</a>
 							{/if}
 						{/foreach}
 					</div>
@@ -40,36 +40,42 @@
 						</tr>
 					</thead>
 					<tbody>
-						{for $foo = 0 to 4}
-							<tr class='border'>
-								<div class='row'>
-									<td class='col-md-1 text-center'>
-										<img src="/images/userImages/{$top_rank[$foo]['user_image']}.jpg" height="50" width="50">
-									</td>
-									<td class='col-md-1 text-center align-middle'>
-										<a href="userProfile.php?user_id={$top_rank[$foo]['user_id']}">{$top_rank[$foo]['user_nickname']}</a>
-									</td>
-									<td class='col-md-2 text-center align-middle lead font-weight-bold'>
-										{$top_rank[$foo]['success']}勝{$top_rank[$foo]['failure']}敗
-									</td>
-									<td class='col-md-2 align-middle lead font-weight-bold border-right text-success'>
-										勝率 {$top_rank[$foo]['rating']} %
-									</td>
-									<td class='col-md-1 text-center'>
-										<img src="/images/userImages/{$last_rank[$foo]['user_image']}.jpg" height="50" width="50">
-									</td>
-									<td class='col-md-1 text-center align-middle'>
-										<a href="userProfile.php?id={$last_rank[$foo]['user_id']}">{$last_rank[$foo]['user_nickname']}</a>
-									</td>
-									<td class='col-md-2 text-center align-middle lead font-weight-bold'>
-										{$last_rank[$foo]['success']}勝{$last_rank[$foo]['failure']}敗
-									</td>
-									<td class='col-md-2 align-middle lead font-weight-bold border-right text-danger'>
-										勝率 {$last_rank[$foo]['rating']} %
-									</td>
-								</div>
+						{if count($top_rank) == 0}
+							<tr class='col-md-12 text-center border'>
+								<td colspan='8'>暫無資料</td>
 							</tr>
-						{/for}
+						{else}
+							{for $foo = 0 to 4}
+								<tr class='border'>
+									<div class='row'>
+										<td class='col-md-1 text-center'>
+											<img src="/images/userImages/{$top_rank[$foo]['user_image']}.jpg" height="50" width="50">
+										</td>
+										<td class='col-md-1 text-center align-middle'>
+											<a href="userProfile.php?user_id={$top_rank[$foo]['user_id']}">{$top_rank[$foo]['user_nickname']}</a>
+										</td>
+										<td class='col-md-2 text-center align-middle lead font-weight-bold'>
+											{$top_rank[$foo]['success']}勝{$top_rank[$foo]['failure']}敗
+										</td>
+										<td class='col-md-2 align-middle lead font-weight-bold border-right text-success'>
+											勝率 {$top_rank[$foo]['rating']} %
+										</td>
+										<td class='col-md-1 text-center'>
+											<img src="/images/userImages/{$last_rank[$foo]['user_image']}.jpg" height="50" width="50">
+										</td>
+										<td class='col-md-1 text-center align-middle'>
+											<a href="userProfile.php?id={$last_rank[$foo]['user_id']}">{$last_rank[$foo]['user_nickname']}</a>
+										</td>
+										<td class='col-md-2 text-center align-middle lead font-weight-bold'>
+											{$last_rank[$foo]['success']}勝{$last_rank[$foo]['failure']}敗
+										</td>
+										<td class='col-md-2 align-middle lead font-weight-bold border-right text-danger'>
+											勝率 {$last_rank[$foo]['rating']} %
+										</td>
+									</div>
+								</tr>
+							{/for}
+						{/if}
 					</tbody>
 				</table>
 			</div>
