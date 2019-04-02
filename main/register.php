@@ -2,6 +2,9 @@
 include_once('main.php');
 include_once('isLogin.php');
 
+$smarty->display('register.tpl');
+
+/* Old 
 if (!$log_status) {
 	if (isset($_GET['gRegister']) && $_GET['gRegister'] == 1) {
 		$smarty->assign('email', $_SESSION['email']);
@@ -46,4 +49,7 @@ if (!$log_status) {
 } else {
 	header('Location: /index.php');
 }
+
+*/
+
 ?>
