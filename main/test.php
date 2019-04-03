@@ -1,3 +1,4 @@
 <?php
-	mail('shaokai0u0@gmail.com', 'Hello', 'Test');
+	$status = mail('shaokai0u0@gmail.com', 'Hello', 'Test');
+	echo $status;
 ?>
