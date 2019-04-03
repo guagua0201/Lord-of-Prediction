@@ -121,7 +121,30 @@
 		</div>
 		<div class='row justify-content-end mb-5'>
 			<div class='col-sm-12 col-md-6 col-lg-3'>
-				<button class='btn btn-lg btn-dark w-100' onclick='register();'>註冊</button>
+				<button class='btn btn-lg btn-dark w-100' onclick='validate_registration()'>下一步</button>
+			</div>
+		</div>
+	</div>
+
+	<!-- Double Check Modal -->
+	<div class='modal' id='double-check-modal'>
+		<div class='modal-dialog modal-dialog-centered modal-lg'>
+			<div class='modal-content'>
+				<!-- Modal header -->
+				<div class='text-center'>
+					<h2 class='modal-title'>資料確認</h2>
+					<h3 class='modal-title'>部份資料送出後無法再做修改</h3>
+				</div>
+				<!-- Modal body -->
+				<div class='text-center mt-3'>
+					<h4 id='modal-username' class='mb-3'><strong>帳號：</strong></h4>
+					<h4 id='modal-nickname' class='mb-3'><strong>暱稱：</strong></h4>
+					<h4 id='modal-email'><strong>信箱：</strong></h4>
+				</div>
+				<!-- Modal footer -->
+				<div class='modal-footer'>
+					<button type='button' class='btn btn-danger' onclick='close_double_check_modal()'>Close</button>
+				</div>
 			</div>
 		</div>
 	</div>

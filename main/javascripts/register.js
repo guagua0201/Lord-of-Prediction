@@ -1,6 +1,6 @@
 
 function check_username() {
-	var username = $("input[name='username']").val();
+	let username = $("input[name='username']").val();
 	
 	if (username != "") {
 		$.ajax({
@@ -22,7 +22,7 @@ function check_username() {
 }
 
 function check_nickname() {
-	var nickname = $("input[name='nickname']").val();
+	let nickname = $("input[name='nickname']").val();
 	
 	if (nickname != "") {
 		$.ajax({
@@ -44,7 +44,7 @@ function check_nickname() {
 }
 
 function check_email() {
-	var email = $("input[name='email']").val();
+	let email = $("input[name='email']").val();
 	
 	if (email != "") {
 		$.ajax({
@@ -65,56 +65,84 @@ function check_email() {
 	}
 }
 
-function register() {
-	var valid = true;
-	var message = "";
+function open_double_check_modal() {
+	let modal = $("#double-check-modal");
+	let username = $("input[name='username']").val();
+	let nickname = $("input[name='nickname']").val();
+	let email = $("input[name='email']").val();
+
+	$("#modal-username").append(username);
+	$("#modal-nickname").append(nickname);
+	$("#modal-email").append(email);
+	modal.toggle();
+}
+
+function close_double_check_modal() {
+	$("#modal-username").html("<strong>帳號：</strong>");
+	$("#modal-nickname").html("<strong>暱稱：</strong>");
+	$("#modal-email").html("<strong>信箱：</strong>");
+	$("#double-check-modal").toggle();
+}
+
+function validate_registration() {
+	let valid = true;
+	let message = "";
 
 	/* Banlist */
-	var banList = ['arse', 'ass', 'asshole', 'bastard', 'bitch', 'bollocks', 'christ', 'crap', 'cunt', 'damn', 'frigger', 'fuck', 'goddamn', 'godsdamn', 'hell', 'jesus', 'motherfucker', 'nigga', 'nigger', 'prick', 'shit', 'bitch', 'whore', 'twat'];
+	let banList = ['arse', 'ass', 'asshole', 'bastard', 'bitch', 'bollocks', 'christ', 'crap', 'cunt', 'damn', 'frigger', 'fuck', 'goddamn', 'godsdamn', 'hell', 'jesus', 'motherfucker', 'nigga', 'nigger', 'prick', 'shit', 'bitch', 'whore', 'twat'];
 
 	/* Username */
-	var username = $("input[name='username']").val();
+	let username = $("input[name='username']").val();
 	if (username == "" || banList.some(element => element == username)) {
 		$("#alert-username").show();
 		valid = false;
 	}
 
 	/* Nickname */
-	var nickname = $("input[name='nickname']").val();
+	let nickname = $("input[name='nickname']").val();
 	if (nickname == "" || banList.some(element => element == nickname)) {
 		$("#alert-nickname").show();
 		valid = false;
 	}
 
 	/* Password & Confirmed Password */
-	var password = $("input[name='password']").val();
+	let password = $("input[name='password']").val();
 	if (password == "") {
 		$("#alert-password").show();
 		valid = false;
 	}
-	var c_password = $("input[name='c-password']").val();
+	let c_password = $("input[name='c-password']").val();
 	if (c_password != password) {
 		$("#alert-c-password").show();
 		valid = false;
 	}
 
 	/* Email */
-	var email = $("input[name='email']").val();
+	let email = $("input[name='email']").val();
 	if (validateEmail(email) == false) {
 		$("#alert-email").show();
 		valid = false;
 	}
 
+	let alert_str = "";
 	/* Terms */
-	var terms = $("input[name='terms']");
+	let terms = $("input[name='terms']");
 	if (terms.is(":checked") == false) {
-		alert("請先同意使用條款");
+		alert_str += "請先同意使用條款\n";
 		valid = false;
 	}
 
-	/* Send Post */
-	if (valid) {
-		// console.log("valid!");
+	if (alert_str != "")
+		alert(alert_str);
+
+	if (valid && !($("double-check-modal").is(":visible"))) {
+		open_double_check_modal();
+	}
+	return valid;
+}
+
+function ajax_submit() {
+	if (validate_registration()) {
 		$.ajax({
 			url: "register-ajax.php",
 			method: "post",
@@ -128,7 +156,7 @@ function register() {
 				'email': email,
 			}
 		}).done(function(res) {
-			console.log(res['status']);
+			// console.log(res['status']);
 			if (res['status'] == true) {
 				/* Register OK - Redirect */
 				alert("Success");
