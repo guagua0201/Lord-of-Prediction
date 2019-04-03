@@ -11,7 +11,7 @@ switch ($error_code) {
 		$error_msg = 'Permission Denied!';
 		break;
 	case 101:
-		$error_msg = 'Not Found: database';
+		$error_msg = 'DB Query Failed';
 		break;
 	case 102:
 		$error_msg = 'Database Connect Failed';
@@ -20,7 +20,7 @@ switch ($error_code) {
 		$error_msg = 'Session Expired!';
 		break;
 	case 104:
-		$error_msg = 'Invalid GET Require';
+		$error_msg = 'Invalid Url';
 		break;
 	case 105:
 		$error_msg = 'Password Wrong!';
