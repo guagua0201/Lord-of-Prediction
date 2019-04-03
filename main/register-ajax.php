@@ -65,10 +65,13 @@ if ($log_status == 0) {
 		$sql = "INSERT INTO User (`username`, `nickname`, `password`, `email`, `gender`, `verify_key`) VALUES ('$username', '$nickname', '$password', '$email', b'$gender', '$verify_key')";
 		// echo $sql;
 		if (mysqli_query($link, $sql)) {
+			$sql2 = "SELECT id FROM User WHERE `username` = '$username'";
+			if ($result = mysqli_query($link, $sql2))
+				$user_info = mysqli_fetch_assoc($result);
 			$mail_msg = "Thanks for your registeration, please click the link below to active your account\n";
-			$mail_msg .= "http://" . $_SERVER['SERVER_NAME'] . "/activate_user.php?key=" . $verify_key;
+			$mail_msg .= "http://" . $_SERVER['SERVER_NAME'] . "/activate_user.php?id=" . $user_info['id'] . "&key=" . $verify_key;
 			mail($email, "ProphecyKing: Activate Your Account", $mail_msg);
-			// echo $email . "\n" . $mail_msg;
+			echo $mail_msg;
 		} else {
 			$valid = false;
 		}
