@@ -160,6 +160,12 @@ function validate_registration() {
 
 /* Submit */
 function ajax_register() {
+	let username = $("input[name='username']").val();
+	let nickname = $("input[name='nickname']").val();
+	let password = $("input[name='password']").val();
+	let c_password = $("input[name='c-password']").val();
+	let email = $("input[name='email']").val();
+	
 	if (validate_registration()) {
 		$.ajax({
 			url: "register-ajax.php",
@@ -177,8 +183,8 @@ function ajax_register() {
 			// console.log(res['status']);
 			if (res['status'] == true) {
 				/* Register OK - Redirect */
-				alert("Success");
-				// window.location.href = 'register-mailed.php';
+				// alert("Success");
+				window.location.href = 'register-mailed.php';
 			} else {
 				/* Register Failed */
 				alert('註冊失敗');
