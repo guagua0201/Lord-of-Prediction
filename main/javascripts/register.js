@@ -1,4 +1,5 @@
 
+/* Check Duplicates */
 function check_username() {
 	let username = $("input[name='username']").val();
 	
@@ -65,6 +66,7 @@ function check_email() {
 	}
 }
 
+/* User: Double Check Modal */
 function open_double_check_modal() {
 	let modal = $("#double-check-modal");
 	let username = $("input[name='username']").val();
@@ -84,6 +86,7 @@ function close_double_check_modal() {
 	$("#double-check-modal").toggle();
 }
 
+/* Validate Form */
 function validate_registration() {
 	let valid = true;
 	let message = "";
@@ -132,6 +135,20 @@ function validate_registration() {
 		valid = false;
 	}
 
+	/* Duplicates */
+	if ($("#exist-username").is(":visible")) {
+		valid = false;
+		alert_str += "使用者名稱已重複！\n";
+	}
+	if ($("#exist-nickname").is(":visible")) {
+		valid = false;
+		alert_str += "暱稱已重複！\n";
+	}
+	if ($("#exist-email").is(":visible")) {
+		valid = false;
+		alert_str += "信箱已重複！\n";
+	}
+
 	if (alert_str != "")
 		alert(alert_str);
 
@@ -141,7 +158,8 @@ function validate_registration() {
 	return valid;
 }
 
-function ajax_submit() {
+/* Submit */
+function ajax_register() {
 	if (validate_registration()) {
 		$.ajax({
 			url: "register-ajax.php",

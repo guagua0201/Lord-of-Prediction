@@ -131,19 +131,20 @@
 		<div class='modal-dialog modal-dialog-centered modal-lg'>
 			<div class='modal-content'>
 				<!-- Modal header -->
-				<div class='text-center'>
+				<div class='text-center border-bottom p-3'>
 					<h2 class='modal-title'>資料確認</h2>
 					<h3 class='modal-title'>部份資料送出後無法再做修改</h3>
 				</div>
 				<!-- Modal body -->
-				<div class='text-center mt-3'>
+				<div class='text-center mt-3 p-3'>
 					<h4 id='modal-username' class='mb-3'><strong>帳號：</strong></h4>
 					<h4 id='modal-nickname' class='mb-3'><strong>暱稱：</strong></h4>
 					<h4 id='modal-email'><strong>信箱：</strong></h4>
 				</div>
 				<!-- Modal footer -->
 				<div class='modal-footer'>
-					<button type='button' class='btn btn-danger' onclick='close_double_check_modal()'>Close</button>
+					<button type='button' class='btn btn-danger' onclick='close_double_check_modal()'>取消</button>
+					<button type='button' class='btn btn-success' onclick='ajax_register()'>確認並註冊</button>
 				</div>
 			</div>
 		</div>
