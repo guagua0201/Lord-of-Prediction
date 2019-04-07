@@ -2,15 +2,16 @@
 include_once('main.php');
 include_once('isLogin.php');
 
-/* Link MySQL */
-$link = mysqli_connect(db_host, db_user, db_password, db_name);
-if (!$link) {
-	die("Connection failed " . mysqli_connect_error());
-}
-mysqli_set_charset($link, "utf8");
 
 /* GET */
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+	/* Link MySQL */
+	$link = mysqli_connect(db_host, db_user, db_password, db_name);
+	if (!$link)
+		header('Location: error.php?error_code=102');
+	mysqli_set_charset($link, "utf8");
+
+	/* Date setup */
 	$smarty->assign('yesterday', strtotime("-1 day"));
 	$smarty->assign('tomorrow', strtotime("+1 day"));
 
@@ -80,62 +81,80 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 	*/
 
 	/* Get All Unfinished Games */
-	if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-		$sql = "SELECT `id`, `game_datetime`, `h_name`, `a_name`, `details` FROM `Game` WHERE `game_flag` = '0'";
-		$data = array();
-		$names = array();
-		if ($result = mysqli_query($link, $sql)) {
-			while ($row = mysqli_fetch_assoc($result)) {
-				$row['details'] = json_decode($row['details'], true);
-				$data[] = $row;
-				// print_r($row); echo "<br>";
-			}
-			if (count($data) > 0) {
-				foreach (array_keys($data[0]['details']) as $name) {
-					if ($name == 'handicap')
-						$names[] = '讓分';
-					else if ($name == 'total')
-						$names[] = '大小';
-					else if ($name == 'single')
-						$names[] = '獨贏';
-					else if ($name == 'one_lose_two_win')
-						$names[] = '一輸二贏';
-					else if ($name == 'odd_even')
-						$names[] = '單雙';
-				}
+	$sql = "SELECT `id`, `game_datetime`, `h_name`, `a_name`, `details` FROM `Game` WHERE `game_flag` = '0'";
+	$data = array();
+	$names = array();
+	if ($result = mysqli_query($link, $sql)) {
+		while ($row = mysqli_fetch_assoc($result)) {
+			$row['details'] = json_decode($row['details'], true);
+			$data[] = $row;
+			// print_r($row); echo "<br>";
+		}
+		if (count($data) > 0) {
+			foreach (array_keys($data[0]['details']) as $name) {
+				if ($name == 'handicap')
+					$names[] = '讓分';
+				else if ($name == 'total')
+					$names[] = '大小';
+				else if ($name == 'single')
+					$names[] = '獨贏';
+				else if ($name == 'one_lose_two_win')
+					$names[] = '一輸二贏';
+				else if ($name == 'odd_even')
+					$names[] = '單雙';
 			}
 		}
-		// print_r($names);
-		$smarty->assign('data', $data);
-		$smarty->assign('names', $names);
 	}
+	$smarty->assign('data', $data);
+	$smarty->assign('names', $names);
+
 	mysqli_close($link);
 	$smarty->display('predictGame.tpl');
 }
 
-/* Get POST */
+/* POST */
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
 	if ($log_status == 0) {
-		mysqli_close($link);
-		header('Location: /login.php');
+		header('Location: error.php?error_code=100');
 	} else {
-		foreach ($data as $game) {
+		/* Link MySQL */
+		$link = mysqli_connect(db_host, db_user, db_password, db_name);
+		if (!$link)
+			header('Location: error.php?error_code=102');
+		mysqli_set_charset($link, "utf8");
+
+		/* Get Predictable Game */
+		$sql = "SELECT `id` FROM `Game` WHERE `game_flag` = '0'";
+		$game_ids = array();
+		if ($result = mysqli_query($link, $sql)) {
+			while ($row = mysqli_fetch_assoc($result))
+				$game_ids[] = $row['id'];
+		}
+
+		/* Get category id */
+		if (!isset($_GET['category_id']) || empty($_GET['category_id']))
+			$_GET['category_id'] = '7';
+		$id = $_GET['category_id'];
+
+		/* Check post data */
+		foreach ($game_ids as $game_id) {
 			for ($i = 'a'; $i <= 'e'; $i++) {
-				$post_name = $i . '-' . $game['id'];
+				$post_name = $i . '-' . $game_id;
 				if (isset($_POST[$post_name])) {
-					$sql5 = "SELECT id, predict FROM Predict WHERE user_id = '" . $_SESSION['user_id'] . "' AND game_id = '" . $game['id'] . "' AND (predict = '$i' OR predict = '" . strtoupper($i) . "') AND predict_flag = '0'";
-					$result = mysqli_query($link, $sql5);
+					$sql = "SELECT id, predict FROM Predict WHERE user_id = '" . $_SESSION['user_id'] . "' AND game_id = '" . $game_id . "' AND (predict = '$i' OR predict = '" . strtoupper($i) . "') AND predict_flag = '0'";
+					$result = mysqli_query($link, $sql);
 					if (mysqli_num_rows($result) == 0) {
-						$sql6 = "INSERT INTO Predict (user_id, game_id, category_id, predict, predict_flag, price) VALUES ('" . $_SESSION['user_id'] . "', '" . $game['id'] . "', '" . $id . "', '" . $_POST[$post_name] . "', '0', '99')";
-						mysqli_query($link, $sql6);
+						$sql2 = "INSERT INTO Predict (user_id, game_id, category_id, predict, predict_flag, price) VALUES ('" . $_SESSION['user_id'] . "', '" . $game_id . "', '" . $id . "', '" . $_POST[$post_name] . "', '0', '99')";
+						mysqli_query($link, $sql2);
 					} else {
 						$predict = mysqli_fetch_assoc($result);
-						$sql6 = "UPDATE Predict SET predict = '" . $_POST[$post_name] . "' WHERE id = '" . $predict['id'] . "'";
-						mysqli_query($link, $sql6);
+						$sql2 = "UPDATE Predict SET predict = '" . $_POST[$post_name] . "' WHERE id = '" . $predict['id'] . "'";
+						mysqli_query($link, $sql2);
 					}
 				}
 			}
 		}
+		header('Location: userProfile.php?user_id=' . $_SESSION['user_id'] . '&show=predict');
 		mysqli_close($link);
 	}
 }
