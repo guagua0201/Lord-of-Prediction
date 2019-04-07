@@ -56,7 +56,7 @@
 							<div class='row'>
 								<td class='col-md-1 align-middle' rowspan='2'>賽事資訊</td>
 								<td class='col-md-2 align-middle' rowspan='2'>球隊資訊</td>
-								<td class='col-md-7 align-middle' colspan='{if count($data)}{count($names)-2}{else}3{/if}'>運彩盤</td>
+								<td class='col-md-7 align-middle' colspan='{if count($data)}{count($names)}{else}3{/if}'>運彩盤</td>
 							</div>
 						</tr>
 						<tr>
@@ -109,7 +109,7 @@
 						<form id='predictForm' method='POST' action='predictGame.php'>
 							{if count($data) == 0}
 								<tr class='text-center'>
-									<td colspan='5'>暫無資料</td> <!-- colspan wait for fixed -->
+									<td colspan='5'>暫無資料</td>
 								</tr>
 							{else}
 							<input name='submit' value='submit' hidden />
@@ -117,20 +117,23 @@
 							{foreach from=$data item=row name=loop}
 								<tr>
 									<td rowspan='2'>
-										<span class='lead'>{$row['id']}</span><br />{$row[$indexes['比賽時間']]} {$row[$indexes['比賽時間'] + 1]}
+										<span class='lead'>{$row['id']}</span>
+										<br>
+										{$row['game_datetime']|date_format:"%m\%d %H:%M"}
+										<br>
 										<a href='#'>對戰資訊</a>
 									</td>
-									<td>{$row[$indexes['主客隊']]}</td>
+									<td>{$row['a_name']}</td>
 									{foreach from=$names item=name}
-										{assign var = 'index' value = $indexes[$name]}
+										{assign var=detail value=$row['details']}
 										{if $name == '讓分'}
 											<td>
 												<div class='form-check'>
 													<label class='form-check-label'>
 														<input class='form-check-input' type='checkbox' name="a-{$row['id']}" value='a'/>
-														客 {$row[$index]}
+														客 {if isset($detail['handicap']['a_spread'])}{$detail['handicap']['a_spread']}{/if}
 													</label>
-													<span class='float-right'>{$row[$index + 2]}</span>
+													<span class='float-right'>{$detail['handicap']['a_odds']}</span>
 												</div>
 											</td>
 										{else if $name == '大小'}
@@ -138,9 +141,9 @@
 												<div class='form-check'>
 													<label class='form-check-label'>
 														<input class='form-check-input' type='checkbox' name="b-{$row['id']}" value='b'/>
-														大 {$row[$index]}
+														大 {$detail['total']['point']}
 													</label>
-													<span class='float-right'>{$row[$index + 1]}</span>
+													<span class='float-right'>{$detail['total']['over_odds']}</span>
 												</div>
 											</td>
 										{else if $name == '獨贏'}
@@ -150,7 +153,7 @@
 														<input class='form-check-input' type='checkbox' name="c-{$row['id']}" value='c'/>
 														客
 													</label>
-													<span class='float-right'>{$row[$index]}</span>
+													<span class='float-right'>{$detail['single']['a_odds']}</span>
 												</div>
 											</td>
 										{else if $name == '一輸二贏'}
@@ -158,9 +161,9 @@
 												<div class='form-check'>
 													<label class='form-check-label'>
 														<input class='form-check-input' type='checkbox' name="d-{$row['id']}" value='d'/>
-														客 {$row[$index]}
+														{if isset($detail['one_lose_two_win']['a_spread'])}一輸{else}&nbsp;{/if}
 													</label>
-													<span class='float-right'>{$row[$index + 2]}</span>
+													<span class='float-right'>{$detail['one_lose_two_win']['a_odds']}</span>
 												</div>
 											</td>
 										{else if $name == '單雙'}
@@ -170,24 +173,24 @@
 														<input class='form-check-input' type='checkbox' name="e-{$row['id']}" value='e'/>
 														單
 													</label>
-													<span class='float-right'>{$row[$index]}</span>
+													<span class='float-right'>{$detail['odd_even']['odd_odds']}</span>
 												</div>
 											</td>
 										{/if}
 									{/foreach}
 								</tr>
 								<tr>
-									<td>{$row[$indexes['主客隊'] + 1]}</td>
+									<td>{$row['h_name']}</td>
 									{foreach from=$names item=name}
-										{assign var = 'index' value = $indexes[$name]}
+										{assign var=detail value=$row['details']}
 										{if $name == '讓分'}
 											<td>
 												<div class='form-check'>
 													<label class='form-check-label'>
 														<input class='form-check-input' type='checkbox' name="a-{$row['id']}" value='A'/>
-														主 {$row[$index + 1]}
+														主 {if isset($detail['handicap']['h_spread'])}{$detail['handicap']['h_spread']}{/if}
 													</label>
-													<span class='float-right'>{$row[$index + 3]}</span>
+													<span class='float-right'>{$detail['handicap']['h_odds']}</span>
 												</div>
 											</td>
 										{else if $name == '大小'}
@@ -197,7 +200,7 @@
 														<input class='form-check-input' type='checkbox' name="b-{$row['id']}" value='B'/>
 														小
 													</label>
-													<span class='float-right'>{$row[$index + 2]}</span>
+													<span class='float-right'>{$detail['total']['under_odds']}</span>
 												</div>
 											</td>
 										{else if $name == '獨贏'}
@@ -207,7 +210,7 @@
 														<input class='form-check-input' type='checkbox' name="c-{$row['id']}" value='C'/>
 														主
 													</label>
-													<span class='float-right'>{$row[$index + 1]}</span>
+													<span class='float-right'>{$detail['single']['h_odds']}</span>
 												</div>
 											</td>
 										{else if $name == '一輸二贏'}
@@ -215,9 +218,9 @@
 												<div class='form-check'>
 													<label class='form-check-label'>
 														<input class='form-check-input' type='checkbox' name="d-{$row['id']}" value='D'/>
-														主 {$row[$index + 1]}
+														{if isset($detail['one_lose_two_win']['h_spread'])}一輸{else}&nbsp;{/if}
 													</label>
-													<span class='float-right'>{$row[$index + 3]}</span>
+													<span class='float-right'>{$detail['one_lose_two_win']['h_odds']}</span>
 												</div>
 											</td>
 										{else if $name == '單雙'}
@@ -227,7 +230,7 @@
 														<input class='form-check-input' type='checkbox' name="e-{$row['id']}" value='E'/>
 														雙
 													</label>
-													<span class='float-right'>{$row[$index + 1]}</span>
+													<span class='float-right'>{$detail['odd_even']['even_odds']}</span>
 												</div>
 											</td>
 										{/if}
@@ -237,10 +240,9 @@
 							{/if}
 						</form>
 					</tbody>
-					
 					<tfoot>
 						<tr>
-							<td class='text-center' colspan='{if count($data) == 0}5{else}{count($names)}{/if}'>
+							<td class='text-center' colspan='{if count($data) == 0}5{else}{count($names)+2}{/if}'>
 								<button class='btn w-25' type='submit' form='predictForm'><strong>送出預測</strong></button>
 							</td>
 						</tr>
