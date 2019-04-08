@@ -37,7 +37,7 @@ print(gid)
 ballList = ['bq', 'lq', 'dj', 'bj', 'bb', 'by', 'hb'] 
 fileList = ['27', '13', '31', '7', '9', '8', '10']
 
-for cate in range(5):
+for cate in range(7):
     print("now = " + fileList[cate])
     outFile = open("../documents/predictGame/" + fileList[cate] + ".json","w",encoding='utf-8', newline='')
     nowUrl = 'http://ag.tg999.net/tw/ds.php?gid=' + gid + '&ball=' + ballList[cate]
@@ -190,8 +190,8 @@ for cate in range(5):
                             odd_even['odd_odds'] = float(t2.find_all('span')[0].text.strip(' \n\r\xa0'))
                             odd_even['even_odds'] = float(t2.find_all('span')[1].text.strip(' \n\r\xa0'))
                     index = index + 1
-
-                all_games.append(json_data)
+                if json_data != {}:    
+                    all_games.append(json_data)
 
         if str(lq.text).find('下') != -1:
             nowPage = nowPage + 1
