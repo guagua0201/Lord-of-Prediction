@@ -84,7 +84,7 @@ foreach ($data as $game) {
 				while ($row = mysqli_fetch_assoc($result2)) {
 					$flag = 0;
 					if ($row['predict'] == 'a' || $row['predict'] == 'A') {
-
+						
 					} else if ($row['predict'] == 'c' || $row['predict'] == 'C') {
 						if ($home_team_score > $away_team_score)
 							$flag = ($row['predict'] == 'C') ? 1 : 2;

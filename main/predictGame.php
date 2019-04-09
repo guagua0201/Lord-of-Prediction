@@ -115,7 +115,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 /* POST */
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
 	if ($log_status == 0) {
-		header('Location: error.php?error_code=100');
+		header('Location: login.php');
 	} else {
 		/* Link MySQL */
 		$link = mysqli_connect(db_host, db_user, db_password, db_name);
