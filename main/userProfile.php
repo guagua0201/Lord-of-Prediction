@@ -53,8 +53,8 @@ if (isset($_GET['user_id']) && !empty($_GET['user_id'])) {
 				$sql4 = "SELECT `game_datetime`, `h_name`, `a_name` FROM Game WHERE id = '" . $row['game_id'] . "'";
 				$game_info = mysqli_fetch_assoc(mysqli_query($link, $sql4));
 				$row['game_date'] = $game_info['game_datetime'];
-				$row['game_home_team'] = $game_info['home_team'];
-				$row['game_away_team'] = $game_info['away_team'];
+				$row['game_home_team'] = $game_info['h_name'];
+				$row['game_away_team'] = $game_info['a_name'];
 				$history_predict[] = $row;
 			}
 		}
