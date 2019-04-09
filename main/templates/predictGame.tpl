@@ -124,35 +124,6 @@
 					</thead>
 
 					<tbody>
-						<!-- {literal}
-						<script>
-							$(document).ready(function() {
-								$('input:checkbox').click(function(element) {
-									var box = $(this);
-									var td = element.target.parentElement.parentElement.parentElement;
-									if (box.is(':checked')) {
-										var group = "input:checkbox[name='" + box.attr('name') + "']";
-										$(group).prop('checked', false);
-										var p = $(group).closest('td');
-									//	console.log(p);
-										box.prop('checked', true);
-										for (let index = 0; index < p.length; index++)
-											p[index.toString()].className = '';
-										td.className = 'bg-info';
-									} else {
-										box.prop('checked', false);
-										td.className = '';
-									}
-								});
-							});
-						</script>
-						<style>
-							span.float-right {
-								font-color: #bdbdbd;
-								font-size: 0.9em;
-							}
-						</style>
-						{/literal} -->
 						<form id='predictForm' method='POST' action='predictGame.php'>
 							{if count($data) == 0}
 								<tr class='text-center'>
