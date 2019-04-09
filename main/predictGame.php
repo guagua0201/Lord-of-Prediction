@@ -32,50 +32,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 	$smarty->assign('classes', $classes);
 	$smarty->assign('categories', $categories);
 
-	/* Read predict data */
+	/* Get category_id */
 	if (!isset($_GET['category_id']) || empty($_GET['category_id']))
 		$_GET['category_id'] = '7';
 	$id = $_GET['category_id'];
-	$data = array();
-	$names = array();
-	$indexes = array();
-	$filename=  './documents/predictGame/' . $id . '.json';
-
-	if (file_exists($filename) && ($json = file_get_contents($filename)) !== false) {
-		$json_data = json_decode($json, true);
-
-		/* Insert unknown game into DB */
-		foreach ($json_data as $game) {
-			$game_datetime = date("Y") . '-' . $game['date'] . ' ' . $game['time'];
-			$h_name = $game['h_name'];
-			$a_name = $game['a_name'];
-			$details = json_encode($game['details']);
-			$sql = "SELECT id FROM Game WHERE `game_datetime` = '$game_datetime' AND `h_name` = '$h_name' AND `a_name` = '$a_name' AND `category_id` = '$id'";
-			if (($result = mysqli_query($link, $sql)) && mysqli_num_rows($result) == 0) {
-				$sql2 = "INSERT INTO `Game` (`category_id`, `game_datetime`, `h_name`, `a_name`, `details`) VALUES ('$id', '$game_datetime', '$h_name', '$a_name', '$details')";
-				$result = mysqli_query($link, $sql2);
-			}
-		}
-	}
-
-	/*
-	foreach ($data as $game) {
-		$date = $game[$indexes['比賽時間']];
-		$time = $game[$indexes['比賽時間'] + 1];
-		$home_team = $game[$indexes['主客隊'] + 1];
-		$away_team = $game[$indexes['主客隊']];
-		$sql3 = "SELECT id FROM Game WHERE `date` = '$date' AND `time` = '$time' AND `home_team` = '$home_team' AND `away_team` = '$away_team' AND `category_id` = '$id'";
-		$result = mysqli_query($link, $sql3);
-		if (mysqli_num_rows($result) == 0) {
-			$sql4 = "INSERT INTO Game (`category_id`, `date`, `time`, `home_team`, `away_team`) VALUES ('$id', '$date', '$time', '$home_team', '$away_team')";
-			// echo $sql4;
-			mysqli_query($link, $sql4);
-			$result = mysqli_query($link, $sql3);
-		}
-		$gameid = mysqli_fetch_assoc($result);
-		$game_id[] = $gameid['id'];
-	}
-	*/
 
 	/* Get All Unfinished Games */
 	$sql = "SELECT `id`, `game_datetime`, `h_name`, `a_name`, `details` FROM `Game` WHERE `game_flag` = '0' AND `category_id` = '$id'";
@@ -85,7 +45,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 		while ($row = mysqli_fetch_assoc($result)) {
 			$row['details'] = json_decode($row['details'], true);
 			$data[] = $row;
-			// print_r($row); echo "<br>";
 		}
 		if (count($data) > 0) {
 			foreach (array_keys($data[0]['details']) as $name) {
