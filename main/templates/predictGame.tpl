@@ -1,4 +1,51 @@
 {extends file='route.tpl'}
+{block name='plugin'}
+{literal}
+<script>
+	$(document).ready(function() {
+		$('.check-td').click(function() {
+			var box = $(this).children().children('input');
+			if (!box.is(':checked')) {
+				var group = "input:checkbox[name='" + box.attr('name') + "']";
+				$(group).prop('checked', false);
+				box.prop('checked', true);
+				$(group).parent().parent('td').each(function() {
+					$(this).css({ 'background-color' : 'white' });
+				});
+				$(this).css({ 'background-color' : 'rgb(252, 133, 133)'});
+			} else {
+				box.prop('checked', false);
+				$(this).css({ 'background-color' : 'white' });
+			}
+		});
+		$("input[type='checkbox']").click(function(e) {
+			e.stopPropagation();
+			if ($(this).is(':checked')) {
+				var group = "input:checkbox[name='" + $(this).attr('name') + "']";
+				$(this).prop('checked', true);
+				$(group).parent().parent('td').each(function() {
+					$(this).css({ 'background-color' : 'white' });
+				});
+				$(this).parent().parent('td').css({ 'background-color' : 'rgb(252, 133, 133)'});
+			} else {
+				$(this).prop('checked', false);
+				$(this).parent().parent('td').css({ 'background-color' : 'white' });
+			}
+		});
+		$('.check-td').mouseenter(function() {
+			var box = $(this).children().children('input');
+			if (!box.is(':checked'))
+				$(this).css({ 'background-color' : 'rgb(198, 198, 198)' });
+		});
+		$('.check-td').mouseleave(function() {
+			var box = $(this).children().children('input');
+			if (!box.is(':checked') || $(this).css('background-color') == "rgb(198, 198, 198)")
+				$(this).css({ 'background-color': 'white' });
+		});
+	});
+</script>
+{/literal}
+{/block}
 {block name='body'}
 	<div class='container' style='min-height: 68vh'>
 		<div class='row border p-2'>
@@ -50,7 +97,7 @@
 		</div>
 		<div class='row mt-3'>
 			<div class='table-responsive'>
-				<table class='table table-bordered table-hover table-striped'>
+				<table class='table table-bordered'>
 					<thead class='thead-dark text-center font-weight-bold'>
 						<tr>
 							<div class='row'>
@@ -77,7 +124,7 @@
 					</thead>
 
 					<tbody>
-						{literal}
+						<!-- {literal}
 						<script>
 							$(document).ready(function() {
 								$('input:checkbox').click(function(element) {
@@ -105,7 +152,7 @@
 								font-size: 0.9em;
 							}
 						</style>
-						{/literal}
+						{/literal} -->
 						<form id='predictForm' method='POST' action='predictGame.php'>
 							{if count($data) == 0}
 								<tr class='text-center'>
@@ -127,52 +174,42 @@
 									{foreach from=$names item=name}
 										{assign var=detail value=$row['details']}
 										{if $name == '讓分'}
-											<td>
+											<td class='check-td'>
 												<div class='form-check'>
-													<label class='form-check-label'>
-														<input class='form-check-input' type='checkbox' name="a-{$row['id']}" value='a'/>
-														客 {if isset($detail['handicap']['a_spread'])}{$detail['handicap']['a_spread']}{/if}
-													</label>
+													<input class='form-check-input' type='checkbox' name="a-{$row['id']}" value='a'/>
+													客 {if isset($detail['handicap']['a_spread'])}{$detail['handicap']['a_spread']}{/if}
 													<span class='float-right'>{$detail['handicap']['a_odds']}</span>
 												</div>
 											</td>
 										{else if $name == '大小'}
-											<td>
+											<td class='check-td'>
 												<div class='form-check'>
-													<label class='form-check-label'>
 														<input class='form-check-input' type='checkbox' name="b-{$row['id']}" value='b'/>
 														大 {$detail['total']['point']}
-													</label>
 													<span class='float-right'>{$detail['total']['over_odds']}</span>
 												</div>
 											</td>
 										{else if $name == '獨贏'}
-											<td>
+											<td class='check-td'>
 												<div class='form-check'>
-													<label class='form-check-label'>
 														<input class='form-check-input' type='checkbox' name="c-{$row['id']}" value='c'/>
 														客
-													</label>
 													<span class='float-right'>{$detail['single']['a_odds']}</span>
 												</div>
 											</td>
 										{else if $name == '一輸二贏'}
-											<td>
+											<td class='check-td'>
 												<div class='form-check'>
-													<label class='form-check-label'>
 														<input class='form-check-input' type='checkbox' name="d-{$row['id']}" value='d'/>
 														{if isset($detail['one_lose_two_win']['a_spread'])}一輸{else}&nbsp;{/if}
-													</label>
 													<span class='float-right'>{$detail['one_lose_two_win']['a_odds']}</span>
 												</div>
 											</td>
 										{else if $name == '單雙'}
-											<td>
+											<td class='check-td'>
 												<div class='form-check'>
-													<label class='form-check-label'>
 														<input class='form-check-input' type='checkbox' name="e-{$row['id']}" value='e'/>
 														單
-													</label>
 													<span class='float-right'>{$detail['odd_even']['odd_odds']}</span>
 												</div>
 											</td>
@@ -184,52 +221,42 @@
 									{foreach from=$names item=name}
 										{assign var=detail value=$row['details']}
 										{if $name == '讓分'}
-											<td>
+											<td class='check-td'>
 												<div class='form-check'>
-													<label class='form-check-label'>
 														<input class='form-check-input' type='checkbox' name="a-{$row['id']}" value='A'/>
 														主 {if isset($detail['handicap']['h_spread'])}{$detail['handicap']['h_spread']}{/if}
-													</label>
 													<span class='float-right'>{$detail['handicap']['h_odds']}</span>
 												</div>
 											</td>
 										{else if $name == '大小'}
-											<td>
+											<td class='check-td'>
 												<div class='form-check'>
-													<label class='form-check-label'>
 														<input class='form-check-input' type='checkbox' name="b-{$row['id']}" value='B'/>
 														小
-													</label>
 													<span class='float-right'>{$detail['total']['under_odds']}</span>
 												</div>
 											</td>
 										{else if $name == '獨贏'}
-											<td>
+											<td class='check-td'>
 												<div class='form-check'>
-													<label class='form-check-label'>
 														<input class='form-check-input' type='checkbox' name="c-{$row['id']}" value='C'/>
 														主
-													</label>
 													<span class='float-right'>{$detail['single']['h_odds']}</span>
 												</div>
 											</td>
 										{else if $name == '一輸二贏'}
-											<td>
+											<td class='check-td'>
 												<div class='form-check'>
-													<label class='form-check-label'>
 														<input class='form-check-input' type='checkbox' name="d-{$row['id']}" value='D'/>
 														{if isset($detail['one_lose_two_win']['h_spread'])}一輸{else}&nbsp;{/if}
-													</label>
 													<span class='float-right'>{$detail['one_lose_two_win']['h_odds']}</span>
 												</div>
 											</td>
 										{else if $name == '單雙'}
-											<td>
+											<td class='check-td'>
 												<div class='form-check'>
-													<label class='form-check-label'>
 														<input class='form-check-input' type='checkbox' name="e-{$row['id']}" value='E'/>
 														雙
-													</label>
 													<span class='float-right'>{$detail['odd_even']['even_odds']}</span>
 												</div>
 											</td>
