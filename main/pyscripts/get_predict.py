@@ -170,7 +170,8 @@ for cate in range(7):
                     elif th_list[index] == '一輸二贏':
                         t1 = td.find('div', class_='t1')
                         t2 = td.find('div', class_='t2')
-                        if t1 != None and t2 != None:
+                        if t1 != None and t2 != None and ('closeback' not in td.get('class')):
+                            print(td.get('class'))
                             one_lose_two_win = details['one_lose_two_win'] = {}
 
                             br = str(t1).find('br')

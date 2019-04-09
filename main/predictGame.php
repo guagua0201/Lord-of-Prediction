@@ -43,21 +43,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 
 	if (file_exists($filename) && ($json = file_get_contents($filename)) !== false) {
 		$json_data = json_decode($json, true);
-	}
-	// print_r ($json_data);
 
-	/* Insert unknown game into DB */
-	foreach ($json_data as $game) {
-		$game_datetime = date("Y") . '-' . $game['date'] . ' ' . $game['time'];
-		$h_name = $game['h_name'];
-		$a_name = $game['a_name'];
-		$details = json_encode($game['details']);
-		$sql = "SELECT id FROM Game WHERE `game_datetime` = '$game_datetime' AND `h_name` = '$h_name' AND `a_name` = '$a_name' AND `category_id` = '$id'";
-		// echo $sql;
-		if (($result = mysqli_query($link, $sql)) && mysqli_num_rows($result) == 0) {
-			$sql2 = "INSERT INTO `Game` (`category_id`, `game_datetime`, `h_name`, `a_name`, `details`) VALUES ('$id', '$game_datetime', '$h_name', '$a_name', '$details')";
-			// echo $sql2 . "<br>";
-			$result = mysqli_query($link, $sql2);
+		/* Insert unknown game into DB */
+		foreach ($json_data as $game) {
+			$game_datetime = date("Y") . '-' . $game['date'] . ' ' . $game['time'];
+			$h_name = $game['h_name'];
+			$a_name = $game['a_name'];
+			$details = json_encode($game['details']);
+			$sql = "SELECT id FROM Game WHERE `game_datetime` = '$game_datetime' AND `h_name` = '$h_name' AND `a_name` = '$a_name' AND `category_id` = '$id'";
+			if (($result = mysqli_query($link, $sql)) && mysqli_num_rows($result) == 0) {
+				$sql2 = "INSERT INTO `Game` (`category_id`, `game_datetime`, `h_name`, `a_name`, `details`) VALUES ('$id', '$game_datetime', '$h_name', '$a_name', '$details')";
+				$result = mysqli_query($link, $sql2);
+			}
 		}
 	}
 
@@ -81,7 +78,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 	*/
 
 	/* Get All Unfinished Games */
-	$sql = "SELECT `id`, `game_datetime`, `h_name`, `a_name`, `details` FROM `Game` WHERE `game_flag` = '0'";
+	$sql = "SELECT `id`, `game_datetime`, `h_name`, `a_name`, `details` FROM `Game` WHERE `game_flag` = '0' AND `category_id` = '$id'";
 	$data = array();
 	$names = array();
 	if ($result = mysqli_query($link, $sql)) {
@@ -154,8 +151,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
 				}
 			}
 		}
-		header('Location: userProfile.php?user_id=' . $_SESSION['user_id'] . '&show=predict');
 		mysqli_close($link);
+		header('Location: userProfile.php?user_id=' . $_SESSION['user_id'] . '&show=predict');
 	}
 }
 ?>
