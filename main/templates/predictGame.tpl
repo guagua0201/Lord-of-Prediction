@@ -49,29 +49,23 @@
 {block name='body'}
 	<div class='container' style='min-height: 68vh'>
 		<div class='row border p-2'>
-			<div class='col-md-9'>
-				<div class='row h-100 align-items-center'>
-					<div class='col-md-1'>
-						{foreach from=$classes item=class}
-							<div class='row text-success pl-3'>
-								{$class['name']}
-							</div>
-						{/foreach}
-					</div>
-					<div class='col-md-10'>
-						{foreach from=$classes item=class}
-							<div class='row'>
+			<div class='col-md-9 col-sm-12'>
+				<div class='d-flex flex-column mt-2'>
+					{foreach from=$classes item=class}
+						<div>
+							<span class='text-success'>{$class['name']}</span>
+							<span class='ml-3'>
 								{foreach from=$categories item=category}
 									{if $category['class_id'] == $class['id']}
-										<a class='mr-3' href="predictGame.php?category_id={$category['id']}">{$category['name']}</a>
+										<a class='mr-3' href="historyGame.php?category_id={$category['id']}">{$category['name']}</a>
 									{/if}
 								{/foreach}
-							</div>
-						{/foreach}
-					</div>
+							</span>
+						</div>
+					{/foreach}
 				</div>
 			</div>
-			<div class='col-md-3'>
+			<div class='col-md-3 col-sm-12'>
 				<div class='row'>
 					<div class='offset-md-3 col-md-9' style='border-left: solid 0.5px gray'>
 						<div class='row pl-3'>
@@ -155,32 +149,32 @@
 										{else if $name == '大小'}
 											<td class='check-td'>
 												<div class='form-check'>
-														<input class='form-check-input' type='checkbox' name="b-{$row['id']}" value='b'/>
-														大 {$detail['total']['point']}
+													<input class='form-check-input' type='checkbox' name="b-{$row['id']}" value='b'/>
+													大 {$detail['total']['point']}
 													<span class='float-right' style="font-color: #bdbdbd; font-size: 0.9em;">{$detail['total']['over_odds']}</span>
 												</div>
 											</td>
 										{else if $name == '獨贏'}
 											<td class='check-td'>
 												<div class='form-check'>
-														<input class='form-check-input' type='checkbox' name="c-{$row['id']}" value='c'/>
-														客
+													<input class='form-check-input' type='checkbox' name="c-{$row['id']}" value='c'/>
+													客
 													<span class='float-right' style="font-color: #bdbdbd; font-size: 0.9em;">{$detail['single']['a_odds']}</span>
 												</div>
 											</td>
 										{else if $name == '一輸二贏'}
 											<td class='check-td'>
 												<div class='form-check'>
-														<input class='form-check-input' type='checkbox' name="d-{$row['id']}" value='d'/>
-														{if isset($detail['one_lose_two_win']['a_spread'])}一輸{else}&nbsp;{/if}
+													<input class='form-check-input' type='checkbox' name="d-{$row['id']}" value='d'/>
+													{if isset($detail['one_lose_two_win']['a_spread'])}一輸{else}&nbsp;{/if}
 													<span class='float-right' style="font-color: #bdbdbd; font-size: 0.9em;">{$detail['one_lose_two_win']['a_odds']}</span>
 												</div>
 											</td>
 										{else if $name == '單雙'}
 											<td class='check-td'>
 												<div class='form-check'>
-														<input class='form-check-input' type='checkbox' name="e-{$row['id']}" value='e'/>
-														單
+													<input class='form-check-input' type='checkbox' name="e-{$row['id']}" value='e'/>
+													單
 													<span class='float-right' style="font-color: #bdbdbd; font-size: 0.9em;">{$detail['odd_even']['odd_odds']}</span>
 												</div>
 											</td>
@@ -194,40 +188,40 @@
 										{if $name == '讓分'}
 											<td class='check-td'>
 												<div class='form-check'>
-														<input class='form-check-input' type='checkbox' name="a-{$row['id']}" value='A'/>
-														主 {if isset($detail['handicap']['h_spread'])}{$detail['handicap']['h_spread']}{/if}
+													<input class='form-check-input' type='checkbox' name="a-{$row['id']}" value='A'/>
+													主 {if isset($detail['handicap']['h_spread'])}{$detail['handicap']['h_spread']}{/if}
 													<span class='float-right' style="font-color: #bdbdbd; font-size: 0.9em;">{$detail['handicap']['h_odds']}</span>
 												</div>
 											</td>
 										{else if $name == '大小'}
 											<td class='check-td'>
 												<div class='form-check'>
-														<input class='form-check-input' type='checkbox' name="b-{$row['id']}" value='B'/>
-														小
+													<input class='form-check-input' type='checkbox' name="b-{$row['id']}" value='B'/>
+													小
 													<span class='float-right' style="font-color: #bdbdbd; font-size: 0.9em;">{$detail['total']['under_odds']}</span>
 												</div>
 											</td>
 										{else if $name == '獨贏'}
 											<td class='check-td'>
 												<div class='form-check'>
-														<input class='form-check-input' type='checkbox' name="c-{$row['id']}" value='C'/>
-														主
+													<input class='form-check-input' type='checkbox' name="c-{$row['id']}" value='C'/>
+													主
 													<span class='float-right' style="font-color: #bdbdbd; font-size: 0.9em;">{$detail['single']['h_odds']}</span>
 												</div>
 											</td>
 										{else if $name == '一輸二贏'}
 											<td class='check-td'>
 												<div class='form-check'>
-														<input class='form-check-input' type='checkbox' name="d-{$row['id']}" value='D'/>
-														{if isset($detail['one_lose_two_win']['h_spread'])}一輸{else}&nbsp;{/if}
+													<input class='form-check-input' type='checkbox' name="d-{$row['id']}" value='D'/>
+													{if isset($detail['one_lose_two_win']['h_spread'])}一輸{else}&nbsp;{/if}
 													<span class='float-right' style="font-color: #bdbdbd; font-size: 0.9em;">{$detail['one_lose_two_win']['h_odds']}</span>
 												</div>
 											</td>
 										{else if $name == '單雙'}
 											<td class='check-td'>
 												<div class='form-check'>
-														<input class='form-check-input' type='checkbox' name="e-{$row['id']}" value='E'/>
-														雙
+													<input class='form-check-input' type='checkbox' name="e-{$row['id']}" value='E'/>
+													雙
 													<span class='float-right' style="font-color: #bdbdbd; font-size: 0.9em;">{$detail['odd_even']['even_odds']}</span>
 												</div>
 											</td>
