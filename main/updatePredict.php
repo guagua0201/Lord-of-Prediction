@@ -74,9 +74,9 @@ for ($category_id = 1; $category_id <= 31; $category_id++) {
 							$a_one_lose_two_win_score = $a_score;
 							$h_one_lose_two_win_score = $h_score;
 							if (isset($detail['one_lose_two_win']['h_spread']))
-								$a_handicap_score += $detail['one_lose_two_win']['h_spread'];
+								$a_one_lose_two_win_score += $detail['one_lose_two_win']['h_spread'];
 							if (isset($detail['one_lose_two_win']['a_spread']))
-								$h_handicap_score += $detail['one_lose_two_win']['a_spread'];
+								$h_one_lose_two_win_score += $detail['one_lose_two_win']['a_spread'];
 							if ($a_one_lose_two_win_score > $h_one_lose_two_win_score)
 								$flag = $row['predict'] == 'd' ? 1 : 2;
 							else if ($a_one_lose_two_win_score < $h_one_lose_two_win_score)
