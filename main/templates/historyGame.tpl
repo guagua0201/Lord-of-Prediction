@@ -3,6 +3,7 @@
 <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+{literal}
 <script>
 	$(document).ready(function() {
 		$("#datepicker").datepicker({
@@ -29,6 +30,7 @@
 		});
 	});
 </script>
+{/literal}
 {/block}
 {block name='body'}
 	<div class='container'>
@@ -41,7 +43,7 @@
 							<span class='ml-3'>
 								{foreach from=$categories item=category}
 									{if $category['class_id'] == $class['id']}
-										<a class='mr-3' href="historyGame.php?category_id={$category['id']}">{$category['name']}</a>
+										<a class='mr-3' href="historyGame.php?category_id={$category['id']}{if isset($smarty.get.date) && !empty($smarty.get.date)}&date={$smarty.get.date}{/if}">{$category['name']}</a>
 									{/if}
 								{/foreach}
 							</span>
@@ -53,7 +55,10 @@
 				<div class='text-center align-items-center'>
 					<form method='get' action='historyGame.php'>
 						<p class='lead'>選擇日期</p>
-						<p><input class='w-100' id='datepicker' name='date'></p>
+						<p>
+							<input hidden name='category_id' value='{$smarty.get.category_id}'>
+							<input class='w-100' id='datepicker' name='date' value="{if isset($smarty.get.date) && !empty($smarty.get.date)}{$smarty.get.date}{/if}">
+						</p>
 					</form>
 				</div>
 			</div>
@@ -92,6 +97,94 @@
 							</tr>
 						{else}
 							{foreach from=$data item=row name=loop}
+								{* Start *}
+								{assign var=detail value=$row['details']}
+								{assign var=a_score value=$row['a_score']}
+								{assign var=h_score value=$row['h_score']}
+
+								{* Handicap *}
+								{if isset($detail['handicap'])}
+									{assign var=h_handicap_class value="predict_fail"}
+									{assign var=a_handicap_class value="predict_fail"}
+									{assign var=handicap value=$detail['handicap']}
+									{assign var=a_handicap_score value=$a_score}
+									{if isset($handicap['a_spread'])}{$a_handicap_score = $a_handicap_score + $handicap['a_spread']}{/if}
+									{assign var=h_handicap_score value=$h_score}
+									{if isset($handicap['h_spread'])}{$h_handicap_score = $h_handicap_score + $handicap['h_spread']}{/if}
+									{if $a_handicap_score > $h_handicap_score}
+										{$h_handicap_class = "predict_success"}
+									{else if $a_handicap_score < $h_handicap_score}
+										{$a_handicap_class = "predict_success"}
+									{else}
+										{$h_handicap_class = "predict_draw"}
+										{$a_handicap_class = "predict_draw"}
+									{/if}
+								{/if}
+
+								{* Total *}
+								{if isset($detail['total'])}
+									{assign var=over_total_class value="predict_fail"}
+									{assign var=under_total_class value="predict_fail"}
+									{if $a_score + $h_score > $detail['total']['point']}
+										{$over_total_class = "predict_success"}
+									{else if $a_score + $h_score < $detail['total']['point']}
+										{$under_total_class = "predict_success"}
+									{else}
+										{$over_total_class = "predict_draw"}
+										{$under_total_class = "predict_draw"}
+									{/if}
+								{/if}
+
+								{* Single *}
+								{if isset($detail['single'])}
+									{assign var=a_single_class value="predict_fail"}
+									{assign var=h_single_class value="predict_fail"}
+									{if $a_score > $h_score}
+										{$a_single_class = "predict_success"}
+									{else if $a_score < $h_score}
+										{$h_single_class = "predict_success"}
+									{else}
+										{$a_single_class = "predict_draw"}
+										{$h_single_class = "predict_draw"}
+									{/if}
+								{/if}
+
+								{* One lose Two win *}
+								{if isset($detail['one_lose_two_win'])}
+									{assign var=a_one_lose_two_win_class value="predict_fail"}
+									{assign var=h_one_lose_two_win_class value="predict_fail"}
+									{assign var=one_lose_two_win value=$detail['one_lose_two_win']}
+									{assign var=a_one_lose_two_win_score value=$a_score}
+									{if isset($one_lose_two_win['a_spread'])}{$a_one_lose_two_win_score = $a_one_lose_two_win_score + $one_lose_two_win['a_spread']}{/if}
+									{assign var=h_one_lose_two_win_score value=$h_score}
+									{if isset($one_lose_two_win['h_spread'])}{$h_one_lose_two_win_score = $h_one_lose_two_win_score + $one_lose_two_win['h_spread']}{/if}
+									{if $a_one_lose_two_win_score > $h_one_lose_two_win_score}
+										{$a_one_lose_two_win_class = "predict_success"}
+									{else if $a_one_lose_two_win_score < $h_one_lose_two_win_score}
+										{$h_one_lose_two_win_class = "predict_success"}
+									{else}
+										{$a_one_lose_two_win_class = "predict_draw"}
+										{$h_one_lose_two_win_class = "predict_draw"}
+									{/if}
+								{/if}
+
+								{* Odd Even *}
+								{if isset($detail['odd_even'])}
+									{assign var=odd_class value="predict_fail"}
+									{assign var=even_class value="predict_fail"}
+									{if ($a_score + $h_score) % 2 == 1}
+										{$odd_class = "predict_success"}
+									{else if ($a_score + $h_score) % 2 == 0}
+										{$even_class = "predict_success"}
+									{else}
+										{$odd_class = "predict_draw"}
+										{$even_class = "predict_draw"}
+									{/if}
+								{/if}
+
+								{* end *}
+
+								<!-- Away Team -->
 								<tr>
 									<td rowspan='2'>
 										<span class='lead'>{$row['id']}</span>
@@ -100,69 +193,71 @@
 										<br>
 										<a href='#'>對戰資訊</a>
 									</td>
-									<td>{$row['a_name']}</td>
+									<td>{$row['a_name']} <strong class="float-right {if $a_score > $h_score}text-success{else if $a_score < $h_score}text-danger{/if}">{$row['a_score']}</strong></td>
 									{foreach from=$names item=name}
-										{assign var=detail value=$row['details']}
+
 										{if $name == '讓分'}
-											<td>
+											<td class='{$a_handicap_class}'>
 												客 {if isset($detail['handicap']['a_spread'])}{$detail['handicap']['a_spread']}{/if}
 												<span class='float-right' style="font-color: #bdbdbd; font-size: 0.9em;">{$detail['handicap']['a_odds']}</span>
 											</td>
 										{else if $name == '大小'}
-											<td>
+											<td class='{$over_total_class}'>
 												大 {$detail['total']['point']}
 												<span class='float-right' style="font-color: #bdbdbd; font-size: 0.9em;">{$detail['total']['over_odds']}</span>
 											</td>
 										{else if $name == '獨贏'}
-											<td>
+											<td class='{$a_single_class}'>
 												客
 												<span class='float-right' style="font-color: #bdbdbd; font-size: 0.9em;">{$detail['single']['a_odds']}</span>
 											</td>
 										{else if $name == '一輸二贏'}
-											<td>
+											<td class='{$a_one_lose_two_win_class}'>
 												{if isset($detail['one_lose_two_win']['a_spread'])}一輸{else}&nbsp;{/if}
 												<span class='float-right' style="font-color: #bdbdbd; font-size: 0.9em;">{$detail['one_lose_two_win']['a_odds']}</span>
 											</td>
 										{else if $name == '單雙'}
-											<td>
+											<td class='{$odd_class}'>
 												單
 												<span class='float-right' style="font-color: #bdbdbd; font-size: 0.9em;">{$detail['odd_even']['odd_odds']}</span>
 											</td>
 										{/if}
 									{/foreach}
 								</tr>
+								<!-- Away Team -->
+								<!-- Home Team -->
 								<tr>
-									<td>{$row['h_name']}</td>
+									<td>{$row['h_name']} <strong class="float-right {if $a_score < $h_score}text-success{else if $a_score > $h_score}text-danger{/if}">{$row['h_score']}</strong></td>
 									{foreach from=$names item=name}
-										{assign var=detail value=$row['details']}
 										{if $name == '讓分'}
-											<td>
+											<td class='{$h_handicap_class}'>
 												主 {if isset($detail['handicap']['h_spread'])}{$detail['handicap']['h_spread']}{/if}
 												<span class='float-right' style="font-color: #bdbdbd; font-size: 0.9em;">{$detail['handicap']['h_odds']}</span>
 											</td>
 										{else if $name == '大小'}
-											<td>
+											<td class='{$under_total_class}'>
 												小
 												<span class='float-right' style="font-color: #bdbdbd; font-size: 0.9em;">{$detail['total']['under_odds']}</span>
 											</td>
 										{else if $name == '獨贏'}
-											<td>
+											<td class='{$h_single_class}'>
 												主
 												<span class='float-right' style="font-color: #bdbdbd; font-size: 0.9em;">{$detail['single']['h_odds']}</span>
 											</td>
 										{else if $name == '一輸二贏'}
-											<td>
+											<td class='{$h_one_lose_two_win_class}'>
 												{if isset($detail['one_lose_two_win']['h_spread'])}一輸{else}&nbsp;{/if}
 												<span class='float-right' style="font-color: #bdbdbd; font-size: 0.9em;">{$detail['one_lose_two_win']['h_odds']}</span>
 											</td>
 										{else if $name == '單雙'}
-											<td>
+											<td class='{$even_class}'>
 												雙
 												<span class='float-right' style="font-color: #bdbdbd; font-size: 0.9em;">{$detail['odd_even']['even_odds']}</span>
 											</td>
 										{/if}
 									{/foreach}
 								</tr>
+								<!-- Home Team -->
 							{/foreach}
 						{/if}
 					</tbody>
