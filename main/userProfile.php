@@ -43,18 +43,18 @@ if (isset($_GET['user_id']) && !empty($_GET['user_id'])) {
 		$smarty->assign('categories', $categories);
 
 		if (!isset($_GET['category_id']) || empty($_GET['category_id']))
-			$_GET['category_id'] = 27;
+			$_GET['category_id'] = 7;
 		$category_id = $_GET['category_id'];
 
 		$sql3 = "SELECT game_id, predict, predict_flag FROM Predict WHERE user_id = '" . $_GET['user_id'] . "' AND (predict_flag = '1' OR predict_flag = '2') AND category_id = '$category_id'";
 		$history_predict = array();
 		if ($result = mysqli_query($link, $sql3)) {
 			while ($row = mysqli_fetch_assoc($result)) {
-				$sql4 = "SELECT `date`, `home_team`, `away_team` FROM Game WHERE id = '" . $row['game_id'] . "'";
+				$sql4 = "SELECT `game_datetime`, `h_name`, `a_name` FROM Game WHERE id = '" . $row['game_id'] . "'";
 				$game_info = mysqli_fetch_assoc(mysqli_query($link, $sql4));
-				$row['game_date'] = $game_info['date'];
-				$row['game_home_team'] = $game_info['home_team'];
-				$row['game_away_team'] = $game_info['away_team'];
+				$row['game_date'] = $game_info['game_datetime'];
+				$row['game_home_team'] = $game_info['h_name'];
+				$row['game_away_team'] = $game_info['a_name'];
 				$history_predict[] = $row;
 			}
 		}
@@ -72,11 +72,11 @@ if (isset($_GET['user_id']) && !empty($_GET['user_id'])) {
 		$sql5 = "SELECT id, game_id, predict, price FROM Predict WHERE user_id = '" . $_GET['user_id'] . "' AND predict_flag = '0' AND category_id = '$category_id'";
 		if ($result = mysqli_query($link, $sql5)) {
 			while ($row = mysqli_fetch_assoc($result)) {
-				$sql6 = "SELECT `date`, `home_team`, `away_team` FROM Game WHERE id = '" . $row['game_id'] . "'";
+				$sql6 = "SELECT `game_datetime`, `h_name`, `a_name` FROM Game WHERE id = '" . $row['game_id'] . "'";
 				$game_info = mysqli_fetch_assoc(mysqli_query($link, $sql6));
-				$row['game_date'] = $game_info['date'];
-				$row['game_home_team'] = $game_info['home_team'];
-				$row['game_away_team'] = $game_info['away_team'];
+				$row['game_date'] = $game_info['game_datetime'];
+				$row['game_home_team'] = $game_info['h_name'];
+				$row['game_away_team'] = $game_info['a_name'];
 				if (array_search($row['id'], $already_buy) === false)
 					$predicts[] = $row;
 			}

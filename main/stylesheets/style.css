@@ -50,3 +50,15 @@ tr.spaceUnder>td {
 	line-height: 1.5;
 	word-wrap: break-word;
 }
+
+.predict_success {
+	background-color: lightgreen;
+}
+
+.predict_fail {
+	background-color: lightcoral;
+}
+
+.predict_draw {
+	background-color: gray;
+}

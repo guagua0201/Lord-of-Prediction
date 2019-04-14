@@ -154,7 +154,7 @@
 													{$predict['game_id']}
 												</td>
 												<td class='text-center col-md-2'>
-													<strong>{$predict['game_date']}</strong>
+													<strong>{$predict['game_date']|date_format:"%m\%d %H:%M"}</strong>
 												</td>
 												<td>
 													{$predict['game_away_team']} VS {$predict['game_home_team']}(主)

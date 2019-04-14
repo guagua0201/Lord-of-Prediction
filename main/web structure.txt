@@ -87,13 +87,13 @@ Db:
 8. Game
 (1). id
 (2). category_id
-(3). date
-(4). time
-(5). home_team
-(6). away_team
-(7). game_flag
-(8). home_team_score
-(9). away_team_score
+(3). game_datetime
+(4). h_name
+(5). a_name
+(6). game_flag
+(7). h_score
+(8). a_score
+(9). details
 
 9. Predict
 (1). id

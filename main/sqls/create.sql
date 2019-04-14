@@ -117,16 +117,18 @@ CREATE TABLE IF NOT EXISTS `ProductCategory` (
 
 -- INSERT INTO `ProductCategory` (`id`, `name`, `e_name`) VALUES (1, '髮型', 'hairstyles'), (2, '衣服', 'clothes'), (3, '鞋子', 'shoes'), (4, '飾品', 'accessories');
 
-CREATE TABLE IF NOT EXISTS `Game` ( 
+CREATE TABLE `Game` ( 
 	`id` INT NOT NULL AUTO_INCREMENT , 
 	`category_id` INT NOT NULL , 
-	`date` VARCHAR(10) NOT NULL , 
-	`time` VARCHAR(10) NOT NULL , 
-	`home_team` VARCHAR(20) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL , 
-	`away_team` VARCHAR(20) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL , 
-	`game_flag` INT NULL , 
+	`game_datetime` DATETIME NOT NULL , 
+	`h_name` VARCHAR(20) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL , 
+	`a_name` VARCHAR(20) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL , 
+	`game_flag` INT NOT NULL DEFAULT '0' , 
+	`h_score` INT NULL , 
+	`a_score` INT NULL , 
+	`details` VARCHAR(1000) NULL , 
 	PRIMARY KEY (`id`)
-) ENGINE = InnoDB;
+) ENGINE = InnoDB CHARSET=utf8 COLLATE utf8_general_ci;
 
 CREATE TABLE IF NOT EXISTS `Predict` ( 
 	`id` INT NOT NULL AUTO_INCREMENT , 
