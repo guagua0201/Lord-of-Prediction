@@ -57,7 +57,7 @@
 						<p class='lead'>選擇日期</p>
 						<p>
 							<input hidden name='category_id' value='{$smarty.get.category_id}'>
-							<input class='w-100' id='datepicker' name='date' value="{if isset($smarty.get.date) && !empty($smarty.get.date)}{$smarty.get.date}{/if}">
+							<input class='w-100' id='datepicker' name='date' value="{if isset($smarty.get.date) && !empty($smarty.get.date)}{$smarty.get.date}{else}{$smarty.now|date_format:"%Y/%m/%d"}{/if}">
 						</p>
 					</form>
 				</div>
