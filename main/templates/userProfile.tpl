@@ -272,7 +272,6 @@
 							<h3>用戶資訊修改</h3>
 							<input hidden name='edit_user_submit' value='true'>
 							<input hidden name='password' value="{$userdata['password']}">
-							<input hidden name='money' value="{$userdata['money']}">
 							<input hidden name='gender' value="{$userdata['gender']}">
 							<div class='input-group mb-3'>
 								<div class='input-group-prepend'>

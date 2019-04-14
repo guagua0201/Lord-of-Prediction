@@ -92,7 +92,7 @@ if (isset($_GET['user_id']) && !empty($_GET['user_id'])) {
 			mysqli_close($link);
 			header('Location: error.php?error_code=103');
 		}
-		$sql = "SELECT `id`, `username`, `password`, `nickname`, `email`, `gender`, `image` , `money` FROM User WHERE id = '" . $_SESSION['user_id'] . "'";
+		$sql = "SELECT `id`, `username`, `password`, `nickname`, `email`, `gender`, `image` FROM User WHERE id = '" . $_SESSION['user_id'] . "'";
 		$result = mysqli_query($link, $sql);
 		if (mysqli_num_rows($result) != 1) {
 			mysqli_close($link);
