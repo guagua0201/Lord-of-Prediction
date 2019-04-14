@@ -10,7 +10,8 @@ mysqli_set_charset($link, 'utf8');
 
 /* Check all Categories */
 for ($category_id = 1; $category_id <= 31; $category_id++) {
-	$filename = './documents/historyGame/' . strval($category_id) . '.json';
+	$filename = getcwd() . "/documents/historyGame/" . strval($category_id) . '.json';
+	echo $filename;
 	/* Read file */
 	if (file_exists($filename) && ($json = file_get_contents($filename)) !== false) {
 		$json_data = json_decode($json, true);
