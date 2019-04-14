@@ -72,12 +72,11 @@ if ($log_status == 0) {
 			$mail_msg .= "http://" . $_SERVER['SERVER_NAME'] . "/activateUser.php?id=" . $user_info['id'] . "&key=" . $verify_key;
 			$headers = "From: ProphecyKing.com";
 			if(mail($email, "ProphecyKing: Activate Your Account", "$mail_msg","$headers")){
-				// send success
+				header('register-mailed.php');
 			}
 			else{
-				// send fail
+				header('error.php?error_code=107');
 			}
-			// echo $mail_msg;
 		} else {
 			$valid = false;
 		}

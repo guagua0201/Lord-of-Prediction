@@ -27,6 +27,9 @@ switch ($error_code) {
 		break;
 	case 106:
 		$error_msg = 'Database Connection Failed!';
+		break;
+	case 107:
+		$error_msg = 'Register Failed!';
 	default:
 		$error_msg = 'Unknown';
 		break;
