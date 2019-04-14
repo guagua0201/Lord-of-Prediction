@@ -10,23 +10,17 @@ CREATE TABLE IF NOT EXISTS `User` (
 	`email` VARCHAR(60) NOT NULL , 
 	`gender` BIT NULL , 
 	`image` VARCHAR(90) NULL , 
-	`verify_key` VARCHAR(128) NOT NULL , 
-	`status` VARCHAR(1) NOT NULL DEFAULT 'N' , 
+	`money1` int(11) NOT NULL , 
+	`money2` int(11) NOT NULL ,
+	`money3` int(11) NOT NULL,
+	`ownAcc` VARCHAR(100) NOT NULL,
+	`hairID` int(11) NULL ,
+	`suitID` int(11) NULL ,
+	`shoeID` int(11) NULL ,
 	PRIMARY KEY (`id`), 
 	UNIQUE (`username`), 
 	UNIQUE (`nickname`), 
 	UNIQUE (`email`)
-) ENGINE = InnoDB;
-
-CREATE TABLE IF NOT EXISTS `UserAsset` (
-	`user_id` INT NOT NULL , 
-	`money` int(11) NOT NULL , 
-	`bonus` int(11) NOT NULL ,
-	`ownAcc` VARCHAR(120) NOT NULL,
-	`hairID` int(11) NULL ,
-	`suitID` int(11) NULL ,
-	`shoeID` int(11) NULL ,
-	PRIMARY KEY (`user_id`)
 ) ENGINE = InnoDB;
 
 CREATE TABLE IF NOT EXISTS `Article` ( 
@@ -100,18 +94,18 @@ CREATE TABLE IF NOT EXISTS `Product` (
   UNIQUE (`name`)
 ) ENGINE = InnoDB;
 
--- INSERT INTO `Product` (`id`,`name`,`gender`,`category_id`,`price,`image_url`) VALUES (1,'男頭髮1',0,1,100,);
--- INSERT INTO `Product` (`id`,`name`,`gender`,`category_id`,`price,`image_url`) VALUES (2,'男鞋1',0,3,100,"images/product/product2.png");
--- INSERT INTO `Product` (`id`,`name`,`gender`,`category_id`,`price,`image_url`) VALUES (3,'男鞋2',0,3,100,"images/product/product3.png");
--- INSERT INTO `Product` (`id`,`name`,`gender`,`category_id`,`price,`image_url`) VALUES (4,'男套裝1',0,2,100,"images/product/product4.png");
--- INSERT INTO `Product` (`id`,`name`,`gender`,`category_id`,`price,`image_url`) VALUES (5,'男套裝2',0,2,100,"images/product/product5.png");
--- INSERT INTO `Product` (`id`,`name`,`gender`,`category_id`,`price,`image_url`) VALUES (6,'女頭髮1',1,1,100,);
--- INSERT INTO `Product` (`id`,`name`,`gender`,`category_id`,`price,`image_url`) VALUES (7,'女鞋子1',1,3,100,"images/product/product7.png");
--- INSERT INTO `Product` (`id`,`name`,`gender`,`category_id`,`price,`image_url`) VALUES (8,'女鞋子2',1,3,100,"images/product/product8.png");
--- INSERT INTO `Product` (`id`,`name`,`gender`,`category_id`,`price,`image_url`) VALUES (9,'女鞋子3',1,3,100,);
--- INSERT INTO `Product` (`id`,`name`,`gender`,`category_id`,`price,`image_url`) VALUES (10,'女套裝1',1,2,100,"images/product/product10.png");
--- INSERT INTO `Product` (`id`,`name`,`gender`,`category_id`,`price,`image_url`) VALUES (11,'女套裝2',1,2,100,"images/product/product11.png");
--- INSERT INTO `Product` (`id`,`name`,`gender`,`category_id`,`price,`image_url`) VALUES (12,'眼鏡',2,4,100,"images/product/product12.png");
+-- INSERT INTO `Product` (`id`,`name`,`gender`,`category_id`,`price`,`image_url`) VALUES (1,'男頭髮1',0,1,100,);
+-- INSERT INTO `Product` (`id`,`name`,`gender`,`category_id`,`price`,`image_url`) VALUES (2,'男鞋1',0,3,100,"images/product/product2.png");
+-- INSERT INTO `Product` (`id`,`name`,`gender`,`category_id`,`price`,`image_url`) VALUES (3,'男鞋2',0,3,100,"images/product/product3.png");
+-- INSERT INTO `Product` (`id`,`name`,`gender`,`category_id`,`price`,`image_url`) VALUES (4,'男套裝1',0,2,100,"images/product/product4.png");
+-- INSERT INTO `Product` (`id`,`name`,`gender`,`category_id`,`price`,`image_url`) VALUES (5,'男套裝2',0,2,100,"images/product/product5.png");
+-- INSERT INTO `Product` (`id`,`name`,`gender`,`category_id`,`price`,`image_url`) VALUES (6,'女頭髮1',1,1,100,);
+-- INSERT INTO `Product` (`id`,`name`,`gender`,`category_id`,`price`,`image_url`) VALUES (7,'女鞋子1',1,3,100,"images/product/product7.png");
+-- INSERT INTO `Product` (`id`,`name`,`gender`,`category_id`,`price`,`image_url`) VALUES (8,'女鞋子2',1,3,100,"images/product/product8.png");
+-- INSERT INTO `Product` (`id`,`name`,`gender`,`category_id`,`price`,`image_url`) VALUES (9,'女鞋子3',1,3,100,);
+-- INSERT INTO `Product` (`id`,`name`,`gender`,`category_id`,`price`,`image_url`) VALUES (10,'女套裝1',1,2,100,"images/product/product10.png");
+-- INSERT INTO `Product` (`id`,`name`,`gender`,`category_id`,`price`,`image_url`) VALUES (11,'女套裝2',1,2,100,"images/product/product11.png");
+-- INSERT INTO `Product` (`id`,`name`,`gender`,`category_id`,`price`,`image_url`) VALUES (12,'眼鏡',2,4,100,"images/product/product12.png");
 
 CREATE TABLE IF NOT EXISTS `ProductCategory` ( 
 	`id` INT NOT NULL AUTO_INCREMENT , 
@@ -131,8 +125,6 @@ CREATE TABLE IF NOT EXISTS `Game` (
 	`home_team` VARCHAR(20) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL , 
 	`away_team` VARCHAR(20) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL , 
 	`game_flag` INT NULL , 
-	`home_team_score` INT NULL , 
-	`away_team_score` INT NULL , 
 	PRIMARY KEY (`id`)
 ) ENGINE = InnoDB;
 

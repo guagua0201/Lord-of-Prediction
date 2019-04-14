@@ -50,7 +50,8 @@
 <body>
     <canvas id="renderCanvas"></canvas>
     
-    <script src="javascripts/testUI.js"></script>
+    <!-- <script src="javascripts/testUI.js"></script>-->
+    <script src = "javascripts/testPhysics.js"></script>
 </body>
 	</div>
 {/block}

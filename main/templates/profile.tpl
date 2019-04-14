@@ -4,8 +4,6 @@
 		<head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
-        <title>Babylon.js sample code</title>
-
         <!-- Babylon.js -->
         <script src="https://code.jquery.com/pep/0.4.2/pep.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/dat-gui/0.6.2/dat.gui.min.js"></script>
@@ -45,6 +43,7 @@
     </head>
 <body>
     <canvas id="renderCanvas"></canvas>
+    <script src="javascripts/follow.js"></script>
     <script src="php/profileReadFile.php?userGender={$gender}&member={$member}"></script>
     
     <script src="javascripts/profile.js"></script>

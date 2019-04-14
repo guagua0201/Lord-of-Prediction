@@ -64,13 +64,9 @@ var createScene = function () {
     // box.physicsImpostor.positionIterations = 10;
     // box.physicsImpostor.stiffness = 1;
     
-    var cloth = BABYLON.SceneLoader.ImportMesh("","model/source/","fba1a669ae9347068ed339d3f4e4c5d3.obj",scene,function(newMeshes){
-        for(var i=0;i<newMeshes.length;i++){
-            newMeshes[i].physicsImpostor =  new BABYLON.PhysicsImpostor(newMeshes[i],BABYLON.PhysicsImpostor.NoImpostor,{mass:1,friction: 0.1,restitution: 0,margin: 0.1, damping:0.01},scene);
-            newMeshes[i].physicsImpostor.velocityIterations = 10; 
-            newMeshes[i].physicsImpostor.positionIterations = 10;
-            newMeshes[i].physicsImpostor.stiffness = 0.9;
-        }
+    var cloth = BABYLON.SceneLoader.ImportMesh("","model/228allModel/manHair1/","manHair1New.obj",scene,function(newMeshes){
+    });
+    var ori = BABYLON.SceneLoader.ImportMesh("","model/228allModel/manHair1/","manHair1.obj",scene,function(newMeshes){
     });
    
     // var physicsRoot;

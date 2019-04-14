@@ -70,7 +70,13 @@ if ($log_status == 0) {
 				$user_info = mysqli_fetch_assoc($result);
 			$mail_msg = "Thanks for your registeration, please click the link below to active your account\n";
 			$mail_msg .= "http://" . $_SERVER['SERVER_NAME'] . "/activateUser.php?id=" . $user_info['id'] . "&key=" . $verify_key;
-			mail($email, "ProphecyKing: Activate Your Account", $mail_msg);
+			$headers = "From: ProphecyKing.com";
+			if(mail($email, "ProphecyKing: Activate Your Account", "$mail_msg","$headers")){
+				// send success
+			}
+			else{
+				// send fail
+			}
 			// echo $mail_msg;
 		} else {
 			$valid = false;

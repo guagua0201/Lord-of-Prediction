@@ -3,7 +3,7 @@ function buyFunction(AccID,moneyType,price,name,userName){
         console.log("buy!");
         jQuery.ajax({
             type: "POST",
-            url: 'php/buyAcc.php',
+            url: 'buyAcc.php',
             dataType: 'json',
             data: {arguments: [userName,AccID,price,moneyType]},
         

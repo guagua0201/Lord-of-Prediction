@@ -98,7 +98,7 @@
 							<span class="input-group-text">信箱:</span>
 						</div>
 						{if !empty($email)}
-							<input class='form-control fomr-control-lg' type='text' name='email' value='{$email}' readonly />
+							<input class='form-control form-control-lg' type='text' name='email' value='{$email}' readonly />
 						{else}
 							<input class="form-control form-control-lg" type="text" name="email" placeholder="請輸入信箱" onkeyup='check_email()' />
 						{/if}
@@ -109,6 +109,17 @@
 					<div id='alert-email' class='alert alert-danger alert-dismissable' style='display: none'>
 						<button type='button' class='close' data-dismiss='alert'>&times;</button>
 						請輸入合法的信箱！
+					</div>
+				</div>
+				<div class='col-md-6 col-sm-12 mb-5'>
+					<div class="input-group input-group-lg">
+						<span class="input-group-text">優惠碼:</span>
+						<!-- <input class='form-control form-control-lg' type="text" name="promo" />-->
+						{if !empty($promo)}
+							<input class='form-control form-control-lg' type='text' name='promo' value='{$promo}' />
+						{else}
+							<input class="form-control form-control-lg" type="text" name="promo" placeholder="請輸入優惠碼" />
+						{/if}
 					</div>
 				</div>
 			</div>

@@ -139,11 +139,15 @@ class sceneGame extends Phaser.Scene{
         result = [];
 
         for(var i=1;i<=5;i++){
-            result[i] = Math.floor(Math.random()*10);
-            if(result[i] == 10) result[i] = 9;
-
-            console.log(result[i]);
+            //result[i] = Math.floor(Math.random()*10);
+            //if(result[i] == 10) result[i] = 9;
+            
+            //console.log(result[i]);
+            console.log(i*2-2,award[i*2-2])
+            result[i] = award[i*2-2];
         }
+
+        console.log("hi result ", result, award);
 
         var intervalY = 132;
         numberEnd = [];

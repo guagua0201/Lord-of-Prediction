@@ -10,15 +10,38 @@ else{
     if (!$link) {
 		die('Connection failed ' . mysqli_connect_error());
     }
-    
-    $sql = "SELECT gender FROM user WHERE username = '$member'";
-    $result = mysqli_query($link, $sql);
-    while($row = $result->fetch_assoc()) {
-        $smarty->assign('member',$member);
-        $smarty->assign('gender',$row["gender"]);
+
+    if(!isset($target)){
+        $sql = "SELECT gender FROM user WHERE username = '$member'";
+        $result = mysqli_query($link, $sql);
+        while($row = $result->fetch_assoc()) {
+            $smarty->assign('member',$member);
+            $smarty->assign('gender',$row["gender"]);
+        }
+
+
+        $smarty->display('profile.tpl');    
     }
+    else{
+        $sql = "SELECT gender,id FROM user WHERE username = '$target'";
+        $result = mysqli_query($link,$sql);
+        while($row = $result->fetch_assoc()){
+            $smarty->assign('gender',$row["gender"]);
+            $smarty->assign('user',$target);
+            $smarty->assign('userID',$row["id"]);
+            
+        }
+        $sql = "SELECT gender FROM user WHERE username = '$member'";
+        $result = mysqli_query($link, $sql);
+        while($row = $result->fetch_assoc()) {
+            $smarty->assign('member',$member);
+            $smarty->assign('genderSelf',$row["gender"]);
+        }
 
 
-    $smarty->display('profile.tpl');
+        $smarty->display('profileOther.tpl');
+    }
+    
+    
 }
 ?>

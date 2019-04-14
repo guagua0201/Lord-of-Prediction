@@ -1,18 +1,35 @@
 <?php
-    require_once('../configs/config.php');
+
+    include_once('main.php');
+    include_once('isLogin.php');
+    require_once('/configs/config.php');
     header('Content-Type: application/json');
 
+
+    
     $aResult = array();
 
     
 
-    //if( !isset($_POST['arguments']) ) { $aResult['error'] = 'No function arguments!'; }
+    if( !isset($_POST['arguments']) ) { 
+        $aResult['error'] = 'No function arguments!';
+        echo json_encode($aResult);
+        exit();
+    }
+    if($log_status == 0){
+        $aResult['error'] = 'not login!';
+        exit();
+    }
+    if($member != $_POST['arguments'][0]){
+        $aResult['error'] = "wrong user!";
+        exit();
+    }
 
 
     $link = mysqli_connect(db_host, db_user, db_password, db_name);
 	if (!$link) {
         //die('Connection failed ' . mysqli_connect_error());
-        $aResult['result'] = "die";
+        $aResult['error'] = "die";
         echo json_encode($aResult);
     }
     else{
