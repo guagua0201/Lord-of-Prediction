@@ -31,10 +31,10 @@
 		<div class='row justify-content-center mb-3'>
 			<div class='row w-50'>
 				<div class='col-sm-12 col-md-6'>
-					<button class='w-100 btn btn-outline-primary btn-lg'><a href='forgetPass.php'>忘記密碼</a></button>
+					<a href='forgetPass.php'><button class='w-100 btn btn-outline-primary btn-lg'>忘記密碼</button></a>
 				</div>
 				<div class='col-sm-12 col-md-6'>
-					<button class='w-100 btn btn-outline-primary btn-lg'><a href='register.php'>立即註冊</a></button>
+					<a href='register.php'><button class='w-100 btn btn-outline-primary btn-lg'>立即註冊</button></a>
 				</div>
 			</div>
 		</div> 
