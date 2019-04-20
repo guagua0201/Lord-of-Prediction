@@ -111,14 +111,17 @@
 						請輸入合法的信箱！
 					</div>
 				</div>
+
+				<!-- promo -->
 				<div class='col-md-6 col-sm-12 mb-5'>
-					<div class="input-group input-group-lg">
-						<span class="input-group-text">優惠碼:</span>
-						<!-- <input class='form-control form-control-lg' type="text" name="promo" />-->
+					<div class='input-group input-group-lg'>
+						<div class='input-group-prepend'>
+							<span class='input-group-text'>優惠碼:</span>
+						</div>
 						{if !empty($promo)}
-							<input class='form-control form-control-lg' type='text' name='promo' value='{$promo}' />
+							<input class='form-control form-control-lg' type='text' name='promo' value='{$promo}'>
 						{else}
-							<input class="form-control form-control-lg" type="text" name="promo" placeholder="請輸入優惠碼" />
+							<input class='form-control form-control-lg' type='text' name='promo' placeholder='請輸入優惠碼'>
 						{/if}
 					</div>
 				</div>
