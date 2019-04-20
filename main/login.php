@@ -33,6 +33,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 					}
 					$_SESSION['user_id'] = $user_info['id'];
 					$_SESSION['username'] = $user_info['username'];
+					$_SESSION['user_timestamp'] = time();
 					mysqli_close($link);
 					header('Location: index.php');
 				}
