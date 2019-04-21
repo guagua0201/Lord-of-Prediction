@@ -5,16 +5,22 @@ include_once('isLogin.php');
 if ($log_status != 0) {
 	header('Location: index.php');
 } else {
+	/* Render forgetPass page */
 	if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 		$smarty->display('forgetPass.tpl');
 	}
 
 	if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+		/* Connect database */
 		$link = mysqli_connect(db_host, db_user, db_password, db_name);
 		if (!$link) {
 			header('error.php?error_code=106') and die();
 		}
 
+		/* 
+		*	type = check-exist: find user by email
+		*		 = success: create forgetPassKey & send mail
+		*/
 		if (isset($_POST['type'])) {
 			$email = mysqli_real_escape_string($link, trim($_POST['email']));
 			$sql = "SELECT `id` FROM `User` WHERE `email` = '$email'";
@@ -37,12 +43,16 @@ if ($log_status != 0) {
 					} else {
 						$forgetPassKey = md5(time() . $email);
 						$user_id = mysqli_fetch_assoc($result)['id'];
+
+						/* Update forgetPassKey into User table */
 						$sql2 = "UPDATE `User` SET `forget_password_key` = '$forgetPassKey' WHERE `id` = '$user_id'";
 						if (!mysqli_query($link, $sql2)) {
 							header('error.php?error_code=101');
 							mysqli_close($link);
 							exit(0);
 						}
+
+						/* Send Mail */
 						$mail_msg = 'Please click below link to reset your password!\n';
 						$mail_msg .= "http://" . $_SERVER['SERVER_NAME'] ."/userUpdatePass.php?id=" . $user_id . "&key=" . $forgetPassKey;
 						$headers = "From: ProphecyKing.com";
