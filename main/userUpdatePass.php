@@ -37,4 +37,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 		header('Location: error.php?error_code=104');
 	}
 }
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+	echo "GET POST";
+}
 ?>
