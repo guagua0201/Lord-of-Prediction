@@ -51,7 +51,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 		$password = mysqli_real_escape_string($link, $_POST['password']);
 
 		/* Update user info */
-		$sql = "UPDATE `User` SET `password` = '$password' WHERE `id` = '$id'";
+		$sql = "UPDATE `User` SET `password` = '$password', `forget_password_key` = NULL WHERE `id` = '$id'";
 		if ($result = mysqli_query($link, $sql)) {
 			echo "
 				<script>
