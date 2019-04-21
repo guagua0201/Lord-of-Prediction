@@ -10,7 +10,7 @@
 				<h3>{$user['username']} ({$user['nickname']})</h3>
 			</div>
 			<div class='row'>
-				<input hidden name='user_id' value="{$user['id']}">
+				<input hidden name='id' value="{$user['id']}">
 				<div class='input-group input-group-lg'>
 					<div class='input-group-prepend'>
 						<span class='input-group-text'>

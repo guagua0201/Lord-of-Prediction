@@ -39,6 +39,32 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-	echo "GET POST";
+	if (isset($_POST['id']) && !empty($_POST['id']) && isset($_POST['password']) && !empty($_POST['password'])) {
+		/* Connect database */
+		$link = mysqli_connect(db_host, db_user, db_password, db_name);
+		if (!$link) {
+			header('Location: error.php?error_code=102');
+		}
+
+		/* Get request post data */
+		$id = mysqli_real_escape_string($link, $_POST['id']);
+		$password = mysqli_real_escape_string($link, $_POST['password']);
+
+		/* Update user info */
+		$sql = "UPDATE `User` SET `password` = '$password' WHERE `id` = '$id'";
+		if ($result = mysqli_query($link, $sql)) {
+			echo "
+				<script>
+					alert('修改成功');
+					window.location.href='login.php';
+				</script>
+			";
+		} else {
+			header('Location: error.php?error_code=101');
+		}
+		mysqli_close($link);
+	} else {
+		header('Location: error.php?error_code=104');
+	}
 }
 ?>
