@@ -14,7 +14,7 @@ if ($log_status != 0) {
 		/* Connect database */
 		$link = mysqli_connect(db_host, db_user, db_password, db_name);
 		if (!$link) {
-			header('error.php?error_code=106') and die();
+			header('Location: error.php?error_code=106') and die();
 		}
 
 		/* 
@@ -47,7 +47,7 @@ if ($log_status != 0) {
 						/* Update forgetPassKey into User table */
 						$sql2 = "UPDATE `User` SET `forget_password_key` = '$forgetPassKey' WHERE `id` = '$user_id'";
 						if (!mysqli_query($link, $sql2)) {
-							header('error.php?error_code=101');
+							header('Location: error.php?error_code=101');
 							mysqli_close($link);
 							exit(0);
 						}
