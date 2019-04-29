@@ -40,6 +40,28 @@
 				</div>
 			</form>
 		</div>
+		</br>
+
+		<script type="text/javascript" src="javascripts/articlePage.js"></script>
+
+		<nav aria-label="Page navigation example">
+		 	<ul class="pagination justify-content-center">
+		   		<li class="page-item">
+		     		<a class="page-link" href="searchArticle.php?page_id={$page_id-1}">Previous</a>
+		    	</li>
+
+		    	{for $i =$page_id-2 to $page_id+2}
+			    	{if $i >=1 and $i <= $maxPage}
+			    		<li class="page-item"><a class="page-link" href="searchArticle.php?page_id={$i}">{$i}</a></li>
+			    	{/if}
+		    	{/for}
+
+		    	<li class="page-item">
+		      		<a class="page-link" href="searchArticle.php?page_id={$page_id+1}">Next</a>
+		    	</li>
+		  	</ul>
+		</nav>
+
 		<div class='row mt-5'>
 			{if count($data) == 0}
 				<h3>沒有結果</h3>

@@ -9,6 +9,15 @@ if (!$link) {
 // mysqli_query($link, "SET CHARACTER SET UTF8");
 mysqli_set_charset($link, "utf8");
 
+
+if (!isset($_GET['page_id']) ) {
+	$page_id = 1;
+}
+else{
+	$page_id = $_GET['page_id'];
+}
+
+
 $sql = "SELECT id, category_id, title, author, update_time FROM Article WHERE ";
 $condition = 0;
 if (isset($_GET['category_id']) && !empty($_GET['category_id'])) {
@@ -26,10 +35,24 @@ if (isset($_GET['search']) && !empty($_GET['search'])) {
 }
 if ($condition == 0)
 	$sql = $sql . "1";
+
+$maxPage = 0;
+if($result = mysqli_query($link,$sql)){
+	$maxPage = ceil($result->num_rows / 10);
+}
+
+//$sql = $sql . " ORDER BY title DESC";
+$nowOffset = $page_id*10-10;
+$sql = $sql . " LIMIT $nowOffset,10";
+
+$smarty->assign("sql",$sql);
+
 // echo $sql;
+
 
 $data = array();
 if ($result = mysqli_query($link, $sql)) {
+
 	while ($row = mysqli_fetch_assoc($result)) {
 		$sql2 = "SELECT username FROM User WHERE id = '" . $row['author'] . "'";
 		$user_result = mysqli_fetch_assoc(mysqli_query($link, $sql2));
@@ -58,10 +81,14 @@ if ($result = mysqli_query($link, $sql5)) {
 		$categories[] = $row;
 }
 
+
+
 mysqli_close($link);
 // echo gettype($data);
 $smarty->assign('data', $data);
 $smarty->assign('classes', $classes);
 $smarty->assign('categories', $categories);
+$smarty->assign('page_id',$page_id);
+$smarty->assign('maxPage',$maxPage);
 $smarty->display('searchArticle.tpl');
 ?>
