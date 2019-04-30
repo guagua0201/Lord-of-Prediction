@@ -22,7 +22,6 @@
 						</div>
 						<input class='form-control form-control-lg' type='password' name='password' placeholder='請輸入密碼'>
 					</div>
-					<input type='hidden' name='submit'>
 					<button type='submit' class='w-100 btn btn-dark btn-lg mb-3'>確認</button>
 					<button type='button' class='w-100 btn btn-primary btn-lg' onclick="window.location = '{$loginUrl}';">Google 登入</button>
 				</div>
