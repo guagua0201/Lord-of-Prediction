@@ -10,8 +10,8 @@
 		<li class='nav-item active text-center'>
 			<a class='nav-link' href='aboutus.php'>關於我們</a>
 		</li>
-		<li class='nav-item active text-center text-white'>
-			<span class='nav-link'>在線人數: {$online_users}</span>
+		<li class='nav-item active text-center'>
+			<span class='navbar-text text-white'>在線人數: {$online_users}</span>
 		</li>
 	</ul>
 </nav>
