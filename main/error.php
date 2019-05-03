@@ -2,36 +2,30 @@
 include_once('main.php');
 include_once('isLogin.php');
 
-if (isset($_GET['error_code']))
+if (isset($_GET['error_code']) && !empty($_GET['error_code']))
 	$error_code = $_GET['error_code'];
 else
 	$error_code = 999;
 switch ($error_code) {
 	case 100:
-		$error_msg = 'Permission Denied!';
+		$error_msg = 'Permission Denied';
 		break;
 	case 101:
-		$error_msg = 'DB Query Failed';
+		$error_msg = 'database query failed';
 		break;
 	case 102:
-		$error_msg = 'Database Connect Failed';
+		$error_msg = 'database connection failed';
 		break;
 	case 103:
-		$error_msg = 'Session Expired!';
+		$error_msg = 'Session Expired';
 		break;
 	case 104:
-		$error_msg = 'Invalid Url';
-		break;
-	case 105:
-		$error_msg = 'Password Wrong!';
-		break;
-	case 106:
-		$error_msg = 'Database Connection Failed!';
+		$error_msg = 'Bad Request';
 		break;
 	case 107:
-		$error_msg = 'Register Failed!';
+		$error_msg = 'register failed';
 	default:
-		$error_msg = 'Unknown';
+		$error_msg = 'unknown error occur';
 		break;
 }
 $smarty->assign('error', $error_msg);
