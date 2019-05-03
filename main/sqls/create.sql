@@ -155,3 +155,11 @@ CREATE TABLE IF NOT EXISTS `BuyPredict` (
 	`predict_id` INT NOT NULL , 
 	PRIMARY KEY (`id`)
 ) ENGINE = InnoDB;
+
+CREATE TABLE IF NOT EXISTS `OnlineUser` (
+	`id` INT NOT NULL AUTO_INCREMENT , 
+	`user_id` INT NOT NULL , 
+	`last_login_time` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP , 
+	`ip_address` VARCHAR(30) NULL , 
+	PRIMARY KEY (`id`)
+) ENGINE = InnoDB;
