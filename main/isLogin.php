@@ -15,6 +15,13 @@ if (isset($_SESSION['user_id'])) {
 	}
 }
 
+// connect to database
+$link = mysqli_connect(db_host, db_user, db_password, db_name);
+if (!$link) {
+	header('Location: error.php?error_code=102');
+	exit(0);
+}
+
 if (isset($_SESSION['user_id'])) {
 	$member = $_SESSION['username'];
 	$log_status = 1;
@@ -24,34 +31,30 @@ if (isset($_SESSION['user_id'])) {
 		$log_status = 2;
 	}
 
-	// connect to database
-	$link = mysqli_connect(db_host, db_user, db_password, db_name);
-	if (!$link) {
-		header('Location: error.php?error_code=102');
-		exit(0);
-	}
-
 	// get unread message ammount
 	$sql = "SELECT `id` FROM `Message` WHERE `receiverId` = '" . $_SESSION['user_id'] . "' AND `readFlag` = '0'";
 	if ($result = mysqli_query($link, $sql)) {
 		$unreadMsg = mysqli_num_rows($result);
 	} else {
 		header('Location: error.php?error_code=101');
+		mysqli_close($link);
 		exit(0);
 	}
-
-	// get online user ammount
-	$sql = "SELECT `id` FROM `OnlineUser` WHERE 1";
-	if ($result = mysqli_query($link, $sql)) {
-		$online_users = mysqli_num_rows($result);
-	} else {
-		header('Location: error.php?error_code=101');
-		exit(0);
-	}
-	mysqli_close($link);
 	$smarty->assign('unreadMsg', $unreadMsg);
-	$smarty->assign('online_users', $online_users);
 }
+
+// get online user ammount
+$sql = "SELECT `id` FROM `OnlineUser` WHERE 1";
+if ($result = mysqli_query($link, $sql)) {
+	$online_users = mysqli_num_rows($result);
+} else {
+	header('Location: error.php?error_code=101');
+	mysqli_close($link);
+	exit(0);
+}
+
+mysqli_close($link);
+$smarty->assign('online_users', $online_users);
 $smarty->assign('member', $member);
 $smarty->assign('log_status', $log_status);
 ?>

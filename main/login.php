@@ -1,6 +1,7 @@
 <?php
 include_once('main.php');
 include_once('isLogin.php');
+require_once('./php/getIpAddress.php');
 //require_once('configs/gConfig.php');
 
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
@@ -17,7 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 		/* Connect database */
 		$link = mysqli_connect(db_host, db_user, db_password, db_name);
 		if (!$link) {
-			header('error.php?error_code=101');
+			header('Location: error.php?error_code=102');
 			exit(0);
 		}
 
@@ -35,10 +36,44 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 					exit(0);
 				}
 
-				/* Successful login & redirect to index.php */
+				/* Successful login */
+				// add status to session
 				$_SESSION['user_id'] = $user_info['id'];
 				$_SESSION['username'] = $user_info['username'];
 				$_SESSION['user_timestamp'] = time();
+
+				/* search for existing data */
+				$sql2 = "SELECT `id` FROM `OnlineUser` WHERE `user_id` = '" . $_SESSION['user_id'] . "'";
+				$online_user_id = -1;
+				if ($result = mysqli_query($link, $sql2)) {
+					if (mysqli_num_rows($result) == 1)
+						$online_user_id = mysqli_fetch_assoc($result)['id'];
+				} else {
+					header('Location: error.php?error_code=101');
+					mysqli_close($link);
+					exit(0);
+				}
+// 
+				$real_ip = get_ip_address();
+				if ($online_user_id === -1) {
+					// insert into online-users
+					$sql2 = "INSERT INTO `OnlineUser` (`user_id`, `ip_address`) VALUES ('" . $_SESSION['user_id'] . "', '$real_ip')";
+					if (!mysqli_query($link, $sql2)) {
+						header('Location: error.php?error_code=101');
+						mysqli_close($link);
+						exit(0);
+					}
+				} else {
+					// update online-users
+					$sql2 = "UPDATE `OnlineUser` SET `ip_address` = '$real_ip' WHERE `id` = '$online_user_id'";
+					if (!mysqli_query($link, $sql2)) {
+						header('Location: error.php?error_code=101');
+						mysqli_close($link);
+						exit(0);
+					}
+				}
+
+				// redirect to index page
 				header('Location: index.php');
 			}
 		} else {
