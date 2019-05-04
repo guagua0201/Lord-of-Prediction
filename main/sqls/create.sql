@@ -10,17 +10,15 @@ CREATE TABLE IF NOT EXISTS `User` (
 	`email` VARCHAR(60) NOT NULL , 
 	`gender` BIT NULL , 
 	`image` VARCHAR(90) NULL , 
-	`money1` int(11) NOT NULL , 
-	`money2` int(11) NOT NULL ,
-	`money3` int(11) NOT NULL,
-	`ownAcc` VARCHAR(100) NOT NULL,
-	`hairID` int(11) NULL ,
-	`suitID` int(11) NULL ,
-	`shoeID` int(11) NULL ,
+	`verify_key` VARCHAR(128) NOT NULL , 
+	`status` VARCHAR(1) NOT NULL DEFAULT 'N' , 
+	`forget_password_key` VARCHAR(128) NULL , 
+	`create_time` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP , 
 	PRIMARY KEY (`id`), 
 	UNIQUE (`username`), 
 	UNIQUE (`nickname`), 
-	UNIQUE (`email`)
+	UNIQUE (`email`),
+	UNIQUE (`forget_password_key`)
 ) ENGINE = InnoDB;
 
 CREATE TABLE IF NOT EXISTS `Article` ( 
@@ -155,5 +153,13 @@ CREATE TABLE IF NOT EXISTS `BuyPredict` (
 	`id` INT NOT NULL AUTO_INCREMENT , 
 	`user_id` INT NOT NULL , 
 	`predict_id` INT NOT NULL , 
+	PRIMARY KEY (`id`)
+) ENGINE = InnoDB;
+
+CREATE TABLE IF NOT EXISTS `OnlineUser` (
+	`id` INT NOT NULL AUTO_INCREMENT , 
+	`user_id` INT NOT NULL , 
+	`last_login_time` DATETIME on update CURRENT_TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP , 
+	`ip_address` VARCHAR(30) NULL , 
 	PRIMARY KEY (`id`)
 ) ENGINE = InnoDB;
