@@ -1,12 +1,11 @@
 <?php
-require_once('configs/config.php');
-session_start();
+include_once('main.php');
+include_once('isLogin.php');
+include_once('php/logout.php');
 
-if (isset($_SESSION['user_id'])) {
-	unset($_SESSION['user_id']);
-	unset($_SESSION['username']);
-	unset($_SESSION['user_timestamp']);
-	session_destroy();
-	header('Location: /index.php');
+if ($log_status !== 0) {
+	logout();
+} else {
+	header('Location: error.php?error_code=104');
 }
 ?>

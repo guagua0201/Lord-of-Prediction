@@ -3,13 +3,12 @@ session_start();
 $member = "Guest";
 $log_status = 0;
 
+include_once('./php/logout.php');
+
 /* logout if not active over 15 min */
 if (isset($_SESSION['user_id'])) {
 	if (time() - $_SESSION['user_timestamp'] > 900) {
-		unset($_SESSION['user_id']);
-		unset($_SESSION['username']);
-		unset($_SESSION['user_timestamp']);
-		header('Location: index.php');
+		logout();
 	} else {
 		$_SESSION['user_timestamp'] = time();
 	}
