@@ -1,6 +1,6 @@
 <?php
 include_once('main.php');
-include_once('isLogin.php');
+// include_once('isLogin.php');
 
 if (isset($_GET['error_code']) && !empty($_GET['error_code']))
 	$error_code = $_GET['error_code'];
