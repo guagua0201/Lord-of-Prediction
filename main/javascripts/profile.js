@@ -54,83 +54,6 @@ var createScene = function () {
 
     
 
-    var loadMesh = function (scene,path,name,posX,posY,posZ,part){
-        
-        var mesh = BABYLON.SceneLoader.ImportMesh("", path, name, scene, function (newMeshes){
-            globalMesh[part] = newMeshes;
-            for(var i=0;i<newMeshes.length;i++){
-                newMeshes[i].position = new BABYLON.Vector3(posX,posY,posZ);
-                //newMeshes[i].dispose();
-            }
-        });
-
-        return mesh;
-    }
-    
-    var setTime = function(scene){
-        var timeH=new Date(Date.now()).getHours();
-    
-        if(timeH == -100){
-            scene.clearColor = new BABYLON.Color3(0.3921,0.584,0.929);  
-        }
-        else{
-            scene.clearColor = new BABYLON.Color3(0.2,0.2,0.3);  
-
-            var spaceRad = 10000;
-
-            var starNum = 100;
-        
-            for(var i=0;i<starNum;i++){
-                var d = 0;
-                var pos = new BABYLON.Vector3(0,0,0);
-                do{
-                    pos.x = Math.random() * spaceRad - spaceRad/2;
-                    pos.y = Math.random() * 1000 - 500;
-                    pos.z = Math.random() * spaceRad - spaceRad/2;
-                d = pos.x*pos.x + pos.y*pos.y + pos.z*pos.z;
-                }while(d < 10000000);
-                var marker = BABYLON.Mesh.CreateSphere('cmarker', 30, 10, scene);
-                marker.position = pos;
-            }
-        }
-    }
-
-    var doActionManager = function(scene){
-        scene.actionManager = new BABYLON.ActionManager(scene);
-
-        scene.actionManager.registerAction(
-        new BABYLON.ExecuteCodeAction(
-                {
-                    trigger: BABYLON.ActionManager.OnKeyDownTrigger,
-                    parameter: 37
-                },
-                function () { 
-                    
-                    var nowPos = new BABYLON.Vector3(camera.position.x,camera.position.y,camera.position.z);
-                    
-                    if(nowPos.x<200) nowPos.x+=20;
-                    //console.log(nowPos.x);
-                    camera.setPosition(nowPos);
-                }
-            )
-        );
-        scene.actionManager.registerAction(
-        new BABYLON.ExecuteCodeAction(
-                {
-                    trigger: BABYLON.ActionManager.OnKeyDownTrigger,
-                    parameter: 39
-                },
-                function () { 
-                    
-                    var nowPos = new BABYLON.Vector3(camera.position.x,camera.position.y,camera.position.z);
-                    if(nowPos.x>-200) nowPos.x-=20;
-                    //console.log(nowPos.x);
-                    camera.setPosition(nowPos);
-                }
-            )
-        );
-    }
-
     var set3DButton = function(){
         var manager = new BABYLON.GUI.GUI3DManager(scene);
 
@@ -195,6 +118,7 @@ var createScene = function () {
                     for(var i=0;i<6;i++){
                         backButton[i].isVisible = false;
                     }
+                    console.log('here');
                     scene.registerBeforeRender(dressUpAnimation);
                 }
                 if(index == 3){
@@ -213,21 +137,7 @@ var createScene = function () {
         panel.blockLayout = false;
     }
 
-    var wearCloth = function(id){
-        console.log("wear ",id);
-        var cate = productCate[id],Cate;
-        if(cate == "2") cate = "suit",Cate = "Suit";
-        else if(cate == "3") cate = "shoe",Cate = "Shoe";
-        else if(cate == "1") cate = "hair",Cate = "Hair";
-        console.log("cate = "+cate+" "+Cate);
-        console.log("globalMesh = ",globalMesh[cate]);
-        for(var i=0;i<globalMesh[cate].length;i++){
-            globalMesh[cate][i].dispose();
-        }
-        loadMesh(scene,modelPath+genderS+Cate+id.toString(10)+"/",genderS+Cate+id.toString(10)+".obj",0,-2.3+30,0,cate);
-
-    }
-
+    
     var scene = new BABYLON.Scene(engine);
 
     var light = new BABYLON.PointLight("Omni", new BABYLON.Vector3(20, 20, 100), scene);
@@ -469,158 +379,16 @@ var createScene = function () {
     advancedTexture.addControl(nextPage);
 
 
-    //menuPlane.lootAt(camera.position);
-
-    
-    // var panel = new BABYLON.GUI.PlanePanel();
-    // panelMenu.margin = 0.02;
-    // panelMenu.position.x = 0;
-    // panelMenu.position.y = 230;
-    // panelMenu.position.z = 1010;
-    // var menuPanel = new BABYLON.GUI.StackPanel();
-    // menuPanel.height = 900+ 'px';
-    // menuPanel.width = 900 + 'px';
-    // menuPanel.panelVerticalAlignment = BABYLON.GUI.Control.VERTICAL_ALIGNMENT_TOP;
-    // menuRec.addControl(menuPanel);
-
-    // var topMenuPanel = new BABYLON.GUI.StackPanel();
-    // topMenuPanel.width = 900 + 'px';
-    // topMenuPanel.height = (900 * 0.15) + 'px';
-    // topMenuPanel.panelVerticalAlignment = BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_RIGHT;
-    // menuPanel.addControl(topMenuPanel);
-
-    // var cateMenuPanel = new BABYLON.GUI.StackPanel();
-
-    // cateMenuPanel.width = 900 + 'px';
-    // cateMenuPanel.height = (900*0.15) + 'px';
-
-    // for(var i = 1 ; i<=4;i++){
-
-    // }
-
-    //var cateMenuPanel = new B
-
-    // var bodyMenuPanel = new BABYLON.GUI.StackPanel();
-    // bodyMenuPanel.width = 900 + 'px';
-    // bodyMenuPanel.height = (900 * 0.7) + 'px';
-    // topMenuPanel.panelVerticalAlignment = BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_LEFT;
-    // menuPanel.addControl(bodyMenuPanel);
-
-
-    // var overMenuPanel = new BABYLON.GUI.StackPanel();
-    // overMenuPanel.isVertical = false;
-    // overMenuPanel.height = 900+ 'px';
-    // overMenuPanel.width = 900 + 'px';
-    
-    //menuPanel.addControl(overMenuPanel);
-
-    // topMenuPanel.clipChildren = false;
-    // topMenuPanel.isVertical = false;
-    // topMenuPanel.adaptWidthToChildren = false;
-    // topMenuPanel.adaptHeightToChildren = false;
-
-    // var closeButton = new BABYLON.GUI.Button.CreateSimpleButton("buttonClose","x");
-    //var closeButton = new BABYLON.GUI.Button.CreateImageButton("buttonClose","x","images/dressUp/xDark.png");
-    // closeButton.color = "white";
-    // closeButton.background = "black";
-    //closeButton.image = new Image();
-    
-    // closeButton.verticalAlignment = BABYLON.GUI.Control.VERTICAL_ALIGNMENT_TOP;
-    // closeButton.horizontalAlignment = BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_RIGHT;
-    // closeButton.fontSize = 30;
-    // closeButton.fontFamily = "Arial";
-    // closeButton.width = (50) + 'px';
-    // closeButton.height = (900 * 0.14) + 'px';
-    // closeButton.cornerRadius = 0;
-    // closeButton.paddingLeft = "30px"
-
-    // closeButton.thickness = 0;
-    // closeButton.image.width = 1;
-    // closeButton.image.height = 1;
-    // closeButton.image.stretch = BABYLON.GUI.Image.STRETCH_UNIFORM;
-    // closeButton.image.autoScale = true;
-    // closeButton.image.height = "100%";
-    // closeButton.image.stretch= BABYLON.GUI.Image.STRETCH_UNIFORM;
-    // closeButton.pointerDownAnimation = function(){
-    //     scene.registerBeforeRender(closeMenuAnimation);
-    // }
-
-    // console.log("closeBUt = ",closeButton)
-    // console.log("topPanel = ",topMenuPanel);
-    // topMenuPanel.addControl(closeButton);
-
-    
-
-
-
-    /*var closeButton2 = new BABYLON.GUI.Button.CreateImageButton("buttonClose2","Close","../images/logo.jpg");
-    // closeButton.color = "white";
-    // closeButton.background = "black";
-    //closeButton.image = new Image();
-    closeButton2.fontSize = 15;
-    closeButton2.fontFamily = "Arial";
-    closeButton2.left = 129.5 + 'px';
-    closeButton2.top = 0 + 'px';
-    closeButton2.width = 150 + 'px';
-    closeButton2.height = 900 * 0.15 + 'px';
-    closeButton2.cornerRadius = 0;
-    closeButton2.image.width = "100%";
-    // closeButton2.verticalAlignment = BABYLON.GUI.Control.VERTICAL_ALIGNMENT_TOP;
-    // closeButton2.horizontalAlignment = BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_CENTER;
-    
-    // closeButton.image.height = "100%";
-    // closeButton.image.stretch= BABYLON.GUI.Image.STRETCH_UNIFORM;
-    closeButton2.pointerDownAnimation = function(){
-        scene.registerBeforeRender(closeMenuAnimation);
-    }
-    
-    // closeButton2.moveToVector3(new BABYLON.Vector3(550,129.5,1501));
-    topMenuPanel.addControl(closeButton2);
-    closeButton2.left = 129.5 + 'px';
-    closeButton2.top = 0 + 'px';
-    // closeButton2.moveToVector3(new BABYLON.Vector3(550,129.5,1501));
-    console.log("closeBUt2 = ",closeButton2)*/
-    
-
-    // var addCloseBut = function(){
-        
-    //     var closeButton = new BABYLON.GUI.HolographicButton("orientation");//new BABYLON.GUI.Button3D("orientation");
-    //     panelMenu.addControl(closeButton);
-    //     //closeButton.imageUrl = "/images/logo.jpg";
-    //     closeButton.scaling = new BABYLON.Vector3(300,200,200);
-    //     closeButton.onPointerUpObservable.add(function(){
-    //         panelMenu.isVertical = !panelMenu.isVertical;
-    //         console.log("hi");
-    //     });  
-
-    //     text1.fontstyle = 'bold'
-    //     text1.fontFamily = "Verdana";
-    //     text1.textVerticalAlignment = BABYLON.GUI.Control.VERTICAL_ALIGNMENT_CENTER
-    //     text1.width = 3;
-    //     text1.text = "幹，看到沒?";
-    //     text1.color = "Black";
-    //     text1.fontSize = 60;
-    //     closeButton.content = text1;
-
-
-
-    // }
-    
-
-    
-    
-
-
-
     return scene;
 }  
 var engine = new BABYLON.Engine(canvas, true, { preserveDrawingBuffer: true, stencil: true });
 var scene = createScene();
-engine.loadingUIText = "Loading!...";
-engine.displayLoadingUI();
+//engine.loadingUIText = "Loading!....";
+//engine.displayLoadingUI();
 
 scene.executeWhenReady(function(){
-    engine.hideLoadingUI();
+    //engine.hideLoadingUI();
+    //console.log("hide!");
 
     //scene.registerBeforeRender(dressUpAnimation);
 
@@ -644,6 +412,7 @@ var zPosSpeed = 80;
 var yTarSpeed = 26;
 
 function dressUpAnimation(){
+    console.log('hi dress');
     var scene = engine.scenes[0];
     var camera = scene.activeCamera;
     if(camera.position.z < 1500){
