@@ -50,7 +50,7 @@
 										</div>
 										<div class='ml-auto text-left'>
 											<div class='purchase'>
-												<a id="buyLink" nohref style="cursor:pointer;color:blue;text-decoration:underline" onclick="buyFunction({$product['id']},1,{$product["price"]},'{$product["name"]}','{$member}')">購買</a>
+												<a id="buyLink" nohref style="cursor:pointer;color:blue;text-decoration:underline" onclick="buyFunction({$product['id']},{$product['moneyType']},{$product["price"]},'{$product["name"]}','{$member}')">購買</a>
 											</div>
 										</div>
 										<div class='ml-auto text-right'>

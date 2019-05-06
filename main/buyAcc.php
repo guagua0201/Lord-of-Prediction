@@ -1,12 +1,12 @@
 <?php
 
+    
     include_once('main.php');
     include_once('isLogin.php');
-    require_once('/configs/config.php');
+    require_once('configs/config.php');
     header('Content-Type: application/json');
 
 
-    
     $aResult = array();
 
     
@@ -18,10 +18,12 @@
     }
     if($log_status == 0){
         $aResult['error'] = 'not login!';
+        echo json_encode($aResult);
         exit();
     }
     if($member != $_POST['arguments'][0]){
         $aResult['error'] = "wrong user!";
+        echo json_encode($aResult);
         exit();
     }
 
@@ -33,17 +35,18 @@
         echo json_encode($aResult);
     }
     else{
-        $sql = "SELECT id,money1,money2,money3,ownAcc FROM user WHERE username = '" . $_POST['arguments'][0] . "'";
+        $sql = "SELECT id,money1,money2,money3,ownAcc FROM `User` WHERE username = '" . $_POST['arguments'][0] . "'";
         
-
-        $user = mysqli_fetch_assoc(mysqli_query($link, $sql));
-
-        if (mysqli_num_rows($user) == 1) {
-            
+        if($result = mysqli_query($link, $sql)){
+            $user = mysqli_fetch_assoc($result);    
         }
         else{
-            
+            $aResult['error'] = "database error, $sql";
+            echo json_encode($aResult);
+            exit();
         }
+
+        
 
         $moneyType = "money".$_POST['arguments'][3];
 
@@ -69,7 +72,11 @@
 
         $newMoney = $user["$moneyType"]-$_POST['arguments'][2];
 
-        $query = "UPDATE user SET "."$moneyType"." = "."$newMoney".", ownAcc = "."\"$ownAcc\""." WHERE id = ".$user["id"];
+        
+
+        $query = "UPDATE `User` SET "."$moneyType"." = "."$newMoney".", ownAcc = "."\"$ownAcc\""." WHERE id = ".$user["id"];
+
+
 
         //$query = "UPDATE user SET "."$moneyType"." = "."$newMoney".", ownAcc = "."$ownAcc"." WHERE id = ".'$user["id"]';
         

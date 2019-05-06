@@ -15,7 +15,7 @@ if ($result = mysqli_query($link, $sql)) {
 		$categories[] = $row;
 }
 
-$sql2 = "SELECT name, id,gender,category_id, price, image_url FROM Product";
+$sql2 = "SELECT name, id,gender,category_id, price, image_url,moneyType FROM Product";
 $products = array();
 if ($result = mysqli_query($link, $sql2)) {
 	while ($row = mysqli_fetch_assoc($result))
