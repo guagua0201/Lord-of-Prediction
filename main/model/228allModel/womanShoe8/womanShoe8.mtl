@@ -1,9 +1,0 @@
-newmtl Boots
-    Ns 25.000000
-    d 1.000000
-    Ka 0.000000 0.000000 0.000000
-    Kd 0.000000 0.000000 0.000000
-    Ks 0.792157 0.933333 0.925490
-    map_Kd womanShoe8_Boots_Diffuse.jpg
-    map_Bump womanShoe8_Boots_Normal.jpg
-    map_Ks womanShoe8_Boots_Specular.jpg

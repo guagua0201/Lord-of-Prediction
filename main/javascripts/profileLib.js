@@ -89,3 +89,35 @@ var wearCloth = function(id){
     loadMesh(scene,modelPath+genderS+Cate+id.toString(10)+"/",genderS+Cate+id.toString(10)+".obj",0,-2.3+30,0,cate);
 
 }
+
+var getSelf = function(){
+    // ownAcc selectAcc gender
+    jQuery.ajax({
+        type: "POST",
+        url: 'profileGet.php',
+        dataType: 'json',
+        data: {arguments: [userName,1]},
+
+        success: function(obj,textstatus){
+            if( !('error' in obj) ) {
+                
+            }
+        }
+    });
+}
+
+var getOther= function(){
+    // selectAcc gender
+    jQuery.ajax({
+        type: "POST",
+        url: 'profileGet.php',
+        dataType: 'json',
+        data: {arguments: [userName,2]},
+
+        success: function(obj,textstatus){
+            if( !('error' in obj) ) {
+                
+            }
+        }
+    });
+}
