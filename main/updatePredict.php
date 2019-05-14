@@ -4,11 +4,25 @@ include_once('isLogin.php');
 
 /* link database */
 $link = mysqli_connect(db_host, db_user, db_password, db_name);
-if (!$link)
-	header('Location: error.php?error_code=102');
+if (!$link) {
+	throw_error("300", mysqli_connect_error());
+}
 mysqli_set_charset($link, 'utf8');
 
 /* Update Running Game */
+$sql = "SELECT `id`, `game_datetime` FROM `Game` WHERE `game_flag` = 0";
+if ($result = mysqli_query($link, $sql)) {
+	$game_info = mysqli_fetch_assoc($result);
+	$now_date = date("Y-m-d H:i:s");
+	if ($now_date > $game_info['game_datetime']) {
+		$sql2 = "UPDATE `Game` SET `game_flag` = 4 WHERE `id` = " . $game_info['id'];
+		if (!mysqli_query($link, $sql2)) {
+			throw_error("301", "");
+		}
+	}
+} else {
+	throw_error("301", "");
+}
 
 /* Check all Categories */
 for ($category_id = 1; $category_id <= 31; $category_id++) {
@@ -29,7 +43,7 @@ for ($category_id = 1; $category_id <= 31; $category_id++) {
 			$h_score = $data['h_score'];
 			$a_score = $data['a_score'];
 			/* Get must update data */
-			$sql = "SELECT `id`, `h_score`, `a_score`, `details` FROM Game WHERE `game_datetime` = '$game_datetime' AND `h_name` = '$h_name' AND `a_name` = '$a_name' AND `game_flag` = '0'";
+			$sql = "SELECT `id`, `h_score`, `a_score`, `details` FROM Game WHERE `game_datetime` = '$game_datetime' AND `h_name` = '$h_name' AND `a_name` = '$a_name' AND (`game_flag` = '0' OR `game_flag` = '4')";
 			if ($game_result = mysqli_query($link, $sql)) {
 				if (mysqli_num_rows($game_result) != 1)
 					continue;
@@ -39,7 +53,7 @@ for ($category_id = 1; $category_id <= 31; $category_id++) {
 				mysqli_query($link, $sql2);
 
 				/* get must update predict */
-				$sql2 = "SELECT `id`, `user_id`, `predict`, `category_id` FROM `Predict` WHERE `game_id` = '" . $game['id'] . "' AND `predict_flag` = '0'";
+				$sql2 = "SELECT `id`, `user_id`, `predict`, `category_id` FROM `Predict` WHERE `game_id` = '" . $game['id'] . "' AND (`predict_flag` = '0' OR `predict_flag` = '3')";
 				$detail = json_decode($game['details'], true);
 				if ($predict_result = mysqli_query($link, $sql2)) {
 					while ($row = mysqli_fetch_assoc($predict_result)) {
@@ -132,6 +146,5 @@ for ($category_id = 1; $category_id <= 31; $category_id++) {
 		}
 	}
 }
-
 mysqli_close($link);
 ?>
