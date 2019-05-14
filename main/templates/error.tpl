@@ -17,6 +17,7 @@
 		<div class='container mt-3'>
 			<h2>ProphecyKing</h2>
 			<p>Error: {$error}</p>
+			{if isset($msg)}<p>{$msg}</p>{/if}
 		</div>
 	</body>
 </html>

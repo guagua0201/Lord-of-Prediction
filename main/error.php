@@ -40,6 +40,8 @@ switch ($error_code) {
 	case 404:
 		$error_msg = 'bad request';
 		break;
+	case 406:
+		$error_msg = 'missing field';
 	case 107:
 		$error_msg = 'register failed';
 	default:
