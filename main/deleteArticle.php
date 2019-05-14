@@ -15,9 +15,6 @@ if ($log_status === 2) {
 		header('Location: /listArticle.php');
 	}
 } else {
-	$smarty->assign('member', $member);
-	$smarty->assign('log_status', $log_status);
-	$smarty->assign('error', 'Permission Denied!');
-	$smarty->display('error.tpl');
+	throw_error(401, "");
 }
 ?>
