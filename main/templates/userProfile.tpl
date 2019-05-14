@@ -255,6 +255,8 @@
 													準
 												{else if $history['predict_flag'] == 2}
 													冏
+												{else if $history['predict_flag'] == 3}
+													?
 												{/if}
 											</strong>
 										</td>

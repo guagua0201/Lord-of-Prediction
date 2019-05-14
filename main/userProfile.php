@@ -49,8 +49,27 @@ if (isset($_GET['user_id']) && !empty($_GET['user_id'])) {
 			$_GET['category_id'] = 7;
 		$category_id = $_GET['category_id'];
 
+		// Update predict state
+		$sql = "SELECT `id`, `game_id` FROM `Predict` WHERE `user_id` = '" . $_GET['user_id'] . "' AND `predict_flag` = 0";
+		$expired_predict = array();
+		if ($result = mysqli_query($link, $sql)) {
+			while ($row = mysqli_fetch_assoc($result)) {
+				$sql2 = "SELECT `game_datetime` FROM `Game` WHERE `id` = '" . $row['game_id'] . "'";
+				if ($game_result = mysqli_query($link, $sql2)) {
+					$game_date = mysqli_fetch_assoc($game_result)['game_datetime'];
+					$now_date = date("Y-m-d H:i:s");
+					if ($now_date < $game_date) {
+						$sql3 = "UPDATE `Predict` SET `predict_flag` = 3 WHERE `id` = '" . $row['game_id'] . "'";
+						if (!mysqli_query($link, $sql3)) {
+							// error 
+						}
+					}
+				}
+			}
+		}
+
 		// Ger user history predict
-		$sql = "SELECT `game_id`, `predict`, `predict_flag` FROM `Predict` WHERE `user_id` = '" . $_GET['user_id'] . "' AND (`predict_flag` = 1 OR `predict_flag` = 2) AND `category_id` = '$category_id'";
+		$sql = "SELECT `game_id`, `predict`, `predict_flag` FROM `Predict` WHERE `user_id` = '" . $_GET['user_id'] . "' AND `predict_flag` > 0 AND `category_id` = '$category_id'";
 		$history_predict = array();
 		if ($result = mysqli_query($link, $sql)) {
 			while ($row = mysqli_fetch_assoc($result)) {
