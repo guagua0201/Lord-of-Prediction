@@ -57,7 +57,7 @@
 							<span class='ml-3'>
 								{foreach from=$categories item=category}
 									{if $category['class_id'] == $class['id']}
-										<a class='mr-3' href="historyGame.php?category_id={$category['id']}">{$category['name']}</a>
+										<a class='mr-3' href="predictGame.php?category_id={$category['id']}">{$category['name']}</a>
 									{/if}
 								{/foreach}
 							</span>
