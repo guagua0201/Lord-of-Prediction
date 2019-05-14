@@ -8,10 +8,17 @@ if (!$link)
 	header('Location: error.php?error_code=102');
 mysqli_set_charset($link, 'utf8');
 
+/* Update Running Game */
+
 /* Check all Categories */
 for ($category_id = 1; $category_id <= 31; $category_id++) {
-	$filename = getcwd() . "/documents/historyGame/" . strval($category_id) . '.json';
-	echo $filename;
+	if (defined(config_status)) {
+		$filename = "/home/justin/Desktop/Work/ProphecyKing/Lord-of-Prediction/main/documents/predictGame" . strval($category_id) . '.json';
+	} else {
+		$filename = "/home/qeayg91ioeue/public_html/documents/predictGame/" .  strval($category_id) . '.json';
+	}
+	// echo $filename;
+	
 	/* Read file */
 	if (file_exists($filename) && ($json = file_get_contents($filename)) !== false) {
 		$json_data = json_decode($json, true);

@@ -9,7 +9,11 @@ if (!$link)
 mysqli_set_charset($link, 'utf8');
 
 for ($category_id = 1; $category_id <= 31; $category_id++) {
-	$filename = getcwd() . "/documents/predictGame/" .  strval($category_id) . '.json';
+	if (defined(config_status)) {
+		$filename = "/home/justin/Desktop/Work/ProphecyKing/Lord-of-Prediction/main/documents/historyGame" . strval($category_id) . '.json';
+	} else {
+		$filename = "/home/qeayg91ioeue/public_html/documents/historyGame/" .  strval($category_id) . '.json';
+	}
 	if (file_exists($filename) && ($json = file_get_contents($filename)) !== false) {
 		$json_data = json_decode($json, true);
 
