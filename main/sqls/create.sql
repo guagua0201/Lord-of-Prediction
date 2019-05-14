@@ -134,7 +134,7 @@ CREATE TABLE IF NOT EXISTS `Predict` (
 	`user_id` INT NOT NULL , 
 	`category_id` INT NOT NULL , 
 	`predict` CHAR(1) NOT NULL ,
-	`predict_flag` INT NOT NULL , 
+	`predict_flag` INT NOT NULL , -- 0: predict, 1: win, 2: lose, 3: running
 	`price` INT NOT NULL , 
 	PRIMARY KEY (`id`)
 ) ENGINE = InnoDB;

@@ -1,7 +1,6 @@
 {extends file='route.tpl'}
 {block name='plugin'}
 <script src='/javascripts/validate_email.js'></script>
-<!-- <script src='/javascripts/test.js'></script> -->
 <script>
 	function check() {
 		var nickname = $("input[name='nickname']").val();
@@ -50,7 +49,7 @@
 					<div class='p-2 text-center'>
 						<ul class='nav flex-column'>
 							<li>
-								<a href='#'>
+								<a href='userProfile.php?show=predict&user_id={$smarty.get.user_id}'>
 									<strong class="{if $smarty.get.show == 'predict'}active{/if}">預測</strong>
 								</a>
 							</li>
