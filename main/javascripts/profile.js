@@ -21,31 +21,7 @@ else{
     hairID = 6;
 }
 
-jQuery.ajax({
-    type: "POST",
-    url: 'php/profileGet.php',
-    dataType: 'json',
-    data: {arguments: [userName]},
-
-    success: function (obj, textstatus) {
-                  if( !('error' in obj) ) {
-                      var phpGender = obj.gender;
-                      console.log("obj = ",obj);
-                      console.log("result",phpGender);
-                      var phpAcc = obj.ownAcc;
-                      console.log("acc = ",phpAcc);
-                      for(var i=0;i<10;i++){
-                          console.log(i," = ",phpAcc[i]);
-                      }
-                      console.log("cate = ",obj.productCate);
-                      console.log("yesCnt = ",obj.yesCnt);
-                      productCate = obj.productCate;
-                  }
-                  else {
-                      console.log("error",obj.error);
-                  }
-            }
-});
+getSelf();
 
 var globalMesh = [];
 
@@ -157,7 +133,7 @@ var createScene = function () {
     if(userGender == 0) genderS = "man";
     else genderS = "woman";
 
-    var modelPath = "model/228allModel/";
+    var modelPath = "model/";
 
     body = loadMesh(scene,modelPath+genderS+"Body/",genderS+"Body.obj",0,30,0,'body');
     suit = loadMesh(scene,modelPath+genderS+"Suit"+suitID.toString(10)+"/",genderS+"Suit"+suitID.toString(10)+".obj",0,-2.3+30,0,'suit');

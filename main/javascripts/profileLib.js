@@ -77,10 +77,12 @@ var doActionManager = function(scene){
 
 var wearCloth = function(id){
     console.log("wear ",id);
-    var cate = productCate[id],Cate;
-    if(cate == "2") cate = "suit",Cate = "Suit";
-    else if(cate == "3") cate = "shoe",Cate = "Shoe";
-    else if(cate == "1") cate = "hair",Cate = "Hair";
+    var cate = productCate[id];
+    var Cate;
+
+    Cate = cate;
+    Cate[0] = Cate[0] - 'a' + 'A';
+
     console.log("cate = "+cate+" "+Cate);
     console.log("globalMesh = ",globalMesh[cate]);
     for(var i=0;i<globalMesh[cate].length;i++){
@@ -100,8 +102,17 @@ var getSelf = function(){
 
         success: function(obj,textstatus){
             if( !('error' in obj) ) {
-                
+                ownAcc = obj['ownAcc'];
+                gender = obj['gender'];
+                selectAcc = obj['selectAcc'];
             }
+            else{
+                console.log('error: ', obj['error']);
+            }
+        },
+        error: function(response) {
+            console.log('error ajax',response);
+
         }
     });
 }
@@ -116,8 +127,51 @@ var getOther= function(){
 
         success: function(obj,textstatus){
             if( !('error' in obj) ) {
-                
+                gender = obj['gender'];
+                selectAcc = obj['selectAcc'];
             }
+            else{
+                console.log('error: ', obj['error']);
+            }
+        },
+        error: function(response) {
+            console.log('error ajax',response);
+
         }
     });
+}
+
+var getProduct = function(id){
+    jQuery.ajax({
+        type: "POST",
+        url: 'productGet.php',
+        dataType: 'json',
+        data: {arguments: [id]},
+        success: function(obj,textstatus){
+            if(!('error' in obj) ){
+
+                console.log('result: ',obj);
+            }
+            else{
+                console.log('not found',obj);
+                return "not found";
+            }
+        },
+        error: function(response){
+            console.log('ajax error',response);
+            return "ajax error";
+        }
+    })
+}
+
+var productModelStr = function(id,gender,cate_ename){
+    var answer = "/model";
+    if(gender == 0){
+        answer = answer + "/man";
+    }
+    else{
+        answer = answer + "/woman";
+    }
+    answer = answer + cate_ename.charAt(0).toUpperCase() + cate_ename.slice(1)+ id.toString(10);
+    return answer;
 }

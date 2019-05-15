@@ -1,36 +1,85 @@
 <?php
     require_once('configs/config.php');
+    include_once('main.php');
+    include_once('isLogin.php');
     header('Content-Type: application/json');
 
     $aResult = array();
 
+
+    
     
 
-    if( !isset($_POST['arguments']) ) { $aResult['error'] = 'No function arguments!'; }
 
+    if( !isset($_POST['arguments']) ) { 
+        $aResult['error'] = 'No function arguments!'; 
+    }
+    else {
 
-    /*if( !isset($aResult['error']) ) {
-
-        switch($_POST['functionname']) {
-            case 'add':
-               if( !is_array($_POST['arguments']) || (count($_POST['arguments']) < 2) ) {
-                    
-                   $aResult['error'] = 'Error in arguments!';
-               }
-               else {
-                    $aResult['result'] = $_POST['arguments'][0] + $_POST['arguments'][1];
-               }
-               break;
-
-            default:
-               $aResult['error'] = 'Not found function '.$_POST['functionname'].'!';
-               break;
+        $link = mysqli_connect(db_host, db_user, db_password, db_name);
+        if (!$link) {
+            //die('Connection failed ' . mysqli_connect_error());
+            $aResult['error'] = "die";
         }
+        else{
 
-    }*/
+            $memberName = $_POST['arguments'][0];
+            $mode = $_POST['arguments'][1];    
 
+            if ( $mode == 1 ){ // self
+                if ( $member != $memberName ){
+                    $aResult['error'] = 'Can\'t get information from other user!';
+                }
+                else{
+                    // ownAcc
+                    $sql = "SELECT ownAcc FROM `User` where username = \"$member\"";
+                    if($result = mysqli_query($link,$sql)){
+                        if(mysqli_num_rows($result)!=1){
+                            $aResult['error'] = 'sql rows not equal one';
+                        }
+                        else{
+                            $nowResult = mysqli_fetch_assoc($result);
+                            $aResult['ownAcc'] = $nowResult['ownAcc'];
+                        }
+                    }
+                    else{
+                        $aResult['error'] = "sql fail";
+                    }
+                }
+            }
+
+            $sql = "SELECT selectAcc,gender FROM `User` where username = \"$member\"";
+            if($result = mysqli_query($link,$sql)){
+                if(mysqli_num_rows($result)!=1){
+                    $aResult['error'] = 'sql rows not equal one';
+                }
+                else{
+                    $nowResult = mysqli_fetch_assoc($result);
+                    $aResult['selectAcc'] = $nowResult['selectAcc'];
+                    $aResult['gender'] = $nowResult['gender'];
+                }
+            }
+            else{
+                $aResult['error'] = "sql fail";
+            }
+
+            // selectAcc
+
+            //gender    
+        }
+        
+
+    }
+
+    echo json_encode($aResult);
+
+
+    
+
+
+    /*
     $link = mysqli_connect(db_host, db_user, db_password, db_name);
-	if (!$link) {
+    if (!$link) {
         //die('Connection failed ' . mysqli_connect_error());
         $aResult['error'] = "die";
     }
@@ -79,6 +128,6 @@
     }
     
 
-    echo json_encode($aResult);
+    echo json_encode($aResult);*/
 
 ?>
