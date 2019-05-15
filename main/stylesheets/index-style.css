@@ -5,3 +5,15 @@
 	padding: 0.5em;
 }
 
+.info_box > ul {
+	text-align: left;
+	list-style: circle inside;
+	padding: 0.5em;
+}
+
+.info_box > ul > li {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
