@@ -12,12 +12,13 @@ mysqli_set_charset($link, 'utf8');
 /* Update Running Game */
 $sql = "SELECT `id`, `game_datetime` FROM `Game` WHERE `game_flag` = 0";
 if ($result = mysqli_query($link, $sql)) {
-	$game_info = mysqli_fetch_assoc($result);
-	$now_date = date("Y-m-d H:i:s");
-	if ($now_date > $game_info['game_datetime']) {
-		$sql2 = "UPDATE `Game` SET `game_flag` = 4 WHERE `id` = " . $game_info['id'];
-		if (!mysqli_query($link, $sql2)) {
-			throw_error("301", "");
+	while ($game_info = mysqli_fetch_assoc($result)) {
+		$now_date = date("Y-m-d H:i:s");
+		if ($now_date > $game_info['game_datetime']) {
+			$sql2 = "UPDATE `Game` SET `game_flag` = 4 WHERE `id` = " . $game_info['id'];
+			if (!mysqli_query($link, $sql2)) {
+				throw_error("301", "");
+			}
 		}
 	}
 } else {
@@ -43,7 +44,7 @@ for ($category_id = 1; $category_id <= 31; $category_id++) {
 			$h_score = $data['h_score'];
 			$a_score = $data['a_score'];
 			/* Get must update data */
-			$sql = "SELECT `id`, `h_score`, `a_score`, `details` FROM Game WHERE `game_datetime` = '$game_datetime' AND `h_name` = '$h_name' AND `a_name` = '$a_name' AND (`game_flag` = '0' OR `game_flag` = '4')";
+			$sql = "SELECT `id`, `h_score`, `a_score`, `details` FROM `Game` WHERE `game_datetime` = '$game_datetime' AND `h_name` = '$h_name' AND `a_name` = '$a_name' AND (`game_flag` = '0' OR `game_flag` = '4')";
 			if ($game_result = mysqli_query($link, $sql)) {
 				if (mysqli_num_rows($game_result) != 1)
 					continue;
