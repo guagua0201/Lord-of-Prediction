@@ -1,16 +1,13 @@
+
 html {
 	margin: 0;
 	padding: 0;
-	min-height: 100vh;
-	min-width: 100%;
 }
 
 body {
 	padding: 0;
 	margin: 0;
 	width: 100%;
-	min-width: 100%;
-	min-height: 100vh;
 	font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
@@ -27,12 +24,6 @@ tr.spaceUnder>td {
 	margin: 30px;
 }
 
-.editUser_box {
-	text-align: center;
-	margin: 30px;
-	min-height: 48px;
-}
-
 .article_box {
 	border-style: solid;
 	border-width: 2px;
@@ -46,14 +37,3 @@ tr.spaceUnder>td {
 	word-wrap: break-word;
 }
 
-.predict_success {
-	background-color: lightgreen;
-}
-
-.predict_fail {
-	background-color: lightcoral;
-}
-
-.predict_draw {
-	background-color: gray;
-}
