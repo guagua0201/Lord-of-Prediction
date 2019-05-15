@@ -55,7 +55,6 @@ if (isset($_GET['user_id']) && !empty($_GET['user_id'])) {
 
 		// Update predict state
 		$sql = "SELECT `id`, `game_id` FROM `Predict` WHERE `user_id` = '" . $_GET['user_id'] . "' AND `predict_flag` = 0";
-		$expired_predict = array();
 		if ($result = mysqli_query($link, $sql)) {
 			while ($row = mysqli_fetch_assoc($result)) {
 				$sql2 = "SELECT `game_datetime` FROM `Game` WHERE `id` = '" . $row['game_id'] . "'";
