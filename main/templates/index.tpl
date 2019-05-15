@@ -3,7 +3,7 @@
 	<link rel='stylesheet' type='text/css' href='stylesheets/index-style.css'></link>
 {/block}
 {block name='body'}
-	<div class='container'>
+	<div class='container justify-content-center'>
 		<div id='slider' class='carousel slide' data-ride='carousel'>
 			<ul class='carousel-indicators'>
 				<li data-target='#slider' data-slide-to='0' class='active'></li>
@@ -29,6 +29,30 @@
 			<a class='carousel-control-next' href='#slider' data-slide='next'>
 				<span class='carousel-control-next-icon'></span>
 			</a>
+		</div>
+
+		<div class='row mt-3 mb-3 ml-2 mr-2'>
+			<div class='col-md-4 col-sm-12'>
+				<div class='info_box'>
+					<h4>預測</h4>
+					<ul>
+					</ul>
+				</div>
+			</div>
+			<div class='col-md-4 col-sm-12'>
+				<div class='info_box'>
+					<h4>討論區</h4>	
+					<ul>
+					</ul>
+				</div>
+			</div>
+			<div class='col-md-4 col-sm-12'>
+				<div class='info_box'>
+					<h4>找高手</h4>	
+					<ul>
+					</ul>
+				</div>
+			</div>
 		</div>
 	</div>
 {/block}
