@@ -61,8 +61,8 @@ if (isset($_GET['user_id']) && !empty($_GET['user_id'])) {
 				if ($game_result = mysqli_query($link, $sql2)) {
 					$game_date = mysqli_fetch_assoc($game_result)['game_datetime'];
 					$now_date = date("Y-m-d H:i:s");
-					if ($now_date < $game_date) {
-						$sql3 = "UPDATE `Predict` SET `predict_flag` = 3 WHERE `id` = '" . $row['game_id'] . "'";
+					if ($now_date > $game_date) {
+						$sql3 = "UPDATE `Predict` SET `predict_flag` = 3 WHERE `id` = '" . $row['id'] . "'";
 						if (!mysqli_query($link, $sql3)) {
 							throw_error("301", "");
 						}
