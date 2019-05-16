@@ -19,6 +19,11 @@
 
 .info_box > ul > li > a {
 	color: white;
+	text-decoration: none;
+}
+
+.info_box > ul > li > a:hover {
+	color: silver;
 }
 
 .container {
