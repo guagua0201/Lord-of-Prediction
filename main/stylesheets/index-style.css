@@ -17,3 +17,10 @@
 	white-space: nowrap;
 }
 
+.info_box > ul > li > a {
+	color: white;
+}
+
+.container {
+	color: white;
+}

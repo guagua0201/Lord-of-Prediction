@@ -2,6 +2,7 @@
 html {
 	margin: 0;
 	padding: 0;
+	background-color: black;
 }
 
 body {
@@ -13,14 +14,11 @@ body {
 	background-size: 100%;
 	background-repeat: no-repeat;
 	background-position: 0 150px;
+	background-color: black;
 }
 
 a {
 	color: #00B7FF;
-}
-
-h1, h2, h3, h4, h5, h6 {
-	color: white;
 }
 
 .header-nav-li {
