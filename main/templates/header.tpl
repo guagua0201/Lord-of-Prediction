@@ -88,8 +88,11 @@
 			<li class='header-nav-li nav-item active'>
 				<a class='btn btn-lg header-nav-btn' href='searchArticle.php'>討論區</a>
 			</li>
-			<li class='header-nav-li nav-item active'>
-				<a class='btn btn-lg header-nav-btn' data-toggle='dropdown' href='#'>小遊戲</a>
+			<li class='header-nav-li nav-item dropdown active'>
+				<a class='btn btn-lg header-nav-btn' data-toggle='dropdown' href='#'>
+					小遊戲
+					<i class="fa fa-chevron-circle-down"></i>
+				</a>
 				<div class='dropdown-menu'>
 					<a class='dropdown-item' href='/BeiJingCart.php'>北京賽車</a>
 					<a class='dropdown-item' href='/lotteryGame.php'>彩票</a>
@@ -112,36 +115,3 @@
 	</div>
 </nav>
 
-
-<!-- old
-<nav style="margin-bottom: 20px; padding: 10px 30px;" class="navbar bg-dark navbar-dark navbar-expand-sm">
-  <ul class="navbar-nav">
-	<li class="nav-item active">
-		<a class="nav-link" href="/predictGame.php">預測賽事</a>
-	</li>
-	<li class="nav-item active">
-		<a class="nav-link" href="/searchArticle.php">討論區</a>
-	</li>
-	<li class="nav-item active dropdown">
-		<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">小遊戲</a>
-		<div class='dropdown-menu'>
-			<a class='dropdown-item' href='/BeiJingCart.php'>北京賽車</a>
-			<a class='dropdown-item' href='/lotteryGame.php'>彩票</a>
-			<a class='dropdown-item' href='/baccaratGame.php'>百家樂</a>
-		</div>
-	</li>
-	<li class="nav-item active">
-		<a class="nav-link" href="/rank.php">找高手</a>
-	</li>
-	<li class="nav-item active">
-		<a class="nav-link" href="/">即時比分</a>
-	</li>
-	<li class="nav-item active">
-		<a class="nav-link" href="/searchUser.php">用戶搜尋</a>
-	</li>
-	<li class="nav-item active">
-		<a class="nav-link" href="historyGame.php">歷史數據</a>
-	</li>
-  </ul>
-</nav>
--->
