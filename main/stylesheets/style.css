@@ -15,6 +15,13 @@ a {
 	color: #00B7FF;
 }
 
+.header-nav-li {
+}
+
+.header-nav-btn {
+	color: black;
+}
+
 tr.spaceUnder>td {
 	padding-bottom: 1.4em;
 }
