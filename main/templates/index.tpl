@@ -45,7 +45,7 @@
 					<ul>
 						{foreach from=$articles item=article}
 							<li>
-								[{$article['category_name']}]&nbsp;&nbsp;
+								[<a href="searchArticle.php?category_id={$article['category_id']}">{$article['category_name']}</a>]&nbsp;&nbsp;
 								<a href="showArticle.php?id={$article['id']}">{$article['title']}</a>&nbsp;
 								<!-- <a href="userProfile.php?show=predict&user_id={$article['author']}">{$article['author_name']}</a>-->
 							</li>
