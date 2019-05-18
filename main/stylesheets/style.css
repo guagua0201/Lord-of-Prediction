@@ -2,7 +2,6 @@
 html {
 	margin: 0;
 	padding: 0;
-	background-color: black;
 }
 
 body {
@@ -10,11 +9,13 @@ body {
 	margin: 0;
 	width: 100%;
 	font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+	/*
 	background-image: url("../images/background.jpg");
 	background-size: 100%;
 	background-repeat: no-repeat;
 	background-position: 0 150px;
 	background-color: black;
+	*/
 }
 
 a {
@@ -22,19 +23,19 @@ a {
 }
 
 .header-nav-btn {
-	color: white;
+	color: black;
 }
 
 .footer-nav-btn {
-	color: white;
+	color: black;
 }
 
 .header-nav-btn:hover {
-	color: silver;
+	color: gray;
 }
 
 .footer-nav-btn:hover {
-	color: silver;
+	color: gray;
 }
 
 tr.spaceUnder>td {
