@@ -36,6 +36,18 @@ a {
 	color: silver;
 }
 
+.user-util-box {
+	background-color: gold;
+	transform: skewX(-45deg);
+	padding: .2rem;
+	margin: 0 0.2rem;
+}
+
+.user-util-box > a {
+	color: black;
+	transform: skewX(45deg);
+}
+
 .header-nav-btn {
 	color: black;
 }
