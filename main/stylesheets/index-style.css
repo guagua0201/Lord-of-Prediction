@@ -1,4 +1,32 @@
 
+body {
+	padding: 0;
+	margin: 0;
+	width: 100%;
+	font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+	background-image: url("../images/background.jpg");
+	background-size: 100%;
+	background-repeat: no-repeat;
+	background-position: 0 150px;
+	background-color: black;
+}
+
+.header-nav-btn {
+	color: white;
+}
+
+.footer-nav-btn {
+	color: white;
+}
+
+.header-nav-btn:hover {
+	color: silver;
+}
+
+.footer-nav-btn:hover {
+	color: silver;
+}
+
 .info_box {
 	border: .5px solid cyan;
 	text-align: center;
@@ -17,3 +45,15 @@
 	white-space: nowrap;
 }
 
+.info_box > ul > li > a {
+	color: white;
+	text-decoration: none;
+}
+
+.info_box > ul > li > a:hover {
+	color: silver;
+}
+
+.container {
+	color: white;
+}

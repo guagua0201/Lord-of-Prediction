@@ -9,10 +9,59 @@ body {
 	margin: 0;
 	width: 100%;
 	font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+	/*
+	background-image: url("../images/background.jpg");
+	background-size: 100%;
+	background-repeat: no-repeat;
+	background-position: 0 150px;
+	background-color: black;
+	*/
 }
 
 a {
 	color: #00B7FF;
+}
+
+#header-jumbotron {
+	height: 150px;
+	padding: 0;
+	background-color: black;
+}
+
+.header-top-btn {
+	color: white;
+}
+
+.header-top-btn:hover {
+	color: silver;
+}
+
+.user-util-box {
+	background-color: gold;
+	transform: skewX(-45deg);
+	padding: .2rem;
+	margin: 0 0.2rem;
+}
+
+.user-util-box > a {
+	color: black;
+	transform: skewX(45deg);
+}
+
+.header-nav-btn {
+	color: black;
+}
+
+.footer-nav-btn {
+	color: black;
+}
+
+.header-nav-btn:hover {
+	color: gray;
+}
+
+.footer-nav-btn:hover {
+	color: gray;
 }
 
 tr.spaceUnder>td {
