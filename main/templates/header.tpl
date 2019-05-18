@@ -1,78 +1,40 @@
 
-<div class='jumborton p-3' style='background-color: #080808'>
-	<div class='row'>
-		<div class='col-md-2'>
-			<div class='row justify-content-center'>
-				<div class='col-md-10'>
-					<a href='/' title='Home'>
-						<img src='/images/logo.jpg' height='100%' width='200px'/>
-					</a>
-				</div>
+<div class='container-fluid'>
+	<div class='d-flex flex-row-reverse'>
+		{if $log_status == 0}<a class='btn btn-lg header-top-btn' href='register.php'>註冊</a>{/if}
+		{if $log_status == 0}<a class='btn btn-lg header-top-btn' href='login.php'>登入</a>{/if}
+		{if $log_status != 0}<a class='btn btn-lg header-top-btn' href='logout.php'>登出</a>{/if}
+		{if $log_status != 0}<a class='btn btn-lg header-top-btn' href='userProfile.php?usesr_id={$smarty.session.user_id}'>{$member}</a>{/if}
+	</div>
+</div>
+
+<div id='header-jumbotron' class='jumbotron'>
+	<div class='container-fluid h-100'>
+		<div class='d-flex flex-row align-items-center'>
+			<img src='images/logo.jpg' height='150px' class='float-left'>
+		{if $log_status != 0}
+			<div class='user-util-box'>
+				<a class='btn btn-lg' href='userProfile.php?user_id={$smarty.session.user_id}'>我的帳戶</a>
 			</div>
-		</div>
-		<div class='col-md-10'>
-			<div class='row justify-content-end'>
-				<div class='col-md-2' style='max-width: 180px'>
-					<table class='table table-borderless' style='line-height: 0.3em'>
-						<tr>
-							<td>
-								{if $log_status != 0}
-									<a href='/userProfile.php?user_id={$smarty.session.user_id}' title='Profile'>{$member}</a>
-								{else}
-									<a href='/login.php' title='Login'>登入</a>
-								{/if}
-							</td>
-						</tr>
-						<tr>
-							<td>
-								{if $log_status == 0}
-									<a href='/register.php' title='Register'>註冊</a>
-								{else}
-									<a href='/logout.php' title='Logout'>登出</a>
-								{/if}
-							</td>
-						</tr>
-					<tr>
-						<td>
-							<a href='/contact.php' title='Contact'>連繫客服</a>
-						</td>
-					</tr>
-					<tr>
-						<td>
-							<a href='/shop.php' title='Shop'>商城入口</a>
-						</td>
-					</tr>
-					</table>
-				</div>
-				<div class='col-md-2' style='max-width: 180px'>
-					<table class='table table-borderless' style='line-height: 0.3em'>
-						{if $log_status != 0}
-							<tr>
-								<td>
-									<a href='/profile.php' title='Profile'>個人小屋</a>
-								</td>
-							</tr>
-							<tr>
-								<td>
-									<a href='/buyCash.php?step=1' title='StoreValue'>儲值入口</a>
-								</td>
-							</tr>
-							<tr>
-								<td>
-									<a href='/showPredict.php' title='ShoppingCar'>購物車</a>
-								</td>
-							</tr>
-							<tr>
-								<td>
-									<a href='/showMessage.php' title='Message'>訊息中心 ({$unreadMsg})</a>
-								</td>
-							</tr>
-						{/if}
-					</table>
-				</div>
+			<div class='user-util-box'>
+				<a class='btn btn-lg' href='profile.php'>個人小屋</a>
 			</div>
+			<div class='user-util-box'>
+				<a class='btn btn-lg' href='buyCash.php?step=1'>儲值頁面</a>
+			</div>
+			<div class='user-util-box'>
+				<a class='btn btn-lg' href='shop.php'>商城入口</a>
+			</div>
+			<div class='user-util-box'>
+				<a class='btn btn-lg' href='showMessage.php' title='Message'>訊息箱 ({$unreadMsg})</a>
+			</div>
+		{/if}
 		</div>
 	</div>
+</div>
+
+<div class='container-fluid border' style='height: 0.2rem; margin-top: -2rem'>
+	<!-- I am separate line -->
 </div>
 
 <nav class='navbar navbar-expand-md justify-content-end'>

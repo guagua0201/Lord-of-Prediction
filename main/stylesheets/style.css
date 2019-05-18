@@ -22,6 +22,20 @@ a {
 	color: #00B7FF;
 }
 
+#header-jumbotron {
+	height: 150px;
+	padding: 0;
+	background-color: black;
+}
+
+.header-top-btn {
+	color: white;
+}
+
+.header-top-btn:hover {
+	color: silver;
+}
+
 .header-nav-btn {
 	color: black;
 }
