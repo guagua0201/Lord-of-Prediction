@@ -1,17 +1,18 @@
 
-<nav class='navbar navbar-dark bg-dark navbar-expand-sm'>
-	<ul class='navbar-nav offset-md-3 col-md-6 col-sm-12 justify-content-around'>
-		<li class='nav-item active text-center'>
-			<a class='nav-link' href='#'>常見問題</a>
+<nav class='navbar navbar-expand-sm justify-content-end'>
+	<ul class='navbar-nav text-center text-white'>
+		<li class='nav-item active'>
+			<a class='btn footer-nav-btn' href='#'>常見問題</a>
 		</li>
-		<li class='nav-item active text-center'>
-			<a class='nav-link' href='contact.php'>連繫客服</a>
+		<li class='nav-item active'>
+			<a class='btn footer-nav-btn' href='contact.php'>連繫客服</a>
 		</li>
-		<li class='nav-item active text-center'>
-			<a class='nav-link' href='aboutus.php'>關於我們</a>
+		<li class='nav-item active'>
+			<a class='btn footer-nav-btn' href='aboutus.php'>關於我們</a>
 		</li>
-		<li class='nav-item active text-center'>
-			<span class='navbar-text text-white'>在線人數: {$online_users}</span>
+		<li class='nav-item active'>
+			<span class='btn footer-nav-btn'>在線人數: {$online_users}</span>
 		</li>
 	</ul>
 </nav>
+

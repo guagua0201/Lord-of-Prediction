@@ -21,14 +21,19 @@ a {
 	color: #00B7FF;
 }
 
-.header-nav-li {
-}
-
 .header-nav-btn {
 	color: white;
 }
 
+.footer-nav-btn {
+	color: white;
+}
+
 .header-nav-btn:hover {
+	color: silver;
+}
+
+.footer-nav-btn:hover {
 	color: silver;
 }
 
