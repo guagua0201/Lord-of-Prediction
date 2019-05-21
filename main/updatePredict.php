@@ -28,9 +28,9 @@ if ($result = mysqli_query($link, $sql)) {
 /* Check all Categories */
 for ($category_id = 1; $category_id <= 31; $category_id++) {
 	if (defined(config_status)) {
-		$filename = "/home/justin/Desktop/Work/ProphecyKing/Lord-of-Prediction/main/documents/predictGame" . strval($category_id) . '.json';
+		$filename = "/home/justin/Desktop/Work/ProphecyKing/Lord-of-Prediction/main/documents/historyGame" . strval($category_id) . '.json';
 	} else {
-		$filename = "/home/qeayg91ioeue/public_html/documents/predictGame/" .  strval($category_id) . '.json';
+		$filename = "/home/qeayg91ioeue/public_html/documents/historyGame/" .  strval($category_id) . '.json';
 	}
 	// echo $filename;
 	
@@ -51,7 +51,9 @@ for ($category_id = 1; $category_id <= 31; $category_id++) {
 				$game = mysqli_fetch_assoc($game_result);
 				/* update game data */
 				$sql2 = "UPDATE `Game` SET `game_flag` = '1', `h_score` = '$h_score', `a_score` = '$a_score' WHERE `id` = '" . $game['id'] . "'";
-				mysqli_query($link, $sql2);
+				if (!mysqli_query($link, $sql2)) {
+				    throw("301", mysqli_error($link));
+				}
 
 				/* get must update predict */
 				$sql2 = "SELECT `id`, `user_id`, `predict`, `category_id` FROM `Predict` WHERE `game_id` = '" . $game['id'] . "' AND (`predict_flag` = '0' OR `predict_flag` = '3')";
@@ -143,9 +145,12 @@ for ($category_id = 1; $category_id <= 31; $category_id++) {
 						}
 					}
 				}
+			} else {
+			    throw_err("301", mysqli_error($link));
 			}
 		}
 	}
 }
 mysqli_close($link);
 ?>
+
