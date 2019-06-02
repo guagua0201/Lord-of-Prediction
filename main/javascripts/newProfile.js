@@ -74,6 +74,23 @@ var newScene = async function(){
 
 function dressUpAnimation(){
 	console.log('dressup');
+	var scene = engine.scenes[0];
+    var camera = scene.activeCamera;
+    if(camera.position.z < 1500){
+        //camera.setPosition(new BABYLON.Vector3(camera.position.x,camera.position.y,camera.position.z+zPosSpeed));
+        //camera.position.z += zPosSpeed;
+        var newPos = new BABYLON.Vector3(0,230,camera.position.z);
+        newPos.z += zPosSpeed;
+        camera.setPosition(newPos);
+    }
+    if(camera.target.y < 230) camera.target.y += yTarSpeed;
+    var camPos = (camera.position.x).toString(10) + "," + (camera.position.y).toString(10) + "," + (camera.position.z).toString(10);
+    var tarPos = (camera.target.x).toString(10) + "," + (camera.target.y).toString(10) + "," + (camera.target.z).toString(10);
+    console.log( camPos + " to " + tarPos)
+    //else console.log('now y = ',camera.target.y);
+    if(camera.position.z >= 1500 && camera.target.y>=230){
+        scene.unregisterBeforeRender(dressUpAnimation)
+    }
 }
 function closeDressUpAnimation(){
 	console.log('close dressup');
@@ -117,7 +134,7 @@ var makeDressUpPlane = async function(){
     menuRecImg.zIndex = 2;
     menuRec.addControl(menuRecImg);
 
-    var cate = []
+    /*var cate = []
     for(var i=1;i<=5;i++){
         cate[i] = BABYLON.GUI.Button.CreateImageOnlyButton("cate" + i.toString(10), "images/dressUp/cate" + i.toString(10) + ".png");
         
@@ -239,7 +256,7 @@ var makeDressUpPlane = async function(){
     nextPage.pointerDownAnimation = function(){
         console.log("nextPage!");
     };
-    advancedTexture.addControl(nextPage);	
+    advancedTexture.addControl(nextPage);	 */
 }
 
 set3DButtonSelf = async function(scene){
