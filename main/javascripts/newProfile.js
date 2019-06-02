@@ -41,7 +41,6 @@ var createScene = async function(){
     roundGround.material = grassMaterial;
     roundGround.rotation.x = Math.PI/2;
 
-    var anchor = new await BABYLON.TransformNode("");
     set3DButtonSelf(scene);
 
     await getSelf(scene);
@@ -242,9 +241,9 @@ var makeDressUpPlane = async function(){
     advancedTexture.addControl(nextPage);	
 }
 
-set3DButtonSelf = async function(scene,anchor){
+set3DButtonSelf = async function(scene){
         var manager = new BABYLON.GUI.GUI3DManager(scene);
-
+        var anchor = new BABYLON.TransformNode("");
         var panel = new BABYLON.GUI.SpherePanel();
         panel.margin = 60;
 
