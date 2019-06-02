@@ -47,7 +47,7 @@ var createScene = async function(){
 
     await getSelf(scene);
 
-    await makeDressUpPlane(scene);
+    await makeDressUpPlane(scene,anchor);
 
 
 
@@ -243,7 +243,7 @@ var makeDressUpPlane = async function(){
     advancedTexture.addControl(nextPage);	
 }
 
-set3DButtonSelf = async function(scene){
+set3DButtonSelf = async function(scene,anchor){
         var manager = new BABYLON.GUI.GUI3DManager(scene);
 
         var panel = new BABYLON.GUI.SpherePanel();
