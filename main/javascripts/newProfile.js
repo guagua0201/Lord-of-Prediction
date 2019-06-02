@@ -1,3 +1,4 @@
+var engine;
 console.log('hi');
 var canvas = document.getElementById("renderCanvas");
 
@@ -36,7 +37,7 @@ var createScene = async function(){
 }
 
 var newScene = async function(){
-	var engine = await new BABYLON.Engine(canvas, true, { preserveDrawingBuffer: true, stencil: true });
+	engine = await new BABYLON.Engine(canvas, true, { preserveDrawingBuffer: true, stencil: true });
 	var scene = await createScene();
 
 	await getSelf(scene);
