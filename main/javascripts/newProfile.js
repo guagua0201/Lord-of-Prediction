@@ -153,7 +153,7 @@ var makeDressUpPlane = async function(){
     menuRecImg.zIndex = 2;
     menuRec.addControl(menuRecImg);
 
-    var closeButton = BABYLON.GUI.Button.CreateImageOnlyButton("cate" + i.toString(10), "images/dressUp/closeButton.png");
+    var closeButton = BABYLON.GUI.Button.CreateImageOnlyButton("closeButton", "images/dressUp/closeButton.png");
 
     closeButton.left = 410;
     closeButton.top = -380;
