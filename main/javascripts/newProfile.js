@@ -1,6 +1,8 @@
+console.log('hi');
 var canvas = document.getElementById("renderCanvas");
 
 var createScene = async function(){
+	console.log('createScene');
 	var scene = new BABYLON.Scene(engine);
 
 	var light = new BABYLON.PointLight("Omni", new BABYLON.Vector3(20,20,100),scene);
