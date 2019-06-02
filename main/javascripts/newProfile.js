@@ -153,6 +153,97 @@ var makeDressUpPlane = async function(){
     menuRecImg.zIndex = 2;
     menuRec.addControl(menuRecImg);
 
+    var closeButton = BABYLON.GUI.Button.CreateImageOnlyButton("cate" + i.toString(10), "images/dressUp/closeButton.png");
+
+    closeButton.left = 410;
+    closeButton.top = -380;
+    closeButton.zIndex = 3;
+    closeButton.thickness = 0;
+    closeButton.width = 0.035;
+    closeButton.height = 0.06;
+    closeButton.pointerDownAnimation = function(){
+        scene.registerBeforeRender(closeMenuAnimation);
+    };
+    advancedTexture.addControl(closeButton);
+
+
+    var lastPage = BABYLON.GUI.Button.CreateImageOnlyButton("lastPage", "images/dressUp/leftTriangle.png");
+    var nextPage = BABYLON.GUI.Button.CreateImageOnlyButton("nextPage", "images/dressUp/rightTriangle.png");
+
+    lastPage.left = -400;
+    lastPage.top = 80;
+    lastPage.zIndex = 3;
+    lastPage.thickness = 0;
+    lastPage.width = 0.015;
+    lastPage.height = 0.06;
+    lastPage.pointerDownAnimation = function(){
+        console.log("lastPage!");
+    };
+    advancedTexture.addControl(lastPage);
+
+    nextPage.left = 400;
+    nextPage.top = 80;
+    nextPage.zIndex = 3;
+    nextPage.thickness = 0;
+    nextPage.width = 0.015;
+    nextPage.height = 0.06;
+    nextPage.pointerDownAnimation = function(){
+        console.log("nextPage!");
+    };
+    advancedTexture.addControl(nextPage);
+
+
+    var nowCate = -1;
+
+    doIdList(ownAcc,cate);
+
+    var blocks = []
+    var blockImg = []
+    for(var i=0;i<2;i++){
+        for(var j=0;j<5;j++){
+            var id = i*5+j;
+            if(id >= (sizeOfIdList)){
+
+            }
+            else{
+
+            }
+            /*
+            blocks[id] = BABYLON.GUI.Button.CreateImageOnlyButton("cate" + i.toString(10), "images/dressUp/block.png");
+
+            blocks[id].left = -320 + j*160;
+            blocks[id].top = -50 + i*250;
+            blocks[id].zIndex = 3;
+            blocks[id].thickness = 0;
+            blocks[id].width = 0.12;
+            blocks[id].height = 0.18;
+            advancedTexture.addControl(blocks[id]);
+
+            nowProduct = getProduct(id);
+            blockImg[id] = BABYLON.GUI.Button.CreateImageOnlyButton("block" + id.toString(10),"images/product/" + (productID[nowCate][id]).toString(10) + ".png");
+            blockImg[id].left = -320 + j*160;
+            blockImg[id].top = -50 + i*250;
+            blockImg[id].zIndex = 4;
+            blockImg[id].thickness = 0;
+            blockImg[id].width = 0.12;
+            blockImg[id].height = 0.18;
+            blockImg[id].id = productID[nowCate][id];
+            
+
+            blockImg[id].pointerDownAnimation = function(){
+                console.log('click ',this.id);
+                wearCloth(this.id);
+            }
+
+            advancedTexture.addControl(blockImg[id]);*/
+
+            
+        }
+    }
+
+
+
+
     /*var cate = []
     for(var i=1;i<=5;i++){
         cate[i] = BABYLON.GUI.Button.CreateImageOnlyButton("cate" + i.toString(10), "images/dressUp/cate" + i.toString(10) + ".png");
@@ -191,18 +282,7 @@ var makeDressUpPlane = async function(){
 
     
 
-    var closeButton = BABYLON.GUI.Button.CreateImageOnlyButton("cate" + i.toString(10), "images/dressUp/closeButton.png");
-
-    closeButton.left = 410;
-    closeButton.top = -380;
-    closeButton.zIndex = 3;
-    closeButton.thickness = 0;
-    closeButton.width = 0.035;
-    closeButton.height = 0.06;
-    closeButton.pointerDownAnimation = function(){
-        scene.registerBeforeRender(closeMenuAnimation);
-    };
-    advancedTexture.addControl(closeButton);
+    
 
     productID = [];
 
@@ -252,30 +332,7 @@ var makeDressUpPlane = async function(){
         }
     }
 
-    var lastPage = BABYLON.GUI.Button.CreateImageOnlyButton("lastPage", "images/dressUp/leftTriangle.png");
-    var nextPage = BABYLON.GUI.Button.CreateImageOnlyButton("nextPage", "images/dressUp/rightTriangle.png");
-
-    lastPage.left = -400;
-    lastPage.top = 80;
-    lastPage.zIndex = 3;
-    lastPage.thickness = 0;
-    lastPage.width = 0.015;
-    lastPage.height = 0.06;
-    lastPage.pointerDownAnimation = function(){
-        console.log("lastPage!");
-    };
-    advancedTexture.addControl(lastPage);
-
-    nextPage.left = 400;
-    nextPage.top = 80;
-    nextPage.zIndex = 3;
-    nextPage.thickness = 0;
-    nextPage.width = 0.015;
-    nextPage.height = 0.06;
-    nextPage.pointerDownAnimation = function(){
-        console.log("nextPage!");
-    };
-    advancedTexture.addControl(nextPage);	 */
+    	 */
 }
 
 set3DButtonSelf = async function(scene){
