@@ -2,6 +2,7 @@ var engine,scene;
 console.log('hi');
 var canvas = document.getElementById("renderCanvas");
 var globalMesh = []
+var backButton = []
 
 var createScene = async function(){
 	console.log('createScene');
@@ -45,7 +46,7 @@ var createScene = async function(){
 
     await getSelf(scene);
 
-    await makeDressUpPlane(scene,anchor);
+    await makeDressUpPlane(scene);
 
 
 
