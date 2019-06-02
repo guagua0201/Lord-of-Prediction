@@ -206,8 +206,13 @@
 					<!-- Rating -->
 					<div class='row p-2 mb-3 border-bottom'>
 						<h3>預測：</h3>
-						<h2 class='text-success'>{$rating['success']}勝</h2>
-						<h2 class='text-danger'>{$rating['failure']}敗</h2>
+						<h3 class='text-success'>{$rating['success']}勝</h3>
+						<h3 class='text-danger'>{$rating['failure']}敗</h3>
+
+					</div>
+					<div class='row p-2 mb-3 border-bottom'>
+						<h3>勝率：</h3>
+						<h3 class='text-dark'>{round($rating['success']/($rating['success'] + $rating['failure']),2)*100}%</h3>
 					</div>
 				{/if}
 				{if $smarty.get.show == 'predict'}
