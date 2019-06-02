@@ -74,7 +74,6 @@ var zPosSpeed = 80;
 var yTarSpeed = 26;
 
 function dressUpAnimation(){
-	console.log('dressup');
 	var scene = engine.scenes[0];
     var camera = scene.activeCamera;
     if(camera.position.z < 1500){
@@ -94,7 +93,26 @@ function dressUpAnimation(){
     }
 }
 function closeDressUpAnimation(){
-	console.log('close dressup');
+	var scene = engine.scenes[0];
+    var camera = scene.activeCamera;
+    if(camera.position.z > 331){
+        var newPos = new BABYLON.Vector3(0,230,camera.position.z);
+        newPos.z -= zPosSpeed;
+        camera.setPosition(newPos);
+    }
+    if(camera.target.y > 100) camera.target.y -= yTarSpeed;
+    var camPos = (camera.position.x).toString(10) + "," + (camera.position.y).toString(10) + "," + (camera.position.z).toString(10);
+    var tarPos = (camera.target.x).toString(10) + "," + (camera.target.y).toString(10) + "," + (camera.target.z).toString(10);
+    console.log( camPos + " to " + tarPos)
+    //else console.log('now y = ',camera.target.y);
+    if(camera.position.z <= 331 && camera.target.y<=100){
+        for(var i=0;i<6;i++){
+            backButton[i].isVisible = true;
+        }
+        camera.setPosition(new BABYLON.Vector3(0,230,330));
+        camera.setTarget(new BABYLON.Vector3(0,100,0));
+        scene.unregisterBeforeRender(closeMenuAnimation)
+    }
 }
 
 
