@@ -195,7 +195,7 @@ var makeDressUpPlane = async function(){
 
     var nowCate = -1;
 
-    doIdList(ownAcc,cate);
+    //doIdList(ownAcc,cate);
 
     var blocks = []
     var blockImg = []
