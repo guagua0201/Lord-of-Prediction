@@ -31,6 +31,8 @@ var createScene = async function(){
         light.position = camera.position;
     });
 
+    await getSelf(scene);
+
 
 
 	return scene;
@@ -40,7 +42,6 @@ var newScene = async function(){
 	engine = await new BABYLON.Engine(canvas, true, { preserveDrawingBuffer: true, stencil: true });
 	var scene = await createScene();
 
-	await getSelf(scene);
 	scene.executeWhenReady(function(){
 		engine.runRenderLoop(function() {
 			if(scene){
