@@ -39,7 +39,7 @@ fileList = ['27', '13', '31', '7', '9', '8', '10']
 
 for cate in range(7):
     print("now = " + fileList[cate])
-    outFile = open("../documents/predictGame/" + fileList[cate] + ".json","w",encoding='utf-8', newline='')
+    outFile = open("tg99Test/predictGame/" + fileList[cate] + ".json","w",encoding='utf-8', newline='')
     nowUrl = 'http://ag.tg999.net/tw/ds.php?gid=' + gid + '&ball=' + ballList[cate]
     nowPage = 1
 
@@ -194,7 +194,7 @@ for cate in range(7):
                 if json_data != {}:    
                     all_games.append(json_data)
 
-        if str(lq.text).find('下') != -1:
+        if str(lq.text).find('下一頁') != -1:
             nowPage = nowPage + 1
             nowUrl = 'http://ag.tg999.net/tw/ds.php?gid=' + gid + '&ball=' + ballList[cate] + '&pagx=15&page=' + str(nowPage)
         else:
