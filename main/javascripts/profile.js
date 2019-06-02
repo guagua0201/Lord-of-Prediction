@@ -2,35 +2,34 @@ var canvas = document.getElementById("renderCanvas");
 
 var backButton = [];
 
-console.log("gender",userGender);
-console.log("hi ",userName);
+var genderS;
 
-var suitID,shoeID,hairID,genderS;
+var ownAcc;
+var gender;
+var selectAcc;
 
-var productCate;
+var getSelfFlag = 0;
 
-if(userGender == 0){
-    
-    suitID = 4;
-    shoeID = 2;
-    hairID = 1;
-}
-else{
-    suitID = 10;
-    shoeID = 8;
-    hairID = 6;
-}
-
-getSelf();
 
 var globalMesh = [];
 
 
 var createScene = function () {
 
-    
 
-    var set3DButton = function(){
+    getSelf(scene);
+
+    /*var selfInform = getSelf().then(function(){
+
+        console.log("selfInform: ",ownAcc,gender,selectAcc);
+        loadPerson(scene,gender,selectAcc);   
+    });*/
+
+    //ownAcc = selfInform[0];
+    //gender = selfInform[1];
+    //selectAcc = selfInform[2];
+
+    set3DButtonSelf = function(scene){
         var manager = new BABYLON.GUI.GUI3DManager(scene);
 
         var panel = new BABYLON.GUI.SpherePanel();
@@ -111,9 +110,8 @@ var createScene = function () {
             backButton[index] = addButton(index);    
         }
         panel.blockLayout = false;
-    }
+    }    
 
-    
     var scene = new BABYLON.Scene(engine);
 
     var light = new BABYLON.PointLight("Omni", new BABYLON.Vector3(20, 20, 100), scene);
@@ -126,21 +124,12 @@ var createScene = function () {
 
     camera.setTarget(new BABYLON.Vector3(0,100,0));
     camera.setPosition(new BABYLON.Vector3(0,230,330));
+
+    
     //camera.attachControl(canvas, true);
 
-    var body,suit,hair,shoe ;
 
-    if(userGender == 0) genderS = "man";
-    else genderS = "woman";
-
-    var modelPath = "model/";
-
-    body = loadMesh(scene,modelPath+genderS+"Body/",genderS+"Body.obj",0,30,0,'body');
-    suit = loadMesh(scene,modelPath+genderS+"Suit"+suitID.toString(10)+"/",genderS+"Suit"+suitID.toString(10)+".obj",0,-2.3+30,0,'suit');
-    hair = loadMesh(scene,modelPath+genderS+"Hair"+hairID.toString(10)+"/",genderS+"Hair"+hairID.toString(10)+".obj",0,-1.8+30,0,'hair');
-    shoe = loadMesh(scene,modelPath+genderS+"Shoe"+shoeID.toString(10)+"/",genderS+"Shoe"+shoeID.toString(10)+".obj",0,-1.8+30,0,'shoe');
-
-    var rock = BABYLON.SceneLoader.ImportMesh("","model/228allModel/ROCK2/","ROCK2.obj",scene,function(newMeshes){
+    var rock = BABYLON.SceneLoader.ImportMesh("","model/ROCK2/","ROCK2.obj",scene,function(newMeshes){
         for(var i=0;i<newMeshes.length;i++){
             newMeshes[i].position = new BABYLON.Vector3(0,0,20);
             newMeshes[i].material.diffuseColor = new BABYLON.Color3(1,1,1);
@@ -157,11 +146,10 @@ var createScene = function () {
 
 
     
-    set3DButton(scene);
+    set3DButtonSelf(scene);
 
     
 
-    //console.log(camera);
 
 
     var grassMaterial = new BABYLON.StandardMaterial(name + "bawl", scene);
@@ -181,7 +169,6 @@ var createScene = function () {
     roundGround.material = grassMaterial;
     //roundGround.rotation = BABYLON.Vector3(0,1.7,0);
     roundGround.rotation.x = Math.PI/2;
-    console.log("ground",roundGround);
 
     //var ground = BABYLON.Mesh.CreateGround("ground", 2000, 2000, 1, scene, false);
 
@@ -195,7 +182,6 @@ var createScene = function () {
     var menuPlane = BABYLON.MeshBuilder.CreatePlane("menuPlane",{width:1000, height:500},scene);
     menuPlane.position = new BABYLON.Vector3(0,230,1000);
     menuPlane.rotate(BABYLON.Axis.Y,Math.PI,BABYLON.Space.LOCAL);
-    console.log(menuPlane);
 
     var advancedTexture = BABYLON.GUI.AdvancedDynamicTexture.CreateForMesh(menuPlane);
 
@@ -253,7 +239,7 @@ var createScene = function () {
                     cate[i].top = -325;
                     cate[i].zIndex = 1;
                 }
-                console.log('cate ',i," = ",cate[i]);
+                //console.log('cate ',i," = ",cate[i]);
                 
                 advancedTexture.addControl(cate[i]); 
                 advancedTexture.removeControl(menuRec);
@@ -307,8 +293,8 @@ var createScene = function () {
             blocks[id].height = 0.18;
             advancedTexture.addControl(blocks[id]);
 
-            
-            blockImg[id] = BABYLON.GUI.Button.CreateImageOnlyButton("block" + id.toString(10),"images/product/product" + (productID[nowCate][id]).toString(10) + ".png");
+            nowProduct = getProduct(id);
+            blockImg[id] = BABYLON.GUI.Button.CreateImageOnlyButton("block" + id.toString(10),"images/product/" + (productID[nowCate][id]).toString(10) + ".png");
             blockImg[id].left = -320 + j*160;
             blockImg[id].top = -50 + i*250;
             blockImg[id].zIndex = 4;
@@ -316,7 +302,6 @@ var createScene = function () {
             blockImg[id].width = 0.12;
             blockImg[id].height = 0.18;
             blockImg[id].id = productID[nowCate][id];
-            console.log("block ",id," = ",blockImg[id]);
             
 
             blockImg[id].pointerDownAnimation = function(){

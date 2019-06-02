@@ -1,3 +1,5 @@
+
+
 var setTime = function(scene){
     var timeH=new Date(Date.now()).getHours();
 
@@ -75,26 +77,14 @@ var doActionManager = function(scene){
     );
 }
 
-var wearCloth = function(id){
-    console.log("wear ",id);
-    var cate = productCate[id];
-    var Cate;
 
-    Cate = cate;
-    Cate[0] = Cate[0] - 'a' + 'A';
 
-    console.log("cate = "+cate+" "+Cate);
-    console.log("globalMesh = ",globalMesh[cate]);
-    for(var i=0;i<globalMesh[cate].length;i++){
-        globalMesh[cate][i].dispose();
-    }
-    loadMesh(scene,modelPath+genderS+Cate+id.toString(10)+"/",genderS+Cate+id.toString(10)+".obj",0,-2.3+30,0,cate);
-
-}
-
-var getSelf = function(){
+var getSelf = async function(){
     // ownAcc selectAcc gender
-    jQuery.ajax({
+    /*ownAcc = "-1";
+    gender = "-1";
+    selectAcc = "-1";*/
+    await jQuery.ajax({
         type: "POST",
         url: 'profileGet.php',
         dataType: 'json',
@@ -102,24 +92,30 @@ var getSelf = function(){
 
         success: function(obj,textstatus){
             if( !('error' in obj) ) {
+                console.log('getSelf: ',obj,obj['gender']);
                 ownAcc = obj['ownAcc'];
                 gender = obj['gender'];
                 selectAcc = obj['selectAcc'];
+                selectAcc = "00000110010000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000";
+                console.log('check',gender,selectAcc);
+                loadPerson(scene,gender,selectAcc);
             }
             else{
                 console.log('error: ', obj['error']);
+                //return [-1,-1,-1];
             }
         },
         error: function(response) {
             console.log('error ajax',response);
-
+            //return [-1,-1,-1];
         }
     });
+    return [ownAcc,gender,selectAcc];
 }
 
-var getOther= function(){
+var getOther= async function(){
     // selectAcc gender
-    jQuery.ajax({
+    await jQuery.ajax({
         type: "POST",
         url: 'profileGet.php',
         dataType: 'json',
@@ -139,10 +135,12 @@ var getOther= function(){
 
         }
     });
+    return [gender,selectAcc];
 }
 
-var getProduct = function(id){
-    jQuery.ajax({
+var getProduct = async function(id){
+    var result;
+    await jQuery.ajax({
         type: "POST",
         url: 'productGet.php',
         dataType: 'json',
@@ -151,27 +149,90 @@ var getProduct = function(id){
             if(!('error' in obj) ){
 
                 console.log('result: ',obj);
+                console.log('return ',[obj["gender"],obj["category"],obj["cate_ename"]])
+                result =  [obj["gender"],obj["category"],obj["cate_ename"]];
             }
             else{
                 console.log('not found',obj);
-                return "not found";
+                result = [-1,-1,-1];
             }
         },
         error: function(response){
             console.log('ajax error',response);
-            return "ajax error";
+            result = [-1,-1,-1];
         }
     })
+    return result;
 }
 
-var productModelStr = function(id,gender,cate_ename){
-    var answer = "/model";
+
+
+function jsUcfirst(string) 
+{
+    return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
+var productFileStr = function(id,gender,cate_ename){
+
+    var genderS;
     if(gender == 0){
-        answer = answer + "/man";
+        genderS = "man";
     }
     else{
-        answer = answer + "/woman";
+        genderS = "woman";
     }
-    answer = answer + cate_ename.charAt(0).toUpperCase() + cate_ename.slice(1)+ id.toString(10);
-    return answer;
+
+    return (genderS + jsUcfirst(cate_ename) + id);
 }
+
+var wearCloth = async function(id){
+    console.log("wear ",id);
+    var product = await getProduct(id);
+
+    console.log('product = ',product);
+
+
+    var genderS;
+
+    if(product[0] === "0"){
+        genderS = "man";
+    }
+    else{
+        genderS = "woman";
+    }
+
+    var cate = product[2];
+    var Cate = jsUcfirst(cate);
+
+    console.log("cate = "+cate+" "+Cate);
+    console.log("globalMesh = ",globalMesh[cate]);
+    if(globalMesh[cate]){   
+        for(var i=0;i<globalMesh[cate].length;i++){
+            globalMesh[cate][i].dispose();
+        }   
+    }
+    loadMesh(scene,"model/"+genderS+Cate+id.toString(10)+"/",genderS + Cate + id.toString(10) + ".obj",0,30,0,cate);
+    //loadMesh(productModelStr(id,product[0],product[2]),0,30,0,cate);
+}
+
+
+var loadPerson = function(scene,gender,selectAcc){
+    console.log('load person ',gender,selectAcc);
+    var modelPath = "model/";
+
+    var genderS;
+
+    if(gender == 0) genderS = "man";
+    else genderS = "woman";
+
+    loadMesh(scene,modelPath + genderS + "Body/", genderS + "Body.obj",0,30,0,'body');
+
+    for(var i=0;i<selectAcc.length;i++){
+        if(selectAcc[i] === '1'){
+            var id = i+1;
+            wearCloth(id);
+        }
+    }
+    return ;
+}
+
