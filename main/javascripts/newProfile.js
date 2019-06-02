@@ -9,8 +9,6 @@ var createScene = async function(){
 
 	var light = new BABYLON.PointLight("Omni", new BABYLON.Vector3(20,20,100),scene);
 
-	var anchor = new BABYLON.TransformNode("");
-
 	setTime(scene);
 
 	var camera = new BABYLON.ArcRotateCamera("Camera", 0,0,20, BABYLON.Vector3(0,0,0), scene);
@@ -43,6 +41,7 @@ var createScene = async function(){
     roundGround.material = grassMaterial;
     roundGround.rotation.x = Math.PI/2;
 
+    var anchor = new await BABYLON.TransformNode("");
     set3DButtonSelf(scene);
 
     await getSelf(scene);
