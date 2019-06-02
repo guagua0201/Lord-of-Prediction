@@ -41,7 +41,7 @@ var loadMesh = function (scene,path,name,posX,posY,posZ,part){
     return mesh;
 }
 
-var doActionManager = function(scene){
+var doActionManager = function(scene,camera){
     scene.actionManager = new BABYLON.ActionManager(scene);
 
     scene.actionManager.registerAction(

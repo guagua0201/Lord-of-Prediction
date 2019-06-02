@@ -49,7 +49,8 @@
     <script src="javascripts/profileLib.js"></script>
 
     {if $isSelf eq 1}
-        <script src = "javascripts/profile.js"></script>
+        <!-- <script src = "javascripts/profile.js"></script>-->
+        <script src = "javascripts/newProfile.js"></script>
     {else}
         <script src = "javascripts/profileOther.js"></script>
     {/if}
