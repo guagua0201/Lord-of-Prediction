@@ -37,7 +37,7 @@ var createScene = async function(){
 
 var newScene = async function(){
 	var engine = new BABYLON.engine(canvas, true, { preserveDrawingBuffer: true, stencil: true });
-	var scene = await createScene();
+	var scene = createScene();
 
 	await getSelf(scene);
 	scene.executeWhenReady(function(){
@@ -61,3 +61,5 @@ function dressUpAnimation(){
 function closeDressUpAnimation(){
 
 }
+
+newScene();
