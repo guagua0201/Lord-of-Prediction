@@ -70,7 +70,8 @@ var newScene = async function(){
 	});
 }
 
-
+var zPosSpeed = 80;
+var yTarSpeed = 26;
 
 function dressUpAnimation(){
 	console.log('dressup');
