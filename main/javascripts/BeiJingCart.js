@@ -418,6 +418,8 @@ function animateEnd(){
 }
 
 function playEnd(){
+
+
     var endImg = new Image();
     endImg.src = "./images/BeiJingCart/background/winbg2.png";
     endImg.onload = function(){

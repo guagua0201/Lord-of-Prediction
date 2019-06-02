@@ -195,7 +195,9 @@ var makeDressUpPlane = async function(){
 
     var nowCate = -1;
 
-    //doIdList(ownAcc,cate);
+    doIdList(ownAcc,cate);
+
+    sizeOfIdList = 0;
 
     var blocks = []
     var blockImg = []
@@ -336,88 +338,91 @@ var makeDressUpPlane = async function(){
 }
 
 set3DButtonSelf = async function(scene){
-        var manager = new BABYLON.GUI.GUI3DManager(scene);
-        var anchor = new BABYLON.TransformNode("");
-        var panel = new BABYLON.GUI.SpherePanel();
-        panel.margin = 60;
+    var manager = new BABYLON.GUI.GUI3DManager(scene);
+    var anchor = new BABYLON.TransformNode("");
+    var panel = new BABYLON.GUI.SpherePanel();
+    panel.margin = 60;
 
-        manager.addControl(panel);
-        anchor.rotation = new BABYLON.Vector3(0,1.95, 0);
-        // console.log(anchor);
-        panel.linkToTransformNode(anchor);
-        panel.position.z = -1.5;
-        panel.position.x = 0;
-        panel.position.y+=100;
-        panel.radius = 200;
+    manager.addControl(panel);
+    anchor.rotation = new BABYLON.Vector3(0,1.95, 0);
+    // console.log(anchor);
+    panel.linkToTransformNode(anchor);
+    panel.position.z = -1.5;
+    panel.position.x = 0;
+    panel.position.y+=100;
+    panel.radius = 200;
 
-        // console.log(panel);
+    // console.log(panel);
 
-        // Let's add some buttons!
+    // Let's add some buttons!
 
-        buttonText = ["設定個人頁面\n1","追隨此用戶\n2","我的追隨\n3","我的商品\n4","購買配件\n5","換裝\n6"];
+    buttonText = ["設定個人頁面\n1","追隨此用戶\n2","我的追隨\n3","我的商品\n4","購買配件\n5","換裝\n6"];
 
-        var addButton = function(index) {
-            var button = new BABYLON.GUI.HolographicButton("orientation");
-            panel.addControl(button);
+    var addButton = function(index) {
+        var button = new BABYLON.GUI.HolographicButton("orientation");
+        panel.addControl(button);
+        button.scaling.x=75;
+        button.scaling.y=50;
+        button.scaling.z=50;
+        //console.log(button);
+        //button.text = text;
+        var text1 = new BABYLON.GUI.TextBlock();
+        
+        text1.fontstyle = 'bold'
+        text1.fontFamily = "Verdana";
+        text1.textVerticalAlignment = BABYLON.GUI.Control.VERTICAL_ALIGNMENT_CENTER
+        text1.width = 3;
+        text1.text = buttonText[index];
+        text1.color = "White";
+        text1.fontSize = 40;
+        button.content = text1;
+        //button.isVisible = false;
+
+        button.pointerEnterAnimation = () => {
+            button.scaling.x=150;
+            button.scaling.y=100;
+            button.scaling.z=100;
+
+
+        }
+        button.pointerOutAnimation = () => {
+
             button.scaling.x=75;
             button.scaling.y=50;
-            button.scaling.z=50;
-            //console.log(button);
-            //button.text = text;
-            var text1 = new BABYLON.GUI.TextBlock();
+            button.scaling.z=50;    
+        }
+        button.pointerDownAnimation = function() {
             
-            text1.fontstyle = 'bold'
-            text1.fontFamily = "Verdana";
-            text1.textVerticalAlignment = BABYLON.GUI.Control.VERTICAL_ALIGNMENT_CENTER
-            text1.width = 3;
-            text1.text = buttonText[index];
-            text1.color = "White";
-            text1.fontSize = 40;
-            button.content = text1;
-            //button.isVisible = false;
-
-            button.pointerEnterAnimation = () => {
-                button.scaling.x=150;
-                button.scaling.y=100;
-                button.scaling.z=100;
-
-
+            if(index == 4){
+                window.location.pathname = '/../shop.php';
             }
-            button.pointerOutAnimation = () => {
-
-                button.scaling.x=75;
-                button.scaling.y=50;
-                button.scaling.z=50;    
+            if(index == 5){
+                // 換裝
+                for(var i=0;i<6;i++){
+                    backButton[i].isVisible = false;
+                }
+                console.log('here');
+                scene.registerBeforeRender(dressUpAnimation);
             }
-            button.pointerDownAnimation = function() {
-                
-                if(index == 4){
-                    window.location.pathname = '/../shop.php';
-                }
-                if(index == 5){
-                    // 換裝
-                    for(var i=0;i<6;i++){
-                        backButton[i].isVisible = false;
-                    }
-                    console.log('here');
-                    scene.registerBeforeRender(dressUpAnimation);
-                }
-                if(index == 3){
-                    console.log(globalMesh['body']);
-                }
-                
+            if(index == 3){
+                console.log(globalMesh['body']);
             }
-            return button
+            
         }
+        return button
+    }
 
-        panel.blockLayout = true;
-        
-        for (var index = 0; index < 6; index++) {
-            backButton[index] = addButton(index);    
-        }
-        panel.blockLayout = false;
-    }    
+    panel.blockLayout = true;
+    
+    for (var index = 0; index < 6; index++) {
+        backButton[index] = addButton(index);    
+    }
+    panel.blockLayout = false;
+}    
 
+var doIdList = function(){
+
+}
 
 newScene();
 
