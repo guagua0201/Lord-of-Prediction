@@ -47,11 +47,13 @@ var newScene = async function(){
 			}
 		})
 	});	
+
+	window.addEventListener("resize",function(){
+		engine.resize();
+	});
 }
 
-window.addEventListener("resize",function(){
-	engine.resize();
-});
+
 
 function dressUpAnimation(){
 
