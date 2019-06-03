@@ -425,7 +425,7 @@ video.addEventListener('play', function () {
         if (!$this.paused && !$this.ended) {
             context.drawImage($this, 0, 150);
             lastPosX = [489,892,55];
-            lastPosY = [476,570,570];
+            lastPosY = [600,600,600];
 
             for(i=1;i<=10;i++){
                 console.log('rank ' + i.toString(10) + ' ' + rank[i].toString(10));

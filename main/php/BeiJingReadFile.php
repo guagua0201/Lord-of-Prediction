@@ -48,5 +48,5 @@
     } else {
         // error opening the file.
     } 
-    fclose($handle);
+    
 ?>
