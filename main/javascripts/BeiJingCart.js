@@ -417,10 +417,34 @@ function animateEnd(){
     }
 }
 
+var video  = document.getElementById('video');
+
+video.addEventListener('play', function () {
+    var $this = this; //cache
+    (function loop() {
+        if (!$this.paused && !$this.ended) {
+            context.drawImage($this, 0, 150);
+            lastPosX = [489,892,55];
+            lastPosY = [476,570,570];
+
+            for(i=1;i<=10;i++){
+                console.log('rank ' + i.toString(10) + ' ' + rank[i].toString(10));
+                if(rank[i] <= 3){
+                    var nowImg = cars[i].imgs[0];
+                    context.drawImage(nowImg,0,0,nowImg.width,nowImg.height,lastPosX[rank[i]-1],lastPosY[rank[i]-1],250,132);
+                }
+            }
+            setTimeout(loop, 1000 / 30); // drawing at 30fps
+
+        }
+    })();
+}, 0);
+
 function playEnd(){
 
+    video.play();
 
-    var endImg = new Image();
+    /*var endImg = new Image();
     endImg.src = "./images/BeiJingCart/background/winbg2.png";
     endImg.onload = function(){
         console.log('hihiend');
@@ -437,10 +461,9 @@ function playEnd(){
             }
         }
     }
-
     timeStart = Date.now();
 
-    animateEnd();
+    animateEnd();*/
 
 }
 

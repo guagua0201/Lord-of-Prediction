@@ -6,13 +6,19 @@
 	<div style='min-height: 68vh; padding: 30px'>
 		<style>
 			canvas{
-				background: #ccc
+				background: #ccc;
+			}
+			video{
+				visibility: hidden;
 			}
 		</style>
 		<script src="/php/BeiJingReadFile.php"></script>
 		<canvas id="myCanvas" width="1200" height = "780">
-			<script src="/javascripts/BeiJingCart.js"></script>
+			
 		</canvas>
+		<video id="video" src="./images/BeiJingCart/endVideo.mp4" controls="true" muted="muted"></video>
+
+		<script src="/javascripts/BeiJingCart.js"></script>
 	</div>
 	<!-- <div style='min-height: 68vh; text-align: center' id='gameBlock' class='jumborton'>
 		<script src="/javascripts/BeiJingCartPhaser2.js"></script>
