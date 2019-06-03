@@ -162,7 +162,7 @@ var makeDressUpPlane = async function(){
     closeButton.width = 0.035;
     closeButton.height = 0.06;
     closeButton.pointerDownAnimation = function(){
-        scene.registerBeforeRender(closeMenuAnimation);
+        scene.registerBeforeRender(closeDressUpAnimation);
     };
     advancedTexture.addControl(closeButton);
 
@@ -195,9 +195,9 @@ var makeDressUpPlane = async function(){
 
     var nowCate = -1;
 
-    doIdList(ownAcc,cate);
+    await doIdList(ownAcc,cate);
 
-    sizeOfIdList = 0;
+    sizeOfIdList = idList.length;
 
     var blocks = []
     var blockImg = []
@@ -420,8 +420,26 @@ set3DButtonSelf = async function(scene){
     panel.blockLayout = false;
 }    
 
-var doIdList = function(){
+var cateCheck = async function(id,cate){
+    var nowProduct = await getProduct(id);
 
+    console.log('check ',nowProduct,nowProduct[1]);
+    if(cate == -1 || nowProduct[1] == cate){
+        return 1;
+    }
+    return 0;
+}
+
+var doIdList = async function(ownAcc,cate){
+    idList = [];
+    for(var i=0;i<200;i++){
+        id = i+1;
+        if(ownAcc[i] === '1'){
+            if(cateCheck(id,cate) === '1'){
+                idList.push(id);
+            }
+        }
+    }
 }
 
 newScene();
