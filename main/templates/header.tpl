@@ -11,7 +11,7 @@
 <div id='header-jumbotron' class='jumbotron'>
 	<div class='container-fluid h-100'>
 		<div class='d-flex flex-row align-items-center'>
-			<a href="/"><img src='images/logo.jpg' height='150px' class='float-left'></a>
+			<a href="/"><img src='images/logo.png' height='150px' class='float-left'></a>
 		{if $log_status != 0}
 			<div class='user-util-box'>
 				<a class='btn btn-lg' href='userProfile.php?user_id={$smarty.session.user_id}'>我的帳戶</a>

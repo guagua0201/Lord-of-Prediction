@@ -23,22 +23,32 @@ if ($result = mysqli_query($link, $sql)) {
 $smarty->assign('classes', $classes);
 $smarty->assign('categories', $categories);
 
-/* Check Get Date */
-$datepick = date("Y/m/d");
-if (isset($_GET['date']) && !empty($_GET['date']))
-	$datepick = $_GET['date'];
-
 /* Check category_id */
 $category_id = 7;
-if (isset($_GET['category_id']) && !empty($_GET['category_id']))
+if (isset($_GET['category_id']) && !empty($_GET['category_id'])){
+	$tmp = $_GET['category_id'];
 	$category_id = $_GET['category_id'];
+}
+
+/* Check Get Date */
+$datepick = date("Y/m/d");
+if (isset($_GET['date']) && !empty($_GET['date'])){
+	$datepick = $_GET['date'];
+	$sql = "SELECT `id`, `game_datetime`, `h_name`, `a_name`, `h_score`, `a_score`, `details` FROM `Game` WHERE DATE_FORMAT(`game_datetime`, '%Y/%m/%d') = '$datepick' AND `category_id` = '$category_id' AND `game_flag` != '0' order by `game_datetime` desc";
+}
+else{
+	$sql = "SELECT `id`, `game_datetime`, `h_name`, `a_name`, `h_score`, `a_score`, `details` FROM `Game` WHERE `category_id` = '$category_id' AND `game_flag` != '0' order by `game_datetime` desc";
+}
+
+
+
 
 /* Select All History Games */
-$sql = "SELECT `id`, `game_datetime`, `h_name`, `a_name`, `h_score`, `a_score`, `details` FROM `Game` WHERE DATE_FORMAT(`game_datetime`, '%Y/%m/%d') = '$datepick' AND `category_id` = '$category_id' AND `game_flag` != '0'";
 $data = array();
 $names = array();
 if ($result = mysqli_query($link, $sql)) {
 	while ($row = mysqli_fetch_assoc($result)) {
+
 		$row['details'] = json_decode($row['details'], true);
 		$data[] = $row;
 	}
@@ -59,6 +69,7 @@ if ($result = mysqli_query($link, $sql)) {
 }
 $smarty->assign('data', $data);
 $smarty->assign('names', $names);
+
 
 $smarty->display('historyGame.tpl');
 ?>
