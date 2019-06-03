@@ -437,6 +437,11 @@ video.addEventListener('play', function () {
             setTimeout(loop, 1000 / 30); // drawing at 30fps
 
         }
+        else{
+            init();
+
+            startScreen();
+        }
     })();
 }, 0);
 
