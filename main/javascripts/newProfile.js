@@ -199,6 +199,9 @@ var makeDressUpPlane = async function(){
     };
     advancedTexture.addControl(nextPage);
 
+    var blocks = []
+    var blockImg = []
+
     for(var i=0;i<2;i++){
         for(var j=0;j<5;j++){
 
@@ -212,7 +215,7 @@ var makeDressUpPlane = async function(){
             blocks[id].height = 0.18;
             advancedTexture.addControl(blocks[id]);
 
-            nowProduct = getProduct(id);
+            /*nowProduct = getProduct(id);
             blockImg[id] = BABYLON.GUI.Button.CreateImageOnlyButton("block" + id.toString(10),"images/product/" + (productID[nowCate][id]).toString(10) + ".png");
             blockImg[id].left = -320 + j*160;
             blockImg[id].top = -50 + i*250;
@@ -227,7 +230,7 @@ var makeDressUpPlane = async function(){
                 console.log('click ',this.id);
                 //wearCloth(this.id);
             }
-            advancedTexture.addControl(blockImg[id]);
+            advancedTexture.addControl(blockImg[id]);*/
 
             /*var id = i*5+j;
             if(id < (sizeOfIdList)){
