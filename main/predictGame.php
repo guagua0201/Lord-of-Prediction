@@ -38,7 +38,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 	$id = $_GET['category_id'];
 
 	/* Get All Unfinished Games */
-	$sql = "SELECT `id`, `game_datetime`, `h_name`, `a_name`, `details` FROM `Game` WHERE `game_flag` = '0' AND `category_id` = '$id'";
+	$sql = "SELECT `id`, `game_datetime`, `h_name`, `a_name`, `details` FROM `Game` WHERE `game_flag` = '0' AND `category_id` = '$id' order by game_datetime desc";
 	$data = array();
 	$names = array();
 	if ($result = mysqli_query($link, $sql)) {
