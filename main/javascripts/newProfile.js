@@ -430,8 +430,8 @@ set3DButtonSelf = async function(scene){
 var cateCheck = async function(id,cate){
     var nowProduct = await getProduct(id);
 
-    console.log('check ',nowProduct,nowProduct[1]);
-    if(cate == -1 || nowProduct[1] == cate){
+    console.log('check ',nowProduct,nowProduct[1],cate);
+    if(cate === -1 || nowProduct[1] === cate){
         return 1;
     }
     return 0;
