@@ -1,5 +1,3 @@
-
-
 var setTime = function(scene){
     var timeH=new Date(Date.now()).getHours();
 
@@ -97,12 +95,7 @@ var getSelf = async function(){
                 gender = obj['gender'];
                 selectAcc = obj['selectAcc'];
                 selectAcc = "00000110010000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000";
-                for(var i=0;i<200;i++){
-                    if(i<31 /*ownAcc[i] === 1*/){
-                        productInform[i] = await getProduct(i);
-                        console.log('productInform '+i,productInform[i]);
-                    }
-                }
+                
                 console.log('check',gender,selectAcc);
                 loadPerson(scene,gender,selectAcc);
             }
@@ -116,6 +109,7 @@ var getSelf = async function(){
             //return [-1,-1,-1];
         }
     });
+    await makeProductInform();
     return [ownAcc,gender,selectAcc];
 }
 
@@ -193,7 +187,7 @@ var productFileStr = function(id,gender,cate_ename){
 
 var wearCloth = async function(id){
     console.log("wear ",id);
-    var product = productInform[i];
+    var product = await getProduct(id);
 
     console.log('product = ',product);
 
@@ -221,8 +215,19 @@ var wearCloth = async function(id){
     //loadMesh(productModelStr(id,product[0],product[2]),0,30,0,cate);
 }
 
+var makeProductInform = async function(){
+    for(var i=0;i<200;i++){
+        if(i<31 /*ownAcc[i] === 1*/){
+            productInform[i] = await getProduct(i);
+            console.log('productInform '+i,productInform[i]);
+        }
+    }
+    return ;
+}
+
 
 var loadPerson = function(scene,gender,selectAcc){
+    
     console.log('load person ',gender,selectAcc);
     var modelPath = "model/";
 
