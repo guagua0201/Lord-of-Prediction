@@ -443,8 +443,12 @@ var doIdList = async function(ownAcc,cate){
     for(var i=0;i<200;i++){
         id = i+1;
         if(ownAcc[i] === '1'){
-            if(cateCheck(id,cate) === '1'){
+            if(cateCheck(id,cate) === 1){
+                console.log('push '+id);
                 idList.push(id);
+            }
+            else{
+                console.log('skip '+id);
             }
         }
     }
