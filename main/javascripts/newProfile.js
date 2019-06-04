@@ -195,7 +195,7 @@ var makeDressUpPlane = async function(){
 
     var nowCate = -1;
 
-    await doIdList(ownAcc,cate);
+    await doIdList(ownAcc,nowCate);
 
     sizeOfIdList = idList.length;
 
