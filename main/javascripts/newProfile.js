@@ -223,7 +223,7 @@ var makeDressUpPlane = async function(){
             console.log('id pid = ',id,pid);
 
             if(pid < sizeOfIdList){
-                nowProduct = productInform[pid];
+                nowProduct = productInform[idList[pid]];
                 print('all = ',id,pid,idList[pid],nowProduct,productFileStr(idList[pid],nowProduct[0],nowProduct[2]));
                 blockImg[id] = BABYLON.GUI.Button.CreateImageOnlyButton("block" + id.toString(10),"images/product/" + productFileStr(idList[pid],nowProduct[0],nowProduct[2]) + ".png");
                 blockImg[id].left = -320 + j*160;
