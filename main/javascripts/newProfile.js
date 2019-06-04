@@ -48,8 +48,6 @@ var createScene = async function(){
 
     await makeDressUpPlane(scene);
 
-
-
 	return scene;
 }
 
@@ -111,7 +109,7 @@ function closeDressUpAnimation(){
         }
         camera.setPosition(new BABYLON.Vector3(0,230,330));
         camera.setTarget(new BABYLON.Vector3(0,100,0));
-        scene.unregisterBeforeRender(closeMenuAnimation)
+        scene.unregisterBeforeRender(closeDressUpAnimation)
     }
 }
 
@@ -153,6 +151,12 @@ var makeDressUpPlane = async function(){
     menuRecImg.zIndex = 2;
     menuRec.addControl(menuRecImg);
 
+    var nowCate = -1;
+
+    await doIdList(ownAcc,nowCate);
+
+    sizeOfIdList = idList.length;
+
     var closeButton = BABYLON.GUI.Button.CreateImageOnlyButton("closeButton", "images/dressUp/closeButton.png");
 
     closeButton.left = 410;
@@ -169,6 +173,7 @@ var makeDressUpPlane = async function(){
 
     var lastPage = BABYLON.GUI.Button.CreateImageOnlyButton("lastPage", "images/dressUp/leftTriangle.png");
     var nextPage = BABYLON.GUI.Button.CreateImageOnlyButton("nextPage", "images/dressUp/rightTriangle.png");
+    var nowPage = 0;
 
     lastPage.left = -400;
     lastPage.top = 80;
@@ -178,6 +183,7 @@ var makeDressUpPlane = async function(){
     lastPage.height = 0.06;
     lastPage.pointerDownAnimation = function(){
         console.log("lastPage!");
+        nowPage = Math.max(0,nowPage-1);
     };
     advancedTexture.addControl(lastPage);
 
@@ -189,28 +195,13 @@ var makeDressUpPlane = async function(){
     nextPage.height = 0.06;
     nextPage.pointerDownAnimation = function(){
         console.log("nextPage!");
+        nowPage = Math.min(0,sizeOfIdList/10);
     };
     advancedTexture.addControl(nextPage);
 
-
-    var nowCate = -1;
-
-    await doIdList(ownAcc,nowCate);
-
-    sizeOfIdList = idList.length;
-
-    var blocks = []
-    var blockImg = []
     for(var i=0;i<2;i++){
         for(var j=0;j<5;j++){
-            var id = i*5+j;
-            if(id >= (sizeOfIdList)){
 
-            }
-            else{
-
-            }
-            /*
             blocks[id] = BABYLON.GUI.Button.CreateImageOnlyButton("cate" + i.toString(10), "images/dressUp/block.png");
 
             blocks[id].left = -320 + j*160;
@@ -234,11 +225,18 @@ var makeDressUpPlane = async function(){
 
             blockImg[id].pointerDownAnimation = function(){
                 console.log('click ',this.id);
-                wearCloth(this.id);
+                //wearCloth(this.id);
             }
+            advancedTexture.addControl(blockImg[id]);
 
-            advancedTexture.addControl(blockImg[id]);*/
+            /*var id = i*5+j;
+            if(id < (sizeOfIdList)){
+                var nowProduct = getProduct(idList[id]);
+                BABYLON.GUI.Button.CreateImageOnlyButton("block"+id.toString(10),"images/product/" + productFileStr(idList[id],nowProduct[0],nowProduct[2]))
+            }
+            else{
 
+            }*/
             
         }
     }
@@ -431,6 +429,7 @@ var cateCheck = async function(id,cate){
 }
 
 var doIdList = async function(ownAcc,cate){
+    ownAcc = "11111111111111111111111111111100000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"
     idList = [];
     for(var i=0;i<200;i++){
         id = i+1;
