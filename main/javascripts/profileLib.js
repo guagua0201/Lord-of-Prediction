@@ -99,7 +99,8 @@ var getSelf = async function(){
                 selectAcc = "00000110010000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000";
                 for(var i=0;i<200;i++){
                     if(ownAcc[i] === 1){
-                        productInform[i] = getProduct(i);
+                        productInform[i] = await getProduct(i);
+                        console.log('productInform '+i,productInform[i]);
                     }
                 }
                 console.log('check',gender,selectAcc);
@@ -192,7 +193,7 @@ var productFileStr = function(id,gender,cate_ename){
 
 var wearCloth = async function(id){
     console.log("wear ",id);
-    var product = await getProduct(id);
+    var product = productInform[i];
 
     console.log('product = ',product);
 
