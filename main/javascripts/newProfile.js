@@ -206,6 +206,7 @@ var makeDressUpPlane = async function(){
 
     for(var i=0;i<2;i++){
         for(var j=0;j<5;j++){
+            id = i*5+j;
 
             blocks[id] = BABYLON.GUI.Button.CreateImageOnlyButton("cate" + i.toString(10), "images/dressUp/block.png");
 
