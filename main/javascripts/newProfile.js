@@ -6,6 +6,8 @@ var backButton = []
 
 var productInform = []
 
+var nowPage = 0;
+
 var createScene = async function(){
 	console.log('createScene');
 	var scene = new BABYLON.Scene(engine);
@@ -175,7 +177,6 @@ var makeDressUpPlane = async function(){
 
     var lastPage = BABYLON.GUI.Button.CreateImageOnlyButton("lastPage", "images/dressUp/leftTriangle.png");
     var nextPage = BABYLON.GUI.Button.CreateImageOnlyButton("nextPage", "images/dressUp/rightTriangle.png");
-    var nowPage = 0;
 
     lastPage.left = -400;
     lastPage.top = 80;
