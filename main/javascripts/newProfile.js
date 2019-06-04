@@ -176,7 +176,7 @@ var makeDressUpPlane = async function(){
     advancedTexture.addControl(chooseCateButton)
 
 
-    var nowPage = 0;
+    nowPage = 0;
 
     await doIdList(ownAcc,nowCate);
 
@@ -222,7 +222,10 @@ var makeDressUpPlane = async function(){
     nextPage.pointerDownAnimation = async function(){
         console.log("nextPage!");
         await removeBlock(advancedTexture,blockImg);
+        console.log('page',nowPage);
         nowPage = await Math.min(nowPage+1,Math.max(0,Math.floor((sizeOfIdList-1)/10)));
+        console.log(Math.min(nowPage+1,Math.max(0,Math.floor((sizeOfIdList-1)/10))));
+        console.log('to ',nowPage);
         await changeBlock(advancedTexture,blockImg);
     };
     advancedTexture.addControl(nextPage);
