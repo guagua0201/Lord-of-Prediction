@@ -8,6 +8,8 @@ var productInform = []
 
 var nowPage = 0;
 
+var cateMenuOpen = 0;
+
 var createScene = async function(){
 	console.log('createScene');
 	var scene = new BABYLON.Scene(engine);
@@ -139,18 +141,6 @@ var makeDressUpPlane = async function(){
     
     advancedTexture.addControl(menuRec);
 
-    var createRectangle = function() {
-        var rect1 = new BABYLON.GUI.Rectangle();
-        rect1.width = 0.2;
-        rect1.height = "40px";
-        rect1.cornerRadius = 20;
-        rect1.color = "Orange";
-        rect1.thickness = 0;
-        rect1.background = "green";
-        advancedTexture.addControl(rect1);    
-        return rect1;
-    }
-
     var menuRecImg = new BABYLON.GUI.Image("menuRecImg","images/dressUp/bg2.png");
     menuRecImg.zIndex = 2;
     menuRec.addControl(menuRecImg);
@@ -168,18 +158,20 @@ var makeDressUpPlane = async function(){
     cateStr["6"] = "肩膀";
     cateStr["7"] = "手部";
     cateStr["8"] = "頸部";
-    
-    var chooseCateButton = BABYLON.GUI.Button.CreateImageWithCenterTextButton("chooseCateButton",cateStr[nowCate],"images/profile/category.png");
 
-    chooseCateButton.left = -280;
-    chooseCateButton.top = -290;
+    var chooseCateButton = BABYLON.GUI.Button.CreateImageWithCenterTextButton("chooseCateButton",cateStr[nowCate]+"         ","images/profile/category.png");
+
+    chooseCateButton.left = -305;
+    chooseCateButton.top = -335;
     chooseCateButton.zIndex = 3;
     chooseCateButton.thickness = 0;
-    chooseCateButton.width = 0.25;
-    chooseCateButton.height = 0.25;
+    chooseCateButton.width = 0.20;
+    chooseCateButton.height = 0.10;
+    chooseCateButton.color = "cyan"
+    chooseCateButton.fontSize=25;
     chooseCateButton.pointerDownAnimation = function(){
-        console.log("choose!");
-        makeCateList();
+        makeCateList(advancedTexture,cateStr);
+        console.log(chooseCateButton);
     }
     advancedTexture.addControl(chooseCateButton)
 
@@ -373,7 +365,37 @@ var makeDressUpPlane = async function(){
     	 */
 }
 
-removeBlock = function(advancedTexture,blockImg){
+var cateRec;
+
+var makeCateList = function(advancedTexture,cateStr){
+	if(cateMenuOpen == 0){
+		cateRec = new BABYLON.GUI.Rectangle();
+	    
+	    cateRec.height = 650 + 'px';
+	    cateRec.width =  250 + 'px';
+	    //menuRec.scaleY =
+	    cateRec.cornerRadius = 0;
+	    cateRec.background = "white";
+	    cateRec.alpha = 1;
+	    cateRec.color = "#1B2E3C";
+	    cateRec.thickness = 2;
+	    cateRec.zIndex = 5;
+	    cateRec.left = -290;
+	    cateRec.top=42;
+	    
+	    advancedTexture.addControl(cateRec);
+
+	    var cateRecImg = new BABYLON.GUI.Image("cateRecImg","images/profile/list.png");
+	    cateRecImg.zIndex = 6;
+	    cateRec.addControl(cateRecImg);
+	}
+	else{
+		advancedTexture.removeControl(cateRec);
+	}
+	cateMenuOpen = 1-cateMenuOpen;
+}
+
+var removeBlock = function(advancedTexture,blockImg){
     for(var i=0;i<2;i++){
         for(var j=0;j<5;j++){
         	id = i*5+j;
@@ -389,7 +411,7 @@ removeBlock = function(advancedTexture,blockImg){
     }
 }
 
-changeBlock = function(advancedTexture,blockImg){
+var changeBlock = function(advancedTexture,blockImg){
     for(var i=0;i<2;i++){
         for(var j=0;j<5;j++){
         	id = i*5+j;
