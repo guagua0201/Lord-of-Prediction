@@ -168,15 +168,15 @@ var makeDressUpPlane = async function(){
     cateStr["6"] = "肩膀";
     cateStr["7"] = "手部";
     cateStr["8"] = "頸部";
+    
+    var chooseCateButton = BABYLON.GUI.Button.CreateImageWithCenterTextButton("chooseCateButton",cateStr[nowCate],"images/profile/category.png");
 
-    var chooseCateButton = BABYLON.GUI.Button.CreateImageOnlyButton("chooseCateButton","images/profile/category.png");
-
-    chooseCateButton.left = -300;
-    chooseCateButton.top = -350;
+    chooseCateButton.left = -280;
+    chooseCateButton.top = -290;
     chooseCateButton.zIndex = 3;
     chooseCateButton.thickness = 0;
-    chooseCateButton.width = 0.05;
-    chooseCateButton.height = 0.05;
+    chooseCateButton.width = 0.25;
+    chooseCateButton.height = 0.25;
     chooseCateButton.pointerDownAnimation = function(){
         console.log("choose!");
         makeCateList();
