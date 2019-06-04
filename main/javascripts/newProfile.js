@@ -185,7 +185,9 @@ var makeDressUpPlane = async function(){
     lastPage.height = 0.06;
     lastPage.pointerDownAnimation = function(){
         console.log("lastPage!");
+        await removeBlock();
         nowPage = Math.max(0,nowPage-1);
+        await changeBlock();
     };
     advancedTexture.addControl(lastPage);
 
@@ -197,7 +199,9 @@ var makeDressUpPlane = async function(){
     nextPage.height = 0.06;
     nextPage.pointerDownAnimation = function(){
         console.log("nextPage!");
-        nowPage = Math.min(0,sizeOfIdList/10);
+        await removeBlock();
+        nowPage = Math.min(nowPage+1,sizeOfIdList/10);
+        await changeBlock();
     };
     advancedTexture.addControl(nextPage);
 
@@ -241,17 +245,6 @@ var makeDressUpPlane = async function(){
                 }
                 advancedTexture.addControl(blockImg[id]);
             }
-
-            
-
-            /*var id = i*5+j;
-            if(id < (sizeOfIdList)){
-                var nowProduct = getProduct(idList[id]);
-                BABYLON.GUI.Button.CreateImageOnlyButton("block"+id.toString(10),"images/product/" + productFileStr(idList[id],nowProduct[0],nowProduct[2]))
-            }
-            else{
-
-            }*/
             
         }
     }
@@ -348,6 +341,52 @@ var makeDressUpPlane = async function(){
     }
 
     	 */
+}
+
+removeBlock = function(){
+    for(var i=0;i<2;i++){
+        for(var j=0;j<5;j++){
+            pid = id + nowPage*10;
+            
+            console.log('remove id pid = ',id,pid);
+
+            if(pid < sizeOfIdList){
+                advancedTexture.removeControl(blockImg[id]);
+            }
+            
+        }
+    }
+}
+
+changeBlock = function(){
+    for(var i=0;i<2;i++){
+        for(var j=0;j<5;j++){
+            pid = id + nowPage*10;
+            
+            console.log('change id pid = ',id,pid);
+
+            if(pid < sizeOfIdList){
+                nowProduct = productInform[idList[pid]];
+                print('all = ',id,pid,idList[pid],nowProduct,productFileStr(idList[pid],nowProduct[0],nowProduct[2]));
+                blockImg[id] = BABYLON.GUI.Button.CreateImageOnlyButton("block" + id.toString(10),"images/product/" + productFileStr(idList[pid],nowProduct[0],nowProduct[2]) + ".png");
+                blockImg[id].left = -320 + j*160;
+                blockImg[id].top = -50 + i*250;
+                blockImg[id].zIndex = 4;
+                blockImg[id].thickness = 0;
+                blockImg[id].width = 0.12;
+                blockImg[id].height = 0.18;
+                blockImg[id].id = idList[pid];
+                
+
+                blockImg[id].pointerDownAnimation = function(){
+                    console.log('click ',this.id);
+                    //wearCloth(this.id);
+                }
+                advancedTexture.addControl(blockImg[id]);
+            }
+            
+        }
+    }
 }
 
 set3DButtonSelf = async function(scene){
