@@ -97,6 +97,11 @@ var getSelf = async function(){
                 gender = obj['gender'];
                 selectAcc = obj['selectAcc'];
                 selectAcc = "00000110010000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000";
+                for(var i=0;i<200;i++){
+                    if(ownAcc[i] === 1){
+                        productInform[i] = getProduct(i);
+                    }
+                }
                 console.log('check',gender,selectAcc);
                 loadPerson(scene,gender,selectAcc);
             }

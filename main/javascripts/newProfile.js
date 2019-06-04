@@ -4,6 +4,8 @@ var canvas = document.getElementById("renderCanvas");
 var globalMesh = []
 var backButton = []
 
+var productInform = []
+
 var createScene = async function(){
 	console.log('createScene');
 	var scene = new BABYLON.Scene(engine);
@@ -218,7 +220,7 @@ var makeDressUpPlane = async function(){
             pid = id + nowPage*10;
             
             if(pid < sizeOfIdList){
-                nowProduct = getProduct(pid);
+                nowProduct = productInform[pid];
                 blockImg[id] = BABYLON.GUI.Button.CreateImageOnlyButton("block" + id.toString(10),"images/product/" + productFileStr(idList[pid],nowProduct[0],nowProduct[2]) + ".png");
                 blockImg[id].left = -320 + j*160;
                 blockImg[id].top = -50 + i*250;
@@ -428,7 +430,7 @@ set3DButtonSelf = async function(scene){
 }    
 
 var cateCheck = async function(id,cate){
-    var nowProduct = await getProduct(id);
+    var nowProduct = productInform[id];
 
     console.log('check ',nowProduct,nowProduct[1],cate);
     if(cate === -1 || nowProduct[1] === cate){
