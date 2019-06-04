@@ -184,7 +184,7 @@ var makeDressUpPlane = async function(){
     lastPage.thickness = 0;
     lastPage.width = 0.015;
     lastPage.height = 0.06;
-    lastPage.pointerDownAnimation = function(){
+    lastPage.pointerDownAnimation = async function(){
         console.log("lastPage!");
         await removeBlock();
         nowPage = Math.max(0,nowPage-1);
@@ -198,7 +198,7 @@ var makeDressUpPlane = async function(){
     nextPage.thickness = 0;
     nextPage.width = 0.015;
     nextPage.height = 0.06;
-    nextPage.pointerDownAnimation = function(){
+    nextPage.pointerDownAnimation = async function(){
         console.log("nextPage!");
         await removeBlock();
         nowPage = Math.min(nowPage+1,sizeOfIdList/10);
