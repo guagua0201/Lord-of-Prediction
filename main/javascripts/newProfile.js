@@ -215,22 +215,28 @@ var makeDressUpPlane = async function(){
             blocks[id].height = 0.18;
             advancedTexture.addControl(blocks[id]);
 
-            /*nowProduct = getProduct(id);
-            blockImg[id] = BABYLON.GUI.Button.CreateImageOnlyButton("block" + id.toString(10),"images/product/" + (productID[nowCate][id]).toString(10) + ".png");
-            blockImg[id].left = -320 + j*160;
-            blockImg[id].top = -50 + i*250;
-            blockImg[id].zIndex = 4;
-            blockImg[id].thickness = 0;
-            blockImg[id].width = 0.12;
-            blockImg[id].height = 0.18;
-            blockImg[id].id = productID[nowCate][id];
+            pid = id + nowPage*10;
             
+            if(pid < sizeOfIdList){
+                nowProduct = getProduct(pid);
+                blockImg[id] = BABYLON.GUI.Button.CreateImageOnlyButton("block" + id.toString(10),"images/product/" + productFileStr(idList[pid],nowProduct[0],nowProduct[2]) + ".png");
+                blockImg[id].left = -320 + j*160;
+                blockImg[id].top = -50 + i*250;
+                blockImg[id].zIndex = 4;
+                blockImg[id].thickness = 0;
+                blockImg[id].width = 0.12;
+                blockImg[id].height = 0.18;
+                blockImg[id].id = idList[pid];
+                
 
-            blockImg[id].pointerDownAnimation = function(){
-                console.log('click ',this.id);
-                //wearCloth(this.id);
+                blockImg[id].pointerDownAnimation = function(){
+                    console.log('click ',this.id);
+                    //wearCloth(this.id);
+                }
+                advancedTexture.addControl(blockImg[id]);
             }
-            advancedTexture.addControl(blockImg[id]);*/
+
+            
 
             /*var id = i*5+j;
             if(id < (sizeOfIdList)){
