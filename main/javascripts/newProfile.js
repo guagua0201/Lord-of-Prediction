@@ -186,9 +186,9 @@ var makeDressUpPlane = async function(){
     lastPage.height = 0.06;
     lastPage.pointerDownAnimation = async function(){
         console.log("lastPage!");
-        await removeBlock();
+        await removeBlock(advancedTexture);
         nowPage = Math.max(0,nowPage-1);
-        await changeBlock();
+        await changeBlock(advancedTexture);
     };
     advancedTexture.addControl(lastPage);
 
@@ -200,9 +200,9 @@ var makeDressUpPlane = async function(){
     nextPage.height = 0.06;
     nextPage.pointerDownAnimation = async function(){
         console.log("nextPage!");
-        await removeBlock();
+        await removeBlock(advancedTexture);
         nowPage = Math.min(nowPage+1,sizeOfIdList/10);
-        await changeBlock();
+        await changeBlock(advancedTexture);
     };
     advancedTexture.addControl(nextPage);
 
