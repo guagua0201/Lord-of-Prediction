@@ -157,6 +157,35 @@ var makeDressUpPlane = async function(){
 
     var nowCate = -1;
 
+    var cateStr = []; // should ajax
+
+    cateStr["-1"] = "全部";
+    cateStr["1"] = "頭髮";
+    cateStr["2"] = "套裝";
+    cateStr["3"] = "鞋子";
+    cateStr["4"] = "眼部";
+    cateStr["5"] = "武器";
+    cateStr["6"] = "肩膀";
+    cateStr["7"] = "手部";
+    cateStr["8"] = "頸部";
+
+    var chooseCateButton = BABYLON.GUI.Button.CreateImageOnlyButton("chooseCateButton","images/profile/category.png");
+
+    chooseCateButton.left = -300;
+    chooseCateButton.top = -350;
+    chooseCateButton.zIndex = 3;
+    chooseCateButton.thickness = 0;
+    chooseCateButton.width = 0.05;
+    chooseCateButton.height = 0.05;
+    chooseCateButton.pointerDownAnimation = function(){
+        console.log("choose!");
+        makeCateList();
+    }
+    advancedTexture.addControl(chooseCateButton)
+
+
+    var nowPage = 0;
+
     await doIdList(ownAcc,nowCate);
 
     sizeOfIdList = idList.length;
