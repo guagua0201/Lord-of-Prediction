@@ -98,7 +98,7 @@ var getSelf = async function(){
                 selectAcc = obj['selectAcc'];
                 selectAcc = "00000110010000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000";
                 for(var i=0;i<200;i++){
-                    if(ownAcc[i] === 1){
+                    if(i<31 /*ownAcc[i] === 1*/){
                         productInform[i] = await getProduct(i);
                         console.log('productInform '+i,productInform[i]);
                     }
