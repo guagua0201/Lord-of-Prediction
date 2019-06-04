@@ -25,14 +25,15 @@
 
             $memberName = $_POST['arguments'][0];
             $mode = $_POST['arguments'][1];    
-
+            $nowLoginMember = mysqli_real_escape_string($link, $member);
             if ( $mode == 1 ){ // self
                 if ( $member != $memberName ){
                     $aResult['error'] = 'Can\'t get information from other user!';
                 }
                 else{
                     // ownAcc
-                    $sql = "SELECT ownAcc FROM `User` where username = \"$member\"";
+                    
+                    $sql = "SELECT ownAcc FROM `User` where username = \"$nowLoginMember\"";
                     if($result = mysqli_query($link,$sql)){
                         if(mysqli_num_rows($result)!=1){
                             $aResult['error'] = 'sql rows not equal one';
@@ -43,12 +44,12 @@
                         }
                     }
                     else{
-                        $aResult['error'] = "sql fail";
+                        $aResult['error'] = "sql fail ".$sql;
                     }
                 }
             }
-
-            $sql = "SELECT selectAcc,gender FROM `User` where username = \"$member\"";
+            
+            $sql = "SELECT selectAcc,gender FROM `User` where username = \"$nowLoginMember\"";
             if($result = mysqli_query($link,$sql)){
                 if(mysqli_num_rows($result)!=1){
                     $aResult['error'] = 'sql rows not equal one';
@@ -60,7 +61,7 @@
                 }
             }
             else{
-                $aResult['error'] = "sql fail";
+                $aResult['error'] = "sql fail ".$sql;
             }
 
             // selectAcc

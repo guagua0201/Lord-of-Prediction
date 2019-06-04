@@ -82,6 +82,7 @@ var getSelf = async function(){
     /*ownAcc = "-1";
     gender = "-1";
     selectAcc = "-1";*/
+    console.log('userName',userName);
     await jQuery.ajax({
         type: "POST",
         url: 'profileGet.php',
@@ -216,12 +217,12 @@ var wearCloth = async function(id){
 }
 
 var makeProductInform = async function(){
-    for(var i=0;i<200;i++){
-        if(i<31 /*ownAcc[i] === 1*/){
+    /*for(var i=0;i<200;i++){
+        if(i<31 ){
             productInform[i] = await getProduct(i);
             console.log('productInform '+i,productInform[i]);
         }
-    }
+}*/
     return ;
 }
 

@@ -208,7 +208,7 @@ var makeDressUpPlane = async function(){
     lastPage.pointerDownAnimation = async function(){
         console.log("lastPage!");
         await removeBlock(advancedTexture,blockImg);
-        nowPage = Math.max(0,nowPage-1);
+        nowPage = await Math.max(0,nowPage-1);
         await changeBlock(advancedTexture,blockImg);
     };
     advancedTexture.addControl(lastPage);
@@ -222,7 +222,7 @@ var makeDressUpPlane = async function(){
     nextPage.pointerDownAnimation = async function(){
         console.log("nextPage!");
         await removeBlock(advancedTexture,blockImg);
-        nowPage = Math.min(nowPage+1,Math.max(0,(sizeOfIdList-1)/10));
+        nowPage = await Math.min(nowPage+1,Math.max(0,Math.floor((sizeOfIdList-1)/10)));
         await changeBlock(advancedTexture,blockImg);
     };
     advancedTexture.addControl(nextPage);
@@ -249,7 +249,14 @@ var makeDressUpPlane = async function(){
             console.log('id pid = ',id,pid);
 
             if(pid < sizeOfIdList){
-                nowProduct = productInform[idList[pid]];
+                if(productInform[idList[pid]]){
+                    nowProduct = productInform[idList[pid]];
+                }
+                else{
+                    productInform[idList[pid]] = nowProduct = await getProduct(idList[pid]);
+                    
+                }
+                
                 print('all = ',id,pid,idList[pid],nowProduct,productFileStr(idList[pid],nowProduct[0],nowProduct[2]));
                 blockImg[id] = BABYLON.GUI.Button.CreateImageOnlyButton("block" + id.toString(10),"images/product/" + productFileStr(idList[pid],nowProduct[0],nowProduct[2]) + ".png");
                 blockImg[id].left = -320 + j*160;
@@ -420,7 +427,13 @@ var changeBlock = function(advancedTexture,blockImg){
             console.log('change id pid = ',id,pid);
 
             if(pid < sizeOfIdList){
-                nowProduct = productInform[idList[pid]];
+                if(productInform[idList[pid]]){
+                    nowProduct = productInform[idList[pid]];
+                }
+                else{
+                    productInform[idList[pid]] =nowProduct =  getProduct(idList[pid]);
+                }
+                
                 print('all = ',id,pid,idList[pid],nowProduct,productFileStr(idList[pid],nowProduct[0],nowProduct[2]));
                 blockImg[id] = BABYLON.GUI.Button.CreateImageOnlyButton("block" + id.toString(10),"images/product/" + productFileStr(idList[pid],nowProduct[0],nowProduct[2]) + ".png");
                 blockImg[id].left = -320 + j*160;
@@ -527,7 +540,14 @@ set3DButtonSelf = async function(scene){
 }    
 
 var cateCheck = async function(id,cate){
-    var nowProduct = productInform[id];
+    var nowProduct;
+    if(productInform[id]){
+        nowProduct = productInform[id];
+    }
+    else{
+        productInform[id] = nowProduct = await getProduct(id);
+    }
+    
 
     console.log('check ',nowProduct,nowProduct[1],cate);
     if(cate === -1 || nowProduct[1] === cate){
