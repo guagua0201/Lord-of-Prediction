@@ -186,9 +186,9 @@ var makeDressUpPlane = async function(){
     lastPage.height = 0.06;
     lastPage.pointerDownAnimation = async function(){
         console.log("lastPage!");
-        await removeBlock(advancedTexture);
+        await removeBlock(advancedTexture,blockImg);
         nowPage = Math.max(0,nowPage-1);
-        await changeBlock(advancedTexture);
+        await changeBlock(advancedTexture,blockImg);
     };
     advancedTexture.addControl(lastPage);
 
@@ -200,9 +200,9 @@ var makeDressUpPlane = async function(){
     nextPage.height = 0.06;
     nextPage.pointerDownAnimation = async function(){
         console.log("nextPage!");
-        await removeBlock(advancedTexture);
-        nowPage = Math.min(nowPage+1,sizeOfIdList/10);
-        await changeBlock(advancedTexture);
+        await removeBlock(advancedTexture,blockImg);
+        nowPage = Math.min(nowPage+1,Math.max(0,(sizeOfIdList-1)/10));
+        await changeBlock(advancedTexture,blockImg);
     };
     advancedTexture.addControl(nextPage);
 
@@ -344,9 +344,10 @@ var makeDressUpPlane = async function(){
     	 */
 }
 
-removeBlock = function(){
+removeBlock = function(advancedTexture,blockImg){
     for(var i=0;i<2;i++){
         for(var j=0;j<5;j++){
+        	id = i*5+j;
             pid = id + nowPage*10;
             
             console.log('remove id pid = ',id,pid);
@@ -359,9 +360,10 @@ removeBlock = function(){
     }
 }
 
-changeBlock = function(){
+changeBlock = function(advancedTexture,blockImg){
     for(var i=0;i<2;i++){
         for(var j=0;j<5;j++){
+        	id = i*5+j;
             pid = id + nowPage*10;
             
             console.log('change id pid = ',id,pid);
