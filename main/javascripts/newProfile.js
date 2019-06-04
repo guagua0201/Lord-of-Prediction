@@ -242,7 +242,7 @@ var makeDressUpPlane = async function(){
 
                 blockImg[id].pointerDownAnimation = function(){
                     console.log('click ',this.id);
-                    //wearCloth(this.id);
+                    wearCloth(this.id);
                 }
                 advancedTexture.addControl(blockImg[id]);
             }
@@ -383,7 +383,7 @@ changeBlock = function(advancedTexture,blockImg){
 
                 blockImg[id].pointerDownAnimation = function(){
                     console.log('click ',this.id);
-                    //wearCloth(this.id);
+                    wearCloth(this.id);
                 }
                 advancedTexture.addControl(blockImg[id]);
             }
