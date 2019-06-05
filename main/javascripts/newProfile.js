@@ -260,7 +260,7 @@ var makeDressUpPlane = async function(){
                     
                 }
                 
-                print('all = ',id,pid,idList[pid],nowProduct,productFileStr(idList[pid],nowProduct[0],nowProduct[2]));
+                console.log('all = ',id,pid,idList[pid],nowProduct,productFileStr(idList[pid],nowProduct[0],nowProduct[2]));
                 blockImg[id] = BABYLON.GUI.Button.CreateImageOnlyButton("block" + id.toString(10),"images/product/" + productFileStr(idList[pid],nowProduct[0],nowProduct[2]) + ".png");
                 blockImg[id].left = -320 + j*160;
                 blockImg[id].top = -50 + i*250;
@@ -437,7 +437,7 @@ var changeBlock = function(advancedTexture,blockImg){
                     productInform[idList[pid]] =nowProduct =  getProduct(idList[pid]);
                 }
                 
-                print('all = ',id,pid,idList[pid],nowProduct,productFileStr(idList[pid],nowProduct[0],nowProduct[2]));
+                console.log('all = ',id,pid,idList[pid],nowProduct,productFileStr(idList[pid],nowProduct[0],nowProduct[2]));
                 blockImg[id] = BABYLON.GUI.Button.CreateImageOnlyButton("block" + id.toString(10),"images/product/" + productFileStr(idList[pid],nowProduct[0],nowProduct[2]) + ".png");
                 blockImg[id].left = -320 + j*160;
                 blockImg[id].top = -50 + i*250;
