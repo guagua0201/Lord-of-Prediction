@@ -30,18 +30,18 @@
             }
 
             #renderCanvas {
-                width: 80%;
+                width: 100%;
                 height: 80%;
-                margin-left: auto;
-                margin-right: auto;
-                margin-top: auto;
-                margin-bottom: auto;
+                margin: auto;
                 touch-action: none;
                 text-align: center;
             }
+            canvas {
+               display: inline;
+            }
         </style>
     </head>
-<body>
+<body background="/images/background2.jpg">
     <canvas id="renderCanvas"></canvas>
     <script src="javascripts/follow.js"></script>
     <script src="profileReadFile.php?userGender={$gender}&member={$member}&userID={$userID}"></script>

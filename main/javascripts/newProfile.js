@@ -80,7 +80,7 @@ var yTarSpeed = 26;
 function dressUpAnimation(){
 	var scene = engine.scenes[0];
     var camera = scene.activeCamera;
-    if(camera.position.z < 1500){
+    if(camera.position.z < 1700){
         //camera.setPosition(new BABYLON.Vector3(camera.position.x,camera.position.y,camera.position.z+zPosSpeed));
         //camera.position.z += zPosSpeed;
         var newPos = new BABYLON.Vector3(0,230,camera.position.z);
@@ -92,7 +92,7 @@ function dressUpAnimation(){
     var tarPos = (camera.target.x).toString(10) + "," + (camera.target.y).toString(10) + "," + (camera.target.z).toString(10);
     console.log( camPos + " to " + tarPos)
     //else console.log('now y = ',camera.target.y);
-    if(camera.position.z >= 1500 && camera.target.y>=230){
+    if(camera.position.z >= 1700 && camera.target.y>=230){
         scene.unregisterBeforeRender(dressUpAnimation)
     }
 }

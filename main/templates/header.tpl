@@ -4,7 +4,7 @@
 		{if $log_status == 0}<a class='btn btn-lg header-top-btn' href='register.php'>註冊</a>{/if}
 		{if $log_status == 0}<a class='btn btn-lg header-top-btn' href='login.php'>登入</a>{/if}
 		{if $log_status != 0}<a class='btn btn-lg header-top-btn' href='logout.php'>登出</a>{/if}
-		{if $log_status != 0}<a class='btn btn-lg header-top-btn' href='userProfile.php?usesr_id={$smarty.session.user_id}'>{$member}</a>{/if}
+		{if $log_status != 0}<a class='btn btn-lg header-top-btn' href='userProfile.php?user_id={$smarty.session.user_id}'>{$member}</a>{/if}
 	</div>
 </div>
 
