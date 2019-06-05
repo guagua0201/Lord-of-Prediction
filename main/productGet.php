@@ -15,7 +15,13 @@
     		$aResult['error'] = "die";
     	}
     	else{
-    		$id = $_POST['arguments'][0];
+
+			for($i=0;$i<200;$i++){
+				if($_POST['arguments'][0][i] == '1'){
+					$aResult[strval(i+1)] = 1;
+				}
+			}
+    		/*$id = $_POST['arguments'][0];
     		$sql = "SELECT gender,category_id from `Product` where id = $id";
 
 
@@ -33,7 +39,7 @@
     		}
     		else{
     			$aResult['error'] = "sql fail";
-    		}
+    		}*/
     	}
     }
 

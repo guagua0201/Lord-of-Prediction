@@ -207,9 +207,14 @@ var makeDressUpPlane = async function(){
     lastPage.height = 0.06;
     lastPage.pointerDownAnimation = async function(){
         console.log("lastPage!");
-        await removeBlock(advancedTexture,blockImg);
-        nowPage = await Math.max(0,nowPage-1);
-        await changeBlock(advancedTexture,blockImg);
+        
+        if(nowPage > 0){
+            await removeBlock(advancedTexture,blockImg);
+            nowPage = nowPage - 1;
+            await changeBlock(advancedTexture,blockImg);
+        }
+        //nowPage = await Math.max(0,nowPage-1);
+        
     };
     advancedTexture.addControl(lastPage);
 
@@ -221,12 +226,12 @@ var makeDressUpPlane = async function(){
     nextPage.height = 0.06;
     nextPage.pointerDownAnimation = async function(){
         console.log("nextPage!");
-        await removeBlock(advancedTexture,blockImg);
-        console.log('page',nowPage);
-        nowPage = await Math.min(nowPage+1,Math.max(0,Math.floor((sizeOfIdList-1)/10)));
-        console.log(Math.min(nowPage+1,Math.max(0,Math.floor((sizeOfIdList-1)/10))));
-        console.log('to ',nowPage);
-        await changeBlock(advancedTexture,blockImg);
+        if(nowPage < Math.floor((sizeOfIdList-1)/10)){
+            await removeBlock(advancedTexture,blockImg);
+            nowPage = nowPage + 1;
+            await changeBlock(advancedTexture,blockImg);
+        }
+        //nowPage = await Math.min(nowPage+1,Math.max(0,Math.floor((sizeOfIdList-1)/10)));
     };
     advancedTexture.addControl(nextPage);
 

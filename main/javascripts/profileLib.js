@@ -140,30 +140,32 @@ var getOther= async function(){
 }
 
 var getProduct = async function(id){
+    if(productInform[id]) return productInform[id];
+    
     var result;
     await jQuery.ajax({
         type: "POST",
         url: 'productGet.php',
         dataType: 'json',
-        data: {arguments: [id]},
+        data: {arguments: [ownAcc]},
         success: function(obj,textstatus){
             if(!('error' in obj) ){
 
                 console.log('result: ',obj);
-                console.log('return ',[obj["gender"],obj["category"],obj["cate_ename"]])
-                result =  [obj["gender"],obj["category"],obj["cate_ename"]];
+                //console.log('return ',[obj["gender"],obj["category"],obj["cate_ename"]])
+                //result =  [obj["gender"],obj["category"],obj["cate_ename"]];
             }
             else{
                 console.log('not found',obj);
-                result = [-1,-1,-1];
+                //result = [-1,-1,-1];
             }
         },
         error: function(response){
             console.log('ajax error',response);
-            result = [-1,-1,-1];
+            //result = [-1,-1,-1];
         }
     })
-    return result;
+    return productInform[id];
 }
 
 
