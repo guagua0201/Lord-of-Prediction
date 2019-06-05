@@ -16,11 +16,28 @@
     	}
     	else{
 
-			for($i=0;$i<200;$i++){
-				if($_POST['arguments'][0][i] == '1'){
-					$aResult[strval(i+1)] = 1;
-				}
-			}
+            for($i=0;$i<200;$i++){
+                if($_POST['arguments'][0][$i] == '1'){
+                    $id = $i+1;
+                    $sql = "SELECT gender,category_id from `Product` where id = $id";
+                    if($result = mysqli_query($link,$sql)){
+                        $product = mysqli_fetch_assoc($result);
+                        $aResult[$id]['gender'] = $product['gender'];
+                        $aResult[$id]['category'] = $product['category_id'];
+                        $nowCate = $aResult[$id]['category'];
+                        $sql2 = "SELECT e_name from `ProductCategory` where id = $nowCate";
+                        if($result2 = mysqli_query($link,$sql2)){
+                            $ename = mysqli_fetch_assoc($result2);  
+                            $aResult[$id]['cate_ename'] = $ename['e_name'];
+                        }
+                        
+                    }
+                    else{
+                        $aResult['error'] = "sql fail";
+                        break;
+                    }
+                }
+            }
     		/*$id = $_POST['arguments'][0];
     		$sql = "SELECT gender,category_id from `Product` where id = $id";
 

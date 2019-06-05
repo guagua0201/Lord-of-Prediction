@@ -558,20 +558,20 @@ var cateCheck = async function(id,cate){
     
 
     console.log('check ',nowProduct,nowProduct[1],cate);
-    if(cate === -1 || nowProduct[1] === cate){
+    if(cate === "-1" || nowProduct[1] === cate){
         return 1;
     }
     return 0;
 }
 
 var doIdList = async function(ownAcc,cate){
-    ownAcc = "11111111111111111111111111111100000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"
+    //ownAcc = "11111111111111111111111111111100000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"
     idList = [];
     for(var i=0;i<200;i++){
         id = i+1;
         if(ownAcc[i] === '1'){
             var key = await(cateCheck(id,cate));
-            if(key === 1){
+            if(key === "1"){
                 console.log('push '+id);
                 idList.push(id);
             }

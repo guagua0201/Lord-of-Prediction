@@ -96,6 +96,7 @@ var getSelf = async function(){
                 gender = obj['gender'];
                 selectAcc = obj['selectAcc'];
                 selectAcc = "00000110010000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000";
+                ownAcc = "11111111111111111111111111111110000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000";
                 
                 console.log('check',gender,selectAcc);
                 loadPerson(scene,gender,selectAcc);
@@ -152,8 +153,16 @@ var getProduct = async function(id){
             if(!('error' in obj) ){
 
                 console.log('result: ',obj);
+                console.log('ownAcc: ',ownAcc);
                 //console.log('return ',[obj["gender"],obj["category"],obj["cate_ename"]])
                 //result =  [obj["gender"],obj["category"],obj["cate_ename"]];
+                for(var i=0;i<200;i++){
+                    console.log("ownAcc",i,ownAcc[i]);
+                    if(ownAcc[i] === "1"){
+                        productInform[i+1] = [obj[i+1]["gender"],obj[i+1]["category"],obj[i+1]["cate_ename"]];
+                        console.log('productInform ',i+1," = ",productInform[i+1]);
+                    }
+                }
             }
             else{
                 console.log('not found',obj);
