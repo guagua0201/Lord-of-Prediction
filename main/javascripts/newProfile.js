@@ -169,11 +169,14 @@ var makeDressUpPlane = async function(){
     chooseCateButton.height = 0.10;
     chooseCateButton.color = "cyan"
     chooseCateButton.fontSize=25;
-    chooseCateButton.pointerDownAnimation = function(){
+    chooseCateButton.pointerUpAnimation = function(){
         makeCateList(advancedTexture,cateStr);
         console.log(chooseCateButton);
-    }
-    advancedTexture.addControl(chooseCateButton)
+    };
+    chooseCateButton.pointerDownAnimation = function(){
+
+    };
+    advancedTexture.addControl(chooseCateButton);
 
 
     nowPage = 0;
@@ -190,8 +193,11 @@ var makeDressUpPlane = async function(){
     closeButton.thickness = 0;
     closeButton.width = 0.035;
     closeButton.height = 0.06;
-    closeButton.pointerDownAnimation = function(){
+    closeButton.pointerUpAnimation = function(){
         scene.registerBeforeRender(closeDressUpAnimation);
+    };
+    closeButton.pointerDownAnimation = function(){
+
     };
     advancedTexture.addControl(closeButton);
 
@@ -205,7 +211,7 @@ var makeDressUpPlane = async function(){
     lastPage.thickness = 0;
     lastPage.width = 0.015;
     lastPage.height = 0.06;
-    lastPage.pointerDownAnimation = async function(){
+    lastPage.pointerUpAnimation = async function(){
         console.log("lastPage!");
         
         if(nowPage > 0){
@@ -216,6 +222,9 @@ var makeDressUpPlane = async function(){
         //nowPage = await Math.max(0,nowPage-1);
         
     };
+    lastPage.pointerDownAnimation = function(){
+
+    };
     advancedTexture.addControl(lastPage);
 
     nextPage.left = 400;
@@ -224,7 +233,7 @@ var makeDressUpPlane = async function(){
     nextPage.thickness = 0;
     nextPage.width = 0.015;
     nextPage.height = 0.06;
-    nextPage.pointerDownAnimation = async function(){
+    nextPage.pointerUpAnimation = async function(){
         console.log("nextPage!");
         if(nowPage < Math.floor((sizeOfIdList-1)/10)){
             await removeBlock(advancedTexture,blockImg);
@@ -232,6 +241,9 @@ var makeDressUpPlane = async function(){
             await changeBlock(advancedTexture,blockImg);
         }
         //nowPage = await Math.min(nowPage+1,Math.max(0,Math.floor((sizeOfIdList-1)/10)));
+    };
+    nextPage.pointerDownAnimation = function(){
+
     };
     advancedTexture.addControl(nextPage);
 
@@ -276,10 +288,13 @@ var makeDressUpPlane = async function(){
                 blockImg[id].id = idList[pid];
                 
 
-                blockImg[id].pointerDownAnimation = function(){
+                blockImg[id].pointerUpAnimation = function(){
                     console.log('click ',this.id);
                     wearCloth(this.id);
                 }
+                blockImg[id].pointerDownAnimation = function(){
+
+                };
                 advancedTexture.addControl(blockImg[id]);
             }
             
@@ -453,10 +468,13 @@ var changeBlock = function(advancedTexture,blockImg){
                 blockImg[id].id = idList[pid];
                 
 
-                blockImg[id].pointerDownAnimation = function(){
+                blockImg[id].pointerUpAnimation = function(){
                     console.log('click ',this.id);
                     wearCloth(this.id);
                 }
+                blockImg[id].pointerDownAnimation = function(){
+
+                };
                 advancedTexture.addControl(blockImg[id]);
             }
             
@@ -518,7 +536,7 @@ set3DButtonSelf = async function(scene){
             button.scaling.y=50;
             button.scaling.z=50;    
         }
-        button.pointerDownAnimation = function() {
+        button.pointerUpAnimation = function() {
             
             if(index == 4){
                 window.location.pathname = '/../shop.php';
@@ -536,6 +554,9 @@ set3DButtonSelf = async function(scene){
             }
             
         }
+        button.pointerDownAnimation = function(){
+
+        };
         return button
     }
 
@@ -548,17 +569,11 @@ set3DButtonSelf = async function(scene){
 }    
 
 var cateCheck = async function(id,cate){
-    var nowProduct;
-    if(productInform[id]){
-        nowProduct = productInform[id];
-    }
-    else{
-        productInform[id] = nowProduct = await getProduct(id);
-    }
+    var nowProduct = await getProduct(id);
     
 
     console.log('check ',nowProduct,nowProduct[1],cate);
-    if(cate === "-1" || nowProduct[1] === cate){
+    if(cate === -1 || nowProduct[1] === cate){
         return 1;
     }
     return 0;
@@ -568,10 +583,10 @@ var doIdList = async function(ownAcc,cate){
     //ownAcc = "11111111111111111111111111111100000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"
     idList = [];
     for(var i=0;i<200;i++){
-        id = i+1;
-        if(ownAcc[i] === '1'){
+        id = i;
+        if(ownAcc[i] === "1"){
             var key = await(cateCheck(id,cate));
-            if(key === "1"){
+            if(key === 1){
                 console.log('push '+id);
                 idList.push(id);
             }

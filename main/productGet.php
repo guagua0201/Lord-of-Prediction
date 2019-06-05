@@ -18,7 +18,7 @@
 
             for($i=0;$i<200;$i++){
                 if($_POST['arguments'][0][$i] == '1'){
-                    $id = $i+1;
+                    $id = $i;
                     $sql = "SELECT gender,category_id from `Product` where id = $id";
                     if($result = mysqli_query($link,$sql)){
                         $product = mysqli_fetch_assoc($result);

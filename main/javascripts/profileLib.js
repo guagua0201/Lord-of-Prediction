@@ -95,8 +95,8 @@ var getSelf = async function(){
                 ownAcc = obj['ownAcc'];
                 gender = obj['gender'];
                 selectAcc = obj['selectAcc'];
-                selectAcc = "00000110010000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000";
-                ownAcc = "11111111111111111111111111111110000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000";
+                selectAcc = "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000";
+                ownAcc = "011111111111111111111111111111110000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000";
                 
                 console.log('check',gender,selectAcc);
                 loadPerson(scene,gender,selectAcc);
@@ -159,8 +159,8 @@ var getProduct = async function(id){
                 for(var i=0;i<200;i++){
                     console.log("ownAcc",i,ownAcc[i]);
                     if(ownAcc[i] === "1"){
-                        productInform[i+1] = [obj[i+1]["gender"],obj[i+1]["category"],obj[i+1]["cate_ename"]];
-                        console.log('productInform ',i+1," = ",productInform[i+1]);
+                        productInform[i] = [obj[i]["gender"],obj[i]["category"],obj[i]["cate_ename"]];
+                        console.log('productInform ',i," = ",productInform[i]);
                     }
                 }
             }
@@ -252,7 +252,7 @@ var loadPerson = function(scene,gender,selectAcc){
 
     for(var i=0;i<selectAcc.length;i++){
         if(selectAcc[i] === '1'){
-            var id = i+1;
+            var id = i;
             wearCloth(id);
         }
     }
