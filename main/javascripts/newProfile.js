@@ -7,6 +7,7 @@ var backButton = []
 var productInform = []
 
 var nowPage = 0;
+var startAjax = 0;
 
 var cateMenuOpen = 0;
 
@@ -145,11 +146,11 @@ var makeDressUpPlane = async function(){
     menuRecImg.zIndex = 2;
     menuRec.addControl(menuRecImg);
 
-    var nowCate = -1;
+    var nowCate = 0;
 
     var cateStr = []; // should ajax
 
-    cateStr["-1"] = "全部";
+    cateStr["0"] = "全部";
     cateStr["1"] = "頭髮";
     cateStr["2"] = "套裝";
     cateStr["3"] = "鞋子";
@@ -410,7 +411,7 @@ var makeCateList = function(advancedTexture,cateStr){
 	    cateRec.color = "#1B2E3C";
 	    cateRec.thickness = 2;
 	    cateRec.zIndex = 5;
-	    cateRec.left = -290;
+	    cateRec.left = -285;
 	    cateRec.top=42;
 	    
 	    advancedTexture.addControl(cateRec);
@@ -418,6 +419,13 @@ var makeCateList = function(advancedTexture,cateStr){
 	    var cateRecImg = new BABYLON.GUI.Image("cateRecImg","images/profile/list.png");
 	    cateRecImg.zIndex = 6;
 	    cateRec.addControl(cateRecImg);
+
+	    nowScroll = 0;
+
+	    for(var i = 0 ;i<cateStr.length && i<8;i++){
+	    	
+	    }
+
 	}
 	else{
 		advancedTexture.removeControl(cateRec);
@@ -573,7 +581,7 @@ var cateCheck = async function(id,cate){
     
 
     console.log('check ',nowProduct,nowProduct[1],cate);
-    if(cate === -1 || nowProduct[1] === cate){
+    if(cate === 0 || nowProduct[1] === cate){
         return 1;
     }
     return 0;
