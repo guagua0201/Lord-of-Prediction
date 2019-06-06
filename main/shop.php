@@ -15,20 +15,15 @@ if ($result = mysqli_query($link, $sql)) {
 		$categories[] = $row;
 }
 
-$sql2 = "SELECT name, id,gender,category_id, price, image_url,moneyType FROM Product";
-$products = array();
-if ($result = mysqli_query($link, $sql2)) {
-	while ($row = mysqli_fetch_assoc($result))
-		$products[] = $row;
-}
 
-$sql3 = "SELECT gender FROM user WHERE username = '$member'";
+
+$sql3 = "SELECT gender FROM `User` WHERE username = '$member'";
 if($result = mysqli_query($link,$sql3)){
 	//echo "in<br>";
 	$user = mysqli_fetch_assoc($result);
 	// echo "check<br>";
 	$gender = $user["gender"];
-	if($gender != "0" && $gender != "1"){
+	if($gender != 0 && $gender != 1){
 		$gender = 2;
 	}
 	// echo "check2<br>";
@@ -36,6 +31,17 @@ if($result = mysqli_query($link,$sql3)){
 else{
 	// echo "out<br>";
 	$gender = 2;
+}
+
+$sql2 = "SELECT name, id,gender,category_id, price, image_url,moneyType FROM Product ";
+if($gender != 2){
+	$sql2 = $sql2 . "WHERE gender = " . $gender;
+}
+//WHERE gender = ".$gender;
+$products = array();
+if ($result = mysqli_query($link, $sql2)) {
+	while ($row = mysqli_fetch_assoc($result))
+		$products[] = $row;
 }
 
 mysqli_close($link);

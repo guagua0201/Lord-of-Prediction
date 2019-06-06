@@ -35,7 +35,7 @@
         echo json_encode($aResult);
     }
     else{
-        $sql = "SELECT id,money1,money2,money3,ownAcc FROM `User` WHERE username = '" . $_POST['arguments'][0] . "'";
+        $sql = "SELECT id,money1,money2,money3,ownAcc,gender FROM `User` WHERE username = '" . $_POST['arguments'][0] . "'";
         
         if($result = mysqli_query($link, $sql)){
             $user = mysqli_fetch_assoc($result);    
@@ -46,12 +46,38 @@
             exit();
         }
 
-        
+        $sql = "SELECT gender,price,moneyType FROM `Product` WHERE id = " . $_POST['arguments'][1] ;
 
-        $moneyType = "money".$_POST['arguments'][3];
+        if($result = mysqli_query($link,$sql)){
+            $product = mysqli_fetch_assoc($result);
+        }
+        else{
+            $aResult['error'] = "database error, $sql";
+            echo json_encode($aResult);
+            exit();
+        }
 
-        if($user["$moneyType"] < $_POST['arguments'][2]) {
-            $aResult['error'] = "你是個窮B! ".$moneyType." , ".$user["$moneyType"]." , ".$_POST['arguments'][2];
+        //$moneyType = "money".$_POST['arguments'][3];
+        if( (!isset($product['moneyType'])) || (!isset($product['price'])) ) {
+            $aResult['error'] = "product error, $sql";
+            echo json_encode($aResult);
+            exit();
+        }
+        $moneyType = "money".$product['moneyType'];
+        $price = $product['price'];
+        if($user["$moneyType"] < $price) {
+            $aResult['errorMoneyType'] = $moneyType;
+            $aResult['errorPrice'] = $price;
+            $aResult['error'] = "你是個窮B! ".$moneyType." , ".$user["$moneyType"]." , ".$price;
+            echo json_encode($aResult);
+            exit;
+        }
+
+        $gender = $product['gender'];
+
+
+        if($user["gender"] != $gender){
+            $aResult['error'] = "wrong gender!";
             echo json_encode($aResult);
             exit;
         }
@@ -70,7 +96,7 @@
     //    echo json_encode($aResult);
       //  exit;
 
-        $newMoney = $user["$moneyType"]-$_POST['arguments'][2];
+        $newMoney = $user["$moneyType"]-$price;
 
         
 
