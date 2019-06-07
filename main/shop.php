@@ -16,15 +16,19 @@ if ($result = mysqli_query($link, $sql)) {
 }
 
 
-
 $sql3 = "SELECT gender FROM `User` WHERE username = '$member'";
 if($result = mysqli_query($link,$sql3)){
 	//echo "in<br>";
 	$user = mysqli_fetch_assoc($result);
 	// echo "check<br>";
-	$gender = $user["gender"];
-	if($gender != 0 && $gender != 1){
+	if(!isset($user["gender"])){
 		$gender = 2;
+	}
+	else{
+		$gender = $user["gender"];
+		if($gender != 0 && $gender != 1){
+			$gender = 2;
+		}
 	}
 	// echo "check2<br>";
 }
@@ -33,9 +37,12 @@ else{
 	$gender = 2;
 }
 
-$sql2 = "SELECT name, id,gender,category_id, price, image_url,moneyType FROM Product ";
+$sql2 = "SELECT name, id,gender,category_id, price, image_url,moneyType FROM Product";
 if($gender != 2){
-	$sql2 = $sql2 . "WHERE gender = " . $gender;
+	$sql2 = $sql2 . " WHERE gender = " . $gender . " AND id != 7";
+}
+else{
+	$sql2 = $sql2 . " WHERE id != 7";
 }
 //WHERE gender = ".$gender;
 $products = array();
@@ -50,6 +57,6 @@ $smarty->assign('categories', $categories);
 $smarty->assign('products', $products);
 $smarty->assign('member',$member);
 $smarty->assign('usergender',$gender);
-// echo "Hello $gender";
+//echo "Hello $gender";
 $smarty->display('shop.tpl');
 ?>

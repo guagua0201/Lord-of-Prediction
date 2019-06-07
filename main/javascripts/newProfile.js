@@ -166,7 +166,7 @@ var makeDressUpPlane = async function(){
     chooseCateButton.top = -335;
     chooseCateButton.zIndex = 3;
     chooseCateButton.thickness = 0;
-    chooseCateButton.width = 0.20;
+    chooseCateButton.width = 0.15;
     chooseCateButton.height = 0.10;
     chooseCateButton.color = "cyan"
     chooseCateButton.fontSize=25;
@@ -423,7 +423,7 @@ var makeCateList = function(advancedTexture,cateStr){
 	    nowScroll = 0;
 
 	    for(var i = 0 ;i<cateStr.length && i<8;i++){
-	    	
+
 	    }
 
 	}
@@ -565,6 +565,7 @@ set3DButtonSelf = async function(scene){
         button.pointerDownAnimation = function(){
 
         };
+        console.log("button",button);
         return button
     }
 
@@ -575,6 +576,12 @@ set3DButtonSelf = async function(scene){
     }
     panel.blockLayout = false;
 }    
+
+var delete3DButton = function(){
+	for(var i=0;i<6;i++){
+
+	}
+}
 
 var cateCheck = async function(id,cate){
     var nowProduct = await getProduct(id);

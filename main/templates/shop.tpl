@@ -40,7 +40,7 @@
 									<div class='card-body product_content'>
 										<div>
 											<div class='product_info d-flex flex-row align-itmes-start justify-content-center'>
-												<div class='product_name'>
+												<div class='product_name' style='font-size: 22px;'>
 													{$product['name']}
 												</div>
 												<!--<div class='product_category'>
@@ -49,13 +49,13 @@
 											</div>
 										</div>
 										<div class='ml-auto text-left'>
-											<div class='purchase'>
-												<a id="buyLink" nohref style="cursor:pointer;color:blue;text-decoration:underline" onclick="buyFunction({$product['id']},{$product['moneyType']},{$product["price"]},'{$product["name"]}','{$member}')">購買</a>
+											<div class='product_price' style='color:gray; font-size:18px;'>
+												NTD: {$product['price']}
 											</div>
 										</div>
 										<div class='ml-auto text-right'>
-											<div class='product_price'>
-												NTD: {$product['price']}
+											<div class='purchase'>
+												<a id="buyLink" class="btn btn-info" nohref style="cursor:pointer;color:white;font:bold;" onclick="buyFunction({$product['id']},{$product['moneyType']},{$product["price"]},'{$product["name"]}','{$member}')">購買</a>
 											</div>
 										</div>
 									</div>
