@@ -65,7 +65,7 @@
 				<a class='btn btn-lg header-nav-btn' href='rank.php'>找高手</a>
 			</li>
 			<li class='header-nav-li nav-item active'>
-				<a class='btn btn-lg header-nav-btn' href='#'>即時比分</a>
+				<a class='btn btn-lg header-nav-btn' href='liveScore.php'>即時比分</a>
 			</li>
 			<li class='header-nav-li nav-item active'>
 				<a class='btn btn-lg header-nav-btn' href='searchUser.php'>用戶搜尋</a>
