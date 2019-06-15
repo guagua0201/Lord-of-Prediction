@@ -69,8 +69,11 @@ var createScene = async function(){
 var newScene = async function(){
 	engine = await new BABYLON.Engine(canvas, true, { preserveDrawingBuffer: true, stencil: true });
 	scene = await createScene();
+    engine.loadingUIText = "Loading!....";
+    engine.displayLoadingUI();
 
 	scene.executeWhenReady(function(){
+        engine.hideLoadingUI();
 		engine.runRenderLoop(function() {
 			if(scene){
 				scene.render();
@@ -320,7 +323,9 @@ var makeBlock = async function(advancedTexture){
 
                 blockImg[id].pointerUpAnimation = async function(){
                     console.log('click ',this.id);
+                    //engine.displayLoadingUI();
                     await wearCloth(this.id);
+                    //engine.hideLoadingUI();
                 }
                 blockImg[id].pointerDownAnimation = function(){
 
