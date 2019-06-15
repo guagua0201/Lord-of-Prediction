@@ -1,6 +1,12 @@
 {extends file='route.tpl'}
 {block name='body'}
 	
+	{if count($baseballAll) == 0}
+	<p style="margin:auto; font-size:40; font-weight: 600;">
+	暫無比賽
+	</p>
+	{/if}
+
 	<div class="container" style="margin-left:auto; margin-right:auto;">
 	{$gameCount=0}
 	{foreach $baseballAll as $nowGame}
