@@ -110,10 +110,19 @@
 									{/if}
 									</td>
 								{/for}
+
+
 								<td width="25" style="background: #FFFFCC;"></td>
-								<td width="25" style="background: #FFFFCC;"></td>
-								<td width="25" style="background: #FFFFCC;"></td>
-								<td width="25" style="background: #FFFFCC;"></td>
+								{if $nowGame["start"] == 1}
+									<td width="25" style="background: #FFFFCC;">{$nowGame["asr"]}</td>
+									<td width="25" style="background: #FFFFCC;">{$nowGame["ash"]}</td>
+									<td width="25" style="background: #FFFFCC;">{$nowGame["ase"]}</td>
+								{else}
+									<td width="25" style="background: #FFFFCC;"></td>
+									<td width="25" style="background: #FFFFCC;"></td>
+									<td width="25" style="background: #FFFFCC;"></td>
+								{/if}
+								
 							</tr>
 							<tr>
 								<td width="70">{$nowGame['data-nameh']}</td>
@@ -125,9 +134,15 @@
 									</td>
 								{/for}
 								<td width="25" style="background: #FFFFCC;"></td>
-								<td width="25" style="background: #FFFFCC;"></td>
-								<td width="25" style="background: #FFFFCC;"></td>
-								<td width="25" style="background: #FFFFCC;"></td>
+								{if $nowGame["start"] == 1}
+									<td width="25" style="background: #FFFFCC;">{$nowGame["hsr"]}</td>
+									<td width="25" style="background: #FFFFCC;">{$nowGame["hsr"]}</td>
+									<td width="25" style="background: #FFFFCC;">{$nowGame["hsr"]}</td>
+								{else}
+									<td width="25" style="background: #FFFFCC;"></td>
+									<td width="25" style="background: #FFFFCC;"></td>
+									<td width="25" style="background: #FFFFCC;"></td>
+								{/if}
 							</tr>
 						</tbody>
 					</table>

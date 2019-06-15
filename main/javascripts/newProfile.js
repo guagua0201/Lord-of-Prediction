@@ -11,6 +11,14 @@ var startAjax = 0;
 
 var cateMenuOpen = 0;
 
+var nowCate = 0;
+
+var cateStr = [];
+
+var blocks = [];
+
+var blockImg = [];
+
 var createScene = async function(){
 	console.log('createScene');
 	var scene = new BABYLON.Scene(engine);
@@ -79,6 +87,9 @@ var zPosSpeed = 80;
 var yTarSpeed = 26;
 
 function dressUpAnimation(){
+    for(var i=0;i<6;i++){
+        backButton[i].isVisible = false;
+    }
 	var scene = engine.scenes[0];
     var camera = scene.activeCamera;
     if(camera.position.z < 1700){
@@ -146,9 +157,9 @@ var makeDressUpPlane = async function(){
     menuRecImg.zIndex = 2;
     menuRec.addControl(menuRecImg);
 
-    var nowCate = 0;
+    nowCate = 0;
 
-    var cateStr = []; // should ajax
+    cateStr = []; // should ajax
 
     cateStr["0"] = "全部";
     cateStr["1"] = "頭髮";
@@ -161,7 +172,7 @@ var makeDressUpPlane = async function(){
     cateStr["8"] = "頸部";
 
     var chooseCateButton = BABYLON.GUI.Button.CreateImageWithCenterTextButton("chooseCateButton",cateStr[nowCate]+"         ","images/profile/category.png");
-
+    console.log('choose button',chooseCateButton);
     chooseCateButton.left = -305;
     chooseCateButton.top = -335;
     chooseCateButton.zIndex = 3;
@@ -171,7 +182,7 @@ var makeDressUpPlane = async function(){
     chooseCateButton.color = "cyan"
     chooseCateButton.fontSize=25;
     chooseCateButton.pointerUpAnimation = function(){
-        makeCateList(advancedTexture,cateStr);
+        makeCateList(advancedTexture,cateStr,chooseCateButton);
         console.log(chooseCateButton);
     };
     chooseCateButton.pointerDownAnimation = function(){
@@ -179,12 +190,9 @@ var makeDressUpPlane = async function(){
     };
     advancedTexture.addControl(chooseCateButton);
 
+    makeBlock(advancedTexture);
 
-    nowPage = 0;
-
-    await doIdList(ownAcc,nowCate);
-
-    sizeOfIdList = idList.length;
+    
 
     var closeButton = BABYLON.GUI.Button.CreateImageOnlyButton("closeButton", "images/dressUp/closeButton.png");
 
@@ -248,8 +256,29 @@ var makeDressUpPlane = async function(){
     };
     advancedTexture.addControl(nextPage);
 
-    var blocks = []
-    var blockImg = []
+    
+
+
+
+}
+
+var makeBlock = async function(advancedTexture){
+    nowPage = 0;
+
+    await doIdList(ownAcc,nowCate);
+
+    sizeOfIdList = idList.length;
+
+    for(var i=0;i<blockImg.length;i++){
+        advancedTexture.removeControl(blockImg[i]);
+    }
+    for(var i=0;i<blocks.length;i++){
+        advancedTexture.removeControl(blocks[i]);
+    }
+
+
+    blocks = []
+    blockImg = []
 
     for(var i=0;i<2;i++){
         for(var j=0;j<5;j++){
@@ -289,9 +318,9 @@ var makeDressUpPlane = async function(){
                 blockImg[id].id = idList[pid];
                 
 
-                blockImg[id].pointerUpAnimation = function(){
+                blockImg[id].pointerUpAnimation = async function(){
                     console.log('click ',this.id);
-                    wearCloth(this.id);
+                    await wearCloth(this.id);
                 }
                 blockImg[id].pointerDownAnimation = function(){
 
@@ -301,104 +330,15 @@ var makeDressUpPlane = async function(){
             
         }
     }
-
-
-
-
-    /*var cate = []
-    for(var i=1;i<=5;i++){
-        cate[i] = BABYLON.GUI.Button.CreateImageOnlyButton("cate" + i.toString(10), "images/dressUp/cate" + i.toString(10) + ".png");
-        
-        cate[i].left = i*100-466;
-        cate[i].top = -325;
-        cate[i].width = 0.1;
-        cate[i].zIndex = 1;
-        cate[i].thickness = 0;
-        cate[i].height = 0.08;
-        if(i==1) cate[i].top = -323;
-        cate[i].id = i;
-        //cate[i].AllowAlphaInheritance = true;
-        cate[i].pointerDownAnimation = function(){
-            for(var i=1;i<=5;i++){
-                advancedTexture.removeControl(cate[i]); 
-                if(i==this.id){
-                    cate[i].top = -323;
-                    cate[i].zIndex = 3;
-                }
-                else{
-                    cate[i].top = -325;
-                    cate[i].zIndex = 1;
-                }
-                //console.log('cate ',i," = ",cate[i]);
-                
-                advancedTexture.addControl(cate[i]); 
-                advancedTexture.removeControl(menuRec);
-                advancedTexture.addControl(menuRec);
-            }
-            this.scaleX = this.scaleY = 1;
-        }
-        advancedTexture.addControl(cate[i]); 
-    }
-
-
-    
-
-    
-
-    productID = [];
-
-    for(var i=1;i<=5;i++) {
-        productID[i] = [];
-        for(var j=0;j<10;j++){
-            productID[i][j] = j+1;
-        }
-        
-    }
-    
-    var nowCate = 2;
-
-    var blocks = []
-    var blockImg = []
-    for(var i=0;i<2;i++){
-        for(var j=0;j<5;j++){
-            var id = i*5+j;
-            blocks[id] = BABYLON.GUI.Button.CreateImageOnlyButton("cate" + i.toString(10), "images/dressUp/block.png");
-
-            blocks[id].left = -320 + j*160;
-            blocks[id].top = -50 + i*250;
-            blocks[id].zIndex = 3;
-            blocks[id].thickness = 0;
-            blocks[id].width = 0.12;
-            blocks[id].height = 0.18;
-            advancedTexture.addControl(blocks[id]);
-
-            nowProduct = getProduct(id);
-            blockImg[id] = BABYLON.GUI.Button.CreateImageOnlyButton("block" + id.toString(10),"images/product/" + (productID[nowCate][id]).toString(10) + ".png");
-            blockImg[id].left = -320 + j*160;
-            blockImg[id].top = -50 + i*250;
-            blockImg[id].zIndex = 4;
-            blockImg[id].thickness = 0;
-            blockImg[id].width = 0.12;
-            blockImg[id].height = 0.18;
-            blockImg[id].id = productID[nowCate][id];
-            
-
-            blockImg[id].pointerDownAnimation = function(){
-                console.log('click ',this.id);
-                wearCloth(this.id);
-            }
-            advancedTexture.addControl(blockImg[id]);
-
-            
-        }
-    }
-
-    	 */
 }
+
 
 var cateRec;
 
-var makeCateList = function(advancedTexture,cateStr){
+var cateButton = [];
+var cateButtonKey = [0,0,0,0,0,0];
+
+var makeCateList = function(advancedTexture,cateStr,chooseCateButton){
 	if(cateMenuOpen == 0){
 		cateRec = new BABYLON.GUI.Rectangle();
 	    
@@ -422,16 +362,95 @@ var makeCateList = function(advancedTexture,cateStr){
 
 	    nowScroll = 0;
 
-	    for(var i = 0 ;i<cateStr.length && i<8;i++){
+        var cateUp = new BABYLON.GUI.Button.CreateImageOnlyButton("cateUp","images/profile/triUp.png");
+        cateUp.zIndex = 7;
+        cateUp.thickness = 0;
+        cateUp.height = 25 + 'px';
+        cateUp.width = 40+'px';
+        cateUp.top = -290;
 
-	    }
+        cateUp.pointerUpAnimation = function(){
+            if(nowScroll > 0){
+                nowScroll -- ;
+            }     
+            makeCateButton(cateRec,chooseCateButton,advancedTexture);
+        }
+        cateUp.pointerDownAnimation = function(){
 
+        }
+        //cateUp.height = cateUp.width = 500 + 'px';
+        cateRec.addControl(cateUp);
+
+        var cateDown = new BABYLON.GUI.Button.CreateImageOnlyButton("cateUp","images/profile/triDown.png");
+        cateDown.zIndex = 7;
+        cateDown.thickness = 0;
+        cateDown.height = 25 + 'px';
+        cateDown.width = 40+'px';
+        cateDown.top = 290;
+
+        cateDown.pointerUpAnimation = function(){
+            if(nowScroll < cateStr.length - 1){
+                nowScroll ++;
+            }
+            makeCateButton(cateRec,chooseCateButton,advancedTexture);
+        }
+        cateDown.pointerDownAnimation = function(){
+
+        }
+
+        cateRec.addControl(cateDown);
+        for(var i=0;i<6;i++){
+            cateButtonKey[i] = 0;
+        }
+        makeCateButton(cateRec,chooseCateButton,advancedTexture);
 	}
 	else{
 		advancedTexture.removeControl(cateRec);
 	}
 	cateMenuOpen = 1-cateMenuOpen;
 }
+
+var makeCateButton = function(cateRec,chooseCateButton,advancedTexture){
+    var cateButtonInterval = 93;
+
+    for(var i = 0;i<6;i++){
+        var nowCateId = i + nowScroll;
+        if(cateButtonKey[i] == 1){
+            cateRec.removeControl(cateButton[i]);
+        }
+        if(nowCateId < cateStr.length){
+
+            cateButton[i] = new BABYLON.GUI.Button.CreateSimpleButton("cateButton" + i,cateStr[nowCateId]);
+            cateButton[i].zIndex = 7;
+            cateButton[i].thickness = 0;
+            cateButton[i].width = 170 + 'px';
+            cateButton[i].height = 70 + 'px';
+            cateButton[i].top = -230 + cateButtonInterval * i;
+            cateButton[i].color = '#65FFFF';
+            cateButton[i].fontSize = 30;
+            cateButton[i].cateId = nowCateId;
+            cateButton[i].fontStyle = "normal";
+
+            cateButton[i].pointerUpAnimation = function(){
+                nowCate = this.cateId;
+                console.log('hi cate ',nowCate);
+                chooseCateButton.textBlock.text = cateStr[nowCate] +"         ";
+                makeBlock(advancedTexture);
+            }
+            cateButton[i].pointerDownAnimation = function(){
+            }
+
+            cateRec.addControl(cateButton[i]);
+
+
+            cateButtonKey[i] = 1;
+        }
+        else{
+            cateButtonKey[i] = 0;
+        }
+    }
+}
+
 
 var removeBlock = function(advancedTexture,blockImg){
     for(var i=0;i<2;i++){
@@ -490,10 +509,12 @@ var changeBlock = function(advancedTexture,blockImg){
     }
 }
 
+var panel;
+
 set3DButtonSelf = async function(scene){
     var manager = new BABYLON.GUI.GUI3DManager(scene);
     var anchor = new BABYLON.TransformNode("");
-    var panel = new BABYLON.GUI.SpherePanel();
+    panel = new BABYLON.GUI.SpherePanel();
     panel.margin = 60;
 
     manager.addControl(panel);
@@ -512,11 +533,11 @@ set3DButtonSelf = async function(scene){
     buttonText = ["設定個人頁面\n1","追隨此用戶\n2","我的追隨\n3","我的商品\n4","購買配件\n5","換裝\n6"];
 
     var addButton = function(index) {
-        var button = new BABYLON.GUI.HolographicButton("orientation");
-        panel.addControl(button);
-        button.scaling.x=75;
-        button.scaling.y=50;
-        button.scaling.z=50;
+        backButton[index] = new BABYLON.GUI.HolographicButton("orientation");
+        panel.addControl(backButton[index]);
+        backButton[index].scaling.x=75;
+        backButton[index].scaling.y=50;
+        backButton[index].scaling.z=50;
         //console.log(button);
         //button.text = text;
         var text1 = new BABYLON.GUI.TextBlock();
@@ -528,23 +549,23 @@ set3DButtonSelf = async function(scene){
         text1.text = buttonText[index];
         text1.color = "White";
         text1.fontSize = 40;
-        button.content = text1;
+        backButton[index].content = text1;
         //button.isVisible = false;
 
-        button.pointerEnterAnimation = () => {
-            button.scaling.x=150;
-            button.scaling.y=100;
-            button.scaling.z=100;
+        backButton[index].pointerEnterAnimation = () => {
+            backButton[index].scaling.x=150;
+            backButton[index].scaling.y=100;
+            backButton[index].scaling.z=100;
 
 
         }
-        button.pointerOutAnimation = () => {
+        backButton[index].pointerOutAnimation = () => {
 
-            button.scaling.x=75;
-            button.scaling.y=50;
-            button.scaling.z=50;    
+            backButton[index].scaling.x=75;
+            backButton[index].scaling.y=50;
+            backButton[index].scaling.z=50;    
         }
-        button.pointerUpAnimation = function() {
+        backButton[index].pointerUpAnimation = function() {
             
             if(index == 4){
                 window.location.pathname = '/../shop.php';
@@ -552,9 +573,16 @@ set3DButtonSelf = async function(scene){
             if(index == 5){
                 // 換裝
                 for(var i=0;i<6;i++){
+                    console.log('check button ',backButton[i]);
                     backButton[i].isVisible = false;
+                    //panel.removeControl(backButton[i]);
+
                 }
-                console.log('here');
+                for(var i=0;i<panel.length;i++){
+                    panel.children[i].isVisible = false;
+                    panel.children[i].mesh
+                }
+                console.log('here',panel);
                 scene.registerBeforeRender(dressUpAnimation);
             }
             if(index == 3){
@@ -562,17 +590,17 @@ set3DButtonSelf = async function(scene){
             }
             
         }
-        button.pointerDownAnimation = function(){
+        backButton[index].pointerDownAnimation = function(){
 
         };
-        console.log("button",button);
-        return button
+        console.log("button",backButton[index]);
+        return backButton[index]
     }
 
     panel.blockLayout = true;
     
     for (var index = 0; index < 6; index++) {
-        backButton[index] = addButton(index);    
+        addButton(index);    
     }
     panel.blockLayout = false;
 }    
@@ -588,9 +616,11 @@ var cateCheck = async function(id,cate){
     
 
     console.log('check ',nowProduct,nowProduct[1],cate);
-    if(cate === 0 || nowProduct[1] === cate){
+    if(cate === 0 || nowProduct[1].toString(10) == cate.toString(10)){
+        console.log("return 1");
         return 1;
     }
+    console.log('return 0');
     return 0;
 }
 
@@ -600,7 +630,7 @@ var doIdList = async function(ownAcc,cate){
     for(var i=0;i<200;i++){
         id = i;
         if(ownAcc[i] === "1"){
-            var key = await(cateCheck(id,cate));
+            var key = await cateCheck(id,nowCate);
             if(key === 1){
                 console.log('push '+id);
                 idList.push(id);
