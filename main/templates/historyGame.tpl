@@ -63,15 +63,18 @@
 				</div>
 			</div>
 		</div>
+		{assign var="colorGray" value="#BBBBBB"}
+		{assign var="colorCyan" value="#99D9EA"}
+		{assign var="colorYellow" value="#FFEF84"}
 		<div class='row mt-3'>
 			<div class='table-responsive'>
 				<table class='table table-bordered'>
 					<thead class='thead-dark text-center font-weight-bold'>
 						<tr>
 							<div class='row'>
-								<td class='col-md-1 align-middle' rowspan='2'>賽事資訊</td>
-								<td class='col-md-2 align-middle' rowspan='2'>球隊資訊</td>
-								<td class='col-md-7 align-middle' colspan='{if count($data)}{count($names)}{else}3{/if}'>運彩盤</td>
+								<td class='col-md-1 align-middle' rowspan='2' style="background-color: {$colorGray}">賽事資訊</td>
+								<td class='col-md-2 align-middle' rowspan='2' style="background-color: {$colorGray}">球隊資訊</td>
+								<td class='col-md-7 align-middle' colspan='{if count($data)}{count($names)}{else}3{/if}' style="background-color: {$colorGray}">運彩盤</td>
 							</div>
 						</tr>
 						<tr>
@@ -81,9 +84,16 @@
 									<td class='text-center align-middle'>不讓分</td>
 									<td class='text-center align-middle'>大小</td>
 								{else}
+								{assign "tagCnt" 0}
 								{foreach from=$names item=name}
+									{if $tagCnt % 2 == 0}
+										{assign "nowColor" $colorYellow}
+									{else}
+										{assign "nowColor" $colorCyan}
+									{/if}
+									{assign "tagCnt" $tagCnt+1}
 									{if $name != '主客隊' && $name != '比賽時間'}
-										<td class='text-center align-middle'>{$name}</td>
+										<td class='text-center align-middle' style="background-color: {$nowColor};">{$name}</td>
 									{/if}
 								{/foreach}
 								{/if}
@@ -96,7 +106,14 @@
 								<td colspan='5'>暫無資料</td>
 							</tr>
 						{else}
+							{assign var="compCnt" value=0}
 							{foreach from=$data item=row name=loop}
+								{if $compCnt%2==0}
+									{assign var="nowColor" value="#FFFFFF"}
+								{else}
+									{assign var="nowColor" value=$colorGray}
+								{/if}
+								{assign var="compCnt" value=$compCnt+1}
 								{* Start *}
 								{assign var=detail value=$row['details']}
 								{assign var=a_score value=$row['a_score']}
@@ -186,14 +203,14 @@
 
 								<!-- Away Team -->
 								<tr>
-									<td rowspan='2'>
+									<td rowspan='2' style="background-color: {$nowColor};">
 										<span class='lead'>{$row['id']}</span>
 										<br>
 										{$row['game_datetime']|date_format:"%m\%d %H:%M"}
 										<br>
 										<a href='#'>對戰資訊</a>
 									</td>
-									<td>{$row['a_name']} <strong class="float-right {if $a_score > $h_score}text-success{else if $a_score < $h_score}text-danger{/if}">{$row['a_score']}</strong></td>
+									<td  style="background-color: {$nowColor};">{$row['a_name']} <strong class="float-right {if $a_score > $h_score}text-success{else if $a_score < $h_score}text-danger{/if}">{$row['a_score']}</strong></td>
 									{foreach from=$names item=name}
 
 										{if $name == '讓分'}
@@ -227,7 +244,7 @@
 								<!-- Away Team -->
 								<!-- Home Team -->
 								<tr>
-									<td>{$row['h_name']} <strong class="float-right {if $a_score < $h_score}text-success{else if $a_score > $h_score}text-danger{/if}">{$row['h_score']}</strong></td>
+									<td style="background-color: {$nowColor};">{$row['h_name']} <strong class="float-right {if $a_score < $h_score}text-success{else if $a_score > $h_score}text-danger{/if}">{$row['h_score']}</strong></td>
 									{foreach from=$names item=name}
 										{if $name == '讓分'}
 											<td class='{$h_handicap_class}'>
