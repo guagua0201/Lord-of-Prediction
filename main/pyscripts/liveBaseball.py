@@ -25,6 +25,10 @@ for div in divs:
         nowJson = {}
         #print(div.get('id'))
         if(str(div.get('id')).find('preview')==-1):
+            spans = div.find_all('span') 
+            for span in spans:
+                if( str(span.get('class')).find('teamname_highlight') != -1 ):
+                    nowJson["teamHighlight"] = str(span.text)
             nowJson["start"] = '1'
             if(str(div).find("比賽暫停") != -1):
                 print('pause')
@@ -132,7 +136,7 @@ for div in divs:
 import json
 
 #output = open("/home/qeayg91ioeue/public_html/documents/baseball_live.json","w",encoding='utf-8')
-output = open("../documents/result.json","w",encoding='utf-8')
+output = open("../documents/liveBaseball.json","w",encoding='utf-8')
 output.write(json.dumps(jsonList,ensure_ascii=False))
 #print(jsonList)
         
