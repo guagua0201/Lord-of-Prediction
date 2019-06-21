@@ -1,0 +1,29 @@
+body{
+	background-image: url("../images/newIndex/1.jpg");
+	background-size: cover;
+}
+.jumbotron{
+	opacity:0.5;
+	min-height: 400px;
+	max-height: 400px;
+	margin-top:100px;
+
+}
+.jumbotron:hover{
+	opacity: 1.0;
+	min-height: 400px;
+	max-height: 400px;
+	margin-top:100px;
+	
+}
+.logoImg{
+	padding: 15px 20px;
+}
+.container{
+	margin: auto;
+	padding: 20px 20px;
+}
+.container-fluid{
+	margin: auto;
+	padding: 20px 20px;
+}

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-	  <title>Hello</title>
+	  <title>ProphecyKing</title>
 	  <link rel="stylesheet" href="/stylesheets/style.css">
 	  <link rel="icon" href="/images/favicon.ico">
 	  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
