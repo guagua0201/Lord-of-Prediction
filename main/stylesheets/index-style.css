@@ -1,59 +1,30 @@
-
-body {
-	padding: 0;
-	margin: 0;
-	width: 100%;
-	font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-	background-image: url("../images/background.jpg");
-	background-size: 100%;
-	background-repeat: no-repeat;
-	background-position: 0 150px;
-	background-color: black;
+body{
+	background-image: url("/images/newIndex/1.jpg");
+	background-size: 100% 100%;
+	background-attachment: fixed;
 }
+.jumbotron{
+	opacity:0.5;
+	min-height: 400px;
+	max-height: 400px;
+	margin-top:100px;
 
-.header-nav-btn {
-	color: white;
 }
-
-.footer-nav-btn {
-	color: white;
+.jumbotron:hover{
+	opacity: 1.0;
+	min-height: 400px;
+	max-height: 400px;
+	margin-top:100px;
+	
 }
-
-.header-nav-btn:hover {
-	color: silver;
+.logoImg{
+	padding: 15px 20px;
 }
-
-.footer-nav-btn:hover {
-	color: silver;
+.container{
+	margin: auto;
+	padding: 20px 20px;
 }
-
-.info_box {
-	border: .5px solid cyan;
-	text-align: center;
-	padding: 0.5em;
-}
-
-.info_box > ul {
-	text-align: left;
-	list-style: circle inside;
-	padding: 0.5em;
-}
-
-.info_box > ul > li {
-	overflow: hidden;
-	text-overflow: ellipsis;
-	white-space: nowrap;
-}
-
-.info_box > ul > li > a {
-	color: white;
-	text-decoration: none;
-}
-
-.info_box > ul > li > a:hover {
-	color: silver;
-}
-
-.container {
-	color: white;
+.container-fluid{
+	margin: auto;
+	padding: 20px 20px;
 }
